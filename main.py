@@ -1,6 +1,8 @@
 from GUIs.mainWindow import Ui_Groot
+from modules.treeHandling import fixTreeViewScrolling
 from PySide2 import QtWidgets
 import sys
+
 
 class Window(QtWidgets.QMainWindow):
     def __init__(self):
@@ -9,8 +11,7 @@ class Window(QtWidgets.QMainWindow):
         self.ui = Ui_Groot()
         self.ui.setupUi(self)
 
-        self.ui.treeWidget.header().setSectionResizeMode(0, QtWidgets.QHeaderView.ResizeToContents)
-        self.ui.treeWidget.header().setStretchLastSection(False)
+        fixTreeViewScrolling(self.ui.treeWidget)
 
         self.show()
 
