@@ -1,0 +1,14 @@
+{
+    "Notebooks":
+    {
+        "notebook1":"note1",
+        "notebook2": { 
+            "subnotebook1" : "another value1",
+            "subnotebook2" : "another value2"}
+    },
+    "Uncategorized":
+    {
+        "unote1":"sdew",
+        "unote2":"sdfsd"
+    }
+}

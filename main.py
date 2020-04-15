@@ -1,5 +1,5 @@
 from GUIs.mainWindow import Ui_Groot
-from modules.treeHandling import fixTreeViewScrolling
+from modules.treeHandling import fixTreeViewScrolling, loadfileStructure
 from PySide2 import QtWidgets
 import sys
 
@@ -12,8 +12,10 @@ class Window(QtWidgets.QMainWindow):
         self.ui.setupUi(self)
 
         fixTreeViewScrolling(self.ui.treeWidget)
+        loadfileStructure(self.ui.treeWidget)
 
         self.show()
+
 
 if __name__ == "__main__":
 
