@@ -1,4 +1,4 @@
-from GUIs.groot import Ui_Groot
+from GUIs.mainWindow import Ui_Groot
 from PySide2 import QtWidgets
 import sys
 
