@@ -1,10 +1,12 @@
 
 from PySide2 import QtWidgets, QtCore
-from modules.noteHandling import loadNote
+from modules.noteHandling import loadNote, loadFileName
 import json
 
 def fixTreeViewScrolling(tree):
     tree.header().setSectionResizeMode(0, QtWidgets.QHeaderView.ResizeToContents)
+
+
 
 def fillItem(item,valDict):
     for key,val in valDict.items():
@@ -13,6 +15,7 @@ def fillItem(item,valDict):
         if type(val) is dict:
             fillItem(newItem,val)
         item.addChild(newItem)
+
 
 
 def loadfileStructure(tree):
@@ -47,6 +50,8 @@ def noteLoader(item, ui):
     
     val = itemVal(item,structDict)
     if(type(val) == str):
-        loadNote(val,ui)
+        loadFileName(item.text(0),ui.fileName)
+        loadNote(val, item.text(0), ui)
+
 
     
