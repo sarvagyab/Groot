@@ -1,13 +1,6 @@
-# -*- coding: utf-8 -*-
+from PySide2 import QtCore, QtGui, QtWidgets
 
-# Form implementation generated from reading ui file 'passwordDialog.ui'
-#
-# Created by: PyQt5 UI code generator 5.14.1
-#
-# WARNING! All changes made in this file will be lost!
-
-
-from PyQt5 import QtCore, QtGui, QtWidgets
+from modules.setPassword import matchPassword
 
 
 class Ui_passwordDialog(object):
@@ -131,6 +124,11 @@ class Ui_passwordDialog(object):
 
         self.retranslateUi(passwordDialog)
         QtCore.QMetaObject.connectSlotsByName(passwordDialog)
+
+        # slot-signals
+        self.buttonBox.button(QtWidgets.QDialogButtonBox.Ok).clicked.connect(matchPassword)
+        self.buttonBox.button(QtWidgets.QDialogButtonBox.Cancel).clicked.connect(lambda:passwordDialog.close())
+        
 
     def retranslateUi(self, passwordDialog):
         _translate = QtCore.QCoreApplication.translate

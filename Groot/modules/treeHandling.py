@@ -19,7 +19,7 @@ def fillItem(item,valDict):
 
 
 def loadfileStructure(tree):
-    location = "./fileStructure.json"
+    location = "../fileStructure.json"
     structDict = ""
     tree.topLevelItem(0)
     with open(location,"r") as jsonfile:
@@ -44,7 +44,7 @@ def itemVal(item,noteTree):
 
 def noteLoader(item, ui):
     structDict = ""
-    location = "./fileStructure.json"
+    location = "../fileStructure.json"
     with open(location,"r") as jsonfile:
         structDict = json.load(jsonfile)
     
