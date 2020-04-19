@@ -1,0 +1,14 @@
+{
+    "Notebooks":
+    {
+        "notebook1":"./Application/notes/note1.txt",
+        "notebook2": { 
+            "subnotebook1" : "./Application/notes/note2.txt",
+            "subnotebook2" : "./Application/notes/note3.txt"}
+    },
+    "Uncategorized":
+    {
+        "unote1":"./Application/notes/note4.txt",
+        "unote2":"./Application/notes/note5.txt"
+    }
+}

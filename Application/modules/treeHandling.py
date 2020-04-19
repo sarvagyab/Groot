@@ -19,7 +19,7 @@ def fillItem(item,valDict):
 
 
 def loadfileStructure(tree):
-    location = "../fileStructure.json"
+    location = "./Application/fileStructure.json"
     structDict = ""
     tree.topLevelItem(0)
     with open(location,"r") as jsonfile:
@@ -42,16 +42,16 @@ def itemVal(item,noteTree):
 
 
 
-def noteLoader(item, ui):
+def noteLoader(item, _fileName, _textEdit):
     structDict = ""
-    location = "../fileStructure.json"
+    location = "./Application/fileStructure.json"
     with open(location,"r") as jsonfile:
         structDict = json.load(jsonfile)
     
     val = itemVal(item,structDict)
     if(type(val) == str):
-        loadFileName(item.text(0),ui.fileName)
-        loadNote(val, item.text(0), ui)
+        loadFileName(item.text(0),_fileName)
+        loadNote(val, _textEdit)
 
 
     
