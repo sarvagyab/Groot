@@ -1,6 +1,6 @@
 from PySide2 import QtCore, QtGui, QtWidgets
 
-from modules.setPassword import matchPassword
+from modules.setPassword import setPassword
 
 
 class Ui_passwordDialog(object):
@@ -74,7 +74,6 @@ class Ui_passwordDialog(object):
         sizePolicy.setHeightForWidth(self.passwordLineEdit.sizePolicy().hasHeightForWidth())
         self.passwordLineEdit.setSizePolicy(sizePolicy)
         self.passwordLineEdit.setInputMethodHints(QtCore.Qt.ImhHiddenText|QtCore.Qt.ImhNoAutoUppercase|QtCore.Qt.ImhNoPredictiveText|QtCore.Qt.ImhSensitiveData)
-        self.passwordLineEdit.setText("")
         self.passwordLineEdit.setEchoMode(QtWidgets.QLineEdit.Password)
         self.passwordLineEdit.setObjectName("passwordLineEdit")
         self.horizontalLayout.addWidget(self.passwordLineEdit)
@@ -121,14 +120,18 @@ class Ui_passwordDialog(object):
         self.verticalLayout_4.addWidget(self.Errortext)
         self.verticalLayout.addWidget(self.errorFrame)
         self.gridLayout.addWidget(self.mainFrame, 0, 0, 1, 1)
+        self.passwordLineEdit.setFocus()
 
         self.retranslateUi(passwordDialog)
         QtCore.QMetaObject.connectSlotsByName(passwordDialog)
 
         # slot-signals
-        self.buttonBox.button(QtWidgets.QDialogButtonBox.Ok).clicked.connect(matchPassword)
+        self.buttonBox.button(QtWidgets.QDialogButtonBox.Ok).clicked.connect(self.passwordEntered)
         self.buttonBox.button(QtWidgets.QDialogButtonBox.Cancel).clicked.connect(lambda:passwordDialog.close())
         
+    def passwordEntered(self):
+        setPassword(self.passwordLineEdit.text(),self.RepasswordLineEdit.text(),self.Errortext)
+
 
     def retranslateUi(self, passwordDialog):
         _translate = QtCore.QCoreApplication.translate
