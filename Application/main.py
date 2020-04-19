@@ -1,7 +1,7 @@
+from PySide2 import QtWidgets, QtCore
 from GUIs.mainWindowPTE import Ui_Groot
 from modules.treeHandling import fixTreeViewScrolling, loadfileStructure, noteLoader
 from modules.markdownHandling import viewInMarkdown
-from PySide2 import QtWidgets, QtCore
 import sys
 
 
@@ -12,6 +12,9 @@ class Window(QtWidgets.QMainWindow):
         # Initializing UI
         self.ui = Ui_Groot()
         self.ui.setupUi(self)
+
+        self.DELAY = 1400   # Delay in displaying Markdown
+        self.mdExtensions = []  # Extensions for changing behaviour of markdown viewer
         
         # Fix no Scrollbar issue in notes tree when file names go out of box
         fixTreeViewScrolling(self.ui.treeWidget)
@@ -36,7 +39,7 @@ class Window(QtWidgets.QMainWindow):
     def _delayChecker(self):
         if(self.timer.isActive()):
             self.timer.stop()
-        self.timer.start(1400)
+        self.timer.start(self.DELAY)
 
 
     def _noteLoader(self):
@@ -45,9 +48,8 @@ class Window(QtWidgets.QMainWindow):
 
 
     def _markdownViewer(self):
-        mdView = lambda: viewInMarkdown(self.ui.plainTextEdit.toPlainText(),self.ui.mdViewer)
+        mdView = lambda: viewInMarkdown(self.ui.plainTextEdit.toPlainText(),self.mdExtensions,self.ui.mdViewer)
         self.timer.timeout.connect(mdView)
-        loadNew = lambda : viewInMarkdown(self.ui.plainTextEdit.toPlainText(),self.ui.mdViewer)
         self.ui.plainTextEdit.textChanged.connect(self._delayChecker)
 
     

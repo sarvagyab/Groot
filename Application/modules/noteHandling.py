@@ -7,7 +7,7 @@ def loadNote(path, _textEdit):
     file.open(QtCore.QIODevice.Text | QtCore.QIODevice.ReadWrite)
     stream = QtCore.QTextStream(file)
     _textEdit.setPlainText(stream.readAll())
-    QtWidgets.QApplication.processevents()
+    QtWidgets.QApplication.processEvents()
 
 
 def loadFileName(name,fileName):
