@@ -6,54 +6,26 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1207</width>
+    <width>1306</width>
     <height>552</height>
    </rect>
-  </property>
-  <property name="sizePolicy">
-   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
-    <horstretch>0</horstretch>
-    <verstretch>0</verstretch>
-   </sizepolicy>
   </property>
   <property name="windowTitle">
    <string>Groot</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgba(252, 252, 252, 252);</string>
+   <string notr="true">border-bottom-color: rgb(255, 255, 127);</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="styleSheet">
-    <string notr="true">background-color:rgb(252, 252, 252);</string>
+    <string notr="true">
+background-color: rgb(77, 77, 77);
+background-color: rgb(42, 42, 42);</string>
    </property>
    <layout class="QHBoxLayout" name="horizontalLayout_4">
-    <property name="leftMargin">
-     <number>0</number>
-    </property>
-    <property name="topMargin">
-     <number>5</number>
-    </property>
-    <property name="rightMargin">
-     <number>0</number>
-    </property>
-    <property name="bottomMargin">
-     <number>0</number>
-    </property>
     <item>
      <widget class="QWidget" name="mainWindow" native="true">
       <layout class="QVBoxLayout" name="verticalLayout">
-       <property name="leftMargin">
-        <number>0</number>
-       </property>
-       <property name="topMargin">
-        <number>0</number>
-       </property>
-       <property name="rightMargin">
-        <number>0</number>
-       </property>
-       <property name="bottomMargin">
-        <number>0</number>
-       </property>
        <item>
         <widget class="QWidget" name="rootOptions" native="true">
          <property name="sizePolicy">
@@ -69,18 +41,6 @@
           </size>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_6">
-          <property name="leftMargin">
-           <number>0</number>
-          </property>
-          <property name="topMargin">
-           <number>0</number>
-          </property>
-          <property name="rightMargin">
-           <number>0</number>
-          </property>
-          <property name="bottomMargin">
-           <number>0</number>
-          </property>
           <item>
            <widget class="QPushButton" name="newNote">
             <property name="sizePolicy">
@@ -169,7 +129,7 @@
              </font>
             </property>
             <property name="styleSheet">
-             <string notr="true"/>
+             <string notr="true">color: rgb(255, 255, 255);</string>
             </property>
             <property name="placeholderText">
              <string>Search this note</string>
@@ -210,18 +170,6 @@
           </size>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_5">
-          <property name="leftMargin">
-           <number>0</number>
-          </property>
-          <property name="topMargin">
-           <number>0</number>
-          </property>
-          <property name="rightMargin">
-           <number>0</number>
-          </property>
-          <property name="bottomMargin">
-           <number>0</number>
-          </property>
           <item>
            <widget class="QTreeWidget" name="treeWidget">
             <property name="enabled">
@@ -243,7 +191,7 @@
              <bool>false</bool>
             </property>
             <property name="styleSheet">
-             <string notr="true">background-color:rgb(48, 48, 48);
+             <string notr="true">background-color:rgb(50, 50, 50);
 color: rgb(255, 255, 255);</string>
             </property>
             <property name="frameShape">
@@ -333,18 +281,6 @@ color: rgb(255, 255, 255);</string>
              </sizepolicy>
             </property>
             <layout class="QVBoxLayout" name="verticalLayout_2">
-             <property name="leftMargin">
-              <number>0</number>
-             </property>
-             <property name="topMargin">
-              <number>0</number>
-             </property>
-             <property name="rightMargin">
-              <number>0</number>
-             </property>
-             <property name="bottomMargin">
-              <number>0</number>
-             </property>
              <item>
               <widget class="QWidget" name="titleArea" native="true">
                <property name="sizePolicy">
@@ -377,7 +313,7 @@ border-bottom-color: rgb(255, 255, 127);</string>
                    </font>
                   </property>
                   <property name="styleSheet">
-                   <string notr="true"/>
+                   <string notr="true">color: rgb(255, 255, 255);</string>
                   </property>
                   <property name="text">
                    <string>Testing Name</string>
@@ -409,12 +345,6 @@ border-bottom-color: rgb(255, 255, 127);</string>
                </property>
                <layout class="QHBoxLayout" name="horizontalLayout_3">
                 <property name="leftMargin">
-                 <number>0</number>
-                </property>
-                <property name="topMargin">
-                 <number>0</number>
-                </property>
-                <property name="rightMargin">
                  <number>0</number>
                 </property>
                 <property name="bottomMargin">
@@ -581,23 +511,13 @@ border-bottom-color: rgb(255, 255, 127);</string>
                    </font>
                   </property>
                   <property name="styleSheet">
-                   <string notr="true">background-color: rgb(248, 248, 248);
-border-color: rgba(252, 252, 252, 252);
-
-border-width:0px
-</string>
+                   <string notr="true">color: rgb(255, 255, 255);</string>
                   </property>
                   <property name="frameShape">
-                   <enum>QFrame::Panel</enum>
-                  </property>
-                  <property name="frameShadow">
-                   <enum>QFrame::Raised</enum>
+                   <enum>QFrame::WinPanel</enum>
                   </property>
                   <property name="lineWidth">
                    <number>1</number>
-                  </property>
-                  <property name="midLineWidth">
-                   <number>0</number>
                   </property>
                   <property name="verticalScrollBarPolicy">
                    <enum>Qt::ScrollBarAsNeeded</enum>
@@ -615,25 +535,17 @@ border-width:0px
                     <verstretch>0</verstretch>
                    </sizepolicy>
                   </property>
-                  <property name="font">
-                   <font>
-                    <pointsize>17</pointsize>
-                   </font>
-                  </property>
                   <property name="styleSheet">
-                   <string notr="true">background-color: rgb(248, 248, 248);</string>
+                   <string notr="true">color: rgb(255, 255, 255);</string>
                   </property>
                   <property name="frameShape">
-                   <enum>QFrame::NoFrame</enum>
-                  </property>
-                  <property name="frameShadow">
-                   <enum>QFrame::Plain</enum>
+                   <enum>QFrame::WinPanel</enum>
                   </property>
                   <property name="verticalScrollBarPolicy">
                    <enum>Qt::ScrollBarAsNeeded</enum>
                   </property>
                   <property name="horizontalScrollBarPolicy">
-                   <enum>Qt::ScrollBarAsNeeded</enum>
+                   <enum>Qt::ScrollBarAlwaysOff</enum>
                   </property>
                   <property name="textInteractionFlags">
                    <set>Qt::TextBrowserInteraction</set>
@@ -659,7 +571,7 @@ border-width:0px
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1207</width>
+     <width>1306</width>
      <height>26</height>
     </rect>
    </property>
