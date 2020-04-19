@@ -19,25 +19,39 @@ class Window(QtWidgets.QMainWindow):
         # Load notes in notes Tree
         loadfileStructure(self.ui.treeWidget)
 
+        # Timer for Loading the Markdown view when the user has stopped typing for a duration
+        self.timer = QtCore.QTimer()
+        self.timer.setSingleShot(True)
+
         # Switching notes in textEdit
         self._noteLoader()
 
         # Display notes in Markdown
-        self.markdownViewer()
+        self._markdownViewer()
 
         # Display UI
         self.show()
+
+
+    def _delayChecker(self):
+        if(self.timer.isActive()):
+            self.timer.stop()
+        self.timer.start(1400)
 
 
     def _noteLoader(self):
         changeNote = lambda : noteLoader(self.ui.treeWidget.selectedItems()[0],self.ui.fileName,self.ui.plainTextEdit)
         self.ui.treeWidget.itemSelectionChanged.connect(changeNote)
 
-    def markdownViewer(self):
-        loadNew = lambda : viewInMarkdown(self.ui.plainTextEdit.toPlainText(),self.ui.mdViewer)
-        self.ui.plainTextEdit.textChanged.connect(loadNew)
-    
 
+    def _markdownViewer(self):
+        mdView = lambda: viewInMarkdown(self.ui.plainTextEdit.toPlainText(),self.ui.mdViewer)
+        self.timer.timeout.connect(mdView)
+        loadNew = lambda : viewInMarkdown(self.ui.plainTextEdit.toPlainText(),self.ui.mdViewer)
+        self.ui.plainTextEdit.textChanged.connect(self._delayChecker)
+
+    
+    
 
 if __name__ == "__main__":
 
