@@ -1,5 +1,6 @@
 from PySide2 import QtWidgets
 from .Exceptions import *
+from .passwordHashing import storePassword
 
 ERROR_MSG = ""
 
@@ -15,7 +16,8 @@ def setPassword(pass1,pass2,errorLabel):
     else:
         global ERROR_MSG
         ERROR_MSG = "Password is set successfully."
-        displayInstruction(errorLabel,True)   
+        displayInstruction(errorLabel,True)
+        storePassword(pass1)
 
 def arePasswordSame(pass1,pass2):
     """Check whether entered passwards are same or not"""
