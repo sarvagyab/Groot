@@ -53,7 +53,6 @@ class Window(QtWidgets.QMainWindow):
         self.ui.plainTextEdit.textChanged.connect(self._delayChecker)
 
     
-    
 
 if __name__ == "__main__":
 
