@@ -114,11 +114,3 @@ class Ui_settingDialog(object):
         self.settingsTreeWidget.setSortingEnabled(__sortingEnabled)
 
 
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    settingDialog = QtWidgets.QDialog()
-    ui = Ui_settingDialog()
-    ui.setupUi(settingDialog)
-    settingDialog.show()
-    sys.exit(app.exec_())

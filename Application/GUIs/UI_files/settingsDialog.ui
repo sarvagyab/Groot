@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>settingDialog</class>
+ <widget class="QDialog" name="settingDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>929</width>
+    <height>833</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Settings</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="1" column="0">
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="0">
+    <widget class="QFrame" name="mainFrame">
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
+     </property>
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <widget class="QFrame" name="leftMainFrame">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <horstretch>1</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+         <enum>QFrame::Raised</enum>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout">
+         <item>
+          <widget class="QLineEdit" name="searchLineEdit">
+           <property name="styleSheet">
+            <string notr="true">QLineEdit {
+	border: none;
+	padding: 2px 5px 2px 27px;
+	margin-right: 0px;
+}
+</string>
+           </property>
+           <property name="placeholderText">
+            <string>Find Settings</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QTreeWidget" name="settingsTreeWidget">
+           <property name="allColumnsShowFocus">
+            <bool>false</bool>
+           </property>
+           <property name="headerHidden">
+            <bool>true</bool>
+           </property>
+           <column>
+            <property name="text">
+             <string>1</string>
+            </property>
+           </column>
+           <item>
+            <property name="text">
+             <string>Setting1</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Setting2</string>
+            </property>
+            <item>
+             <property name="text">
+              <string>Setting2.1</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Setting2.2</string>
+             </property>
+            </item>
+           </item>
+           <item>
+            <property name="text">
+             <string>Setting3</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Setting4</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+      <item>
+       <widget class="QStackedWidget" name="settingsStackedWidget">
+        <property name="sizePolicy">
+         <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+          <horstretch>4</horstretch>
+          <verstretch>0</verstretch>
+         </sizepolicy>
+        </property>
+        <property name="currentIndex">
+         <number>0</number>
+        </property>
+        <widget class="QWidget" name="setting1Page"/>
+        <widget class="QWidget" name="setting2Page"/>
+        <widget class="QWidget" name="setting2_1Page"/>
+        <widget class="QWidget" name="setting2_2Page"/>
+        <widget class="QWidget" name="setting3Page"/>
+        <widget class="QWidget" name="setting4Page"/>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
