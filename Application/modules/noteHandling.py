@@ -19,10 +19,10 @@ def readText(path):
     stream = QtCore.QTextStream(file)
     return stream.readAll()
 
-def writeText(path,txt,binary = False):
+def writeText(path,txt,encrypted = False):
     cnt = "w"
-    if(binary == True):
-        cnt = "wb"
+    if(encrypted == True): # comment the whole text
+        txt = "<!--Encrypted Fuck off -->"
     with open(path,cnt) as file:
         file.write(txt)
     print("saved Encrypted file")

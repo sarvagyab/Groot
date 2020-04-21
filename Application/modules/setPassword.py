@@ -6,6 +6,7 @@ from GUIs.passwordDialog import Ui_passwordDialog
 from modules.Exceptions import *
 from modules.passwordHashing import hashPassword
 from modules.treeHandling import itemVal,_itemVal
+from modules.noteHandling import loadNote
 
 
 class password(object):
@@ -13,11 +14,14 @@ class password(object):
         self.ERROR_MSG = ""
         self.passwordset = False
     
-    def openPasswordDialog(self,currentNote,currentFileName):
+    def openPasswordDialog(self,Window):
         print("Encryption button clicked")
-
+        self.currentNote = Window.ui.treeWidget.selectedItems()
+        self.currentFileName = Window.ui.treeWidget.selectedItems()[0].text(0)
+        print("Trying to encrypt {}".format(self.currentFileName))
+        self.main_Window = Window
         # First check whether any note is selected or not
-        if(self.selectedNote(currentNote,currentFileName)):
+        if(self.selectedNote()):
 
             self.ui_p = Ui_passwordDialog()
 
@@ -26,15 +30,14 @@ class password(object):
             self.ui_p.buttonBox.button(QtWidgets.QDialogButtonBox.Cancel).clicked.connect(lambda:self.ui_p.passwordDialog.close())
 
 
-    def selectedNote(self,currentNote,currentFileName):
-        if(len(currentNote) == 0): 
+    def selectedNote(self):
+        if(len(self.currentNote) == 0): 
             print("Any note is not selected") # nothing is selected.
             return False
         else:
-            item = itemVal(currentNote[0])
+            item = itemVal(self.currentNote[0])
             if("path" in item and type(item["path"]) == str):
                 self.currentNote = item
-                self.currentFileName = currentFileName
                 return True
             else:
                 print("select note")
@@ -48,8 +51,9 @@ class password(object):
             print("Password valid")
             self.closeDialog()
             hashPassword(self.currentNote,self.currentFileName,self.pass1)
-
-
+            loadNote(self.currentNote['path'],self.main_Window.ui.plainTextEdit) # reload text window
+            
+            
     def setPassword(self):
         """ Check whether password entered in 'password' and 're-enter password' fields are same or not."""
         try:

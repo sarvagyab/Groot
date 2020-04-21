@@ -11,8 +11,9 @@ class AEScipher():
         self.bs = AES.block_size
         self.__key__ = hashlib.sha256(key.encode()).digest()
         self.raw = readText(currentNote['path'])
-        # writeText(currentNote['path'],self.Encrypt(),binary = True)
-        writeText(currentNote['path'],self.Decrypt())
+        writeText(currentNote['path'],self.Encrypt(),encrypted = True)
+        
+        # writeText(currentNote['path'],self.Decrypt())
 
     def Encrypt(self):
         pad = lambda s: s + (self.bs - len(s) % self.bs) * chr(self.bs - len(s) % self.bs)
