@@ -1,8 +1,10 @@
 import scrypt
 import os
+from modules.treeHandling import itemVal
+
 from stat import S_IREAD,SF_IMMUTABLE,S_IWUSR,SF_NOUNLINK,UF_NODUMP,S_ISVTX
 
-def storePassword(password):
+def storePassword(currentNote,password):
     h_pass,salt = hashPassword(password,0.5,64)
 
 

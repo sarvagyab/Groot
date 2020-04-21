@@ -1,24 +1,26 @@
 from PySide2 import QtCore, QtGui, QtWidgets
 
-from modules.setPassword import setPassword
-
-
 class Ui_passwordDialog(object):
-    def setupUi(self, passwordDialog):
-        passwordDialog.setObjectName("passwordDialog")
-        passwordDialog.resize(565, 286)
+    def __init__(self):
+        self.passwordDialog = QtWidgets.QDialog()
+        self.setupUi()
+        self.passwordDialog.show()
+          
+    def setupUi(self):
+        self.passwordDialog.setObjectName("passwordDialog")
+        self.passwordDialog.resize(565, 286)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(passwordDialog.sizePolicy().hasHeightForWidth())
-        passwordDialog.setSizePolicy(sizePolicy)
-        self.gridLayout = QtWidgets.QGridLayout(passwordDialog)
+        sizePolicy.setHeightForWidth(self.passwordDialog.sizePolicy().hasHeightForWidth())
+        self.passwordDialog.setSizePolicy(sizePolicy)
+        self.gridLayout = QtWidgets.QGridLayout(self.passwordDialog)
         self.gridLayout.setObjectName("gridLayout")
-        self.buttonBox = QtWidgets.QDialogButtonBox(passwordDialog)
+        self.buttonBox = QtWidgets.QDialogButtonBox(self.passwordDialog)
         self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel|QtWidgets.QDialogButtonBox.Ok)
         self.buttonBox.setObjectName("buttonBox")
         self.gridLayout.addWidget(self.buttonBox, 2, 0, 1, 1)
-        self.mainFrame = QtWidgets.QFrame(passwordDialog)
+        self.mainFrame = QtWidgets.QFrame(self.passwordDialog)
         self.mainFrame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.mainFrame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.mainFrame.setObjectName("mainFrame")
@@ -121,32 +123,14 @@ class Ui_passwordDialog(object):
         self.verticalLayout.addWidget(self.errorFrame)
         self.gridLayout.addWidget(self.mainFrame, 0, 0, 1, 1)
         self.passwordLineEdit.setFocus()
-
-        self.retranslateUi(passwordDialog)
-        QtCore.QMetaObject.connectSlotsByName(passwordDialog)
-
-        # slot-signals
-        self.buttonBox.button(QtWidgets.QDialogButtonBox.Ok).clicked.connect(self.passwordEntered)
-        self.buttonBox.button(QtWidgets.QDialogButtonBox.Cancel).clicked.connect(lambda:passwordDialog.close())
         
-    def passwordEntered(self):
-        setPassword(self.passwordLineEdit.text(),self.RepasswordLineEdit.text(),self.Errortext)
+        self.retranslateUi()
+        QtCore.QMetaObject.connectSlotsByName(self.passwordDialog)
 
-
-    def retranslateUi(self, passwordDialog):
+    def retranslateUi(self):
         _translate = QtCore.QCoreApplication.translate
-        passwordDialog.setWindowTitle(_translate("passwordDialog", "Please enter your password"))
+        self.passwordDialog.setWindowTitle(_translate("passwordDialog", "Please enter your password"))
         self.instruction.setText(_translate("passwordDialog", "<html><head/><body><p>Please enter <span style=\" font-weight:600;\">password </span>to enter encrypt the note.</p><p>Keep in mind that you have to <span style=\" font-weight:600;\">remember </span>your password to read the content of the note</p><p>and that you can <span style=\" font-weight:600;\">only</span> do that <span style=\" font-weight:600;\">in Groot</span>.</p></body></html>"))
         self.password.setText(_translate("passwordDialog", "<html><head/><body><p><span style=\" font-size:9pt;\">Password</span></p></body></html>"))
         self.Repassword.setText(_translate("passwordDialog", "<html><head/><body><p><span style=\" font-size:9pt;\">Re-enter Password</span></p></body></html>"))
         self.Errortext.setText(_translate("passwordDialog", "<html><head/><body><p><span style=\" color:#ff0000;\">Password must contain atleast 8 character with atleast 1 digit and 1 capital letter.</span></p></body></html>"))
-
-
-if __name__ == "__main__":
-    import sys
-    app = QtWidgets.QApplication(sys.argv)
-    passwordDialog = QtWidgets.QDialog()
-    ui = Ui_passwordDialog()
-    ui.setupUi(passwordDialog)
-    passwordDialog.show()
-    sys.exit(app.exec_())

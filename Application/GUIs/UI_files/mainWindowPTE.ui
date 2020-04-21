@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1207</width>
-    <height>552</height>
+    <width>1196</width>
+    <height>807</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -659,7 +659,7 @@ border-width:0px
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1207</width>
+     <width>1196</width>
      <height>26</height>
     </rect>
    </property>
@@ -691,8 +691,17 @@ border-width:0px
     <property name="title">
      <string>Edit</string>
     </property>
+    <widget class="QMenu" name="menuFormat">
+     <property name="title">
+      <string>Format</string>
+     </property>
+     <addaction name="actionBold"/>
+     <addaction name="actionItalic"/>
+     <addaction name="actionUnderline"/>
+    </widget>
     <addaction name="actionSearch_in_Current_Note"/>
     <addaction name="actionSearch_in_All_Notes"/>
+    <addaction name="menuFormat"/>
    </widget>
    <widget class="QMenu" name="menuView">
     <property name="title">
@@ -788,6 +797,33 @@ border-width:0px
   <action name="actionLight_Theme">
    <property name="text">
     <string>Light Theme</string>
+   </property>
+  </action>
+  <action name="actionBold">
+   <property name="text">
+    <string>Bold</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+B</string>
+   </property>
+   <property name="shortcutVisibleInContextMenu">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionItalic">
+   <property name="text">
+    <string>Italic</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+I</string>
+   </property>
+  </action>
+  <action name="actionUnderline">
+   <property name="text">
+    <string>Underline</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+U</string>
    </property>
   </action>
  </widget>
