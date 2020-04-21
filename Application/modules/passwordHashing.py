@@ -1,18 +1,33 @@
 import scrypt
 import os
-from modules.treeHandling import itemVal
+import json
+from modules.treeHandling import updateItem
+from modules.encryptNote import AEScipher
+# from modules.encryptNote import encryptNote
 
-from stat import S_IREAD,SF_IMMUTABLE,S_IWUSR,SF_NOUNLINK,UF_NODUMP,S_ISVTX
+def hashPassword(currentNote,currentFileName,password,datalength= 64):
+    print("Hashed password")
+    salt = str(os.urandom(datalength)) # add dynamic salt
+    h_pass= Hash(password,salt)
+    storePassword(currentNote,currentFileName,h_pass,salt)
+    aes = AEScipher(password,currentNote)
 
-def storePassword(currentNote,password):
-    h_pass,salt = hashPassword(password,0.5,64)
-
-
-def hashPassword(password,maxtime = 0.5,datalength=64):
+def Hash(password,salt,datalength=64):
     """Hash password using scrypt"""
-    salt = os.urandom(datalength) # add dynamic salt
     hashed_password = scrypt.hash(password,salt) # hash password
-    return (hashed_password,salt) 
+    return hashed_password
+
+def storePassword(currentNote,currentFileName,h_password,salt):
+    """
+    Need to add checks for already encrypted files
+    """
+    print("Stored Password")
+    currentNote['salt'] = salt
+    currentNote['h_pass'] = str(h_password)
+    # print(currentFileName,currentNote)
+    updatedNote = {currentFileName : currentNote}
+    # print(updatedNote)
+    updateItem(updatedNote) 
 
 def verifyPassword():
     pass

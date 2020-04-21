@@ -4,7 +4,8 @@ from PySide2 import QtWidgets
 from GUIs.passwordDialog import Ui_passwordDialog
 
 from modules.Exceptions import *
-from modules.passwordHashing import storePassword
+from modules.passwordHashing import hashPassword
+from modules.treeHandling import itemVal,_itemVal
 
 
 class password(object):
@@ -12,20 +13,41 @@ class password(object):
         self.ERROR_MSG = ""
         self.passwordset = False
     
-    def openPasswordDialog(self):
+    def openPasswordDialog(self,currentNote,currentFileName):
         print("Encryption button clicked")
-        self.ui_p = Ui_passwordDialog()
-        
-        # slot-signals
-        self.ui_p.buttonBox.button(QtWidgets.QDialogButtonBox.Ok).clicked.connect(lambda:self.passwordEntered())
-        self.ui_p.buttonBox.button(QtWidgets.QDialogButtonBox.Cancel).clicked.connect(lambda:self.ui_p.passwordDialog.close())
-       
-        self.passwordEntered()
+
+        # First check whether any note is selected or not
+        if(self.selectedNote(currentNote,currentFileName)):
+
+            self.ui_p = Ui_passwordDialog()
+
+            # slot-signals
+            self.ui_p.buttonBox.button(QtWidgets.QDialogButtonBox.Ok).clicked.connect(lambda:self.passwordEntered())
+            self.ui_p.buttonBox.button(QtWidgets.QDialogButtonBox.Cancel).clicked.connect(lambda:self.ui_p.passwordDialog.close())
+
+
+    def selectedNote(self,currentNote,currentFileName):
+        if(len(currentNote) == 0): 
+            print("Any note is not selected") # nothing is selected.
+            return False
+        else:
+            item = itemVal(currentNote[0])
+            if("path" in item and type(item["path"]) == str):
+                self.currentNote = item
+                self.currentFileName = currentFileName
+                return True
+            else:
+                print("select note")
+                return False
     
     def passwordEntered(self):
         self.pass1 = self.ui_p.passwordLineEdit.text()
         self.pass2 = self.ui_p.RepasswordLineEdit.text()
         self.setPassword()
+        if(self.passwordset == True):
+            print("Password valid")
+            self.closeDialog()
+            hashPassword(self.currentNote,self.currentFileName,self.pass1)
 
 
     def setPassword(self):
@@ -41,7 +63,6 @@ class password(object):
             self.ERROR_MSG = "Password is set successfully."
             self.passwordset = True
             self.displayInstruction()
-            # storePassword(pass1)
     
     def displayInstruction(self):
         # Prepare message to display
@@ -75,4 +96,6 @@ class password(object):
         if(not any(x.isdigit() for x in self.pass1)):
             self.ERROR_MSG = "Password must contain atleast one digit"
             raise DoesNotContainCapitalLetterError(self.ERROR_MSG)
-
+    
+    def closeDialog(self):
+        self.ui_p.passwordDialog.close()

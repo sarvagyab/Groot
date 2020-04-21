@@ -1,42 +1,29 @@
 {
-    "Notebooks":
-    {
-        "notebook1":
-        {
-            "note1":
-            {
-                "path":"./Application/notes/note1.txt",
-                "dateCreated":"12/12/12/"
+    "Notebooks": {
+        "notebook1": {
+            "note1": {
+                "path": "../Application/notes/note1.txt",
+                "dateCreated": "12/12/12/"
             }
         },
-        "notebook2": 
-        { 
-            "note2" : 
-            {
-                "path":"./Application/notes/note2.txt"
+        "notebook2": {
+            "note2": {
+                "path": "../Application/notes/note2.txt"
             },
-            "subnotebook1" : 
-            {
-                "note3":
-                {
-                    "path":"./Application/notes/note3.txt"
+            "subnotebook1": {
+                "note3": {
+                    "path": "../Application/notes/note3.txt"
                 }
             },
-            "subnotebook2":
-            {
-                
-            }
+            "subnotebook2": {}
         }
     },
-    "Uncategorized":
-    {
-        "Markdown Guide":
-        {
-            "path":"./Application/notes/note4.txt"
+    "Uncategorized": {
+        "Markdown Guide": {
+            "path": "../Application/notes/note4.txt"
         },
-        "note5":
-        {
-            "path":"./Application/notes/note5.txt"
+        "note5": {
+            "path": "../Application/notes/note5.txt"
         }
     }
 }

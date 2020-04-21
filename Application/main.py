@@ -61,8 +61,13 @@ class Window(QtWidgets.QMainWindow):
 
     def encryptNote(self):
         self.passwd = password()
-        self.ui.encryptionButton.clicked.connect(lambda: self.passwd.openPasswordDialog())
-    
+        self.ui.encryptionButton.clicked.connect(lambda: self.passwd.openPasswordDialog(self.ui.treeWidget.selectedItems(),self.ui.treeWidget.selectedItems()[0].text(0)))
+        self.reloadUI() # reload UI after encryption
+
+    def reloadUI(self):
+        loadfileStructure(self.ui.treeWidget)
+        self._noteLoader()
+
 
 if __name__ == "__main__":
     import sys
