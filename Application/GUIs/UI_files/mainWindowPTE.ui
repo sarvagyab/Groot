@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1196</width>
+    <width>1480</width>
     <height>807</height>
    </rect>
   </property>
@@ -407,6 +407,18 @@ border-bottom-color: rgb(255, 255, 127);</string>
                  <verstretch>0</verstretch>
                 </sizepolicy>
                </property>
+               <property name="autoFillBackground">
+                <bool>false</bool>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">&lt;html&gt;
+&lt;style&gt;
+body {background-color: powderblue;}
+h1   {color: blue;}
+p    {color: red;}
+&lt;/style&gt;
+&lt;/html&gt;</string>
+               </property>
                <layout class="QHBoxLayout" name="horizontalLayout_3">
                 <property name="leftMargin">
                  <number>0</number>
@@ -529,6 +541,20 @@ border-bottom-color: rgb(255, 255, 127);</string>
                   </property>
                   <property name="text">
                    <string>Date and Time</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="encryptionButton">
+                  <property name="text">
+                   <string>Encrypt</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="decryptionButton">
+                  <property name="text">
+                   <string>Decrypt</string>
                   </property>
                  </widget>
                 </item>
@@ -659,7 +685,7 @@ border-width:0px
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1196</width>
+     <width>1480</width>
      <height>26</height>
     </rect>
    </property>
