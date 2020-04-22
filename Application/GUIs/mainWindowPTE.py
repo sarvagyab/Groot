@@ -289,6 +289,12 @@ class Ui_Groot(object):
         self.encryptionButton.setObjectName(u"encryptionButton")
         self.encryptionButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
         self.horizontalLayout_3.addWidget(self.encryptionButton)
+        
+        #Decryption Button
+        self.decryptionButton = QPushButton(self.editingButtons)
+        self.decryptionButton.setObjectName(u"encryptionButton")
+        self.decryptionButton.setStyleSheet(u"background-color: rgb(255, 255, 255);")
+        self.horizontalLayout_3.addWidget(self.decryptionButton)
 
         self.horizontalSpacer = QSpacerItem(20, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
@@ -441,6 +447,7 @@ class Ui_Groot(object):
         self.italicButton.setText(QCoreApplication.translate("Groot", u"Italic", None))
         self.imageButton.setText(QCoreApplication.translate("Groot", u"Image", None))
         self.encryptionButton.setText(QCoreApplication.translate("Groot", u"Encryption", None))
+        self.decryptionButton.setText(QCoreApplication.translate("Groot", u"Decryption", None))
 
         self.link.setText(QCoreApplication.translate("Groot", u"Link", None))
         self.code.setText(QCoreApplication.translate("Groot", u"Code", None))

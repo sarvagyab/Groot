@@ -3,14 +3,22 @@ import os
 import json
 from modules.treeHandling import updateItem
 from modules.encryptNote import AEScipher
+from modules.noteHandling import writeText
 # from modules.encryptNote import encryptNote
 
-def hashPassword(currentNote,currentFileName,password,datalength= 64):
-    salt = str(os.urandom(datalength)) # add dynamic salt
+def hashPassword(currentNote,currentFileName,password,datalength= 64,encrypted=True):
+    if(encrypted == True):
+        salt = currentNote['salt']
+    else:
+        salt = str(os.urandom(datalength)) # add dynamic salt
+        aes = AEScipher(password,currentNote)
+        writeText(currentNote['path'],aes.Encrypt(),encrypted = True)
+
     h_pass= Hash(password,salt)
     print("Hashed password")
-    storePassword(currentNote,currentFileName,h_pass,salt)
-    aes = AEScipher(password,currentNote)
+    if(encrypted == False):
+        storePassword(currentNote,currentFileName,h_pass,salt)
+    return h_pass
 
 def Hash(password,salt,datalength=64):
     """Hash password using scrypt"""
@@ -23,9 +31,6 @@ def storePassword(currentNote,currentFileName,h_password,salt):
     """
     currentNote['salt'] = salt
     currentNote['h_pass'] = str(h_password)
-    updatedNote = {currentFileName : currentNote}
+    updatedNote = {currentNote['name'] : currentNote}
     print("Stored Password")
     updateItem(updatedNote) 
-
-def verifyPassword():
-    pass

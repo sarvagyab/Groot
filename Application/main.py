@@ -42,6 +42,11 @@ class Window(QtWidgets.QMainWindow):
         # Encrypt Note
         self.encryptNote()
 
+        # Decrypt Note
+        self.decryptNote()
+
+
+
     def _delayChecker(self):
         if(self.timer.isActive()):
             self.timer.stop()
@@ -60,8 +65,12 @@ class Window(QtWidgets.QMainWindow):
 
 
     def encryptNote(self):
-        self.passwd = password()
-        self.ui.encryptionButton.clicked.connect(lambda: self.passwd.openPasswordDialog(self))
+        self.passwdE = password(self)
+        self.ui.encryptionButton.clicked.connect(lambda: self.passwdE.openPasswordDialog())
+
+    def decryptNote(self):
+        self.passwdD = password(self)
+        self.ui.decryptionButton.clicked.connect(lambda: self.passwdD.openVerifyPasswordDialog())
 
     def reloadUI(self):
         loadfileStructure(self.ui.treeWidget)
