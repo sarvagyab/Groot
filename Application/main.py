@@ -8,7 +8,6 @@ from modules.treeHandling import fixTreeViewScrolling, loadfileStructure, noteLo
 from modules.markdownHandling import viewInMarkdown
 from modules.setPassword import password
 
-
 class Window(QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__()
@@ -16,6 +15,11 @@ class Window(QtWidgets.QMainWindow):
         # Initializing UI
         self.ui = Ui_Groot()
         self.ui.setupUi(self)
+
+        # To be used to change color of Arrows to white in QtreeWidget
+        # self.ui.treeWidget.setStyleSheet(
+        #     u"QTreeWidget::branch:open{ image:url(white-arrow.png);}"
+        # )
 
         self.DELAY = 1000   # Delay in displaying Markdown
         self.mdExtensions = []  # Extensions for changing behaviour of markdown viewer
@@ -36,15 +40,14 @@ class Window(QtWidgets.QMainWindow):
         # Display notes in Markdown
         self._markdownViewer()
 
-        # Display UI
-        self.showMaximized() 
-
         # Encrypt Note
         self.encryptNote()
 
         # Decrypt Note
         self.decryptNote()
 
+        # Display UI
+        self.showMaximized()
 
 
     def _delayChecker(self):
