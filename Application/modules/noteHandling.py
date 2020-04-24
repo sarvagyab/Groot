@@ -1,12 +1,12 @@
-import os
-from stat import S_IREAD
+
 from PySide2 import QtCore, QtWidgets
+from modules.fileHandling import currentNote
 import json
 
-def loadNote(path, _textEdit):
-    _textEdit.setPlainText(readText(path))
+def loadNote(_fileName, _textEdit):
+    loadFileName(currentNote.getFilename(),_fileName)
+    _textEdit.setPlainText(currentNote.getText())
     QtWidgets.QApplication.processEvents()
-
 
 def loadFileName(name,fileName):
     fileName.setText(name)

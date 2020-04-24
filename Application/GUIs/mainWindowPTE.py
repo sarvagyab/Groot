@@ -10,7 +10,6 @@
 from PySide2 import QtCore, QtGui, QtWidgets
 import resource_rc
 
-
 class Ui_Groot(object):
     def setupUi(self, Groot):
         Groot.setObjectName("Groot")

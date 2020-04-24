@@ -7,6 +7,7 @@ from GUIs.mainWindowPTE import Ui_Groot
 from modules.treeHandling import fixTreeViewScrolling, loadfileStructure, noteLoader,itemVal
 from modules.markdownHandling import viewInMarkdown
 from modules.setPassword import password
+from modules.fileHandling import currentNote
 
 class Window(QtWidgets.QMainWindow):
     def __init__(self):
@@ -63,6 +64,8 @@ class Window(QtWidgets.QMainWindow):
 
     def _markdownViewer(self):
         mdView = lambda: viewInMarkdown(self.ui.plainTextEdit.toPlainText(),self.mdExtensions,self.ui.mdViewer)
+        sFile = lambda: currentNote.saveFile(self.ui.plainTextEdit.toPlainText())
+        self.timer.timeout.connect(sFile)
         self.timer.timeout.connect(mdView)
         self.ui.plainTextEdit.textChanged.connect(self._delayChecker)
 
@@ -78,6 +81,11 @@ class Window(QtWidgets.QMainWindow):
     def reloadUI(self):
         loadfileStructure(self.ui.treeWidget)
         self._noteLoader()
+
+    def closeEvent(self,event):
+        currentNote.saveFile(self.ui.plainTextEdit.toPlainText())
+        currentNote.closeFile()
+        event.accept()
 
 
 if __name__ == "__main__":
