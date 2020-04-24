@@ -1,0 +1,46 @@
+<RCC>
+  <qresource prefix="icons">
+    <file>Icons/16x16/bold.png</file>
+    <file>Icons/16x16/italic.png</file>
+    <file>Icons/16x16/underline.png</file>
+    <file>Icons/16x16/underline.png</file>
+    <file>Icons/16x16/folder_open.png</file>
+    <file>Icons/16x16/folder_plus.png</file>
+    <file>Icons/16x16/encrypt.png</file>
+    <file>Icons/16x16/decrypt.png</file>
+    <file>Icons/16x16/doc_new.png</file>
+    <file>Icons/16x16/subfolder.png</file>
+    <file>Icons/16x16/folder_plus.png</file>
+    <file>Icons/16x16/folder_minus.png</file>
+    <file>Icons/16x16/folder_open.png</file>
+    <file>Icons/16x16/folder_delete.png</file>
+    <file>Icons/16x16/folder.png</file>
+    <file>Icons/16x16/settings.png</file>
+    <file>Icons/16x16/print.png</file>
+    <file>Icons/16x16/doc_import.png</file>
+    <file>Icons/16x16/doc_export.png</file>
+    <file>Icons/16x16/quit.png</file>
+    <file>Icons/16x16/edit.png</file>
+    <file>Icons/16x16/info.png</file>
+    <file>Icons/16x16/save.png</file>
+    <file>Icons/16x16/find.png</file>
+    <file>Icons/16x16/insert.png</file>
+    <file>Icons/16x16/image.png</file>
+    <file>Icons/16x16/bug.png</file>
+    <file>Icons/16x16/link.png</file>
+    <file>Icons/16x16/sun_light.png</file>
+    <file>Icons/16x16/sun_dark.png</file>
+    <file>Icons/32x32/font_bold.png</file>
+    <file>Icons/32x32/font_bold.png</file>
+    <file>Icons/32x32/font_italic.png</file>
+    <file>Icons/32x32/image.png</file>
+    <file>Icons/32x32/encrypt.png</file>
+    <file>Icons/32x32/decrypt.png</file>
+    <file>Icons/32x32/brackets.png</file>
+    <file>Icons/32x32/clock.png</file>
+    <file>Icons/32x32/bullets.png</file>
+    <file>Icons/32x32/numbered_list.png</file>
+    <file>Icons/32x32/link.png</file>
+    <file>Icons/48x48/font_italic.png</file>
+  </qresource>
+</RCC>

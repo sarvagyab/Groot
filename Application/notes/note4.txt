@@ -1,5 +1,1 @@
-<<<<<<< HEAD
 This is note 4 file
-=======
-This is notes4 file
->>>>>>> 3900f29c16affd58bd236bc1f6f4aa756dda8418

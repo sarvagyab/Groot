@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1480</width>
+    <width>1394</width>
     <height>807</height>
    </rect>
   </property>
@@ -20,7 +20,7 @@
    <string>Groot</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: rgba(252, 252, 252, 252);</string>
+   <string notr="true"/>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="styleSheet">
@@ -101,29 +101,9 @@
             <property name="text">
              <string>New Note</string>
             </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="newNotebook">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
-            <property name="minimumSize">
-             <size>
-              <width>0</width>
-              <height>0</height>
-             </size>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">background-color: rgb(255, 255, 255);
-
-</string>
-            </property>
-            <property name="text">
-             <string>New Notebook</string>
+            <property name="icon">
+             <iconset resource="../../../resource.qrc">
+              <normaloff>:/icons/Icons/16x16/doc_new.png</normaloff>:/icons/Icons/16x16/doc_new.png</iconset>
             </property>
            </widget>
           </item>
@@ -146,6 +126,38 @@
             </property>
             <property name="text">
              <string>New sub-notebook</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../../../resource.qrc">
+              <normaloff>:/icons/Icons/16x16/subfolder.png</normaloff>:/icons/Icons/16x16/subfolder.png</iconset>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QPushButton" name="newNotebook">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>0</width>
+              <height>0</height>
+             </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(255, 255, 255);
+
+</string>
+            </property>
+            <property name="text">
+             <string>New notebook</string>
+            </property>
+            <property name="icon">
+             <iconset resource="../../../resource.qrc">
+              <normaloff>:/icons/Icons/16x16/folder_plus.png</normaloff>:/icons/Icons/16x16/folder_plus.png</iconset>
             </property>
            </widget>
           </item>
@@ -402,22 +414,41 @@ border-bottom-color: rgb(255, 255, 127);</string>
                 <bool>true</bool>
                </property>
                <property name="sizePolicy">
-                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                <sizepolicy hsizetype="Minimum" vsizetype="Maximum">
                  <horstretch>0</horstretch>
                  <verstretch>0</verstretch>
                 </sizepolicy>
+               </property>
+               <property name="mouseTracking">
+                <bool>false</bool>
                </property>
                <property name="autoFillBackground">
                 <bool>false</bool>
                </property>
                <property name="styleSheet">
-                <string notr="true">&lt;html&gt;
-&lt;style&gt;
-body {background-color: powderblue;}
-h1   {color: blue;}
-p    {color: red;}
-&lt;/style&gt;
-&lt;/html&gt;</string>
+                <string notr="true">QFrame{
+	border-right:2px groove gray;
+	padding:0px;
+	margin:0px;
+}
+
+QPushButton{
+	border-style:None;
+	padding:1px;
+}
+
+QPushButton:hover{
+	border-style:solid;
+	border-color:black;
+	background-origin:border-box;
+	background-color:rgba(74, 83, 255,0.1);
+}
+
+QPushButton:pressed{
+	background-color:rgba(74, 83, 255,0.4);
+	box-shadow:rgba(0,0,0,0.6)  10px 10px;
+}
+padding:0px</string>
                </property>
                <layout class="QHBoxLayout" name="horizontalLayout_3">
                 <property name="leftMargin">
@@ -433,128 +464,337 @@ p    {color: red;}
                  <number>0</number>
                 </property>
                 <item>
-                 <widget class="QPushButton" name="pushButton_5">
+                 <widget class="QFrame" name="formatFrame">
                   <property name="styleSheet">
-                   <string notr="true">background-color: rgb(255, 255, 255);</string>
+                   <string notr="true">margin:0px;padding:0px;</string>
                   </property>
-                  <property name="text">
-                   <string>Bold</string>
+                  <property name="frameShape">
+                   <enum>QFrame::StyledPanel</enum>
                   </property>
+                  <property name="frameShadow">
+                   <enum>QFrame::Raised</enum>
+                  </property>
+                  <layout class="QHBoxLayout" name="horizontalLayout_7">
+                   <item>
+                    <widget class="QPushButton" name="boldButton">
+                     <property name="sizePolicy">
+                      <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+                       <horstretch>0</horstretch>
+                       <verstretch>0</verstretch>
+                      </sizepolicy>
+                     </property>
+                     <property name="cursor">
+                      <cursorShape>PointingHandCursor</cursorShape>
+                     </property>
+                     <property name="focusPolicy">
+                      <enum>Qt::StrongFocus</enum>
+                     </property>
+                     <property name="toolTip">
+                      <string>Bold</string>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true"/>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                     <property name="icon">
+                      <iconset resource="../../../resource.qrc">
+                       <normaloff>:/icons/Icons/32x32/font_bold.png</normaloff>:/icons/Icons/32x32/font_bold.png</iconset>
+                     </property>
+                     <property name="iconSize">
+                      <size>
+                       <width>32</width>
+                       <height>32</height>
+                      </size>
+                     </property>
+                     <property name="autoExclusive">
+                      <bool>false</bool>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="italicButton">
+                     <property name="cursor">
+                      <cursorShape>PointingHandCursor</cursorShape>
+                     </property>
+                     <property name="toolTip">
+                      <string>Italic</string>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true"/>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                     <property name="icon">
+                      <iconset resource="../../../resource.qrc">
+                       <normaloff>:/icons/Icons/32x32/font_italic.png</normaloff>:/icons/Icons/32x32/font_italic.png</iconset>
+                     </property>
+                     <property name="iconSize">
+                      <size>
+                       <width>32</width>
+                       <height>32</height>
+                      </size>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="numberedList">
+                     <property name="cursor">
+                      <cursorShape>PointingHandCursor</cursorShape>
+                     </property>
+                     <property name="toolTip">
+                      <string>Numbered list</string>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true"/>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                     <property name="icon">
+                      <iconset resource="../../../resource.qrc">
+                       <normaloff>:/icons/Icons/32x32/numbered_list.png</normaloff>:/icons/Icons/32x32/numbered_list.png</iconset>
+                     </property>
+                     <property name="iconSize">
+                      <size>
+                       <width>32</width>
+                       <height>32</height>
+                      </size>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="bullets">
+                     <property name="cursor">
+                      <cursorShape>PointingHandCursor</cursorShape>
+                     </property>
+                     <property name="focusPolicy">
+                      <enum>Qt::ClickFocus</enum>
+                     </property>
+                     <property name="toolTip">
+                      <string>Bullets</string>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true"/>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                     <property name="icon">
+                      <iconset resource="../../../resource.qrc">
+                       <normaloff>:/icons/Icons/32x32/bullets.png</normaloff>:/icons/Icons/32x32/bullets.png</iconset>
+                     </property>
+                     <property name="iconSize">
+                      <size>
+                       <width>32</width>
+                       <height>32</height>
+                      </size>
+                     </property>
+                     <property name="checkable">
+                      <bool>false</bool>
+                     </property>
+                     <property name="default">
+                      <bool>false</bool>
+                     </property>
+                     <property name="flat">
+                      <bool>false</bool>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QPushButton" name="pushButton_4">
+                 <widget class="QFrame" name="insertFrame">
                   <property name="styleSheet">
-                   <string notr="true">background-color: rgb(255, 255, 255);</string>
+                   <string notr="true">margin:0px;padding:0px;</string>
                   </property>
-                  <property name="text">
-                   <string>Italic</string>
+                  <property name="frameShape">
+                   <enum>QFrame::StyledPanel</enum>
                   </property>
+                  <property name="frameShadow">
+                   <enum>QFrame::Raised</enum>
+                  </property>
+                  <layout class="QHBoxLayout" name="horizontalLayout_8">
+                   <item>
+                    <widget class="QPushButton" name="link">
+                     <property name="cursor">
+                      <cursorShape>PointingHandCursor</cursorShape>
+                     </property>
+                     <property name="toolTip">
+                      <string>Insert link</string>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true"/>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                     <property name="icon">
+                      <iconset resource="../../../resource.qrc">
+                       <normaloff>:/icons/Icons/32x32/link.png</normaloff>:/icons/Icons/32x32/link.png</iconset>
+                     </property>
+                     <property name="iconSize">
+                      <size>
+                       <width>32</width>
+                       <height>32</height>
+                      </size>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="pushButton_3">
+                     <property name="cursor">
+                      <cursorShape>PointingHandCursor</cursorShape>
+                     </property>
+                     <property name="toolTip">
+                      <string>Insert image</string>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true"/>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                     <property name="icon">
+                      <iconset resource="../../../resource.qrc">
+                       <normaloff>:/icons/Icons/32x32/image.png</normaloff>:/icons/Icons/32x32/image.png</iconset>
+                     </property>
+                     <property name="iconSize">
+                      <size>
+                       <width>32</width>
+                       <height>32</height>
+                      </size>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="code">
+                     <property name="cursor">
+                      <cursorShape>PointingHandCursor</cursorShape>
+                     </property>
+                     <property name="toolTip">
+                      <string>Insert code</string>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true"/>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                     <property name="icon">
+                      <iconset resource="../../../resource.qrc">
+                       <normaloff>:/icons/Icons/32x32/brackets.png</normaloff>:/icons/Icons/32x32/brackets.png</iconset>
+                     </property>
+                     <property name="iconSize">
+                      <size>
+                       <width>32</width>
+                       <height>32</height>
+                      </size>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QPushButton" name="pushButton_3">
+                 <widget class="QFrame" name="encryptionFrame">
                   <property name="styleSheet">
-                   <string notr="true">background-color: rgb(255, 255, 255);
-
-</string>
+                   <string notr="true">margin:0px;padding:0px;</string>
                   </property>
-                  <property name="text">
-                   <string>Image</string>
+                  <property name="frameShape">
+                   <enum>QFrame::StyledPanel</enum>
                   </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QPushButton" name="link">
-                  <property name="styleSheet">
-                   <string notr="true">background-color: rgb(255, 255, 255);</string>
+                  <property name="frameShadow">
+                   <enum>QFrame::Raised</enum>
                   </property>
-                  <property name="text">
-                   <string>Link</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QPushButton" name="code">
-                  <property name="styleSheet">
-                   <string notr="true">background-color: rgb(255, 255, 255);</string>
-                  </property>
-                  <property name="text">
-                   <string>Code</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QPushButton" name="numberedList">
-                  <property name="styleSheet">
-                   <string notr="true">background-color: rgb(255, 255, 255);</string>
-                  </property>
-                  <property name="text">
-                   <string>Numbered List</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QPushButton" name="bullets">
-                  <property name="styleSheet">
-                   <string notr="true">background-color: rgb(255, 255, 255);</string>
-                  </property>
-                  <property name="text">
-                   <string>Bullets</string>
-                  </property>
-                  <property name="checkable">
-                   <bool>false</bool>
-                  </property>
-                  <property name="default">
-                   <bool>false</bool>
-                  </property>
-                  <property name="flat">
-                   <bool>false</bool>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QPushButton" name="heading">
-                  <property name="styleSheet">
-                   <string notr="true">background-color: rgb(255, 255, 255);</string>
-                  </property>
-                  <property name="text">
-                   <string>Heading</string>
-                  </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QPushButton" name="horizaontalRule">
-                  <property name="styleSheet">
-                   <string notr="true">background-color: rgb(255, 255, 255);</string>
-                  </property>
-                  <property name="text">
-                   <string>Horizontal Line</string>
-                  </property>
+                  <layout class="QHBoxLayout" name="horizontalLayout_9">
+                   <item>
+                    <widget class="QPushButton" name="encryptionButton">
+                     <property name="cursor">
+                      <cursorShape>PointingHandCursor</cursorShape>
+                     </property>
+                     <property name="toolTip">
+                      <string>Encrypt note</string>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true"/>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                     <property name="icon">
+                      <iconset resource="../../../resource.qrc">
+                       <normaloff>:/icons/Icons/32x32/encrypt.png</normaloff>:/icons/Icons/32x32/encrypt.png</iconset>
+                     </property>
+                     <property name="iconSize">
+                      <size>
+                       <width>32</width>
+                       <height>32</height>
+                      </size>
+                     </property>
+                     <property name="checkable">
+                      <bool>true</bool>
+                     </property>
+                     <property name="checked">
+                      <bool>false</bool>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="decryptionButton">
+                     <property name="cursor">
+                      <cursorShape>PointingHandCursor</cursorShape>
+                     </property>
+                     <property name="toolTip">
+                      <string>Decrypt note</string>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true"/>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                     <property name="icon">
+                      <iconset resource="../../../resource.qrc">
+                       <normaloff>:/icons/Icons/32x32/decrypt.png</normaloff>:/icons/Icons/32x32/decrypt.png</iconset>
+                     </property>
+                     <property name="iconSize">
+                      <size>
+                       <width>32</width>
+                       <height>32</height>
+                      </size>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
                  </widget>
                 </item>
                 <item>
                  <widget class="QPushButton" name="dateTime">
+                  <property name="cursor">
+                   <cursorShape>PointingHandCursor</cursorShape>
+                  </property>
+                  <property name="toolTip">
+                   <string>Date and time</string>
+                  </property>
                   <property name="styleSheet">
-                   <string notr="true">background-color: rgb(255, 255, 255);
-</string>
+                   <string notr="true"/>
                   </property>
                   <property name="text">
-                   <string>Date and Time</string>
+                   <string/>
                   </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QPushButton" name="encryptionButton">
-                  <property name="text">
-                   <string>Encrypt</string>
+                  <property name="icon">
+                   <iconset resource="../../../resource.qrc">
+                    <normaloff>:/icons/Icons/32x32/clock.png</normaloff>:/icons/Icons/32x32/clock.png</iconset>
                   </property>
-                 </widget>
-                </item>
-                <item>
-                 <widget class="QPushButton" name="decryptionButton">
-                  <property name="text">
-                   <string>Decrypt</string>
+                  <property name="iconSize">
+                   <size>
+                    <width>32</width>
+                    <height>32</height>
+                   </size>
                   </property>
                  </widget>
                 </item>
@@ -562,6 +802,9 @@ p    {color: red;}
                  <spacer name="horizontalSpacer">
                   <property name="orientation">
                    <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeType">
+                   <enum>QSizePolicy::Expanding</enum>
                   </property>
                   <property name="sizeHint" stdset="0">
                    <size>
@@ -685,7 +928,7 @@ border-width:0px
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1480</width>
+     <width>1394</width>
      <height>26</height>
     </rect>
    </property>
@@ -697,20 +940,36 @@ border-width:0px
      <property name="title">
       <string>Import</string>
      </property>
+     <property name="icon">
+      <iconset resource="../../../resource.qrc">
+       <normaloff>:/icons/Icons/16x16/doc_import.png</normaloff>:/icons/Icons/16x16/doc_import.png</iconset>
+     </property>
      <addaction name="actionMD"/>
     </widget>
     <widget class="QMenu" name="menuExport">
      <property name="title">
       <string>Export</string>
      </property>
+     <property name="icon">
+      <iconset resource="../../../resource.qrc">
+       <normaloff>:/icons/Icons/16x16/doc_export.png</normaloff>:/icons/Icons/16x16/doc_export.png</iconset>
+     </property>
      <addaction name="actionMD_2"/>
      <addaction name="actionHTML"/>
      <addaction name="actionPDF"/>
     </widget>
+    <addaction name="actionNew_note"/>
+    <addaction name="actionNew_sub_notebook"/>
+    <addaction name="actionNew_notebook"/>
+    <addaction name="actionSave_note"/>
     <addaction name="actionNotes_Tree"/>
+    <addaction name="separator"/>
     <addaction name="menuImport"/>
     <addaction name="menuExport"/>
     <addaction name="actionPrint"/>
+    <addaction name="separator"/>
+    <addaction name="actionSettings"/>
+    <addaction name="separator"/>
     <addaction name="actionQuit"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
@@ -721,13 +980,39 @@ border-width:0px
      <property name="title">
       <string>Format</string>
      </property>
+     <property name="icon">
+      <iconset resource="../../../resource.qrc">
+       <normaloff>:/icons/Icons/16x16/edit.png</normaloff>:/icons/Icons/16x16/edit.png</iconset>
+     </property>
      <addaction name="actionBold"/>
      <addaction name="actionItalic"/>
      <addaction name="actionUnderline"/>
     </widget>
+    <widget class="QMenu" name="menuEncrption">
+     <property name="title">
+      <string>Encrption</string>
+     </property>
+     <property name="icon">
+      <iconset resource="../../../resource.qrc">
+       <normaloff>:/icons/Icons/16x16/encrypt.png</normaloff>:/icons/Icons/16x16/encrypt.png</iconset>
+     </property>
+     <addaction name="actionEncrypt_note"/>
+     <addaction name="actionDecrypt_note"/>
+    </widget>
+    <widget class="QMenu" name="menuInsert">
+     <property name="title">
+      <string>Insert</string>
+     </property>
+     <addaction name="actionLink"/>
+     <addaction name="actionImage"/>
+    </widget>
     <addaction name="actionSearch_in_Current_Note"/>
     <addaction name="actionSearch_in_All_Notes"/>
+    <addaction name="separator"/>
+    <addaction name="menuInsert"/>
     <addaction name="menuFormat"/>
+    <addaction name="separator"/>
+    <addaction name="menuEncrption"/>
    </widget>
    <widget class="QMenu" name="menuView">
     <property name="title">
@@ -747,6 +1032,7 @@ border-width:0px
      <string>Help</string>
     </property>
     <addaction name="actionAbout"/>
+    <addaction name="actionReport_a_bug"/>
     <addaction name="actionRequest"/>
    </widget>
    <addaction name="menuFile"/>
@@ -761,11 +1047,22 @@ border-width:0px
    </property>
   </action>
   <action name="actionPrint">
+   <property name="icon">
+    <iconset resource="../../../resource.qrc">
+     <normaloff>:/icons/Icons/16x16/print.png</normaloff>:/icons/Icons/16x16/print.png</iconset>
+   </property>
    <property name="text">
     <string>Print</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+P</string>
+   </property>
   </action>
   <action name="actionQuit">
+   <property name="icon">
+    <iconset resource="../../../resource.qrc">
+     <normaloff>:/icons/Icons/16x16/quit.png</normaloff>:/icons/Icons/16x16/quit.png</iconset>
+   </property>
    <property name="text">
     <string>Quit</string>
    </property>
@@ -791,6 +1088,10 @@ border-width:0px
    </property>
   </action>
   <action name="actionSearch_in_Current_Note">
+   <property name="icon">
+    <iconset resource="../../../resource.qrc">
+     <normaloff>:/icons/Icons/16x16/find.png</normaloff>:/icons/Icons/16x16/find.png</iconset>
+   </property>
    <property name="text">
     <string>Search in Current Note</string>
    </property>
@@ -806,6 +1107,10 @@ border-width:0px
    </property>
   </action>
   <action name="actionAbout">
+   <property name="icon">
+    <iconset resource="../../../resource.qrc">
+     <normaloff>:/icons/Icons/16x16/info.png</normaloff>:/icons/Icons/16x16/info.png</iconset>
+   </property>
    <property name="text">
     <string>About</string>
    </property>
@@ -816,16 +1121,28 @@ border-width:0px
    </property>
   </action>
   <action name="actionDark_Theme">
+   <property name="icon">
+    <iconset resource="../../../resource.qrc">
+     <normaloff>:/icons/Icons/16x16/sun_dark.png</normaloff>:/icons/Icons/16x16/sun_dark.png</iconset>
+   </property>
    <property name="text">
     <string>Dark Theme</string>
    </property>
   </action>
   <action name="actionLight_Theme">
+   <property name="icon">
+    <iconset resource="../../../resource.qrc">
+     <normaloff>:/icons/Icons/16x16/sun_light.png</normaloff>:/icons/Icons/16x16/sun_light.png</iconset>
+   </property>
    <property name="text">
     <string>Light Theme</string>
    </property>
   </action>
   <action name="actionBold">
+   <property name="icon">
+    <iconset resource="../../../resource.qrc">
+     <normaloff>:/icons/Icons/16x16/bold.png</normaloff>:/icons/Icons/16x16/bold.png</iconset>
+   </property>
    <property name="text">
     <string>Bold</string>
    </property>
@@ -837,6 +1154,10 @@ border-width:0px
    </property>
   </action>
   <action name="actionItalic">
+   <property name="icon">
+    <iconset resource="../../../resource.qrc">
+     <normaloff>:/icons/Icons/16x16/italic.png</normaloff>:/icons/Icons/16x16/italic.png</iconset>
+   </property>
    <property name="text">
     <string>Italic</string>
    </property>
@@ -845,6 +1166,10 @@ border-width:0px
    </property>
   </action>
   <action name="actionUnderline">
+   <property name="icon">
+    <iconset resource="../../../resource.qrc">
+     <normaloff>:/icons/Icons/16x16/underline.png</normaloff>:/icons/Icons/16x16/underline.png</iconset>
+   </property>
    <property name="text">
     <string>Underline</string>
    </property>
@@ -852,7 +1177,110 @@ border-width:0px
     <string>Ctrl+U</string>
    </property>
   </action>
+  <action name="actionNew_note">
+   <property name="icon">
+    <iconset resource="../../../resource.qrc">
+     <normaloff>:/icons/Icons/16x16/doc_new.png</normaloff>:/icons/Icons/16x16/doc_new.png</iconset>
+   </property>
+   <property name="text">
+    <string>New note</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
+  </action>
+  <action name="actionNew_sub_notebook">
+   <property name="icon">
+    <iconset resource="../../../resource.qrc">
+     <normaloff>:/icons/Icons/16x16/subfolder.png</normaloff>:/icons/Icons/16x16/subfolder.png</iconset>
+   </property>
+   <property name="text">
+    <string>New sub-notebook</string>
+   </property>
+  </action>
+  <action name="actionNew_notebook">
+   <property name="icon">
+    <iconset resource="../../../resource.qrc">
+     <normaloff>:/icons/Icons/16x16/folder_plus.png</normaloff>:/icons/Icons/16x16/folder_plus.png</iconset>
+   </property>
+   <property name="text">
+    <string>New notebook</string>
+   </property>
+  </action>
+  <action name="actionEncrypt_note">
+   <property name="icon">
+    <iconset resource="../../../resource.qrc">
+     <normaloff>:/icons/Icons/16x16/encrypt.png</normaloff>:/icons/Icons/16x16/encrypt.png</iconset>
+   </property>
+   <property name="text">
+    <string>Encrypt note</string>
+   </property>
+  </action>
+  <action name="actionDecrypt_note">
+   <property name="icon">
+    <iconset resource="../../../resource.qrc">
+     <normaloff>:/icons/Icons/16x16/decrypt.png</normaloff>:/icons/Icons/16x16/decrypt.png</iconset>
+   </property>
+   <property name="text">
+    <string>Decrypt note</string>
+   </property>
+  </action>
+  <action name="actionSettings">
+   <property name="icon">
+    <iconset resource="../../../resource.qrc">
+     <normaloff>:/icons/Icons/16x16/settings.png</normaloff>:/icons/Icons/16x16/settings.png</iconset>
+   </property>
+   <property name="text">
+    <string>Settings</string>
+   </property>
+  </action>
+  <action name="actionSave_note">
+   <property name="icon">
+    <iconset resource="../../../resource.qrc">
+     <normaloff>:/icons/Icons/16x16/save.png</normaloff>:/icons/Icons/16x16/save.png</iconset>
+   </property>
+   <property name="text">
+    <string>Save note</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionOpen_note">
+   <property name="text">
+    <string>Open note</string>
+   </property>
+  </action>
+  <action name="actionReport_a_bug">
+   <property name="icon">
+    <iconset resource="../../../resource.qrc">
+     <normaloff>:/icons/Icons/16x16/bug.png</normaloff>:/icons/Icons/16x16/bug.png</iconset>
+   </property>
+   <property name="text">
+    <string>Report a bug</string>
+   </property>
+  </action>
+  <action name="actionLink">
+   <property name="icon">
+    <iconset resource="../../../resource.qrc">
+     <normaloff>:/icons/Icons/16x16/link.png</normaloff>:/icons/Icons/16x16/link.png</iconset>
+   </property>
+   <property name="text">
+    <string>Link</string>
+   </property>
+  </action>
+  <action name="actionImage">
+   <property name="icon">
+    <iconset resource="../../../resource.qrc">
+     <normaloff>:/icons/Icons/16x16/image.png</normaloff>:/icons/Icons/16x16/image.png</iconset>
+   </property>
+   <property name="text">
+    <string>Image</string>
+   </property>
+  </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="../../../resource.qrc"/>
+ </resources>
  <connections/>
 </ui>
