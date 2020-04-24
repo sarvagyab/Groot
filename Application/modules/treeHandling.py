@@ -1,6 +1,7 @@
 
 from PySide2 import QtWidgets, QtCore
-from modules.noteHandling import loadNote, loadFileName
+from modules.noteHandling import loadNote
+from modules.fileHandling import currentNote
 import json
 
 
@@ -69,7 +70,7 @@ def saveUpdatedJson(structDict):
         json.dump(structDict,jsonfile)
     
 def noteLoader(item, _fileName, _textEdit):
-    val = itemVal(item)
-    if("path" in val and type(val["path"]) == str):
-        loadFileName(item.text(0),_fileName)
-        loadNote(val["path"], _textEdit)
+    details = itemVal(item)
+    if("path" in details and type(details["path"]) == str):
+        currentNote.openFile(item,details)
+        loadNote(_fileName,_textEdit)
