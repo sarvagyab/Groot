@@ -1,8 +1,33 @@
 
+from PySide2 import QtWidgets
+
 from modules.setPassword import password
 from modules.fileHandling import currentNote
 from modules.markdownHandling import viewInMarkdown
-from modules.treeHandling import loadfileStructure, noteLoader,itemVal
+from modules.treeHandling import loadfileStructure, noteLoader,itemVal, isNote
+from modules.GUIchanges import createNotebook, createSubNotebook, createNote, rename, dlt
+
+
+def showMenu(self,pos):
+    item = self.ui.treeWidget.itemAt(pos)
+    print(item.text(0))
+    if item is None:
+        return
+    menu = QtWidgets.QMenu()
+    if item is self.ui.treeWidget.topLevelItem(0):
+        menu.addAction(createNotebook)
+    elif item is self.ui.treeWidget.topLevelItem(1):
+        menu.addAction(createNote)
+    else:
+        dets = isNote(item)
+        if(dets[0]):
+            pass
+        else:
+            menu.addAction(createSubNotebook)
+            menu.addAction(createNote)
+        menu.addAction(rename)
+        menu.addAction(dlt)
+    menu.exec_(self.ui.treeWidget.mapToGlobal(pos))
 
 
 def _delayChecker(self):

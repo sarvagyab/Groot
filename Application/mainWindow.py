@@ -6,7 +6,6 @@ from GUIs.mainWindowPTE import Ui_Groot
 # import modules
 from modules.GUIchanges import fixTreeViewScrolling, createNotebook, createSubNotebook, createNote, rename, dlt
 import mainWindowFunctions
-from modules.treeHandling import isNote
 
 
 class Window(QtWidgets.QMainWindow):
@@ -51,25 +50,7 @@ class Window(QtWidgets.QMainWindow):
         self.showMaximized()
 
 
-    def showMenu(self,pos):
-        item = self.ui.treeWidget.itemAt(pos)
-        if item is None:
-            return
-        menu = QtWidgets.QMenu()
-        if item is self.ui.treeWidget.topLevelItems(0):
-            menu.addAction(createNotebook)
-        elif item is self.ui.treeWidget.topLevelItems(1):
-            menu.addAction(createNote)
-        else:
-            menu.addAction(rename)
-            menu.addAction(dlt)
-            dets = isNote(item)
-            if(dets[0]):
-                pass
-            else:
-                menu.addAction(createSubNotebook)
-                menu.addAction(createNote)
-        menu.exec_(self.ui.treeWidget.mapToGlobal(pos))
+    
 
 
 
@@ -82,3 +63,4 @@ Window.decryptNote = mainWindowFunctions.decryptNote
 Window.encryptNote = mainWindowFunctions.encryptNote
 Window._markdownViewer = mainWindowFunctions._markdownViewer
 Window._delayChecker = mainWindowFunctions._delayChecker
+Window.showMenu = mainWindowFunctions.showMenu
