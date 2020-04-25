@@ -13,7 +13,7 @@ from PySide2 import QtCore, QtGui, QtWidgets
 class Ui_Groot(object):
     def setupUi(self, Groot):
         Groot.setObjectName("Groot")
-        Groot.resize(1394, 807)
+        Groot.resize(1551, 795)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -84,7 +84,18 @@ class Ui_Groot(object):
         self.newNotebook.setIcon(icon2)
         self.newNotebook.setObjectName("newNotebook")
         self.horizontalLayout_6.addWidget(self.newNotebook)
-        self.searchBar = QtWidgets.QLineEdit(self.rootOptions)
+        self.findFrame = QtWidgets.QFrame(self.rootOptions)
+        self.findFrame.setStyleSheet("QFrame{\n"
+"    border-right:1px solid black;\n"
+"    border-left:1px solid black;\n"
+"}\n"
+"")
+        self.findFrame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.findFrame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.findFrame.setObjectName("findFrame")
+        self.horizontalLayout_10 = QtWidgets.QHBoxLayout(self.findFrame)
+        self.horizontalLayout_10.setObjectName("horizontalLayout_10")
+        self.searchBar = QtWidgets.QLineEdit(self.findFrame)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -94,10 +105,12 @@ class Ui_Groot(object):
         font = QtGui.QFont()
         font.setPointSize(10)
         self.searchBar.setFont(font)
-        self.searchBar.setStyleSheet("")
+        self.searchBar.setStyleSheet("QLineEdit{\n"
+"    border: 1px solid gray;\n"
+"}")
         self.searchBar.setObjectName("searchBar")
-        self.horizontalLayout_6.addWidget(self.searchBar)
-        self.comboBox = QtWidgets.QComboBox(self.rootOptions)
+        self.horizontalLayout_10.addWidget(self.searchBar)
+        self.comboBox = QtWidgets.QComboBox(self.findFrame)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -106,8 +119,7 @@ class Ui_Groot(object):
         self.comboBox.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.comboBox.setStyleSheet("QComboBox {\n"
 "    border: 1px solid gray;\n"
-"    border-radius: 3px;\n"
-"    padding: 1px 18px 1px 3px;\n"
+"    padding: 1px 10px 1px 3px;\n"
 "    min-width: 6em;\n"
 "}\n"
 "\n"
@@ -115,20 +127,7 @@ class Ui_Groot(object):
 "    background: white;\n"
 "}\n"
 "\n"
-"QComboBox:!editable, QComboBox::drop-down:editable {\n"
-"     background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
-"                                 stop: 0 #E1E1E1, stop: 0.4 #DDDDDD,\n"
-"                                 stop: 0.5 #D8D8D8, stop: 1.0 #D3D3D3);\n"
-"}\n"
-"\n"
-"/* QComboBox gets the \"on\" state when the popup is open */\n"
-"QComboBox:!editable:on, QComboBox::drop-down:editable:on {\n"
-"    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
-"                                stop: 0 #D3D3D3, stop: 0.4 #D8D8D8,\n"
-"                                stop: 0.5 #DDDDDD, stop: 1.0 #E1E1E1);\n"
-"}\n"
-"\n"
-"QComboBox:on { /* shift the text when the popup opens */\n"
+"QComboBox:on { \n"
 "    padding-top: 3px;\n"
 "    padding-left: 4px;\n"
 "}\n"
@@ -137,16 +136,16 @@ class Ui_Groot(object):
 "    subcontrol-origin: padding;\n"
 "    subcontrol-position: top right;\n"
 "    width: 15px;\n"
-"\n"
+"    padding-right:3px;\n"
+"    padding-left:3px;\n"
 "    border-left-width: 1px;\n"
 "    border-left-color: darkgray;\n"
-"    border-left-style: solid; /* just a single line */\n"
-"    border-top-right-radius: 3px; /* same radius as the QComboBox */\n"
-"    border-bottom-right-radius: 3px;\n"
+"    border-left-style: solid; \n"
 "}\n"
 "\n"
 "QComboBox::down-arrow {\n"
-"    image: url(/usr/share/icons/crystalsvg/16x16/actions/1downarrow.png);\n"
+"   \n"
+"    image: url(:/icons/Icons/16x16/down_arrow.png);\n"
 "}\n"
 "\n"
 "QComboBox::down-arrow:on { /* shift the arrow when popup is open */\n"
@@ -157,7 +156,8 @@ class Ui_Groot(object):
         self.comboBox.addItem("")
         self.comboBox.addItem("")
         self.comboBox.addItem("")
-        self.horizontalLayout_6.addWidget(self.comboBox)
+        self.horizontalLayout_10.addWidget(self.comboBox)
+        self.horizontalLayout_6.addWidget(self.findFrame)
         spacerItem = QtWidgets.QSpacerItem(800, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_6.addItem(spacerItem)
         self.verticalLayout.addWidget(self.rootOptions)
@@ -275,11 +275,13 @@ class Ui_Groot(object):
 "    border-style:solid;\n"
 "    border-color:black;\n"
 "    background-origin:border-box;\n"
-"    background-color:rgba(74, 83, 255,0.1);\n"
+"    padding-top: 3px;\n"
+"    padding-left: 4px;\n"
 "}\n"
 "\n"
 "QPushButton:pressed{\n"
-"    background-color:rgba(74, 83, 255,0.4);\n"
+"    padding-top: 1px;\n"
+"    padding-left :1px;\n"
 "}\n"
 "padding:0px")
         self.editingButtons.setObjectName("editingButtons")
@@ -287,7 +289,23 @@ class Ui_Groot(object):
         self.horizontalLayout_3.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
         self.formatFrame = QtWidgets.QFrame(self.editingButtons)
-        self.formatFrame.setStyleSheet("margin:0px;padding:0px;")
+        self.formatFrame.setStyleSheet("QPushButton{\n"
+"    margin:0px;\n"
+"    padding:0px;\n"
+"}\n"
+"\n"
+"QPushButton:hover{\n"
+"    border-style:solid;\n"
+"    border-color:black;\n"
+"    background-origin:border-box;\n"
+"    padding-top: 3px;\n"
+"    padding-left: 4px;\n"
+"}\n"
+"\n"
+"QPushButton:pressed{\n"
+"    padding-top: 1px;\n"
+"    padding-left :1px;\n"
+"}")
         self.formatFrame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.formatFrame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.formatFrame.setObjectName("formatFrame")
@@ -346,7 +364,23 @@ class Ui_Groot(object):
         self.horizontalLayout_7.addWidget(self.bullets)
         self.horizontalLayout_3.addWidget(self.formatFrame)
         self.insertFrame = QtWidgets.QFrame(self.editingButtons)
-        self.insertFrame.setStyleSheet("margin:0px;padding:0px;")
+        self.insertFrame.setStyleSheet("QPushButton{\n"
+"    margin:0px;\n"
+"    padding:0px;\n"
+"}\n"
+"\n"
+"QPushButton:hover{\n"
+"    border-style:solid;\n"
+"    border-color:black;\n"
+"    background-origin:border-box;\n"
+"    padding-top: 3px;\n"
+"    padding-left: 4px;\n"
+"}\n"
+"\n"
+"QPushButton:pressed{\n"
+"    padding-top: 1px;\n"
+"    padding-left :1px;\n"
+"}")
         self.insertFrame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.insertFrame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.insertFrame.setObjectName("insertFrame")
@@ -384,7 +418,23 @@ class Ui_Groot(object):
         self.horizontalLayout_8.addWidget(self.code)
         self.horizontalLayout_3.addWidget(self.insertFrame)
         self.encryptionFrame = QtWidgets.QFrame(self.editingButtons)
-        self.encryptionFrame.setStyleSheet("margin:0px;padding:0px;")
+        self.encryptionFrame.setStyleSheet("QPushButton{\n"
+"    margin:0px;\n"
+"    padding:0px;\n"
+"}\n"
+"\n"
+"QPushButton:hover{\n"
+"    border-style:solid;\n"
+"    border-color:black;\n"
+"    background-origin:border-box;\n"
+"    padding-top: 3px;\n"
+"    padding-left: 4px;\n"
+"}\n"
+"\n"
+"QPushButton:pressed{\n"
+"    padding-top: 1px;\n"
+"    padding-left :1px;\n"
+"}")
         self.encryptionFrame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.encryptionFrame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.encryptionFrame.setObjectName("encryptionFrame")
@@ -479,7 +529,7 @@ class Ui_Groot(object):
         self.horizontalLayout_4.addWidget(self.mainWindow)
         Groot.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(Groot)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1394, 26))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1551, 26))
         self.menubar.setObjectName("menubar")
         self.menuFile = QtWidgets.QMenu(self.menubar)
         self.menuFile.setObjectName("menuFile")
@@ -673,7 +723,7 @@ class Ui_Groot(object):
         self.newNote.setText(_translate("Groot", "New Note"))
         self.newSubNotebook.setText(_translate("Groot", "New sub-notebook"))
         self.newNotebook.setText(_translate("Groot", "New notebook"))
-        self.searchBar.setPlaceholderText(_translate("Groot", "Search this note"))
+        self.searchBar.setPlaceholderText(_translate("Groot", "Search in this note"))
         self.comboBox.setItemText(0, _translate("Groot", "Match Case"))
         self.comboBox.setItemText(1, _translate("Groot", "Match Whole Word"))
         self.comboBox.setItemText(2, _translate("Groot", "Use Regular Expression"))
