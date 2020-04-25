@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1394</width>
-    <height>807</height>
+    <width>942</width>
+    <height>498</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -251,6 +251,9 @@
               <height>0</height>
              </size>
             </property>
+            <property name="contextMenuPolicy">
+             <enum>Qt::CustomContextMenu</enum>
+            </property>
             <property name="autoFillBackground">
              <bool>false</bool>
             </property>
@@ -272,6 +275,9 @@ color: rgb(255, 255, 255);</string>
             </property>
             <property name="showDropIndicator" stdset="0">
              <bool>true</bool>
+            </property>
+            <property name="selectionMode">
+             <enum>QAbstractItemView::SingleSelection</enum>
             </property>
             <property name="horizontalScrollMode">
              <enum>QAbstractItemView::ScrollPerPixel</enum>
@@ -928,7 +934,7 @@ border-width:0px
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1394</width>
+     <width>942</width>
      <height>26</height>
     </rect>
    </property>
