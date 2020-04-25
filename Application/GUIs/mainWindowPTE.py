@@ -51,7 +51,17 @@ class Ui_Groot(object):
         self.horizontalLayout_6.setSpacing(6)
         self.horizontalLayout_6.setObjectName("horizontalLayout_6")
         self.buttonFrame = QtWidgets.QFrame(self.rootOptions)
-        self.buttonFrame.setStyleSheet("")
+        self.buttonFrame.setStyleSheet("QPushButton{\n"
+"    border:None;\n"
+"}\n"
+"\n"
+"QPushButton:hover{\n"
+"    background-color:rgba(211,211,211,0.5);\n"
+"}\n"
+"\n"
+"QPushButton:pressed{\n"
+"    border:1px solid blue;\n"
+"}")
         self.buttonFrame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.buttonFrame.setFrameShadow(QtWidgets.QFrame.Plain)
         self.buttonFrame.setObjectName("buttonFrame")
@@ -66,7 +76,18 @@ class Ui_Groot(object):
         sizePolicy.setHeightForWidth(self.newNote.sizePolicy().hasHeightForWidth())
         self.newNote.setSizePolicy(sizePolicy)
         self.newNote.setMinimumSize(QtCore.QSize(0, 0))
-        self.newNote.setStyleSheet("background-color: rgb(255, 255, 255);")
+        self.newNote.setStyleSheet("QPushButton{\n"
+"    border:None;\n"
+"    padding:4px 2px 4px 2px;\n"
+"}\n"
+"\n"
+"QPushButton:hover{\n"
+"    background-color:rgba(211,211,211,0.5);\n"
+"}\n"
+"\n"
+"QPushButton:pressed{\n"
+"    border:1px solid blue;\n"
+"}")
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(":/icons/Icons/16x16/doc_new.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.newNote.setIcon(icon)
@@ -79,9 +100,18 @@ class Ui_Groot(object):
         sizePolicy.setHeightForWidth(self.newNotebook.sizePolicy().hasHeightForWidth())
         self.newNotebook.setSizePolicy(sizePolicy)
         self.newNotebook.setMinimumSize(QtCore.QSize(0, 0))
-        self.newNotebook.setStyleSheet("background-color: rgb(255, 255, 255);\n"
+        self.newNotebook.setStyleSheet("QPushButton{\n"
+"    border:None;\n"
+"    padding:4px 2px 4px 2px;\n"
+"}\n"
 "\n"
-"")
+"QPushButton:hover{\n"
+"    background-color:rgba(211,211,211,0.5);\n"
+"}\n"
+"\n"
+"QPushButton:pressed{\n"
+"    border:1px solid blue;\n"
+"}")
         icon1 = QtGui.QIcon()
         icon1.addPixmap(QtGui.QPixmap(":/icons/Icons/16x16/folder_plus.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.newNotebook.setIcon(icon1)
@@ -94,7 +124,18 @@ class Ui_Groot(object):
         sizePolicy.setHeightForWidth(self.newSubNotebook.sizePolicy().hasHeightForWidth())
         self.newSubNotebook.setSizePolicy(sizePolicy)
         self.newSubNotebook.setMinimumSize(QtCore.QSize(0, 0))
-        self.newSubNotebook.setStyleSheet("background-color: rgb(255, 255, 255);")
+        self.newSubNotebook.setStyleSheet("QPushButton{\n"
+"    border:None;\n"
+"    padding:4px 2px 4px 2px;\n"
+"}\n"
+"\n"
+"QPushButton:hover{\n"
+"    background-color:rgba(211,211,211,0.5);\n"
+"}\n"
+"\n"
+"QPushButton:pressed{\n"
+"    border:1px solid blue;\n"
+"}")
         icon2 = QtGui.QIcon()
         icon2.addPixmap(QtGui.QPixmap(":/icons/Icons/16x16/subfolder.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.newSubNotebook.setIcon(icon2)
@@ -283,10 +324,15 @@ class Ui_Groot(object):
         sizePolicy.setHeightForWidth(self.treeWidget.sizePolicy().hasHeightForWidth())
         self.treeWidget.setSizePolicy(sizePolicy)
         self.treeWidget.setMinimumSize(QtCore.QSize(200, 0))
+        self.treeWidget.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
         self.treeWidget.setAutoFillBackground(False)
-        self.treeWidget.setStyleSheet("background-color:rgb(48, 48, 48);\n"
-"color: rgb(255, 255, 255);\n"
-"margin:0px;")
+        self.treeWidget.setStyleSheet("QTreeView {\n"
+"    background-color:black;\n"
+"    color:white;\n"
+"    alternate-background-color:gray;\n"
+"}\n"
+"\n"
+"")
         self.treeWidget.setFrameShape(QtWidgets.QFrame.WinPanel)
         self.treeWidget.setFrameShadow(QtWidgets.QFrame.Raised)
         self.treeWidget.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAsNeeded)
@@ -400,8 +446,8 @@ class Ui_Groot(object):
 "}")
         self.editingButtons.setObjectName("editingButtons")
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.editingButtons)
-        self.horizontalLayout_3.setContentsMargins(0, 0, 0, 0)
-        self.horizontalLayout_3.setSpacing(0)
+        self.horizontalLayout_3.setContentsMargins(0, 0, 2, 0)
+        self.horizontalLayout_3.setSpacing(2)
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
         self.formatFrame = QtWidgets.QFrame(self.editingButtons)
         self.formatFrame.setStyleSheet("QPushButton{\n"

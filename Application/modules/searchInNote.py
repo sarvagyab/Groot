@@ -57,3 +57,6 @@ def searchText(ui,cursor = QTextCursor.Start,reversed = False):
     if(found == False):
         MSG = "<html><head/><body><p><span style=\" color:#ff0000;\">No results</span></p></body></html>"
         ui.errorLabel.setText(MSG)
+
+def finishedSearch(textLabel):
+    textLabel.setText("")

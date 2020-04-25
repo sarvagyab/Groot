@@ -98,7 +98,17 @@
           <item>
            <widget class="QFrame" name="buttonFrame">
             <property name="styleSheet">
-             <string notr="true"/>
+             <string notr="true">QPushButton{
+	border:None;
+}
+
+QPushButton:hover{
+	background-color:rgba(211,211,211,0.5);
+}
+
+QPushButton:pressed{
+	border:1px solid blue;
+}</string>
             </property>
             <property name="frameShape">
              <enum>QFrame::StyledPanel</enum>
@@ -137,7 +147,18 @@
                 </size>
                </property>
                <property name="styleSheet">
-                <string notr="true">background-color: rgb(255, 255, 255);</string>
+                <string notr="true">QPushButton{
+	border:None;
+	padding:4px 2px 4px 2px;
+}
+
+QPushButton:hover{
+	background-color:rgba(211,211,211,0.5);
+}
+
+QPushButton:pressed{
+	border:1px solid blue;
+}</string>
                </property>
                <property name="text">
                 <string>New Note</string>
@@ -163,9 +184,18 @@
                 </size>
                </property>
                <property name="styleSheet">
-                <string notr="true">background-color: rgb(255, 255, 255);
+                <string notr="true">QPushButton{
+	border:None;
+	padding:4px 2px 4px 2px;
+}
 
-</string>
+QPushButton:hover{
+	background-color:rgba(211,211,211,0.5);
+}
+
+QPushButton:pressed{
+	border:1px solid blue;
+}</string>
                </property>
                <property name="text">
                 <string>New notebook</string>
@@ -191,7 +221,18 @@
                 </size>
                </property>
                <property name="styleSheet">
-                <string notr="true">background-color: rgb(255, 255, 255);</string>
+                <string notr="true">QPushButton{
+	border:None;
+	padding:4px 2px 4px 2px;
+}
+
+QPushButton:hover{
+	background-color:rgba(211,211,211,0.5);
+}
+
+QPushButton:pressed{
+	border:1px solid blue;
+}</string>
                </property>
                <property name="text">
                 <string>New sub-notebook</string>
@@ -553,13 +594,20 @@ QPushButton:pressed{
               <height>0</height>
              </size>
             </property>
+            <property name="contextMenuPolicy">
+             <enum>Qt::CustomContextMenu</enum>
+            </property>
             <property name="autoFillBackground">
              <bool>false</bool>
             </property>
             <property name="styleSheet">
-             <string notr="true">background-color:rgb(48, 48, 48);
-color: rgb(255, 255, 255);
-margin:0px;</string>
+             <string notr="true">QTreeView {
+	background-color:black;
+	color:white;
+	alternate-background-color:gray;
+}
+
+</string>
             </property>
             <property name="frameShape">
              <enum>QFrame::WinPanel</enum>
@@ -774,7 +822,7 @@ QPushButton:pressed{
                </property>
                <layout class="QHBoxLayout" name="horizontalLayout_3">
                 <property name="spacing">
-                 <number>0</number>
+                 <number>2</number>
                 </property>
                 <property name="leftMargin">
                  <number>0</number>
@@ -783,7 +831,7 @@ QPushButton:pressed{
                  <number>0</number>
                 </property>
                 <property name="rightMargin">
-                 <number>0</number>
+                 <number>2</number>
                 </property>
                 <property name="bottomMargin">
                  <number>0</number>

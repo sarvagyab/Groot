@@ -11,6 +11,15 @@ def loadNote(_fileName, _textEdit):
 def loadFileName(name,fileName):
     fileName.setText(name)
 
+def createNote():
+    pass
+
+def renameNote():
+    pass
+
+def deleteNote():
+    pass
+
 def readText(path):
     file = QtCore.QFile(path)
     file.open(QtCore.QIODevice.Text | QtCore.QIODevice.ReadOnly)

@@ -12,8 +12,11 @@ def getJsonTree():
         structDict = json.load(jsonfile)
     return structDict
 
-def fixTreeViewScrolling(tree):
-    tree.header().setSectionResizeMode(0, QtWidgets.QHeaderView.ResizeToContents)
+
+def saveUpdatedJson(structDict):
+    location = "../Application/fileStructure.json"
+    with open(location,"w") as jsonfile:
+        json.dump(structDict,jsonfile)
 
 
 def fillItem(item,valDict):
@@ -44,6 +47,7 @@ def getLineage(item):
     else:
         return getLineage(item.parent()) + [item.parent().indexOfChild(item)]
 
+
 def _itemVal(pathList,noteTree):
     if pathList == []:
         return []
@@ -52,12 +56,21 @@ def _itemVal(pathList,noteTree):
         noteTree = noteTree[keys[item]]["expanded"]
     return noteTree
 
+
 # returns the value associated with an item in treeWidget
 def itemVal(item):
     structDict = getJsonTree()
     pathList = getLineage(item)
     structDict = structDict[pathList[0]]
     return _itemVal(pathList[1:],structDict)
+
+
+def isNote(item):
+    details = itemVal(item)
+    if("path" in details and type(details["path"]) == str):
+        return [True,details]
+    return [False,details]
+
 
 def _updateItem(changeDict,structDict): # DFS
     if(type(structDict) == type({})): 
@@ -68,18 +81,15 @@ def _updateItem(changeDict,structDict): # DFS
                 for key in structDict.keys():
                     _updateItem(changeDict,structDict[key])
 
+
 def updateItem(changeDict):
     structDict = getJsonTree()
     _updateItem(changeDict,structDict)
     saveUpdatedJson(structDict) # save updated json to the file
 
-def saveUpdatedJson(structDict):
-    location = "../Application/fileStructure.json"
-    with open(location,"w") as jsonfile:
-        json.dump(structDict,jsonfile)
-    
+
 def noteLoader(item, _fileName, _textEdit):
-    details = itemVal(item)
-    if("path" in details and type(details["path"]) == str):
-        currentNote.openFile(item,details)
+    note = isNote(item)
+    if(note[0]):
+        currentNote.openFile(item,note[1])
         loadNote(_fileName,_textEdit)
