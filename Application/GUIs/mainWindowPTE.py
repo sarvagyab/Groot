@@ -8,7 +8,7 @@
 
 
 from PySide2 import QtCore, QtGui, QtWidgets
-import resource_rc
+
 
 class Ui_Groot(object):
     def setupUi(self, Groot):
@@ -38,6 +38,7 @@ class Ui_Groot(object):
         sizePolicy.setHeightForWidth(self.rootOptions.sizePolicy().hasHeightForWidth())
         self.rootOptions.setSizePolicy(sizePolicy)
         self.rootOptions.setMinimumSize(QtCore.QSize(0, 0))
+        self.rootOptions.setStyleSheet("")
         self.rootOptions.setObjectName("rootOptions")
         self.horizontalLayout_6 = QtWidgets.QHBoxLayout(self.rootOptions)
         self.horizontalLayout_6.setContentsMargins(0, 0, 0, 0)
@@ -83,20 +84,81 @@ class Ui_Groot(object):
         self.newNotebook.setIcon(icon2)
         self.newNotebook.setObjectName("newNotebook")
         self.horizontalLayout_6.addWidget(self.newNotebook)
-        self.lineEdit = QtWidgets.QLineEdit(self.rootOptions)
+        self.searchBar = QtWidgets.QLineEdit(self.rootOptions)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.lineEdit.sizePolicy().hasHeightForWidth())
-        self.lineEdit.setSizePolicy(sizePolicy)
-        self.lineEdit.setMinimumSize(QtCore.QSize(250, 28))
+        sizePolicy.setHeightForWidth(self.searchBar.sizePolicy().hasHeightForWidth())
+        self.searchBar.setSizePolicy(sizePolicy)
+        self.searchBar.setMinimumSize(QtCore.QSize(250, 28))
         font = QtGui.QFont()
         font.setPointSize(10)
-        self.lineEdit.setFont(font)
-        self.lineEdit.setStyleSheet("")
-        self.lineEdit.setObjectName("lineEdit")
-        self.horizontalLayout_6.addWidget(self.lineEdit)
-        spacerItem = QtWidgets.QSpacerItem(800, 20, QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Minimum)
+        self.searchBar.setFont(font)
+        self.searchBar.setStyleSheet("")
+        self.searchBar.setObjectName("searchBar")
+        self.horizontalLayout_6.addWidget(self.searchBar)
+        self.comboBox = QtWidgets.QComboBox(self.rootOptions)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.comboBox.sizePolicy().hasHeightForWidth())
+        self.comboBox.setSizePolicy(sizePolicy)
+        self.comboBox.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.comboBox.setStyleSheet("QComboBox {\n"
+"    border: 1px solid gray;\n"
+"    border-radius: 3px;\n"
+"    padding: 1px 18px 1px 3px;\n"
+"    min-width: 6em;\n"
+"}\n"
+"\n"
+"QComboBox:editable {\n"
+"    background: white;\n"
+"}\n"
+"\n"
+"QComboBox:!editable, QComboBox::drop-down:editable {\n"
+"     background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                 stop: 0 #E1E1E1, stop: 0.4 #DDDDDD,\n"
+"                                 stop: 0.5 #D8D8D8, stop: 1.0 #D3D3D3);\n"
+"}\n"
+"\n"
+"/* QComboBox gets the \"on\" state when the popup is open */\n"
+"QComboBox:!editable:on, QComboBox::drop-down:editable:on {\n"
+"    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                stop: 0 #D3D3D3, stop: 0.4 #D8D8D8,\n"
+"                                stop: 0.5 #DDDDDD, stop: 1.0 #E1E1E1);\n"
+"}\n"
+"\n"
+"QComboBox:on { /* shift the text when the popup opens */\n"
+"    padding-top: 3px;\n"
+"    padding-left: 4px;\n"
+"}\n"
+"\n"
+"QComboBox::drop-down {\n"
+"    subcontrol-origin: padding;\n"
+"    subcontrol-position: top right;\n"
+"    width: 15px;\n"
+"\n"
+"    border-left-width: 1px;\n"
+"    border-left-color: darkgray;\n"
+"    border-left-style: solid; /* just a single line */\n"
+"    border-top-right-radius: 3px; /* same radius as the QComboBox */\n"
+"    border-bottom-right-radius: 3px;\n"
+"}\n"
+"\n"
+"QComboBox::down-arrow {\n"
+"    image: url(/usr/share/icons/crystalsvg/16x16/actions/1downarrow.png);\n"
+"}\n"
+"\n"
+"QComboBox::down-arrow:on { /* shift the arrow when popup is open */\n"
+"    top: 1px;\n"
+"    left: 1px;\n"
+"}")
+        self.comboBox.setObjectName("comboBox")
+        self.comboBox.addItem("")
+        self.comboBox.addItem("")
+        self.comboBox.addItem("")
+        self.horizontalLayout_6.addWidget(self.comboBox)
+        spacerItem = QtWidgets.QSpacerItem(800, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_6.addItem(spacerItem)
         self.verticalLayout.addWidget(self.rootOptions)
         self.centralView = QtWidgets.QWidget(self.mainWindow)
@@ -199,7 +261,7 @@ class Ui_Groot(object):
         self.editingButtons.setMouseTracking(False)
         self.editingButtons.setAutoFillBackground(False)
         self.editingButtons.setStyleSheet("QFrame{\n"
-"    border-right:2px groove gray;\n"
+"    border-right:2px solid gray;\n"
 "    padding:0px;\n"
 "    margin:0px;\n"
 "}\n"
@@ -218,7 +280,6 @@ class Ui_Groot(object):
 "\n"
 "QPushButton:pressed{\n"
 "    background-color:rgba(74, 83, 255,0.4);\n"
-"    box-shadow:rgba(0,0,0,0.6)  10px 10px;\n"
 "}\n"
 "padding:0px")
         self.editingButtons.setObjectName("editingButtons")
@@ -603,6 +664,7 @@ class Ui_Groot(object):
         self.menubar.addAction(self.menuHelp.menuAction())
 
         self.retranslateUi(Groot)
+        self.comboBox.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(Groot)
 
     def retranslateUi(self, Groot):
@@ -611,7 +673,10 @@ class Ui_Groot(object):
         self.newNote.setText(_translate("Groot", "New Note"))
         self.newSubNotebook.setText(_translate("Groot", "New sub-notebook"))
         self.newNotebook.setText(_translate("Groot", "New notebook"))
-        self.lineEdit.setPlaceholderText(_translate("Groot", "Search this note"))
+        self.searchBar.setPlaceholderText(_translate("Groot", "Search this note"))
+        self.comboBox.setItemText(0, _translate("Groot", "Match Case"))
+        self.comboBox.setItemText(1, _translate("Groot", "Match Whole Word"))
+        self.comboBox.setItemText(2, _translate("Groot", "Use Regular Expression"))
         self.treeWidget.headerItem().setText(0, _translate("Groot", "Notes"))
         __sortingEnabled = self.treeWidget.isSortingEnabled()
         self.treeWidget.setSortingEnabled(False)
@@ -674,3 +739,4 @@ class Ui_Groot(object):
         self.actionReport_a_bug.setText(_translate("Groot", "Report a bug"))
         self.actionLink.setText(_translate("Groot", "Link"))
         self.actionImage.setText(_translate("Groot", "Image"))
+import resource_rc

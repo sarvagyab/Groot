@@ -68,6 +68,9 @@
            <height>0</height>
           </size>
          </property>
+         <property name="styleSheet">
+          <string notr="true"/>
+         </property>
          <layout class="QHBoxLayout" name="horizontalLayout_6">
           <property name="leftMargin">
            <number>0</number>
@@ -162,7 +165,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit">
+           <widget class="QLineEdit" name="searchBar">
             <property name="sizePolicy">
              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
               <horstretch>0</horstretch>
@@ -189,12 +192,94 @@
            </widget>
           </item>
           <item>
+           <widget class="QComboBox" name="comboBox">
+            <property name="sizePolicy">
+             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+              <horstretch>0</horstretch>
+              <verstretch>0</verstretch>
+             </sizepolicy>
+            </property>
+            <property name="cursor">
+             <cursorShape>PointingHandCursor</cursorShape>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QComboBox {
+    border: 1px solid gray;
+    border-radius: 3px;
+    padding: 1px 18px 1px 3px;
+    min-width: 6em;
+}
+
+QComboBox:editable {
+    background: white;
+}
+
+QComboBox:!editable, QComboBox::drop-down:editable {
+     background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                 stop: 0 #E1E1E1, stop: 0.4 #DDDDDD,
+                                 stop: 0.5 #D8D8D8, stop: 1.0 #D3D3D3);
+}
+
+/* QComboBox gets the &quot;on&quot; state when the popup is open */
+QComboBox:!editable:on, QComboBox::drop-down:editable:on {
+    background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,
+                                stop: 0 #D3D3D3, stop: 0.4 #D8D8D8,
+                                stop: 0.5 #DDDDDD, stop: 1.0 #E1E1E1);
+}
+
+QComboBox:on { /* shift the text when the popup opens */
+    padding-top: 3px;
+    padding-left: 4px;
+}
+
+QComboBox::drop-down {
+    subcontrol-origin: padding;
+    subcontrol-position: top right;
+    width: 15px;
+
+    border-left-width: 1px;
+    border-left-color: darkgray;
+    border-left-style: solid; /* just a single line */
+    border-top-right-radius: 3px; /* same radius as the QComboBox */
+    border-bottom-right-radius: 3px;
+}
+
+QComboBox::down-arrow {
+    image: url(/usr/share/icons/crystalsvg/16x16/actions/1downarrow.png);
+}
+
+QComboBox::down-arrow:on { /* shift the arrow when popup is open */
+    top: 1px;
+    left: 1px;
+}</string>
+            </property>
+            <property name="currentIndex">
+             <number>0</number>
+            </property>
+            <item>
+             <property name="text">
+              <string>Match Case</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Match Whole Word</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Use Regular Expression</string>
+             </property>
+            </item>
+           </widget>
+          </item>
+          <item>
            <spacer name="emptySpaceMainOptions">
             <property name="orientation">
              <enum>Qt::Horizontal</enum>
             </property>
             <property name="sizeType">
-             <enum>QSizePolicy::Preferred</enum>
+             <enum>QSizePolicy::Minimum</enum>
             </property>
             <property name="sizeHint" stdset="0">
              <size>
@@ -427,7 +512,7 @@ border-bottom-color: rgb(255, 255, 127);</string>
                </property>
                <property name="styleSheet">
                 <string notr="true">QFrame{
-	border-right:2px groove gray;
+	border-right:2px solid gray;
 	padding:0px;
 	margin:0px;
 }
@@ -446,7 +531,6 @@ QPushButton:hover{
 
 QPushButton:pressed{
 	background-color:rgba(74, 83, 255,0.4);
-	box-shadow:rgba(0,0,0,0.6)  10px 10px;
 }
 padding:0px</string>
                </property>

@@ -8,6 +8,7 @@ from modules.treeHandling import fixTreeViewScrolling, loadfileStructure, noteLo
 from modules.markdownHandling import viewInMarkdown
 from modules.setPassword import password
 from modules.fileHandling import currentNote
+from modules.searchInNote import searchText
 
 class Window(QtWidgets.QMainWindow):
     def __init__(self):
@@ -50,6 +51,9 @@ class Window(QtWidgets.QMainWindow):
         # Display UI
         self.showMaximized()
 
+        #Search in the current note
+        self.searchInNote()
+
 
     def _delayChecker(self):
         if(self.timer.isActive()):
@@ -77,6 +81,10 @@ class Window(QtWidgets.QMainWindow):
     def decryptNote(self):
         self.passwdD = password(self)
         self.ui.decryptionButton.clicked.connect(lambda: self.passwdD.openVerifyPasswordDialog())
+
+    def searchInNote(self):
+        self.ui.searchBar.textChanged.connect(lambda: searchText(self.ui))
+    
 
     def reloadUI(self):
         loadfileStructure(self.ui.treeWidget)
