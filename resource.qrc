@@ -30,6 +30,12 @@
     <file>Icons/16x16/link.png</file>
     <file>Icons/16x16/sun_light.png</file>
     <file>Icons/16x16/sun_dark.png</file>
+    <file>Icons/16x16/case_sensitive.png</file>
+    <file>Icons/16x16/regex.png</file>
+    <file>Icons/16x16/whole_word.png</file>
+    <file>Icons/16x16/down_arrow.png</file>
+    <file>Icons/32x32/arrow_top.png</file>
+    <file>Icons/32x32/arrow_bottom.png</file>
     <file>Icons/32x32/font_bold.png</file>
     <file>Icons/32x32/font_bold.png</file>
     <file>Icons/32x32/font_italic.png</file>

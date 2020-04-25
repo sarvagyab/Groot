@@ -13,13 +13,12 @@ from PySide2 import QtCore, QtGui, QtWidgets
 class Ui_Groot(object):
     def setupUi(self, Groot):
         Groot.setObjectName("Groot")
-        Groot.resize(1551, 795)
+        Groot.resize(1602, 795)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(Groot.sizePolicy().hasHeightForWidth())
         Groot.setSizePolicy(sizePolicy)
-        Groot.setStyleSheet("")
         self.centralwidget = QtWidgets.QWidget(Groot)
         self.centralwidget.setStyleSheet("background-color:rgb(252, 252, 252);")
         self.centralwidget.setObjectName("centralwidget")
@@ -27,9 +26,14 @@ class Ui_Groot(object):
         self.horizontalLayout_4.setContentsMargins(0, 5, 0, 0)
         self.horizontalLayout_4.setObjectName("horizontalLayout_4")
         self.mainWindow = QtWidgets.QWidget(self.centralwidget)
+        self.mainWindow.setStyleSheet("QWidget{\n"
+"    margin:0px;\n"
+"    padding:0px;\n"
+"}")
         self.mainWindow.setObjectName("mainWindow")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.mainWindow)
         self.verticalLayout.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout.setSpacing(0)
         self.verticalLayout.setObjectName("verticalLayout")
         self.rootOptions = QtWidgets.QWidget(self.mainWindow)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
@@ -38,12 +42,24 @@ class Ui_Groot(object):
         sizePolicy.setHeightForWidth(self.rootOptions.sizePolicy().hasHeightForWidth())
         self.rootOptions.setSizePolicy(sizePolicy)
         self.rootOptions.setMinimumSize(QtCore.QSize(0, 0))
-        self.rootOptions.setStyleSheet("")
+        self.rootOptions.setStyleSheet("QFrame{\n"
+"    border-style:None;\n"
+"}")
         self.rootOptions.setObjectName("rootOptions")
         self.horizontalLayout_6 = QtWidgets.QHBoxLayout(self.rootOptions)
         self.horizontalLayout_6.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_6.setSpacing(6)
         self.horizontalLayout_6.setObjectName("horizontalLayout_6")
-        self.newNote = QtWidgets.QPushButton(self.rootOptions)
+        self.buttonFrame = QtWidgets.QFrame(self.rootOptions)
+        self.buttonFrame.setStyleSheet("")
+        self.buttonFrame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.buttonFrame.setFrameShadow(QtWidgets.QFrame.Plain)
+        self.buttonFrame.setObjectName("buttonFrame")
+        self.horizontalLayout_12 = QtWidgets.QHBoxLayout(self.buttonFrame)
+        self.horizontalLayout_12.setContentsMargins(3, 0, 0, 0)
+        self.horizontalLayout_12.setSpacing(3)
+        self.horizontalLayout_12.setObjectName("horizontalLayout_12")
+        self.newNote = QtWidgets.QPushButton(self.buttonFrame)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -55,21 +71,8 @@ class Ui_Groot(object):
         icon.addPixmap(QtGui.QPixmap(":/icons/Icons/16x16/doc_new.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.newNote.setIcon(icon)
         self.newNote.setObjectName("newNote")
-        self.horizontalLayout_6.addWidget(self.newNote)
-        self.newSubNotebook = QtWidgets.QPushButton(self.rootOptions)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.newSubNotebook.sizePolicy().hasHeightForWidth())
-        self.newSubNotebook.setSizePolicy(sizePolicy)
-        self.newSubNotebook.setMinimumSize(QtCore.QSize(0, 0))
-        self.newSubNotebook.setStyleSheet("background-color: rgb(255, 255, 255);")
-        icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap(":/icons/Icons/16x16/subfolder.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.newSubNotebook.setIcon(icon1)
-        self.newSubNotebook.setObjectName("newSubNotebook")
-        self.horizontalLayout_6.addWidget(self.newSubNotebook)
-        self.newNotebook = QtWidgets.QPushButton(self.rootOptions)
+        self.horizontalLayout_12.addWidget(self.newNote)
+        self.newNotebook = QtWidgets.QPushButton(self.buttonFrame)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -79,23 +82,47 @@ class Ui_Groot(object):
         self.newNotebook.setStyleSheet("background-color: rgb(255, 255, 255);\n"
 "\n"
 "")
-        icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap(":/icons/Icons/16x16/folder_plus.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.newNotebook.setIcon(icon2)
+        icon1 = QtGui.QIcon()
+        icon1.addPixmap(QtGui.QPixmap(":/icons/Icons/16x16/folder_plus.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.newNotebook.setIcon(icon1)
         self.newNotebook.setObjectName("newNotebook")
-        self.horizontalLayout_6.addWidget(self.newNotebook)
+        self.horizontalLayout_12.addWidget(self.newNotebook)
+        self.newSubNotebook = QtWidgets.QPushButton(self.buttonFrame)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.newSubNotebook.sizePolicy().hasHeightForWidth())
+        self.newSubNotebook.setSizePolicy(sizePolicy)
+        self.newSubNotebook.setMinimumSize(QtCore.QSize(0, 0))
+        self.newSubNotebook.setStyleSheet("background-color: rgb(255, 255, 255);")
+        icon2 = QtGui.QIcon()
+        icon2.addPixmap(QtGui.QPixmap(":/icons/Icons/16x16/subfolder.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.newSubNotebook.setIcon(icon2)
+        self.newSubNotebook.setObjectName("newSubNotebook")
+        self.horizontalLayout_12.addWidget(self.newSubNotebook)
+        self.horizontalLayout_6.addWidget(self.buttonFrame)
         self.findFrame = QtWidgets.QFrame(self.rootOptions)
-        self.findFrame.setStyleSheet("QFrame{\n"
-"    border-right:1px solid black;\n"
-"    border-left:1px solid black;\n"
-"}\n"
-"")
+        self.findFrame.setStyleSheet("")
         self.findFrame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.findFrame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.findFrame.setObjectName("findFrame")
         self.horizontalLayout_10 = QtWidgets.QHBoxLayout(self.findFrame)
+        self.horizontalLayout_10.setSpacing(1)
         self.horizontalLayout_10.setObjectName("horizontalLayout_10")
-        self.searchBar = QtWidgets.QLineEdit(self.findFrame)
+        self.frame = QtWidgets.QFrame(self.findFrame)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.frame.sizePolicy().hasHeightForWidth())
+        self.frame.setSizePolicy(sizePolicy)
+        self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
+        self.frame.setFrameShadow(QtWidgets.QFrame.Plain)
+        self.frame.setObjectName("frame")
+        self.horizontalLayout_11 = QtWidgets.QHBoxLayout(self.frame)
+        self.horizontalLayout_11.setContentsMargins(3, 0, 3, 3)
+        self.horizontalLayout_11.setSpacing(0)
+        self.horizontalLayout_11.setObjectName("horizontalLayout_11")
+        self.searchBar = QtWidgets.QLineEdit(self.frame)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -106,59 +133,130 @@ class Ui_Groot(object):
         font.setPointSize(10)
         self.searchBar.setFont(font)
         self.searchBar.setStyleSheet("QLineEdit{\n"
-"    border: 1px solid gray;\n"
+"    border: 1px solid grey;\n"
+"}\n"
+"\n"
+"QLineEdit:focus{\n"
+"    border: 1px solid black;\n"
 "}")
         self.searchBar.setObjectName("searchBar")
-        self.horizontalLayout_10.addWidget(self.searchBar)
-        self.comboBox = QtWidgets.QComboBox(self.findFrame)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.comboBox.sizePolicy().hasHeightForWidth())
-        self.comboBox.setSizePolicy(sizePolicy)
-        self.comboBox.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.comboBox.setStyleSheet("QComboBox {\n"
-"    border: 1px solid gray;\n"
-"    padding: 1px 10px 1px 3px;\n"
-"    min-width: 6em;\n"
+        self.horizontalLayout_11.addWidget(self.searchBar)
+        self.errorLabel = QtWidgets.QLabel(self.frame)
+        self.errorLabel.setText("")
+        self.errorLabel.setObjectName("errorLabel")
+        self.horizontalLayout_11.addWidget(self.errorLabel)
+        self.wholeWord = QtWidgets.QPushButton(self.frame)
+        self.wholeWord.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.wholeWord.setStyleSheet("QPushButton{\n"
+"    border-style:None;\n"
+"    padding:6px 4px 6px 4px;\n"
 "}\n"
 "\n"
-"QComboBox:editable {\n"
-"    background: white;\n"
+"QPushButton:checked{\n"
+"    background-color:rgba(211,211,211,0.4);\n"
 "}\n"
 "\n"
-"QComboBox:on { \n"
+"QPushButton:!checked:hover{\n"
+"    padding-top:1px;\n"
+"    padding-left:1px;\n"
+"}")
+        self.wholeWord.setIconSize(QtCore.QSize(31, 31))
+        self.wholeWord.setCheckable(True)
+        self.wholeWord.setObjectName("wholeWord")
+        self.horizontalLayout_11.addWidget(self.wholeWord)
+        self.matchCase = QtWidgets.QPushButton(self.frame)
+        self.matchCase.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.matchCase.setStyleSheet("QPushButton{\n"
+"    border-style:None;\n"
+"    padding:6px 4px 6px 4px;\n"
+"}\n"
+"\n"
+"QPushButton:checked{\n"
+"    background-color:rgba(211,211,211,0.4);\n"
+"}\n"
+"\n"
+"QPushButton:!checked:hover{\n"
+"    padding-top:1px;\n"
+"    padding-left:1px;\n"
+"}")
+        self.matchCase.setIconSize(QtCore.QSize(31, 31))
+        self.matchCase.setCheckable(True)
+        self.matchCase.setObjectName("matchCase")
+        self.horizontalLayout_11.addWidget(self.matchCase)
+        self.regexButton = QtWidgets.QPushButton(self.frame)
+        self.regexButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
+        self.regexButton.setStyleSheet("QPushButton{\n"
+"    border-style:None;\n"
+"    padding:6px 4px 6px 4px;\n"
+"}\n"
+"\n"
+"QPushButton:checked{\n"
+"    background-color:rgba(211,211,211,0.4);\n"
+"}\n"
+"\n"
+"QPushButton:!checked:hover{\n"
+"    padding-top:1px;\n"
+"    padding-left:1px;\n"
+"}s")
+        self.regexButton.setIconSize(QtCore.QSize(31, 31))
+        self.regexButton.setCheckable(True)
+        self.regexButton.setObjectName("regexButton")
+        self.horizontalLayout_11.addWidget(self.regexButton)
+        self.horizontalLayout_10.addWidget(self.frame)
+        self.prevMatch = QtWidgets.QPushButton(self.findFrame)
+        self.prevMatch.setStyleSheet("QPushButton{\n"
+"    border:None;\n"
+"    margin:0px;\n"
+"    padding:0px;\n"
+"}\n"
+"\n"
+"QPushButton:hover{\n"
+"    border-style:solid;\n"
+"    border-color:black;\n"
+"    background-origin:border-box;\n"
 "    padding-top: 3px;\n"
 "    padding-left: 4px;\n"
 "}\n"
 "\n"
-"QComboBox::drop-down {\n"
-"    subcontrol-origin: padding;\n"
-"    subcontrol-position: top right;\n"
-"    width: 15px;\n"
-"    padding-right:3px;\n"
-"    padding-left:3px;\n"
-"    border-left-width: 1px;\n"
-"    border-left-color: darkgray;\n"
-"    border-left-style: solid; \n"
-"}\n"
-"\n"
-"QComboBox::down-arrow {\n"
-"   \n"
-"    image: url(:/icons/Icons/16x16/down_arrow.png);\n"
-"}\n"
-"\n"
-"QComboBox::down-arrow:on { /* shift the arrow when popup is open */\n"
-"    top: 1px;\n"
-"    left: 1px;\n"
+"QPushButton:pressed{\n"
+"    padding-top: 1px;\n"
+"    padding-left :1px;\n"
 "}")
-        self.comboBox.setObjectName("comboBox")
-        self.comboBox.addItem("")
-        self.comboBox.addItem("")
-        self.comboBox.addItem("")
-        self.horizontalLayout_10.addWidget(self.comboBox)
+        self.prevMatch.setText("")
+        icon3 = QtGui.QIcon()
+        icon3.addPixmap(QtGui.QPixmap(":/icons/Icons/32x32/arrow_top.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.prevMatch.setIcon(icon3)
+        self.prevMatch.setIconSize(QtCore.QSize(20, 20))
+        self.prevMatch.setObjectName("prevMatch")
+        self.horizontalLayout_10.addWidget(self.prevMatch)
+        self.nextMatch = QtWidgets.QPushButton(self.findFrame)
+        self.nextMatch.setStyleSheet("QPushButton{\n"
+"    border:None;\n"
+"    margin:0px;\n"
+"    padding:0px;\n"
+"}\n"
+"\n"
+"QPushButton:hover{\n"
+"    border-style:solid;\n"
+"    border-color:black;\n"
+"    background-origin:border-box;\n"
+"    padding-top: 3px;\n"
+"    padding-left: 4px;\n"
+"}\n"
+"\n"
+"QPushButton:pressed{\n"
+"    padding-top: 1px;\n"
+"    padding-left :1px;\n"
+"}")
+        self.nextMatch.setText("")
+        icon4 = QtGui.QIcon()
+        icon4.addPixmap(QtGui.QPixmap(":/icons/Icons/32x32/arrow_bottom.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.nextMatch.setIcon(icon4)
+        self.nextMatch.setIconSize(QtCore.QSize(20, 20))
+        self.nextMatch.setObjectName("nextMatch")
+        self.horizontalLayout_10.addWidget(self.nextMatch)
         self.horizontalLayout_6.addWidget(self.findFrame)
-        spacerItem = QtWidgets.QSpacerItem(800, 20, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
+        spacerItem = QtWidgets.QSpacerItem(800, 20, QtWidgets.QSizePolicy.Ignored, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_6.addItem(spacerItem)
         self.verticalLayout.addWidget(self.rootOptions)
         self.centralView = QtWidgets.QWidget(self.mainWindow)
@@ -168,9 +266,14 @@ class Ui_Groot(object):
         sizePolicy.setHeightForWidth(self.centralView.sizePolicy().hasHeightForWidth())
         self.centralView.setSizePolicy(sizePolicy)
         self.centralView.setMinimumSize(QtCore.QSize(0, 0))
+        self.centralView.setStyleSheet("QWidget{\n"
+"    margin:0px;\n"
+"    padding:0px;\n"
+"}")
         self.centralView.setObjectName("centralView")
         self.horizontalLayout_5 = QtWidgets.QHBoxLayout(self.centralView)
         self.horizontalLayout_5.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_5.setSpacing(0)
         self.horizontalLayout_5.setObjectName("horizontalLayout_5")
         self.treeWidget = QtWidgets.QTreeWidget(self.centralView)
         self.treeWidget.setEnabled(True)
@@ -182,7 +285,8 @@ class Ui_Groot(object):
         self.treeWidget.setMinimumSize(QtCore.QSize(200, 0))
         self.treeWidget.setAutoFillBackground(False)
         self.treeWidget.setStyleSheet("background-color:rgb(48, 48, 48);\n"
-"color: rgb(255, 255, 255);")
+"color: rgb(255, 255, 255);\n"
+"margin:0px;")
         self.treeWidget.setFrameShape(QtWidgets.QFrame.WinPanel)
         self.treeWidget.setFrameShadow(QtWidgets.QFrame.Raised)
         self.treeWidget.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAsNeeded)
@@ -216,9 +320,16 @@ class Ui_Groot(object):
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.editorArea.sizePolicy().hasHeightForWidth())
         self.editorArea.setSizePolicy(sizePolicy)
+        self.editorArea.setStyleSheet("QWidget{\n"
+"    background-color:white;\n"
+"    margin:0px;\n"
+"    padding:0px;\n"
+"}\n"
+"")
         self.editorArea.setObjectName("editorArea")
         self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.editorArea)
         self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_2.setSpacing(0)
         self.verticalLayout_2.setObjectName("verticalLayout_2")
         self.titleArea = QtWidgets.QWidget(self.editorArea)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
@@ -234,10 +345,12 @@ class Ui_Groot(object):
         font.setWeight(75)
         font.setKerning(True)
         self.titleArea.setFont(font)
-        self.titleArea.setStyleSheet("border: 100px ;\n"
-"border-bottom-color: rgb(255, 255, 127);")
+        self.titleArea.setStyleSheet("padding:0px;\n"
+"margin :0px;\n"
+"background-color:grey;")
         self.titleArea.setObjectName("titleArea")
         self.horizontalLayout = QtWidgets.QHBoxLayout(self.titleArea)
+        self.horizontalLayout.setSpacing(0)
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.fileName = QtWidgets.QLabel(self.titleArea)
         font = QtGui.QFont()
@@ -259,11 +372,13 @@ class Ui_Groot(object):
         sizePolicy.setHeightForWidth(self.editingButtons.sizePolicy().hasHeightForWidth())
         self.editingButtons.setSizePolicy(sizePolicy)
         self.editingButtons.setMouseTracking(False)
+        self.editingButtons.setLayoutDirection(QtCore.Qt.LeftToRight)
         self.editingButtons.setAutoFillBackground(False)
         self.editingButtons.setStyleSheet("QFrame{\n"
 "    border-right:2px solid gray;\n"
 "    padding:0px;\n"
 "    margin:0px;\n"
+"    background-color:white;    \n"
 "}\n"
 "\n"
 "QPushButton{\n"
@@ -282,11 +397,11 @@ class Ui_Groot(object):
 "QPushButton:pressed{\n"
 "    padding-top: 1px;\n"
 "    padding-left :1px;\n"
-"}\n"
-"padding:0px")
+"}")
         self.editingButtons.setObjectName("editingButtons")
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.editingButtons)
         self.horizontalLayout_3.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_3.setSpacing(0)
         self.horizontalLayout_3.setObjectName("horizontalLayout_3")
         self.formatFrame = QtWidgets.QFrame(self.editingButtons)
         self.formatFrame.setStyleSheet("QPushButton{\n"
@@ -321,9 +436,9 @@ class Ui_Groot(object):
         self.boldButton.setFocusPolicy(QtCore.Qt.StrongFocus)
         self.boldButton.setStyleSheet("")
         self.boldButton.setText("")
-        icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap(":/icons/Icons/32x32/font_bold.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.boldButton.setIcon(icon3)
+        icon5 = QtGui.QIcon()
+        icon5.addPixmap(QtGui.QPixmap(":/icons/Icons/32x32/font_bold.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.boldButton.setIcon(icon5)
         self.boldButton.setIconSize(QtCore.QSize(32, 32))
         self.boldButton.setAutoExclusive(False)
         self.boldButton.setObjectName("boldButton")
@@ -332,9 +447,9 @@ class Ui_Groot(object):
         self.italicButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.italicButton.setStyleSheet("")
         self.italicButton.setText("")
-        icon4 = QtGui.QIcon()
-        icon4.addPixmap(QtGui.QPixmap(":/icons/Icons/32x32/font_italic.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.italicButton.setIcon(icon4)
+        icon6 = QtGui.QIcon()
+        icon6.addPixmap(QtGui.QPixmap(":/icons/Icons/32x32/font_italic.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.italicButton.setIcon(icon6)
         self.italicButton.setIconSize(QtCore.QSize(32, 32))
         self.italicButton.setObjectName("italicButton")
         self.horizontalLayout_7.addWidget(self.italicButton)
@@ -342,9 +457,9 @@ class Ui_Groot(object):
         self.numberedList.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.numberedList.setStyleSheet("")
         self.numberedList.setText("")
-        icon5 = QtGui.QIcon()
-        icon5.addPixmap(QtGui.QPixmap(":/icons/Icons/32x32/numbered_list.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.numberedList.setIcon(icon5)
+        icon7 = QtGui.QIcon()
+        icon7.addPixmap(QtGui.QPixmap(":/icons/Icons/32x32/numbered_list.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.numberedList.setIcon(icon7)
         self.numberedList.setIconSize(QtCore.QSize(32, 32))
         self.numberedList.setObjectName("numberedList")
         self.horizontalLayout_7.addWidget(self.numberedList)
@@ -353,9 +468,9 @@ class Ui_Groot(object):
         self.bullets.setFocusPolicy(QtCore.Qt.ClickFocus)
         self.bullets.setStyleSheet("")
         self.bullets.setText("")
-        icon6 = QtGui.QIcon()
-        icon6.addPixmap(QtGui.QPixmap(":/icons/Icons/32x32/bullets.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.bullets.setIcon(icon6)
+        icon8 = QtGui.QIcon()
+        icon8.addPixmap(QtGui.QPixmap(":/icons/Icons/32x32/bullets.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.bullets.setIcon(icon8)
         self.bullets.setIconSize(QtCore.QSize(32, 32))
         self.bullets.setCheckable(False)
         self.bullets.setDefault(False)
@@ -390,9 +505,9 @@ class Ui_Groot(object):
         self.link.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.link.setStyleSheet("")
         self.link.setText("")
-        icon7 = QtGui.QIcon()
-        icon7.addPixmap(QtGui.QPixmap(":/icons/Icons/32x32/link.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.link.setIcon(icon7)
+        icon9 = QtGui.QIcon()
+        icon9.addPixmap(QtGui.QPixmap(":/icons/Icons/32x32/link.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.link.setIcon(icon9)
         self.link.setIconSize(QtCore.QSize(32, 32))
         self.link.setObjectName("link")
         self.horizontalLayout_8.addWidget(self.link)
@@ -400,9 +515,9 @@ class Ui_Groot(object):
         self.pushButton_3.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.pushButton_3.setStyleSheet("")
         self.pushButton_3.setText("")
-        icon8 = QtGui.QIcon()
-        icon8.addPixmap(QtGui.QPixmap(":/icons/Icons/32x32/image.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.pushButton_3.setIcon(icon8)
+        icon10 = QtGui.QIcon()
+        icon10.addPixmap(QtGui.QPixmap(":/icons/Icons/32x32/image.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.pushButton_3.setIcon(icon10)
         self.pushButton_3.setIconSize(QtCore.QSize(32, 32))
         self.pushButton_3.setObjectName("pushButton_3")
         self.horizontalLayout_8.addWidget(self.pushButton_3)
@@ -410,9 +525,9 @@ class Ui_Groot(object):
         self.code.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.code.setStyleSheet("")
         self.code.setText("")
-        icon9 = QtGui.QIcon()
-        icon9.addPixmap(QtGui.QPixmap(":/icons/Icons/32x32/brackets.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.code.setIcon(icon9)
+        icon11 = QtGui.QIcon()
+        icon11.addPixmap(QtGui.QPixmap(":/icons/Icons/32x32/brackets.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.code.setIcon(icon11)
         self.code.setIconSize(QtCore.QSize(32, 32))
         self.code.setObjectName("code")
         self.horizontalLayout_8.addWidget(self.code)
@@ -437,16 +552,18 @@ class Ui_Groot(object):
 "}")
         self.encryptionFrame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.encryptionFrame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.encryptionFrame.setLineWidth(1)
         self.encryptionFrame.setObjectName("encryptionFrame")
         self.horizontalLayout_9 = QtWidgets.QHBoxLayout(self.encryptionFrame)
+        self.horizontalLayout_9.setSpacing(6)
         self.horizontalLayout_9.setObjectName("horizontalLayout_9")
         self.encryptionButton = QtWidgets.QPushButton(self.encryptionFrame)
         self.encryptionButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.encryptionButton.setStyleSheet("")
         self.encryptionButton.setText("")
-        icon10 = QtGui.QIcon()
-        icon10.addPixmap(QtGui.QPixmap(":/icons/Icons/32x32/encrypt.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.encryptionButton.setIcon(icon10)
+        icon12 = QtGui.QIcon()
+        icon12.addPixmap(QtGui.QPixmap(":/icons/Icons/32x32/encrypt.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.encryptionButton.setIcon(icon12)
         self.encryptionButton.setIconSize(QtCore.QSize(32, 32))
         self.encryptionButton.setCheckable(True)
         self.encryptionButton.setChecked(False)
@@ -456,9 +573,9 @@ class Ui_Groot(object):
         self.decryptionButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.decryptionButton.setStyleSheet("")
         self.decryptionButton.setText("")
-        icon11 = QtGui.QIcon()
-        icon11.addPixmap(QtGui.QPixmap(":/icons/Icons/32x32/decrypt.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.decryptionButton.setIcon(icon11)
+        icon13 = QtGui.QIcon()
+        icon13.addPixmap(QtGui.QPixmap(":/icons/Icons/32x32/decrypt.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.decryptionButton.setIcon(icon13)
         self.decryptionButton.setIconSize(QtCore.QSize(32, 32))
         self.decryptionButton.setObjectName("decryptionButton")
         self.horizontalLayout_9.addWidget(self.decryptionButton)
@@ -467,9 +584,9 @@ class Ui_Groot(object):
         self.dateTime.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
         self.dateTime.setStyleSheet("")
         self.dateTime.setText("")
-        icon12 = QtGui.QIcon()
-        icon12.addPixmap(QtGui.QPixmap(":/icons/Icons/32x32/clock.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.dateTime.setIcon(icon12)
+        icon14 = QtGui.QIcon()
+        icon14.addPixmap(QtGui.QPixmap(":/icons/Icons/32x32/clock.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.dateTime.setIcon(icon14)
         self.dateTime.setIconSize(QtCore.QSize(32, 32))
         self.dateTime.setObjectName("dateTime")
         self.horizontalLayout_3.addWidget(self.dateTime)
@@ -477,9 +594,11 @@ class Ui_Groot(object):
         self.horizontalLayout_3.addItem(spacerItem1)
         self.verticalLayout_2.addWidget(self.editingButtons)
         self.editingSection = QtWidgets.QWidget(self.editorArea)
+        self.editingSection.setStyleSheet("")
         self.editingSection.setObjectName("editingSection")
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.editingSection)
-        self.horizontalLayout_2.setContentsMargins(0, 7, 0, 0)
+        self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_2.setSpacing(0)
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
         self.plainTextEdit = QtWidgets.QPlainTextEdit(self.editingSection)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
@@ -494,16 +613,23 @@ class Ui_Groot(object):
         font.setItalic(False)
         font.setWeight(50)
         self.plainTextEdit.setFont(font)
-        self.plainTextEdit.setStyleSheet("background-color: rgb(248, 248, 248);\n"
-"border-color: rgba(252, 252, 252, 252);\n"
+        self.plainTextEdit.setStyleSheet("QPlainTextEdit{\n"
+"    background-color: white;\n"
+"    border-top:1px solid black;\n"
+"    border-right:1px solid black;\n"
+"    selection-background-color:rgba(243, 255, 77,0.2);\n"
+"    selection-color:    darkblue;\n"
+"}\n"
 "\n"
-"border-width:0px\n"
+"\n"
+"\n"
 "")
         self.plainTextEdit.setFrameShape(QtWidgets.QFrame.Panel)
         self.plainTextEdit.setFrameShadow(QtWidgets.QFrame.Raised)
         self.plainTextEdit.setLineWidth(1)
         self.plainTextEdit.setMidLineWidth(0)
         self.plainTextEdit.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAsNeeded)
+        self.plainTextEdit.setPlainText("")
         self.plainTextEdit.setObjectName("plainTextEdit")
         self.horizontalLayout_2.addWidget(self.plainTextEdit)
         self.mdViewer = QtWidgets.QTextBrowser(self.editingSection)
@@ -515,9 +641,16 @@ class Ui_Groot(object):
         font = QtGui.QFont()
         font.setPointSize(17)
         self.mdViewer.setFont(font)
-        self.mdViewer.setStyleSheet("background-color: rgb(248, 248, 248);")
+        self.mdViewer.setStyleSheet("QTextBrowser{\n"
+"    border-top:1px solid black;\n"
+"    background-color: white;\n"
+"    selection-background-color:rgba(243, 255, 77,0.2);\n"
+"    selection-color:darkblue;\n"
+"}\n"
+"")
         self.mdViewer.setFrameShape(QtWidgets.QFrame.NoFrame)
-        self.mdViewer.setFrameShadow(QtWidgets.QFrame.Plain)
+        self.mdViewer.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.mdViewer.setLineWidth(1)
         self.mdViewer.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAsNeeded)
         self.mdViewer.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAsNeeded)
         self.mdViewer.setTextInteractionFlags(QtCore.Qt.TextBrowserInteraction)
@@ -529,31 +662,31 @@ class Ui_Groot(object):
         self.horizontalLayout_4.addWidget(self.mainWindow)
         Groot.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(Groot)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1551, 26))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1602, 26))
         self.menubar.setObjectName("menubar")
         self.menuFile = QtWidgets.QMenu(self.menubar)
         self.menuFile.setObjectName("menuFile")
         self.menuImport = QtWidgets.QMenu(self.menuFile)
-        icon13 = QtGui.QIcon()
-        icon13.addPixmap(QtGui.QPixmap(":/icons/Icons/16x16/doc_import.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.menuImport.setIcon(icon13)
+        icon15 = QtGui.QIcon()
+        icon15.addPixmap(QtGui.QPixmap(":/icons/Icons/16x16/doc_import.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.menuImport.setIcon(icon15)
         self.menuImport.setObjectName("menuImport")
         self.menuExport = QtWidgets.QMenu(self.menuFile)
-        icon14 = QtGui.QIcon()
-        icon14.addPixmap(QtGui.QPixmap(":/icons/Icons/16x16/doc_export.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.menuExport.setIcon(icon14)
+        icon16 = QtGui.QIcon()
+        icon16.addPixmap(QtGui.QPixmap(":/icons/Icons/16x16/doc_export.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.menuExport.setIcon(icon16)
         self.menuExport.setObjectName("menuExport")
         self.menuEdit = QtWidgets.QMenu(self.menubar)
         self.menuEdit.setObjectName("menuEdit")
         self.menuFormat = QtWidgets.QMenu(self.menuEdit)
-        icon15 = QtGui.QIcon()
-        icon15.addPixmap(QtGui.QPixmap(":/icons/Icons/16x16/edit.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.menuFormat.setIcon(icon15)
+        icon17 = QtGui.QIcon()
+        icon17.addPixmap(QtGui.QPixmap(":/icons/Icons/16x16/edit.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.menuFormat.setIcon(icon17)
         self.menuFormat.setObjectName("menuFormat")
         self.menuEncrption = QtWidgets.QMenu(self.menuEdit)
-        icon16 = QtGui.QIcon()
-        icon16.addPixmap(QtGui.QPixmap(":/icons/Icons/16x16/encrypt.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.menuEncrption.setIcon(icon16)
+        icon18 = QtGui.QIcon()
+        icon18.addPixmap(QtGui.QPixmap(":/icons/Icons/16x16/encrypt.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.menuEncrption.setIcon(icon18)
         self.menuEncrption.setObjectName("menuEncrption")
         self.menuInsert = QtWidgets.QMenu(self.menuEdit)
         self.menuInsert.setObjectName("menuInsert")
@@ -567,14 +700,14 @@ class Ui_Groot(object):
         self.actionNotes_Tree = QtWidgets.QAction(Groot)
         self.actionNotes_Tree.setObjectName("actionNotes_Tree")
         self.actionPrint = QtWidgets.QAction(Groot)
-        icon17 = QtGui.QIcon()
-        icon17.addPixmap(QtGui.QPixmap(":/icons/Icons/16x16/print.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.actionPrint.setIcon(icon17)
+        icon19 = QtGui.QIcon()
+        icon19.addPixmap(QtGui.QPixmap(":/icons/Icons/16x16/print.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.actionPrint.setIcon(icon19)
         self.actionPrint.setObjectName("actionPrint")
         self.actionQuit = QtWidgets.QAction(Groot)
-        icon18 = QtGui.QIcon()
-        icon18.addPixmap(QtGui.QPixmap(":/icons/Icons/16x16/quit.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.actionQuit.setIcon(icon18)
+        icon20 = QtGui.QIcon()
+        icon20.addPixmap(QtGui.QPixmap(":/icons/Icons/16x16/quit.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.actionQuit.setIcon(icon20)
         self.actionQuit.setObjectName("actionQuit")
         self.actionMD = QtWidgets.QAction(Groot)
         self.actionMD.setObjectName("actionMD")
@@ -585,90 +718,90 @@ class Ui_Groot(object):
         self.actionPDF = QtWidgets.QAction(Groot)
         self.actionPDF.setObjectName("actionPDF")
         self.actionSearch_in_Current_Note = QtWidgets.QAction(Groot)
-        icon19 = QtGui.QIcon()
-        icon19.addPixmap(QtGui.QPixmap(":/icons/Icons/16x16/find.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.actionSearch_in_Current_Note.setIcon(icon19)
+        icon21 = QtGui.QIcon()
+        icon21.addPixmap(QtGui.QPixmap(":/icons/Icons/16x16/find.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.actionSearch_in_Current_Note.setIcon(icon21)
         self.actionSearch_in_Current_Note.setObjectName("actionSearch_in_Current_Note")
         self.actionSearch_in_All_Notes = QtWidgets.QAction(Groot)
         self.actionSearch_in_All_Notes.setObjectName("actionSearch_in_All_Notes")
         self.actionOptions = QtWidgets.QAction(Groot)
         self.actionOptions.setObjectName("actionOptions")
         self.actionAbout = QtWidgets.QAction(Groot)
-        icon20 = QtGui.QIcon()
-        icon20.addPixmap(QtGui.QPixmap(":/icons/Icons/16x16/info.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.actionAbout.setIcon(icon20)
+        icon22 = QtGui.QIcon()
+        icon22.addPixmap(QtGui.QPixmap(":/icons/Icons/16x16/info.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.actionAbout.setIcon(icon22)
         self.actionAbout.setObjectName("actionAbout")
         self.actionRequest = QtWidgets.QAction(Groot)
         self.actionRequest.setObjectName("actionRequest")
         self.actionDark_Theme = QtWidgets.QAction(Groot)
-        icon21 = QtGui.QIcon()
-        icon21.addPixmap(QtGui.QPixmap(":/icons/Icons/16x16/sun_dark.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.actionDark_Theme.setIcon(icon21)
+        icon23 = QtGui.QIcon()
+        icon23.addPixmap(QtGui.QPixmap(":/icons/Icons/16x16/sun_dark.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.actionDark_Theme.setIcon(icon23)
         self.actionDark_Theme.setObjectName("actionDark_Theme")
         self.actionLight_Theme = QtWidgets.QAction(Groot)
-        icon22 = QtGui.QIcon()
-        icon22.addPixmap(QtGui.QPixmap(":/icons/Icons/16x16/sun_light.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.actionLight_Theme.setIcon(icon22)
+        icon24 = QtGui.QIcon()
+        icon24.addPixmap(QtGui.QPixmap(":/icons/Icons/16x16/sun_light.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.actionLight_Theme.setIcon(icon24)
         self.actionLight_Theme.setObjectName("actionLight_Theme")
         self.actionBold = QtWidgets.QAction(Groot)
-        icon23 = QtGui.QIcon()
-        icon23.addPixmap(QtGui.QPixmap(":/icons/Icons/16x16/bold.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.actionBold.setIcon(icon23)
+        icon25 = QtGui.QIcon()
+        icon25.addPixmap(QtGui.QPixmap(":/icons/Icons/16x16/bold.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.actionBold.setIcon(icon25)
         self.actionBold.setShortcutVisibleInContextMenu(True)
         self.actionBold.setObjectName("actionBold")
         self.actionItalic = QtWidgets.QAction(Groot)
-        icon24 = QtGui.QIcon()
-        icon24.addPixmap(QtGui.QPixmap(":/icons/Icons/16x16/italic.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.actionItalic.setIcon(icon24)
+        icon26 = QtGui.QIcon()
+        icon26.addPixmap(QtGui.QPixmap(":/icons/Icons/16x16/italic.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.actionItalic.setIcon(icon26)
         self.actionItalic.setObjectName("actionItalic")
         self.actionUnderline = QtWidgets.QAction(Groot)
-        icon25 = QtGui.QIcon()
-        icon25.addPixmap(QtGui.QPixmap(":/icons/Icons/16x16/underline.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.actionUnderline.setIcon(icon25)
+        icon27 = QtGui.QIcon()
+        icon27.addPixmap(QtGui.QPixmap(":/icons/Icons/16x16/underline.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.actionUnderline.setIcon(icon27)
         self.actionUnderline.setObjectName("actionUnderline")
         self.actionNew_note = QtWidgets.QAction(Groot)
         self.actionNew_note.setIcon(icon)
         self.actionNew_note.setObjectName("actionNew_note")
         self.actionNew_sub_notebook = QtWidgets.QAction(Groot)
-        self.actionNew_sub_notebook.setIcon(icon1)
+        self.actionNew_sub_notebook.setIcon(icon2)
         self.actionNew_sub_notebook.setObjectName("actionNew_sub_notebook")
         self.actionNew_notebook = QtWidgets.QAction(Groot)
-        self.actionNew_notebook.setIcon(icon2)
+        self.actionNew_notebook.setIcon(icon1)
         self.actionNew_notebook.setObjectName("actionNew_notebook")
         self.actionEncrypt_note = QtWidgets.QAction(Groot)
-        self.actionEncrypt_note.setIcon(icon16)
+        self.actionEncrypt_note.setIcon(icon18)
         self.actionEncrypt_note.setObjectName("actionEncrypt_note")
         self.actionDecrypt_note = QtWidgets.QAction(Groot)
-        icon26 = QtGui.QIcon()
-        icon26.addPixmap(QtGui.QPixmap(":/icons/Icons/16x16/decrypt.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.actionDecrypt_note.setIcon(icon26)
+        icon28 = QtGui.QIcon()
+        icon28.addPixmap(QtGui.QPixmap(":/icons/Icons/16x16/decrypt.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.actionDecrypt_note.setIcon(icon28)
         self.actionDecrypt_note.setObjectName("actionDecrypt_note")
         self.actionSettings = QtWidgets.QAction(Groot)
-        icon27 = QtGui.QIcon()
-        icon27.addPixmap(QtGui.QPixmap(":/icons/Icons/16x16/settings.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.actionSettings.setIcon(icon27)
+        icon29 = QtGui.QIcon()
+        icon29.addPixmap(QtGui.QPixmap(":/icons/Icons/16x16/settings.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.actionSettings.setIcon(icon29)
         self.actionSettings.setObjectName("actionSettings")
         self.actionSave_note = QtWidgets.QAction(Groot)
-        icon28 = QtGui.QIcon()
-        icon28.addPixmap(QtGui.QPixmap(":/icons/Icons/16x16/save.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.actionSave_note.setIcon(icon28)
+        icon30 = QtGui.QIcon()
+        icon30.addPixmap(QtGui.QPixmap(":/icons/Icons/16x16/save.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.actionSave_note.setIcon(icon30)
         self.actionSave_note.setObjectName("actionSave_note")
         self.actionOpen_note = QtWidgets.QAction(Groot)
         self.actionOpen_note.setObjectName("actionOpen_note")
         self.actionReport_a_bug = QtWidgets.QAction(Groot)
-        icon29 = QtGui.QIcon()
-        icon29.addPixmap(QtGui.QPixmap(":/icons/Icons/16x16/bug.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.actionReport_a_bug.setIcon(icon29)
+        icon31 = QtGui.QIcon()
+        icon31.addPixmap(QtGui.QPixmap(":/icons/Icons/16x16/bug.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.actionReport_a_bug.setIcon(icon31)
         self.actionReport_a_bug.setObjectName("actionReport_a_bug")
         self.actionLink = QtWidgets.QAction(Groot)
-        icon30 = QtGui.QIcon()
-        icon30.addPixmap(QtGui.QPixmap(":/icons/Icons/16x16/link.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.actionLink.setIcon(icon30)
+        icon32 = QtGui.QIcon()
+        icon32.addPixmap(QtGui.QPixmap(":/icons/Icons/16x16/link.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.actionLink.setIcon(icon32)
         self.actionLink.setObjectName("actionLink")
         self.actionImage = QtWidgets.QAction(Groot)
-        icon31 = QtGui.QIcon()
-        icon31.addPixmap(QtGui.QPixmap(":/icons/Icons/16x16/image.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.actionImage.setIcon(icon31)
+        icon33 = QtGui.QIcon()
+        icon33.addPixmap(QtGui.QPixmap(":/icons/Icons/16x16/image.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.actionImage.setIcon(icon33)
         self.actionImage.setObjectName("actionImage")
         self.menuImport.addAction(self.actionMD)
         self.menuExport.addAction(self.actionMD_2)
@@ -714,26 +847,28 @@ class Ui_Groot(object):
         self.menubar.addAction(self.menuHelp.menuAction())
 
         self.retranslateUi(Groot)
-        self.comboBox.setCurrentIndex(0)
         QtCore.QMetaObject.connectSlotsByName(Groot)
 
     def retranslateUi(self, Groot):
         _translate = QtCore.QCoreApplication.translate
         Groot.setWindowTitle(_translate("Groot", "Groot"))
         self.newNote.setText(_translate("Groot", "New Note"))
-        self.newSubNotebook.setText(_translate("Groot", "New sub-notebook"))
         self.newNotebook.setText(_translate("Groot", "New notebook"))
+        self.newSubNotebook.setText(_translate("Groot", "New sub-notebook"))
         self.searchBar.setPlaceholderText(_translate("Groot", "Search in this note"))
-        self.comboBox.setItemText(0, _translate("Groot", "Match Case"))
-        self.comboBox.setItemText(1, _translate("Groot", "Match Whole Word"))
-        self.comboBox.setItemText(2, _translate("Groot", "Use Regular Expression"))
+        self.wholeWord.setText(_translate("Groot", "Whole word"))
+        self.matchCase.setToolTip(_translate("Groot", "Case sensitive"))
+        self.matchCase.setText(_translate("Groot", "Match Case"))
+        self.regexButton.setText(_translate("Groot", "   Regex   "))
+        self.prevMatch.setToolTip(_translate("Groot", "Previous match"))
+        self.nextMatch.setToolTip(_translate("Groot", "Next match"))
         self.treeWidget.headerItem().setText(0, _translate("Groot", "Notes"))
         __sortingEnabled = self.treeWidget.isSortingEnabled()
         self.treeWidget.setSortingEnabled(False)
         self.treeWidget.topLevelItem(0).setText(0, _translate("Groot", "Notebooks"))
         self.treeWidget.topLevelItem(1).setText(0, _translate("Groot", "Uncategorized"))
         self.treeWidget.setSortingEnabled(__sortingEnabled)
-        self.fileName.setText(_translate("Groot", "Testing Name"))
+        self.fileName.setText(_translate("Groot", "<html><head/><body><p><span style=\" color:#ffffff;\">Testing Name</span></p></body></html>"))
         self.boldButton.setToolTip(_translate("Groot", "Bold"))
         self.italicButton.setToolTip(_translate("Groot", "Italic"))
         self.numberedList.setToolTip(_translate("Groot", "Numbered list"))

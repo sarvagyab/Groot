@@ -1,5 +1,4 @@
 from PySide2 import QtWidgets, QtCore, QtGui
-
 # import GUIs
 from GUIs.mainWindowPTE import Ui_Groot
 
@@ -51,9 +50,17 @@ class Window(QtWidgets.QMainWindow):
         # Display UI
         self.showMaximized()
 
-        #Search in the current note
+        # Search in the current note
         self.searchInNote()
 
+        # Search mode changed
+        self.searchModeChanged()
+
+        # Find next occurance 
+        self.findNextOccurance()
+
+        # Find prev occurance 
+        self.findPrevOccurance()
 
     def _delayChecker(self):
         if(self.timer.isActive()):
@@ -85,6 +92,16 @@ class Window(QtWidgets.QMainWindow):
     def searchInNote(self):
         self.ui.searchBar.textChanged.connect(lambda: searchText(self.ui))
     
+    def searchModeChanged(self):
+        self.ui.wholeWord.clicked.connect(lambda:searchText(self.ui))
+        self.ui.regexButton.clicked.connect(lambda:searchText(self.ui))
+        self.ui.matchCase.clicked.connect(lambda:searchText(self.ui))
+    
+    def findNextOccurance(self):
+        self.ui.nextMatch.clicked.connect(lambda :searchText(self.ui,QtGui.QTextCursor.NextCharacter))
+    
+    def findPrevOccurance(self):
+        self.ui.prevMatch.clicked.connect(lambda :searchText(self.ui,QtGui.QTextCursor.PreviousCharacter,reversed = True))
 
     def reloadUI(self):
         loadfileStructure(self.ui.treeWidget)
