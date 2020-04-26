@@ -2,7 +2,7 @@
 from PySide2 import QtCore, QtWidgets
 from modules.fileHandling import currentNote
 from modules.treeHandling import itemVal, saveUpdatedJson
-import json
+import json, os
 
 def loadNote(_fileName, _textEdit):
     loadFileName(currentNote.getFilename(),_fileName)
@@ -22,8 +22,32 @@ def renameNote(item,col):
     saveUpdatedJson(deets[2])
 
 
-def deleteNote():
-    pass
+def pathContainedNotes(diction):
+    if("path" in diction and type(diction["path"]) == str):
+        return [diction["path"]]
+    finalList = []
+    for keys in diction:
+        finalList = finalList + pathContainedNotes(diction[keys]["expanded"])
+    return finalList
+
+
+def deleteNote(item, plainTextEdit,filename):
+    toBeDlt = itemVal(item)
+    # Notes to be deleted
+    notesToBeDeleted = pathContainedNotes(toBeDlt[1][toBeDlt[0]]["expanded"])
+    if(currentNote._details["path"] in notesToBeDeleted):
+        loadFileName("No Note Selected",filename)
+        currentNote.closeFile()
+        plainTextEdit.clear()
+    item.parent().removeChild(item)
+    for note in notesToBeDeleted:
+        os.remove(note)
+    # all files deleted
+    del toBeDlt[1][toBeDlt[0]]
+    # Updated dictionary
+    saveUpdatedJson(toBeDlt[2])
+    # Updated JSON
+
 
 def readText(path):
     file = QtCore.QFile(path)

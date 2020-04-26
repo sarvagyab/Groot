@@ -5,6 +5,7 @@ from modules.setPassword import password
 from modules.fileHandling import currentNote
 from modules.markdownHandling import viewInMarkdown
 from modules.treeHandling import loadfileStructure, noteLoader,itemVal, isNote
+from modules.noteHandling import deleteNote
 from modules.GUIchanges import createNotebook, createSubNotebook, createNote, rename, dlt
 from modules.searchInNote import searchText,finishedSearch
 
@@ -39,7 +40,7 @@ def _delayChecker(self):
     self.timer.start(self.DELAY)
 
 def _noteLoader(self):
-    changeNote = lambda : noteLoader(self.ui.treeWidget.selectedItems()[0],self.ui.fileName,self.ui.plainTextEdit)
+    changeNote = lambda : noteLoader(self.ui.treeWidget.currentItem(),self.ui.fileName,self.ui.plainTextEdit)
     self.ui.treeWidget.itemSelectionChanged.connect(changeNote)
 
 def _markdownViewer(self):
@@ -83,7 +84,17 @@ def reloadUI(self):
     loadfileStructure(self.ui.treeWidget)
     self._noteLoader()
 
-    
+
+def showDeleteDialog(self):
+    msg = QtWidgets.QMessageBox()
+    msg.setWindowTitle("Delete Confirmation?")
+    msg.setText("Are you sure you want to delete " + self.ui.treeWidget.currentItem().text(0) + " ?")
+    msg.setIcon(QtWidgets.QMessageBox.Information)
+    msg.setStandardButtons(QtWidgets.QMessageBox.Ok | QtWidgets.QMessageBox.Cancel)
+    msg.button(QtWidgets.QMessageBox.Ok).clicked.connect(lambda: deleteNote(self.ui.treeWidget.currentItem(),self.ui.plainTextEdit, self.ui.fileName))
+    msg.exec_()
+
+
 def closeEvent(self,event):
     currentNote.closeFile()
     event.accept()
