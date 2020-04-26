@@ -5,7 +5,7 @@ from modules.setPassword import password
 from modules.fileHandling import currentNote
 from modules.markdownHandling import viewInMarkdown
 from modules.treeHandling import loadfileStructure, noteLoader,itemVal, isNote
-from modules.noteHandling import deleteNote
+from modules.noteHandling import deleteNote, renameNote
 from modules.GUIchanges import createNotebook, createSubNotebook, createNote, rename, dlt
 from modules.searchInNote import searchText,finishedSearch
 
@@ -95,8 +95,15 @@ def showDeleteDialog(self):
     msg.exec_()
 
 
+def _renameNote(self,item,col):
+    if item.text(0) == "":
+        item.setText(0,"Untitled")    
+    renameNote(item,0)
+
+
 def closeEvent(self,event):
-    currentNote.closeFile()
+    if currentNote._open:
+        currentNote.closeFile()
     event.accept()
 
 

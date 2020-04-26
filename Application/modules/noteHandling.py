@@ -12,16 +12,6 @@ def loadNote(_fileName, _textEdit):
 def loadFileName(name,fileName):
     fileName.setText(name)
 
-def createNote():
-    pass
-
-def renameNote(item,col):
-    deets = itemVal(item)
-    dic = deets[1][deets[0]]
-    dic["name"] = item.text(0)
-    saveUpdatedJson(deets[2])
-
-
 def pathContainedNotes(diction):
     if("path" in diction and type(diction["path"]) == str):
         return [diction["path"]]
@@ -29,6 +19,17 @@ def pathContainedNotes(diction):
     for keys in diction:
         finalList = finalList + pathContainedNotes(diction[keys]["expanded"])
     return finalList
+
+
+def createNote(item):
+    pass
+    
+
+def renameNote(item,col):
+    deets = itemVal(item)
+    dic = deets[1][deets[0]]
+    dic["name"] = item.text(0)
+    saveUpdatedJson(deets[2])
 
 
 def deleteNote(item, plainTextEdit,filename):

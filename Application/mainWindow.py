@@ -6,7 +6,6 @@ from GUIs.mainWindowPTE import Ui_Groot
 # import modules
 from modules.GUIchanges import fixTreeViewScrolling, createNotebook, createSubNotebook, createNote, rename, dlt
 import mainWindowFunctions
-from modules.noteHandling import renameNote
 
 
 class Window(QtWidgets.QMainWindow):
@@ -34,7 +33,7 @@ class Window(QtWidgets.QMainWindow):
         # Connections for renaming
         self.ui.treeWidget.itemDoubleClicked.connect(self.ui.treeWidget.editItem)
         rename.triggered.connect(lambda: self.ui.treeWidget.editItem(self.ui.treeWidget.currentItem(),0))
-        self.ui.treeWidget.itemChanged.connect(renameNote)
+        self.ui.treeWidget.itemChanged.connect(self._renameNote)
 
         # Connections for deleting
         dlt.triggered.connect(self.showDeleteDialog)
@@ -96,3 +95,4 @@ Window.findPrevOccurance = mainWindowFunctions.findPrevOccurance
 Window._finishedSearch = mainWindowFunctions._finishedSearch
 Window.shortcutBinding = mainWindowFunctions.shortcutBinding
 Window.showDeleteDialog = mainWindowFunctions.showDeleteDialog
+Window._renameNote = mainWindowFunctions._renameNote
