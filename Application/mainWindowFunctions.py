@@ -1,5 +1,5 @@
 
-from PySide2 import QtWidgets,QtGui
+from PySide2 import QtWidgets,QtGui,QtCore
 
 from modules.setPassword import password
 from modules.fileHandling import currentNote
@@ -11,7 +11,6 @@ from modules.searchInNote import searchText,finishedSearch
 
 def showMenu(self,pos):
     item = self.ui.treeWidget.itemAt(pos)
-    print(item.text(0))
     if item is None:
         return
     menu = QtWidgets.QMenu()

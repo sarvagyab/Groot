@@ -6,6 +6,7 @@ from GUIs.mainWindowPTE import Ui_Groot
 # import modules
 from modules.GUIchanges import fixTreeViewScrolling, createNotebook, createSubNotebook, createNote, rename, dlt
 import mainWindowFunctions
+from modules.noteHandling import renameNote
 
 
 class Window(QtWidgets.QMainWindow):
@@ -29,6 +30,9 @@ class Window(QtWidgets.QMainWindow):
         fixTreeViewScrolling(self.ui.treeWidget)
 
         self.ui.treeWidget.customContextMenuRequested.connect(self.showMenu)
+        self.ui.treeWidget.itemDoubleClicked.connect(self.ui.treeWidget.editItem)
+        rename.triggered.connect(lambda: self.ui.treeWidget.editItem(self.ui.treeWidget.selectedItems()[0],0))
+        self.ui.treeWidget.itemChanged.connect(renameNote)
 
         # Load tree structure and notes
         self.reloadUI()

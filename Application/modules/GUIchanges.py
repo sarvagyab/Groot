@@ -1,6 +1,7 @@
 
 from PySide2 import QtWidgets
-# from modules.noteHandling import renameNote, dltNote, addSubNotebook, addNotebook, addNote
+
+
 def fixTreeViewScrolling(tree):
     tree.header().setSectionResizeMode(0, QtWidgets.QHeaderView.ResizeToContents)
 
@@ -19,8 +20,4 @@ rename.setText("Rename")
 
 dlt = QtWidgets.QAction()
 dlt.setText("Delete")
-
-# noteMenu = QtWidgets.QMenu()
-# noteMenu.addAction(rename)
-# noteMenu.addAction(dlt)
 

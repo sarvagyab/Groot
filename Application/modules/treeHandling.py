@@ -1,6 +1,5 @@
 
 from PySide2 import QtWidgets, QtCore
-from modules.noteHandling import loadNote
 from modules.fileHandling import currentNote
 import json
 
@@ -23,6 +22,7 @@ def fillItem(item,valDict):
     for key,val in valDict.items():
         newItem = QtWidgets.QTreeWidgetItem()
         newItem.setText(0,val["name"])
+        newItem.setFlags(QtCore.Qt.ItemIsEditable|QtCore.Qt.ItemIsSelectable|QtCore.Qt.ItemIsUserCheckable|QtCore.Qt.ItemIsEnabled)
         if "path" in val["expanded"] and type(val["expanded"]["path"]) == str:
             pass
         else :
@@ -49,27 +49,29 @@ def getLineage(item):
 
 
 def _itemVal(pathList,noteTree):
-    if pathList == []:
-        return []
+    keyindex = pathList.pop()
     for item in pathList:
         keys = [*noteTree]
         noteTree = noteTree[keys[item]]["expanded"]
-    return noteTree
+    key  = [*noteTree][keyindex]
+    return [key,noteTree]
 
 
 # returns the value associated with an item in treeWidget
 def itemVal(item):
     structDict = getJsonTree()
     pathList = getLineage(item)
-    structDict = structDict[pathList[0]]
-    return _itemVal(pathList[1:],structDict)
+    if len(pathList) == 1:
+        return [pathList[0],structDict,structDict]
+    return _itemVal(pathList[1:],structDict[pathList[0]]) + [structDict]
 
 
 def isNote(item):
     details = itemVal(item)
-    if("path" in details and type(details["path"]) == str):
-        return [True,details]
-    return [False,details]
+    details = details[1][details[0]]
+    if("expanded" in details and "path" in details["expanded"] and type(details["expanded"]["path"]) == str):
+        return [True,details["expanded"]]
+    return [False,[]]
 
 
 def _updateItem(changeDict,structDict): # DFS
@@ -92,4 +94,5 @@ def noteLoader(item, _fileName, _textEdit):
     note = isNote(item)
     if(note[0]):
         currentNote.openFile(item,note[1])
+        from modules.noteHandling import loadNote
         loadNote(_fileName,_textEdit)
