@@ -39,7 +39,8 @@ def addNotebook(item):
     newdict = {}
     newdict["name"] = name
     newdict["expanded"] = {}
-    deets[1][deets[0]][randomString] = newdict
+    deets[1][deets[0]]["expanded"][randomString] = newdict
+
     saveUpdatedJson(deets[2])
 
     # Update treeWidget
@@ -47,6 +48,8 @@ def addNotebook(item):
     newItem.setText(0,name)
     newItem.setFlags(QtCore.Qt.ItemIsEditable|QtCore.Qt.ItemIsSelectable|QtCore.Qt.ItemIsUserCheckable|QtCore.Qt.ItemIsEnabled)
     item.addChild(newItem)
+    item.setExpanded(True)
+    newItem.setSelected(True)
 
 
 def addNote(item):
@@ -83,6 +86,8 @@ def addNote(item):
     newItem.setText(0,name)
     newItem.setFlags(QtCore.Qt.ItemIsEditable|QtCore.Qt.ItemIsSelectable|QtCore.Qt.ItemIsUserCheckable|QtCore.Qt.ItemIsEnabled)
     item.addChild(newItem)
+    item.setExpanded(True)
+    newItem.setSelected(True)
 
 
 def renameNote(item,col):

@@ -101,7 +101,15 @@ def _addNotebook(self):
     return
 
 
-def _createNote(self):
+def _addSubNotebook(self):
+    if  (self.ui.treeWidget.currentItem() is self.ui.treeWidget.topLevelItem(0)) or \
+        (self.ui.treeWidget.currentItem() is self.ui.treeWidget.topLevelItem(1)) or \
+        (isNote(self.ui.treeWidget.currentItem())[0]):
+            return
+    addNotebook(self.ui.treeWidget.currentItem())
+
+
+def _addNote(self):
     if  (self.ui.treeWidget.currentItem() is None) or \
         (self.ui.treeWidget.currentItem() is self.ui.treeWidget.topLevelItem(0)) or \
         (isNote(self.ui.treeWidget.currentItem())[0]):

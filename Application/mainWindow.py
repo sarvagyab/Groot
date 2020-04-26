@@ -41,9 +41,13 @@ class Window(QtWidgets.QMainWindow):
         createNotebook.triggered.connect(self._addNotebook)
         self.ui.newNotebook.clicked.connect(self._addNotebook)
 
+        # connection for creating new subnotebook
+        createSubNotebook.triggered.connect(self._addSubNotebook)
+        self.ui.newSubNotebook.clicked.connect(self._addSubNotebook)
+
         # connection for creating new note
-        createNote.triggered.connect(self._createNote)
-        self.ui.newNote.clicked.connect(self._createNote)
+        createNote.triggered.connect(self._addNote)
+        self.ui.newNote.clicked.connect(self._addNote)
 
         # Load tree structure and notes
         self.reloadUI()
@@ -103,5 +107,6 @@ Window._finishedSearch = mainWindowFunctions._finishedSearch
 Window.shortcutBinding = mainWindowFunctions.shortcutBinding
 Window.showDeleteDialog = mainWindowFunctions.showDeleteDialog
 Window._renameNote = mainWindowFunctions._renameNote
-Window._createNote = mainWindowFunctions._createNote
+Window._addNote = mainWindowFunctions._addNote
 Window._addNotebook = mainWindowFunctions._addNotebook
+Window._addSubNotebook = mainWindowFunctions._addSubNotebook
