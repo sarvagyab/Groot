@@ -1,6 +1,5 @@
 
 from PySide2 import QtWidgets, QtCore
-from modules.noteHandling import loadNote
 from modules.fileHandling import currentNote
 import json
 
@@ -23,6 +22,7 @@ def fillItem(item,valDict):
     for key,val in valDict.items():
         newItem = QtWidgets.QTreeWidgetItem()
         newItem.setText(0,val["name"])
+        newItem.setFlags(QtCore.Qt.ItemIsEditable|QtCore.Qt.ItemIsSelectable|QtCore.Qt.ItemIsUserCheckable|QtCore.Qt.ItemIsEnabled)
         if "path" in val["expanded"] and type(val["expanded"]["path"]) == str:
             pass
         else :
@@ -94,4 +94,5 @@ def noteLoader(item, _fileName, _textEdit):
     note = isNote(item)
     if(note[0]):
         currentNote.openFile(item,note[1])
+        from modules.noteHandling import loadNote
         loadNote(_fileName,_textEdit)

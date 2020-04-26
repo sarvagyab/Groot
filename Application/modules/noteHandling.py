@@ -1,6 +1,7 @@
 
 from PySide2 import QtCore, QtWidgets
 from modules.fileHandling import currentNote
+from modules.treeHandling import itemVal, saveUpdatedJson
 import json
 
 def loadNote(_fileName, _textEdit):
@@ -14,8 +15,12 @@ def loadFileName(name,fileName):
 def createNote():
     pass
 
-def renameNote():
-    pass
+def renameNote(item,col):
+    deets = itemVal(item)
+    dic = deets[1][deets[0]]
+    dic["name"] = item.text(0)
+    saveUpdatedJson(deets[2])
+
 
 def deleteNote():
     pass
