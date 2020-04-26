@@ -37,6 +37,10 @@ class Window(QtWidgets.QMainWindow):
         # Connections for deleting
         dlt.triggered.connect(self.showDeleteDialog)
 
+        # connection for creating new notebook
+        createNotebook.triggered.connect(self._addNotebook)
+        self.ui.newNotebook.clicked.connect(self._addNotebook)
+
         # connection for creating new note
         createNote.triggered.connect(self._createNote)
         self.ui.newNote.clicked.connect(self._createNote)
@@ -100,3 +104,4 @@ Window.shortcutBinding = mainWindowFunctions.shortcutBinding
 Window.showDeleteDialog = mainWindowFunctions.showDeleteDialog
 Window._renameNote = mainWindowFunctions._renameNote
 Window._createNote = mainWindowFunctions._createNote
+Window._addNotebook = mainWindowFunctions._addNotebook

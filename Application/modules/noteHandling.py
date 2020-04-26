@@ -21,6 +21,34 @@ def pathContainedNotes(diction):
     return finalList
 
 
+def addNotebook(item):
+    # input name
+    text, ok = QtWidgets.QInputDialog().getText(None,"Groot","Enter the name for new notebook - ")
+    if ok is True:
+        if str(text) != "":
+            name = str(text)
+        else:
+            name = "Untitled"
+    else:
+        return
+    
+    deets = itemVal(item)
+
+    # Make changes to fileStructure
+    randomString = datetime.datetime.now().strftime("%d%m%Y%H%M%S")
+    newdict = {}
+    newdict["name"] = name
+    newdict["expanded"] = {}
+    deets[1][deets[0]][randomString] = newdict
+    saveUpdatedJson(deets[2])
+
+    # Update treeWidget
+    newItem = QtWidgets.QTreeWidgetItem()
+    newItem.setText(0,name)
+    newItem.setFlags(QtCore.Qt.ItemIsEditable|QtCore.Qt.ItemIsSelectable|QtCore.Qt.ItemIsUserCheckable|QtCore.Qt.ItemIsEnabled)
+    item.addChild(newItem)
+
+
 def addNote(item):
     # input name
     text, ok = QtWidgets.QInputDialog().getText(None,"Groot","Enter the name for new note - ")

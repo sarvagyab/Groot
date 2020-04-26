@@ -1,6 +1,7 @@
 
 class FILE():
     _file = None
+    _details = {"path":""}
     _open = False
     def __init__(self):
         pass

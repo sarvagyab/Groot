@@ -5,7 +5,7 @@ from modules.setPassword import password
 from modules.fileHandling import currentNote
 from modules.markdownHandling import viewInMarkdown
 from modules.treeHandling import loadfileStructure, noteLoader,itemVal, isNote
-from modules.noteHandling import deleteNote, renameNote, addNote
+from modules.noteHandling import deleteNote, renameNote, addNote, addNotebook
 from modules.GUIchanges import createNotebook, createSubNotebook, createNote, rename, dlt
 from modules.searchInNote import searchText,finishedSearch
 
@@ -93,6 +93,12 @@ def showDeleteDialog(self):
     msg.setStandardButtons(QtWidgets.QMessageBox.Ok | QtWidgets.QMessageBox.Cancel)
     msg.button(QtWidgets.QMessageBox.Ok).clicked.connect(lambda: deleteNote(self.ui.treeWidget.currentItem(),self.ui.plainTextEdit, self.ui.fileName))
     msg.exec_()
+
+
+def _addNotebook(self):
+    if(self.ui.treeWidget.currentItem() is self.ui.treeWidget.topLevelItem(0)):
+        addNotebook(self.ui.treeWidget.currentItem())
+    return
 
 
 def _createNote(self):
