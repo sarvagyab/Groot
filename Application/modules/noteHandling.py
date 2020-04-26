@@ -2,7 +2,7 @@
 from PySide2 import QtCore, QtWidgets
 from modules.fileHandling import currentNote
 from modules.treeHandling import itemVal, saveUpdatedJson
-import json, os
+import json, os, datetime
 
 def loadNote(_fileName, _textEdit):
     loadFileName(currentNote.getFilename(),_fileName)
@@ -21,9 +21,41 @@ def pathContainedNotes(diction):
     return finalList
 
 
-def createNote(item):
-    pass
+def addNote(item):
+    # input name
+    text, ok = QtWidgets.QInputDialog().getText(None,"Groot","Enter the name for new note - ")
+    if ok is True:
+        if str(text) != "":
+            name = str(text)
+        else:
+            name = "Untitled"
+    else:
+        return
+
+    deets = itemVal(item)
+    randomString = datetime.datetime.now().strftime("%d%m%Y%H%M%S")
+    path = "./notes/" + randomString + ".txt"
+
+    # Creating file
+    open(path,'a').close()
     
+    # Add to JSON
+    newdict = {}
+    newdict["name"] = name
+    newdict["expanded"] = {}
+    newdict["expanded"]["path"] = path
+    if item is item.treeWidget().topLevelItem(1):
+        deets[2]["Uncategorized"][randomString] = newdict
+    else:
+        deets[1][deets[0]]["expanded"][randomString] = newdict
+    saveUpdatedJson(deets[2])
+    
+    # Update treeWidget
+    newItem = QtWidgets.QTreeWidgetItem()
+    newItem.setText(0,name)
+    newItem.setFlags(QtCore.Qt.ItemIsEditable|QtCore.Qt.ItemIsSelectable|QtCore.Qt.ItemIsUserCheckable|QtCore.Qt.ItemIsEnabled)
+    item.addChild(newItem)
+
 
 def renameNote(item,col):
     deets = itemVal(item)
@@ -40,6 +72,8 @@ def deleteNote(item, plainTextEdit,filename):
         loadFileName("No Note Selected",filename)
         currentNote.closeFile()
         plainTextEdit.clear()
+    
+    # removed from tree
     item.parent().removeChild(item)
     for note in notesToBeDeleted:
         os.remove(note)

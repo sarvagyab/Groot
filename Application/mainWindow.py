@@ -7,7 +7,6 @@ from GUIs.mainWindowPTE import Ui_Groot
 from modules.GUIchanges import fixTreeViewScrolling, createNotebook, createSubNotebook, createNote, rename, dlt
 import mainWindowFunctions
 
-
 class Window(QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__()
@@ -37,6 +36,10 @@ class Window(QtWidgets.QMainWindow):
 
         # Connections for deleting
         dlt.triggered.connect(self.showDeleteDialog)
+
+        # connection for creating new note
+        createNote.triggered.connect(self._createNote)
+        self.ui.newNote.clicked.connect(self._createNote)
 
         # Load tree structure and notes
         self.reloadUI()
@@ -96,3 +99,4 @@ Window._finishedSearch = mainWindowFunctions._finishedSearch
 Window.shortcutBinding = mainWindowFunctions.shortcutBinding
 Window.showDeleteDialog = mainWindowFunctions.showDeleteDialog
 Window._renameNote = mainWindowFunctions._renameNote
+Window._createNote = mainWindowFunctions._createNote
