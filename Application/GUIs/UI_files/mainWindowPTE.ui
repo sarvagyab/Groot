@@ -1287,7 +1287,7 @@ QPushButton:pressed{
     background-color: white;
 	border-top:1px solid black;
 	border-right:1px solid black;
-	selection-background-color:rgba(243, 255, 77,0.2);
+	selection-background-color:rgba(243, 255, 77,0.4);
 	selection-color:	darkblue;
 }
 
@@ -1313,6 +1313,9 @@ QPushButton:pressed{
                   <property name="plainText">
                    <string/>
                   </property>
+                  <property name="centerOnScroll">
+                   <bool>true</bool>
+                  </property>
                   <property name="placeholderText">
                    <string>Type here....</string>
                   </property>
@@ -1335,7 +1338,7 @@ QPushButton:pressed{
                    <string notr="true">QTextBrowser{
 	border-top:1px solid black;
     background-color: white;
-	selection-background-color:rgba(243, 255, 77,0.2);
+	selection-background-color:rgba(243, 255, 77,0.4);
 	selection-color:darkblue;
 }
 </string>

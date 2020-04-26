@@ -44,14 +44,17 @@ class Window(QtWidgets.QMainWindow):
         # Display notes in Markdown
         self._markdownViewer()
 
+        # Display UI
+        self.showMaximized()
+
+        # shortcut bindings
+        self.shortcutBinding()
+
         # Encrypt Note
         self.encryptNote()
 
         # Decrypt Note
         self.decryptNote()
-
-        # Display UI
-        self.showMaximized()
 
         # Search in current note
         self.searchInNote()
@@ -86,3 +89,4 @@ Window.searchModeChanged = mainWindowFunctions.searchModeChanged
 Window.findNextOccurance = mainWindowFunctions.findNextOccurance
 Window.findPrevOccurance = mainWindowFunctions.findPrevOccurance
 Window._finishedSearch = mainWindowFunctions._finishedSearch
+Window.shortcutBinding = mainWindowFunctions.shortcutBinding

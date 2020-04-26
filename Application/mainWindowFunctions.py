@@ -30,6 +30,9 @@ def showMenu(self,pos):
     menu.exec_(self.ui.treeWidget.mapToGlobal(pos))
 
 
+def shortcutBinding(self):
+    QtWidgets.QShortcut(QtGui.QKeySequence("Ctrl+F"),self).activated.connect(lambda:self.ui.searchBar.setFocus())
+
 def _delayChecker(self):
     if(self.timer.isActive()):
         self.timer.stop()
@@ -65,9 +68,12 @@ def searchModeChanged(self):
     self.ui.matchCase.clicked.connect(lambda:searchText(self.ui))
 
 def findNextOccurance(self):
+    self.ui.searchBar.returnPressed.connect(lambda :searchText(self.ui,QtGui.QTextCursor.NextCharacter))
     self.ui.nextMatch.clicked.connect(lambda :searchText(self.ui,QtGui.QTextCursor.NextCharacter))
 
 def findPrevOccurance(self):
+    shortcut = QtWidgets.QShortcut(QtGui.QKeySequence("shift+Return"),self.ui.searchBar)
+    shortcut.activated.connect(lambda:searchText(self.ui,QtGui.QTextCursor.PreviousCharacter,reversed = True))
     self.ui.prevMatch.clicked.connect(lambda :searchText(self.ui,QtGui.QTextCursor.PreviousCharacter,reversed = True))
 
 def _finishedSearch(self):
