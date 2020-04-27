@@ -9,6 +9,7 @@ from modules.passwordHashing import hashPassword
 from modules.treeHandling import itemVal,_itemVal
 from modules.encryptNote import AEScipher
 from modules.noteHandling import writeText
+from modules.fileHandling import currentNote
 
 class password(object):
     def __init__(self,Window):
@@ -20,10 +21,9 @@ class password(object):
     def openPasswordDialog(self):
         print("Encryption button clicked")
         # First check whether any note is selected or not
-        self.currentNote = self.main_Window.ui.treeWidget.selectedItems()
-        if(self.selectedNote()):
-
-            self.currentFileName = self.main_Window.ui.treeWidget.selectedItems()[0].text(0)
+        self.currentNote = currentNote
+        if(self.currentNote._open == True):
+            self.currentFileName = self.currentNote._name
             self.ui_p = Ui_passwordDialog()
 
             print("Trying to encrypt {}".format(self.currentFileName))
@@ -44,18 +44,6 @@ class password(object):
             self.ui_pv.buttonBox.button(QtWidgets.QDialogButtonBox.Cancel).clicked.connect(lambda:closeDialog(self.ui_pv.verifyPasswordDialog))
             self.ui_pv.buttonBox.button(QtWidgets.QDialogButtonBox.Ok).clicked.connect(lambda:self.verifyAndDecryptPassword())
 
-    def selectedNote(self):
-        if(len(self.currentNote) == 0): 
-            print("Any note is not selected") # nothing is selected.
-            return False
-        else:
-            item = itemVal(self.currentNote[0])
-            if("path" in item and type(item["path"]) == str):
-                self.currentNote = item
-                return True
-            else:
-                print("select note")
-                return False
     
     def passwordEntered(self):
         self.pass1 = self.ui_p.passwordLineEdit.text()

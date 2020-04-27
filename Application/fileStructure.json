@@ -1,1 +1,157 @@
-{"Notebooks": {"randomString1": {"name": "notebook1", "expanded": {"randomString2": {"name": "note1", "expanded": {"path": "../Application/notes/note1.txt", "dateCreated": "12/12/12/", "encrypted": "False", "salt": "", "hpass": ""}}}, "27042020015606": {"name": "dfgfd", "expanded": {}}}, "randomString3": {"name": "notebook2", "expanded": {"randomString4": {"name": "note2", "expanded": {"path": "../Application/notes/note2.txt", "dateCreated": "", "encrypted": "False", "salt": "", "hpass": ""}}, "randomString5": {"name": "subnotebook1", "expanded": {"randomString6": {"name": "note3", "expanded": {"path": "../Application/notes/note3.txt", "dateCreated": "", "encrypted": "False", "salt": "", "hpass": ""}}}}, "randomString7": {"name": "subnotebook2", "expanded": {"26/04/2020 22:49:07": {"name": "testingfornow", "expanded": {"path": "./notes/26/04/2020 22:49:07.txt"}}}}}, "27042020015227": {"name": "new subnotebook", "expanded": {}}}, "27042020015217": {"name": "asdf", "expanded": {}}, "27042020015400": {"name": "new notebook", "expanded": {"27042020153000": {"name": "newsubnotebook successfully added", "expanded": {}}}}, "27042020015413": {"name": "new noooooo", "expanded": {}}, "27042020015451": {"name": "sdfsgdf", "expanded": {}}, "27042020015550": {"name": "safdsd", "expanded": {}}, "27042020015600": {"name": "dgdfg", "expanded": {}}, "27042020015713": {"name": "sadf", "expanded": {}}, "27042020015729": {"name": "157", "expanded": {}}, "27042020015823": {"name": "asdflkjk", "expanded": {"27042020015841": {"name": "dfgsfd", "expanded": {"path": "./notes/27042020015841.txt"}}, "27042020020612": {"name": "sdfsdffdsfsdfsf", "expanded": {"27042020020621": {"name": "dfgdfkgkldfgkdfg", "expanded": {}}}}, "27042020020626": {"name": "sdf", "expanded": {}}}, "27042020015830": {"name": "sadf", "expanded": {}}, "27042020015834": {"name": "sdf", "expanded": {}}, "27042020020113": {"name": "sdfdsf", "expanded": {}}, "27042020020322": {"name": "hoijk", "expanded": {}}}, "27042020152947": {"name": "newNotebook successfully added", "expanded": {}}}, "Uncategorized": {"randomString7": {"name": "MarkdownGuide", "expanded": {"path": "../Application/notes/note4.txt", "dateCreated": "", "encrypted": "False", "salt": "", "hpass": ""}}, "randomString8": {"name": "note5", "expanded": {"path": "../Application/notes/note5.txt", "dateCreated": "", "encrypted": "True", "salt": "b\"\\nj)\\xef\\xaf\\xff\\x19[_\\xa1*'\\x1f~my\\xa3\\x1e\\xb3\\xb3\\x87\\x92\\xbc9\\xd59\\xb4\\x86\\x1fzd\\x15\\x1f\\xb2\\x84\\xd1\\xd7\\xe0\\xb0r\\x8c\\x16\\xd4wK\\xfb\\xdf\\xd8\\x1f=\\x98\\x11\\x01\\xb6\\xa2\\x13\\xb4f\\x1f\\xd4\\xeb\\xc6 C\"", "h_pass": "b'\"1\\x08[G\\x1c\\xa38\\xd0Z\\xd2K\\xde\\x15\\xe4n\\xc2Yn\\xbc\\x05~:\\xc5\\xc2Y3P\\x1fAO\\x18j\\xae\\x1e\\xe68\\xe0\\x9c\\x82\\xf8\\xda\\xab\\x9e\\x0bA\\x834\\xe0\\x91\\xee\\'\\x9b\\xa9\"I\\x99<0W\\x91\\xb0zX'"}}, "27042020012242": {"name": "So that's how it's gonna be", "expanded": {"path": "./notes/27042020012242.txt"}}}}
+{
+    "Notebooks": {
+        "randomString1": {
+            "name": "notebook1",
+            "expanded": {
+                "randomString2": {
+                    "name": "note1",
+                    "expanded": {
+                        "path": "../Application/notes/note1.txt",
+                        "dateCreated": "12/12/12/",
+                        "encrypted": "False",
+                        "salt": "",
+                        "hpass": ""
+                    }
+                }
+            },
+            "27042020015606": {
+                "name": "dfgfd",
+                "expanded": {}
+            }
+        },
+        "randomString3": {
+            "name": "notebook2",
+            "expanded": {
+                "randomString4": {
+                    "name": "note2",
+                    "expanded": {
+                        "path": "../Application/notes/note2.txt",
+                        "dateCreated": "",
+                        "encrypted": "False",
+                        "salt": "",
+                        "hpass": ""
+                    }
+                },
+                "randomString5": {
+                    "name": "subnotebook1",
+                    "expanded": {
+                        "randomString6": {
+                            "name": "note3",
+                            "expanded": {
+                                "path": "../Application/notes/note3.txt",
+                                "dateCreated": "",
+                                "encrypted": "False",
+                                "salt": "",
+                                "hpass": ""
+                            }
+                        }
+                    }
+                }
+            },
+            "27042020015227": {
+                "name": "new subnotebook",
+                "expanded": {}
+            }
+        },
+        "27042020015217": {
+            "name": "asdf",
+            "expanded": {}
+        },
+        "27042020015400": {
+            "name": "new notebook",
+            "expanded": {}
+        },
+        "27042020015413": {
+            "name": "new noooooo",
+            "expanded": {}
+        },
+        "27042020015451": {
+            "name": "sdfsgdf",
+            "expanded": {}
+        },
+        "27042020015550": {
+            "name": "safdsd",
+            "expanded": {}
+        },
+        "27042020015600": {
+            "name": "dgdfg",
+            "expanded": {}
+        },
+        "27042020015713": {
+            "name": "sadf",
+            "expanded": {}
+        },
+        "27042020015729": {
+            "name": "157",
+            "expanded": {}
+        },
+        "27042020015823": {
+            "name": "asdflkjk",
+            "expanded": {
+                "27042020015841": {
+                    "name": "dfgsfd",
+                    "expanded": {
+                        "path": "./notes/27042020015841.txt"
+                    }
+                },
+                "27042020020612": {
+                    "name": "sdfsdffdsfsdfsf",
+                    "expanded": {
+                        "27042020020621": {
+                            "name": "dfgdfkgkldfgkdfg",
+                            "expanded": {}
+                        }
+                    }
+                },
+                "27042020020626": {
+                    "name": "sdf",
+                    "expanded": {}
+                }
+            },
+            "27042020015830": {
+                "name": "sadf",
+                "expanded": {}
+            },
+            "27042020015834": {
+                "name": "sdf",
+                "expanded": {}
+            },
+            "27042020020113": {
+                "name": "sdfdsf",
+                "expanded": {}
+            },
+            "27042020020322": {
+                "name": "hoijk",
+                "expanded": {}
+            }
+        }
+    },
+    "Uncategorized": {
+        "randomString7": {
+            "name": "MarkdownGuide",
+            "expanded": {
+                "path": "../Application/notes/note4.txt",
+                "dateCreated": "",
+                "encrypted": "False",
+                "salt": "",
+                "hpass": ""
+            }
+        },
+        "randomString8": {
+            "name": "note5",
+            "expanded": {
+                "path": "../Application/notes/note5.txt",
+                "dateCreated": "",
+                "encrypted": "True",
+                "salt": "b\"\\nj)\\xef\\xaf\\xff\\x19[_\\xa1*'\\x1f~my\\xa3\\x1e\\xb3\\xb3\\x87\\x92\\xbc9\\xd59\\xb4\\x86\\x1fzd\\x15\\x1f\\xb2\\x84\\xd1\\xd7\\xe0\\xb0r\\x8c\\x16\\xd4wK\\xfb\\xdf\\xd8\\x1f=\\x98\\x11\\x01\\xb6\\xa2\\x13\\xb4f\\x1f\\xd4\\xeb\\xc6 C\"",
+                "h_pass": "b'\"1\\x08[G\\x1c\\xa38\\xd0Z\\xd2K\\xde\\x15\\xe4n\\xc2Yn\\xbc\\x05~:\\xc5\\xc2Y3P\\x1fAO\\x18j\\xae\\x1e\\xe68\\xe0\\x9c\\x82\\xf8\\xda\\xab\\x9e\\x0bA\\x834\\xe0\\x91\\xee\\'\\x9b\\xa9\"I\\x99<0W\\x91\\xb0zX'"
+            }
+        },
+        "27042020012242": {
+            "name": "So that's how it's gonna be",
+            "expanded": {
+                "path": "./notes/27042020012242.txt"
+            }
+        }
+    }
+}

@@ -13,9 +13,9 @@ class AEScipher():
         self.currentNote  = currentNote
         self.__key__ = hashlib.sha256(key.encode()).digest()
         if(encrypt == True):
-            self.raw = readText(currentNote['path'])
+            self.raw = currentNote.getText()
         else:
-            self.enc = readText(currentNote['path'])
+            self.enc = currentNote.getText()
 
     def Encrypt(self):
         pad = lambda s: s + (self.bs - len(s) % self.bs) * chr(self.bs - len(s) % self.bs)
@@ -23,8 +23,8 @@ class AEScipher():
         iv = Random.get_random_bytes(self.bs)
         cipher = AES.new(key= self.__key__, mode= AES.MODE_CFB,iv= iv)
         enc_text = base64.b64encode(iv + cipher.encrypt(self.raw))
-        self.currentNote['encrypted'] = "True"
-        updateItem({self.currentNote['name']:self.currentNote})
+        self.currentNote._details['encrypted'] = "True"
+        updateItem({self.currentNote.getRandomString():self.currentNote._details})
         print("file encrypted")
         return enc_text
 
@@ -35,8 +35,8 @@ class AEScipher():
         iv = self.enc[:self.bs]
         cipher = AES.new(self.__key__, AES.MODE_CFB, iv)
         decrpt_txt =  unpad(base64.b64decode(cipher.decrypt(self.enc[self.bs:])).decode('utf8'))
-        self.currentNote['encrypted'] = "False"
-        updateItem({self.currentNote['name']:self.currentNote})
+        self.currentNote._details['encrypted'] = "False"
+        updateItem({self.currentNote.getRandomString():self.currentNote._details})
         print("file decrypted")
         return decrpt_txt
     
