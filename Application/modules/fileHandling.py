@@ -26,6 +26,9 @@ class FILE():
     def getFilename(self):
         return self._name
     
+    def getRandomString(self):
+        return self._details['randomString']
+    
     def saveFile(self,text):
         if not self._open:
             return

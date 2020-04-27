@@ -39,6 +39,7 @@ def addNotebook(item):
     newdict = {}
     newdict["name"] = name
     newdict["expanded"] = {}
+    newdict["randomString"] = randomString
     deets[1][deets[0]]["expanded"][randomString] = newdict
 
     saveUpdatedJson(deets[2])
@@ -75,6 +76,7 @@ def addNote(item):
     newdict["name"] = name
     newdict["expanded"] = {}
     newdict["expanded"]["path"] = path
+    newdict["randomString"] = randomString
     if item is item.treeWidget().topLevelItem(1):
         deets[2]["Uncategorized"][randomString] = newdict
     else:
@@ -127,7 +129,6 @@ def writeText(path,txt,encrypted = False):
     cnt = "w"
     if(encrypted == True):
         cnt = "wb"
-        print("saved Encrypted file")
     with open(path,cnt) as file:
         file.write(txt)
     
