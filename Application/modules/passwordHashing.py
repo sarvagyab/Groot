@@ -8,7 +8,7 @@ from modules.noteHandling import writeText
 
 def hashPassword(currentNote,currentFileName,password,datalength= 64,encrypted=True):
     if(encrypted == True):
-        salt = currentNote.salt
+        salt = currentNote._details['salt']
     else:
         salt = str(os.urandom(datalength)) # add dynamic salt
         aes = AEScipher(password,currentNote)
@@ -29,8 +29,10 @@ def storePassword(currentNote,currentFileName,h_password,salt):
     """
     Need to add checks for already encrypted files
     """
+    updateDict = {}
+    updateDict['name'] = currentNote._name
     currentNote._details['salt'] = salt
     currentNote._details['h_pass'] = str(h_password)
-    updateItem({currentNote.getRandomString():currentNote._details})
+    updateDict['expanded'] = currentNote._details
+    updateItem({currentNote.getRandomString():updateDict})
     print("Stored Password")
-    updateItem(updatedNote) 

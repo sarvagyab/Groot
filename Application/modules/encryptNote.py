@@ -23,8 +23,12 @@ class AEScipher():
         iv = Random.get_random_bytes(self.bs)
         cipher = AES.new(key= self.__key__, mode= AES.MODE_CFB,iv= iv)
         enc_text = base64.b64encode(iv + cipher.encrypt(self.raw))
+        # update in json tree
+        updateDict = {}
+        updateDict['name'] = self.currentNote._name
         self.currentNote._details['encrypted'] = "True"
-        updateItem({self.currentNote.getRandomString():self.currentNote._details})
+        updateDict['expanded'] = self.currentNote._details
+        updateItem({self.currentNote.getRandomString():updateDict})
         print("file encrypted")
         return enc_text
 
@@ -35,8 +39,12 @@ class AEScipher():
         iv = self.enc[:self.bs]
         cipher = AES.new(self.__key__, AES.MODE_CFB, iv)
         decrpt_txt =  unpad(base64.b64decode(cipher.decrypt(self.enc[self.bs:])).decode('utf8'))
+        # update in json tree
+        updateDict = {}
+        updateDict['name'] = self.currentNote._name
         self.currentNote._details['encrypted'] = "False"
-        updateItem({self.currentNote.getRandomString():self.currentNote._details})
+        updateDict['expanded'] = self.currentNote._details
+        updateItem({self.currentNote.getRandomString():updateDict})
         print("file decrypted")
         return decrpt_txt
     

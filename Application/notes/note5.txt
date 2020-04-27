@@ -1,3 +1,0 @@
-This is note 5 file
-
-**Autosave working correctly**

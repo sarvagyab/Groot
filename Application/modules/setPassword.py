@@ -34,9 +34,9 @@ class password(object):
     def openVerifyPasswordDialog(self):
         print("Decryption button clicked")
         # First check whether any note is selected or not
-        self.currentNote = self.main_Window.ui.treeWidget.selectedItems()
-        if(self.selectedNote() and self.isEncrypted()):
-            self.currentFileName = self.main_Window.ui.treeWidget.selectedItems()[0].text(0)
+        self.currentNote = currentNote
+        if(self.currentNote._open == True and self.isEncrypted()):
+            self.currentFileName = self.currentNote.getFilename()
             self.ui_pv = Ui_verifyPasswordDialog()
             print("Trying to Decrypt {}".format(self.currentFileName))
 
@@ -53,18 +53,18 @@ class password(object):
             print("Password valid")
             self.closeDialog(self.ui_p.passwordDialog)
             hashPassword(self.currentNote,self.currentFileName,self.pass1,datalength = 64 ,encrypted=False)
-            self.main_Window.ui.plainTextEdit.setPlainText("<!--Encrypted Fuck Off-->")
+            # self.main_Window.ui.plainTextEdit.setPlainText("<!--Encrypted Fuck Off-->")
             
     def verifyAndDecryptPassword(self):
         self.pass1 = self.ui_pv.passwordLineEdit.text()
         hashed_pass = str(hashPassword(self.currentNote,self.currentFileName,self.pass1,datalength = 64,encrypted = True))
-        fetched_pass = self.currentNote['h_pass']
+        fetched_pass = self.currentNote._details['h_pass']
         if(hashed_pass == fetched_pass):
             print("verified")
             self.verifiedPassword = False
             aes = AEScipher(self.pass1,self.currentNote,encrypt = False) # Prepare to decrypt the file
             d_txt = aes.Decrypt()                                       # decrypted text
-            writeText(self.currentNote['path'],d_txt,encrypted = False) # write decrypted text in file 
+            writeText(self.currentNote._details['path'],d_txt,encrypted = False) # write decrypted text in file 
             self.main_Window.ui.plainTextEdit.setPlainText(d_txt) # display decrypted text
             self.closeDialog(self.ui_pv.verifyPasswordDialog) # close dialog
             return True
@@ -89,7 +89,7 @@ class password(object):
             self.displayInstruction(self.ui_p.Errortext)
     
     def isEncrypted(self):
-        if(self.currentNote['encrypted'] == "True"):
+        if(self.currentNote._details['encrypted'] == "True"):
             return True
         print("First encrypt the file you motherfucker")
         return False

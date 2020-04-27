@@ -1,4 +1,4 @@
-
+from PySide2 import QtCore
 class FILE():
     _file = None
     _details = {"path":""}
@@ -21,7 +21,9 @@ class FILE():
         self._open = False
 
     def getText(self):
-        return self._file.read()
+        txt = self._file.read()
+        self._file.seek(0)
+        return txt
 
     def getFilename(self):
         return self._name
@@ -32,9 +34,12 @@ class FILE():
     def saveFile(self,text):
         if not self._open:
             return
+        if('encrypted' in self._details and self._details['encrypted'] == 'True'): # don't save is file is encrypted
+            return
         self._file.seek(0)
         self._file.truncate()
         self._file.write(text)
+        self._file.seek(0)
         # self._file.flush()
 
 
