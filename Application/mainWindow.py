@@ -85,7 +85,10 @@ class Window(QtWidgets.QMainWindow):
 
         # Finished search
         self._finishedSearch()
-    
+
+        QtCore.QTimer.singleShot(0,self,self.openLoginDialog())
+
+
 
 
 
@@ -111,3 +114,4 @@ Window._addNote = mainWindowFunctions._addNote
 Window._addNotebook = mainWindowFunctions._addNotebook
 Window._addSubNotebook = mainWindowFunctions._addSubNotebook
 Window.resizeEvent = mainWindowFunctions.resizeEvent
+Window.openLoginDialog = mainWindowFunctions.openLoginDialog

@@ -9,6 +9,7 @@ from modules.noteHandling import deleteNote, renameNote, addNote, addNotebook
 from modules.GUIchanges import createNotebook, createSubNotebook, createNote, rename, dlt
 from modules.searchInNote import searchText,finishedSearch
 
+from GUIs.loginDialog import Ui_loginDialog
 
 def showMenu(self,pos):
     item = self.ui.treeWidget.itemAt(pos)
@@ -131,4 +132,8 @@ def closeEvent(self,event):
         currentNote.closeFile()
     event.accept()
 
-
+def openLoginDialog(self):
+    loginDialog = QtWidgets.QDialog()
+    ui_loginDialog = Ui_loginDialog()
+    ui_loginDialog.setupUi(loginDialog)
+    loginDialog.exec()
