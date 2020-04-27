@@ -3,7 +3,7 @@ from PySide2 import QtWidgets,QtGui,QtCore
 
 from modules.setPassword import password
 from modules.fileHandling import currentNote
-from modules.markdownHandling import viewInMarkdown
+from modules.markdownHandling import viewInMarkdown, imageResize
 from modules.treeHandling import loadfileStructure, noteLoader,itemVal, isNote
 from modules.noteHandling import deleteNote, renameNote, addNote, addNotebook
 from modules.GUIchanges import createNotebook, createSubNotebook, createNote, rename, dlt
@@ -122,6 +122,9 @@ def _renameNote(self,item,col):
         item.setText(0,"Untitled")    
     renameNote(item,0)
 
+# To resize the images automatically when the text changes
+def resizeEvent(self,event):
+    imageResize(self.ui.mdViewer)
 
 def closeEvent(self,event):
     if currentNote._open:

@@ -110,3 +110,4 @@ Window._renameNote = mainWindowFunctions._renameNote
 Window._addNote = mainWindowFunctions._addNote
 Window._addNotebook = mainWindowFunctions._addNotebook
 Window._addSubNotebook = mainWindowFunctions._addSubNotebook
+Window.resizeEvent = mainWindowFunctions.resizeEvent
