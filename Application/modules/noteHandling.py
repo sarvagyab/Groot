@@ -39,7 +39,10 @@ def addNotebook(item):
     newdict = {}
     newdict["name"] = name
     newdict["expanded"] = {}
-    deets[1][deets[0]]["expanded"][randomString] = newdict
+    if(item.parent() is None):
+        deets[1][deets[0]][randomString] = newdict
+    else:
+        deets[1][deets[0]]["expanded"][randomString] = newdict
 
     saveUpdatedJson(deets[2])
 
