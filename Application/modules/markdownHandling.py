@@ -2,13 +2,13 @@ from PySide2 import QtGui, QtWidgets
 import markdown
 
 def viewInMarkdown(md,extensions,markdownView):
-    html = mdToHtml(md,extensions)
+    html = mdToHtml(md, extensions)
     markdownView.setHtml(html)
     imageResize(markdownView)
 
 
-def mdToHtml(md, extensions):
-    html = markdown.markdown(md, extensions = extensions)
+def mdToHtml(md, _extensions):
+    html = markdown.markdown(md, extensions = ["sane_lists"] + _extensions)
     return html
 
 
@@ -79,13 +79,105 @@ def italic(te):
 
 
 def bulletList(te):
-    pass
+    te.moveCursor(QtGui.QTextCursor.StartOfLine)
+    te.moveCursor(QtGui.QTextCursor.EndOfLine, QtGui.QTextCursor.KeepAnchor)
+    text = te.textCursor().selectedText()
+    text = text.strip()
+    if text == "":
+        # check above line
+        te.moveCursor(QtGui.QTextCursor.Up) 
+        te.moveCursor(QtGui.QTextCursor.StartOfLine)
+        te.moveCursor(QtGui.QTextCursor.EndOfLine, QtGui.QTextCursor.KeepAnchor)
+        text2 = te.textCursor().selectedText()
+        te.moveCursor(QtGui.QTextCursor.Down)
+        text2 = text2.strip()
+        
+        if len(text2) == 0 or (len(text2)!=1 and text2[0] == "-" and text2[1] == " "):
+            te.moveCursor(QtGui.QTextCursor.StartOfLine)
+            te.insertPlainText("- Bullet List")
 
+        else:
+            te.moveCursor(QtGui.QTextCursor.EndOfLine)
+            te.insertPlainText("\n- Bullet List")
+    
+    else:
+        te.moveCursor(QtGui.QTextCursor.EndOfLine)
+        if len(text) == 1 or text[0] != "-" or text[1] != " ":
+            te.insertPlainText("\n\n- Bullet List")
+        else:
+            te.insertPlainText("\n- Bullet List")
+    
+    for _ in range(len("Bullet List")):
+        te.moveCursor(QtGui.QTextCursor.Left)
+    for _ in range(len("Bullet List")):
+        te.moveCursor(QtGui.QTextCursor.Right, QtGui.QTextCursor.KeepAnchor)   
+    te.setFocus()
+
+
+def checkInt(check):
+    try:
+        int(check)
+        return True
+    except:
+        return False
+
+def index(text):
+    for i in range(len(text)):
+        if not checkInt(text[i]):
+            return i
+
+def checkIfList(text):
+    text = text.strip()
+    if(len(text)==0):
+        return 0
+    ind = index(text)
+    if ind == 0:
+        return -1
+    else:
+        if len(text)<(ind+2):
+            return -1
+        else:
+            if text[ind] != "." or text[ind+1] != " ":
+                return -1
+            else:
+                return int(text[:ind])
 
 def numList(te):
-    te.moveCursor()
-    te.moveCursor(QtGui.QTextCursor.EndOfLine)
-    te.insertPlainText("\n1. Numbered List")
+    te.moveCursor(QtGui.QTextCursor.StartOfLine)
+    te.moveCursor(QtGui.QTextCursor.EndOfLine, QtGui.QTextCursor.KeepAnchor)
+    text = te.textCursor().selectedText()
+    text = text.strip()
+    if text == "":
+        # check above line
+        te.moveCursor(QtGui.QTextCursor.Up) 
+        te.moveCursor(QtGui.QTextCursor.StartOfLine)
+        te.moveCursor(QtGui.QTextCursor.EndOfLine, QtGui.QTextCursor.KeepAnchor)
+        text2 = te.textCursor().selectedText()
+        ans = checkIfList(text2)
+        te.moveCursor(QtGui.QTextCursor.Down)
+        # if above line is  not a list
+        # leave a line and then start the list
+        if ans == -1:
+            te.moveCursor(QtGui.QTextCursor.EndOfLine)
+            te.insertPlainText("\n1. Numbered List")
+        # else continue with this line
+        else:
+            te.moveCursor(QtGui.QTextCursor.StartOfLine)
+            te.insertPlainText(str(ans+1) + ". Numbered List")
+    else:
+        ans = checkIfList(text)
+        if (ans == -1):
+            te.moveCursor(QtGui.QTextCursor.EndOfLine)
+            te.insertPlainText("\n\n1. Numbered List")
+        else:
+            te.moveCursor(QtGui.QTextCursor.EndOfLine)
+            te.insertPlainText("\n" + str(ans+1) + ". Numbered List")
+    
+    for _ in range(len("Numbered List")):
+        te.moveCursor(QtGui.QTextCursor.Left)
+    for _ in range(len("Numbered List")):
+        te.moveCursor(QtGui.QTextCursor.Right, QtGui.QTextCursor.KeepAnchor)   
+    te.setFocus()
 
 
 def hyperlink(te):
