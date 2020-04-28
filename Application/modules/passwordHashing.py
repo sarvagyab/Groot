@@ -4,15 +4,18 @@ import json
 from modules.treeHandling import updateItem
 from modules.encryptNote import AEScipher
 from modules.noteHandling import writeText
-# from modules.encryptNote import encryptNote
 
-def hashPassword(currentNote,currentFileName,password,datalength= 64,encrypted=True):
+def hashPassword(currentNote,currentFileName,password,main_window,datalength= 64,encrypted=True):
     if(encrypted == True):
         salt = currentNote._details['salt']
     else:
         salt = generateSalt() # add dynamic salt
         aes = AEScipher(password,currentNote)
-        writeText(currentNote._details['path'],aes.Encrypt(),encrypted = True)
+        enc_txt = aes.Encrypt()
+        writeText(currentNote._details['path'],enc_txt,encrypted = True)
+        main_window.ui.plainTextEdit.setPlainText(str(enc_txt))
+        currentNote._details['encrypted'] = "True"
+        updateJson(currentNote)
 
     h_pass= Hash(password,salt)
     print("Hashed password")
@@ -39,3 +42,9 @@ def storePassword(currentNote,currentFileName,h_password,salt):
 
 def generateSalt(datalength = 64):
     return str(os.urandom(datalength))
+
+def updateJson(currentNote):
+    updateDict = {}
+    updateDict['name'] = currentNote._name
+    updateDict['expanded'] = currentNote._details
+    updateItem({currentNote.getRandomString():updateDict})

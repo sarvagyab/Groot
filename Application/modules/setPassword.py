@@ -6,10 +6,11 @@ from GUIs.verifyPasswordDialog import Ui_verifyPasswordDialog
 
 from modules.Exceptions import *
 from modules.passwordHashing import hashPassword
-from modules.treeHandling import itemVal,_itemVal
+from modules.treeHandling import itemVal,_itemVal,updateItem
 from modules.encryptNote import AEScipher
 from modules.noteHandling import writeText
 from modules.fileHandling import currentNote
+import modules.userLogin
 
 class password(object):
     def __init__(self,Window,ui = None):
@@ -55,20 +56,29 @@ class password(object):
         if(self.passwordset == True ):
             print("Password valid")
             self.closeDialog(self.ui_p.passwordDialog)
-            hashPassword(self.currentNote,self.currentFileName,self.pass1,datalength = 64 ,encrypted=False)
-            # self.main_Window.ui.plainTextEdit.setPlainText("<!--Encrypted Fuck Off-->")
+            hashPassword(self.currentNote,self.currentFileName,self.pass1,self.main_Window,datalength = 64 ,encrypted=False)
             
     def verifyAndDecryptPassword(self):
         self.pass1 = self.ui_pv.passwordLineEdit.text()
-        hashed_pass = str(hashPassword(self.currentNote,self.currentFileName,self.pass1,datalength = 64,encrypted = True))
+        hashed_pass = str(hashPassword(self.currentNote,self.currentFileName,self.pass1,self.main_Window,datalength = 64,encrypted = True))
         fetched_pass = self.currentNote._details['h_pass']
         if(hashed_pass == fetched_pass):
             print("verified")
             self.verifiedPassword = False
-            aes = AEScipher(self.pass1,self.currentNote,encrypt = False) # Prepare to decrypt the file
+            aes = AEScipher(self.pass1,self.currentNote,txt = None,encrypt = False) # Prepare to decrypt the file
             d_txt = aes.Decrypt()                                       # decrypted text
             writeText(self.currentNote._details['path'],d_txt,encrypted = False) # write decrypted text in file 
-            self.main_Window.ui.plainTextEdit.setPlainText(d_txt) # display decrypted text
+            userinfo =modules.userLogin.readUserInfo()
+            aes_1 = AEScipher(userinfo[1],self.currentNote,txt = d_txt,encrypt = False)
+            d_txt_1 = aes_1.Decrypt()
+            self.main_Window.ui.plainTextEdit.setPlainText(d_txt_1) # display decrypted text
+            
+            # update in json tree
+            updateDict = {}
+            updateDict['name'] = self.currentNote._name
+            self.currentNote._details['encrypted'] = "False"
+            updateDict['expanded'] = self.currentNote._details
+            updateItem({self.currentNote.getRandomString():updateDict})
             self.closeDialog(self.ui_pv.verifyPasswordDialog) # close dialog
             return True
         else:

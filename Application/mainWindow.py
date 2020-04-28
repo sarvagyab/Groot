@@ -15,7 +15,7 @@ class Window(QtWidgets.QMainWindow):
         # Initializing UI
         self.ui = Ui_Groot()
         self.ui.setupUi(self)
-
+        self.encryptAll = True
         # Bring the cursor to text editor
         self.ui.plainTextEdit.setFocus()
 

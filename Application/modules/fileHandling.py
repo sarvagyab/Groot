@@ -1,4 +1,8 @@
 from PySide2 import QtCore
+
+from modules.encryptNote import AEScipher
+from modules.userLogin import readUserInfo
+
 class FILE():
     _file = None
     _details = {"path":""}
@@ -20,9 +24,15 @@ class FILE():
         self._file.close()
         self._open = False
 
-    def getText(self):
-        txt = self._file.read()
+    def getText(self,encryptAll = True):
+        if(encryptAll == True): # decrypt text
+            userInfo = readUserInfo()
+            aes = AEScipher(userInfo[1],self,encrypt = False)
+            txt = aes.Decrypt()
+        else:
+            txt = self._file.read()
         self._file.seek(0)
+        # print(txt)
         return txt
 
     def getFilename(self):
@@ -31,14 +41,23 @@ class FILE():
     def getRandomString(self):
         return self._details['randomString']
     
-    def saveFile(self,text):
+    def saveFile(self,text,encryptAll = True):
         if not self._open:
             return
-        if('encrypted' in self._details and self._details['encrypted'] == 'True'): # don't save is file is encrypted
+        if('encrypted' in self._details and self._details['encrypted'] == 'True'): # don't save if file is encrypted
             return
         self._file.seek(0)
         self._file.truncate()
-        self._file.write(text)
+        if(encryptAll == True):
+            userInfo = readUserInfo()
+            aes = AEScipher(str(userInfo[1]),self,text,encrypt = True)
+            text = aes.Encrypt()
+            # print("text from encryption",text)
+            with open(self._details["path"],"wb") as file:
+                file.write(text)
+                file.seek(0)
+        else:
+            self._file.write(text)
         self._file.seek(0)
         # self._file.flush()
 

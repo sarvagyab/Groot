@@ -1,15 +1,18 @@
-
 from PySide2 import QtCore, QtWidgets
+
 from modules.fileHandling import currentNote
 from modules.treeHandling import itemVal, saveUpdatedJson
+from modules.encryptNote import AEScipher
+from modules.userLogin import readUserInfo
+
 import json, os, datetime
 
 def loadNote(_fileName, _textEdit):
     loadFileName(currentNote.getFilename(),_fileName)
-    if(isEncryped()): # if note is encrpyted then don't load ecrypted text
-        _textEdit.setPlainText("<!--Encrypted -->")
+    if(isEncryped()): 
+        _textEdit.setPlainText(str(currentNote.getText(False)))
     else:
-        _textEdit.setPlainText(currentNote.getText())
+        _textEdit.setPlainText(str(currentNote.getText()))
     QtWidgets.QApplication.processEvents()
 
 def loadFileName(name,fileName):
@@ -75,6 +78,16 @@ def addNote(item):
 
     # Creating file
     open(path,'a').close()
+
+    # encrypt file
+    userInfo = readUserInfo()
+    aes = AEScipher(str(userInfo[1]),currentNote,txt ="",encrypt = True)
+    txt = aes.Encrypt()
+    if(not isinstance(txt,bytes)):
+        txt = bytes(txt)
+    with open(path,'wb') as file:
+        file.write(txt)
+        file.seek(0)
     
     # Add to JSON
     newdict = {}
