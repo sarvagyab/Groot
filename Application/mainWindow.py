@@ -6,6 +6,7 @@ from GUIs.mainWindowPTE import Ui_Groot
 # import modules
 from modules.GUIchanges import fixTreeViewScrolling, createNotebook, createSubNotebook, createNote, rename, dlt
 import mainWindowFunctions
+from modules.markdownHandling import bold, italic, numList, bulletList, hyperlink, inlineCode, datetimenow
 
 class Window(QtWidgets.QMainWindow):
     def __init__(self):
@@ -15,6 +16,8 @@ class Window(QtWidgets.QMainWindow):
         self.ui = Ui_Groot()
         self.ui.setupUi(self)
 
+        # Bring the cursor to text editor
+        self.ui.plainTextEdit.setFocus()
 
         # To be used to change color of Arrows to white in QtreeWidget
         # self.ui.treeWidget.setStyleSheet(
@@ -49,6 +52,27 @@ class Window(QtWidgets.QMainWindow):
         createNote.triggered.connect(self._addNote)
         self.ui.newNote.clicked.connect(self._addNote)
 
+        # bold connection
+        self.ui.boldButton.clicked.connect(lambda: bold(self.ui.plainTextEdit))
+
+        # italic connection
+        self.ui.italicButton.clicked.connect(lambda: italic(self.ui.plainTextEdit))
+
+        # numbered list connection
+        self.ui.numberedList.clicked.connect(lambda: numList(self.ui.plainTextEdit))
+
+        # bullet list connection
+        self.ui.bullets.clicked.connect(lambda: bulletList(self.ui.plainTextEdit))
+
+        # hyperlink connection
+        self.ui.link.clicked.connect(lambda: hyperlink(self.ui.plainTextEdit))
+
+        # inline code connection
+        self.ui.code.clicked.connect(lambda: inlineCode(self.ui.plainTextEdit))
+
+        # date time connection
+        self.ui.dateTime.clicked.connect(lambda: datetimenow(self.ui.plainTextEdit))
+        
         # Load tree structure and notes
         self.reloadUI()
 
@@ -90,9 +114,6 @@ class Window(QtWidgets.QMainWindow):
             QtCore.QTimer.singleShot(0,self,self.openLoginDialog())
         else:
             QtCore.QTimer.singleShot(0,self,self.openFirstLoginDialog())
-
-
-
 
 
 
