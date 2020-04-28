@@ -187,15 +187,20 @@ def hyperlink(te):
             linkpath = str(text)
     else:
         return
-    te.insertPlainText("[](" + linkpath + ")")
-    for _ in range(len(linkpath) + 3):
+    te.insertPlainText("[Visit " + linkpath + "](" + linkpath + ")")
+    for _ in range(2*len(linkpath) + 9):
         te.moveCursor(QtGui.QTextCursor.Left)
+    for _ in range(6 + len(linkpath)):
+        te.moveCursor(QtGui.QTextCursor.Right, QtGui.QTextCursor.KeepAnchor)
     te.setFocus()
 
 
 def inlineCode(te):
-    te.insertPlainText("``")
-    te.moveCursor(QtGui.QTextCursor.Left)
+    te.insertPlainText("`inline code`")
+    for _ in range(len("inline code") + 1):
+        te.moveCursor(QtGui.QTextCursor.Left)
+    for _ in range(len("inline code")):
+        te.moveCursor(QtGui.QTextCursor.Right, QtGui.QTextCursor.KeepAnchor)
     te.setFocus()
 
 def datetimenow(te):
