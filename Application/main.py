@@ -1,4 +1,4 @@
-from PySide2 import QtWidgets
+from PySide2 import QtWidgets,QtCore
 from mainWindow import Window
 import sys
 

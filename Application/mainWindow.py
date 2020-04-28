@@ -109,7 +109,13 @@ class Window(QtWidgets.QMainWindow):
 
         # Finished search
         self._finishedSearch()
-    
+
+        if(self.checkFirstLogin()):
+            QtCore.QTimer.singleShot(0,self,self.openLoginDialog())
+        else:
+            QtCore.QTimer.singleShot(0,self,self.openFirstLoginDialog())
+
+
 
 
 Window._noteLoader = mainWindowFunctions._noteLoader
@@ -132,3 +138,7 @@ Window._addNote = mainWindowFunctions._addNote
 Window._addNotebook = mainWindowFunctions._addNotebook
 Window._addSubNotebook = mainWindowFunctions._addSubNotebook
 Window.resizeEvent = mainWindowFunctions.resizeEvent
+Window.openLoginDialog = mainWindowFunctions.openLoginDialog
+Window.openFirstLoginDialog = mainWindowFunctions.openFirstLoginDialog
+Window.checkFirstLogin = mainWindowFunctions.checkFirstLogin
+Window.closeDialogAndMainWindow = mainWindowFunctions.closeDialogAndMainWindow
