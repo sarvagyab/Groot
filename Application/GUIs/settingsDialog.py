@@ -1,116 +1,181 @@
-from PySide2 import QtCore, QtGui, QtWidgets
-import settingWidget1
+# -*- coding: utf-8 -*-
+
+################################################################################
+## Form generated from reading UI file 'settingsDialog.ui'
+##
+## Created by: Qt User Interface Compiler version 5.14.2
+##
+## WARNING! All changes made in this file will be lost when recompiling UI file!
+################################################################################
+
+from PySide2.QtCore import (QCoreApplication, QDate, QDateTime, QMetaObject,
+    QObject, QPoint, QRect, QSize, QTime, QUrl, Qt)
+from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont,
+    QFontDatabase, QIcon, QKeySequence, QLinearGradient, QPalette, QPainter,
+    QPixmap, QRadialGradient)
+from PySide2.QtWidgets import *
 
 
 class Ui_settingDialog(object):
     def setupUi(self, settingDialog):
-        self.w1 = settingWidget1.Ui_Form().setupUi()
-        settingDialog.setObjectName("settingDialog")
+        if not settingDialog.objectName():
+            settingDialog.setObjectName(u"settingDialog")
         settingDialog.resize(929, 833)
-        self.gridLayout = QtWidgets.QGridLayout(settingDialog)
-        self.gridLayout.setObjectName("gridLayout")
-        self.buttonBox = QtWidgets.QDialogButtonBox(settingDialog)
-        self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel | QtWidgets.QDialogButtonBox.Ok)
-        self.buttonBox.setObjectName("buttonBox")
+        self.gridLayout = QGridLayout(settingDialog)
+        self.gridLayout.setObjectName(u"gridLayout")
+        self.buttonBox = QDialogButtonBox(settingDialog)
+        self.buttonBox.setObjectName(u"buttonBox")
+        self.buttonBox.setStandardButtons(QDialogButtonBox.Cancel|QDialogButtonBox.Ok)
+
         self.gridLayout.addWidget(self.buttonBox, 1, 0, 1, 1)
-        self.mainFrame = QtWidgets.QFrame(settingDialog)
-        self.mainFrame.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.mainFrame.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.mainFrame.setObjectName("mainFrame")
-        self.horizontalLayout = QtWidgets.QHBoxLayout(self.mainFrame)
-        self.horizontalLayout.setObjectName("horizontalLayout")
-        self.leftMainFrame = QtWidgets.QFrame(self.mainFrame)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
+
+        self.mainFrame = QFrame(settingDialog)
+        self.mainFrame.setObjectName(u"mainFrame")
+        self.mainFrame.setFrameShape(QFrame.StyledPanel)
+        self.mainFrame.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout = QHBoxLayout(self.mainFrame)
+        self.horizontalLayout.setObjectName(u"horizontalLayout")
+        self.leftMainFrame = QFrame(self.mainFrame)
+        self.leftMainFrame.setObjectName(u"leftMainFrame")
+        sizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(1)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(self.leftMainFrame.sizePolicy().hasHeightForWidth())
         self.leftMainFrame.setSizePolicy(sizePolicy)
-        self.leftMainFrame.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.leftMainFrame.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.leftMainFrame.setObjectName("leftMainFrame")
-        self.verticalLayout = QtWidgets.QVBoxLayout(self.leftMainFrame)
-        self.verticalLayout.setObjectName("verticalLayout")
-        self.searchLineEdit = QtWidgets.QLineEdit(self.leftMainFrame)
-        self.searchLineEdit.setStyleSheet("QLineEdit {\n"
-                                          "    border: none;\n"
-                                          "    padding: 2px 5px 2px 27px;\n"
-                                          "    margin-right: 0px;\n"
-                                          "}\n"
-                                          "")
-        self.searchLineEdit.setObjectName("searchLineEdit")
+        self.leftMainFrame.setFrameShape(QFrame.StyledPanel)
+        self.leftMainFrame.setFrameShadow(QFrame.Raised)
+        self.verticalLayout = QVBoxLayout(self.leftMainFrame)
+        self.verticalLayout.setObjectName(u"verticalLayout")
+        self.searchLineEdit = QLineEdit(self.leftMainFrame)
+        self.searchLineEdit.setObjectName(u"searchLineEdit")
+        self.searchLineEdit.setStyleSheet(u"QLineEdit {\n"
+"	border: none;\n"
+"	padding: 2px 5px 2px 27px;\n"
+"	margin-right: 0px;\n"
+"}\n"
+"")
+
         self.verticalLayout.addWidget(self.searchLineEdit)
-        self.settingsTreeWidget = QtWidgets.QTreeWidget(self.leftMainFrame)
+
+        self.settingsTreeWidget = QTreeWidget(self.leftMainFrame)
+        QTreeWidgetItem(self.settingsTreeWidget)
+        self.settingsTreeWidget.setObjectName(u"settingsTreeWidget")
         self.settingsTreeWidget.setAllColumnsShowFocus(False)
         self.settingsTreeWidget.setHeaderHidden(True)
-        self.settingsTreeWidget.setObjectName("settingsTreeWidget")
-        item_0 = QtWidgets.QTreeWidgetItem(self.settingsTreeWidget)
-        item_0 = QtWidgets.QTreeWidgetItem(self.settingsTreeWidget)
-        item_1 = QtWidgets.QTreeWidgetItem(item_0)
-        item_1 = QtWidgets.QTreeWidgetItem(item_0)
-        item_0 = QtWidgets.QTreeWidgetItem(self.settingsTreeWidget)
-        item_0 = QtWidgets.QTreeWidgetItem(self.settingsTreeWidget)
+
         self.verticalLayout.addWidget(self.settingsTreeWidget)
+
+
         self.horizontalLayout.addWidget(self.leftMainFrame)
-        self.settingsStackedWidget = QtWidgets.QStackedWidget(self.mainFrame)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Expanding)
-        sizePolicy.setHorizontalStretch(4)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.settingsStackedWidget.sizePolicy().hasHeightForWidth())
-        self.settingsStackedWidget.setSizePolicy(sizePolicy)
-        self.settingsStackedWidget.setObjectName("settingsStackedWidget")
-        self.setting1Page = self.w1
-        self.setting1Page.setObjectName("setting1Page")
-        self.settingsStackedWidget.addWidget(self.setting1Page)
-        self.setting2_1Page = QtWidgets.QWidget()
-        self.setting2_1Page.setObjectName("setting2_1Page")
+
+        self.settingsStackedWidget = QStackedWidget(self.mainFrame)
+        self.settingsStackedWidget.setObjectName(u"settingsStackedWidget")
+        sizePolicy1 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Expanding)
+        sizePolicy1.setHorizontalStretch(4)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.settingsStackedWidget.sizePolicy().hasHeightForWidth())
+        self.settingsStackedWidget.setSizePolicy(sizePolicy1)
+        self.encryptionSetting = QWidget()
+        self.encryptionSetting.setObjectName(u"encryptionSetting")
+        self.horizontalLayout_2 = QHBoxLayout(self.encryptionSetting)
+        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.frame = QFrame(self.encryptionSetting)
+        self.frame.setObjectName(u"frame")
+        self.frame.setFrameShape(QFrame.StyledPanel)
+        self.frame.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_2 = QVBoxLayout(self.frame)
+        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
+        self.label = QLabel(self.frame)
+        self.label.setObjectName(u"label")
+        sizePolicy2 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Maximum)
+        sizePolicy2.setHorizontalStretch(0)
+        sizePolicy2.setVerticalStretch(0)
+        sizePolicy2.setHeightForWidth(self.label.sizePolicy().hasHeightForWidth())
+        self.label.setSizePolicy(sizePolicy2)
+
+        self.verticalLayout_2.addWidget(self.label)
+
+        self.frame_2 = QFrame(self.frame)
+        self.frame_2.setObjectName(u"frame_2")
+        sizePolicy2.setHeightForWidth(self.frame_2.sizePolicy().hasHeightForWidth())
+        self.frame_2.setSizePolicy(sizePolicy2)
+        self.frame_2.setFrameShape(QFrame.StyledPanel)
+        self.frame_2.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_3 = QHBoxLayout(self.frame_2)
+        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
+        self.horizontalLayout_3.setContentsMargins(-1, 0, -1, 0)
+        self.label_2 = QLabel(self.frame_2)
+        self.label_2.setObjectName(u"label_2")
+
+        self.horizontalLayout_3.addWidget(self.label_2)
+
+        self.lineEdit = QLineEdit(self.frame_2)
+        self.lineEdit.setObjectName(u"lineEdit")
+
+        self.horizontalLayout_3.addWidget(self.lineEdit)
+
+
+        self.verticalLayout_2.addWidget(self.frame_2)
+
+        self.checkBox = QCheckBox(self.frame)
+        self.checkBox.setObjectName(u"checkBox")
+        self.checkBox.setEnabled(False)
+        self.checkBox.setChecked(True)
+
+        self.verticalLayout_2.addWidget(self.checkBox)
+
+        self.verticalSpacer = QSpacerItem(20, 540, QSizePolicy.Minimum, QSizePolicy.Fixed)
+
+        self.verticalLayout_2.addItem(self.verticalSpacer)
+
+
+        self.horizontalLayout_2.addWidget(self.frame)
+
+        self.settingsStackedWidget.addWidget(self.encryptionSetting)
+        self.setting2Page = QWidget()
+        self.setting2Page.setObjectName(u"setting2Page")
+        self.settingsStackedWidget.addWidget(self.setting2Page)
+        self.setting2_1Page = QWidget()
+        self.setting2_1Page.setObjectName(u"setting2_1Page")
         self.settingsStackedWidget.addWidget(self.setting2_1Page)
-        self.setting2_2Page = self.w1
-        self.setting2_2Page.setObjectName("setting2_2Page")
+        self.setting2_2Page = QWidget()
+        self.setting2_2Page.setObjectName(u"setting2_2Page")
         self.settingsStackedWidget.addWidget(self.setting2_2Page)
-        self.setting3Page = QtWidgets.QWidget()
-        self.setting3Page.setObjectName("setting3Page")
+        self.setting3Page = QWidget()
+        self.setting3Page.setObjectName(u"setting3Page")
         self.settingsStackedWidget.addWidget(self.setting3Page)
-        self.setting4Page = QtWidgets.QWidget()
-        self.setting4Page.setObjectName("setting4Page")
+        self.setting4Page = QWidget()
+        self.setting4Page.setObjectName(u"setting4Page")
         self.settingsStackedWidget.addWidget(self.setting4Page)
+
         self.horizontalLayout.addWidget(self.settingsStackedWidget)
+
+
         self.gridLayout.addWidget(self.mainFrame, 0, 0, 1, 1)
 
-        self.settingDict = {'Setting1': 0, 'Setting2.1': 1, 'Setting2.2': 2, 'Setting3': 3, 'Setting4': 4}
 
         self.retranslateUi(settingDialog)
-        self.settingsStackedWidget.setCurrentIndex(5)
-        QtCore.QMetaObject.connectSlotsByName(settingDialog)
-        self.settingsTreeWidget.itemClicked.connect(self.ShowSettingWidget)
 
-    def ShowSettingWidget(self):
-        columnNumber = self.settingsTreeWidget.currentColumn()
-        selectedItem = self.settingsTreeWidget.currentItem()
-        if(selectedItem.childCount() == 0):
-            selectedItemName = selectedItem.text(columnNumber)
-            selectedItemIndex = self.settingDict[selectedItemName]
-            print(selectedItemIndex, selectedItemName)
-            if (selectedItemIndex != -1):
-                self.settingsStackedWidget.setCurrentIndex(selectedItemIndex)
-            else:
-                alert = QtWidgets.QMessageBox(settingDialog)
-                alert.setText("Sorry cannot open {0} setting Page".format(selectedItemName))
-                alert.setIcon(QtWidgets.QMessageBox.Information)
-                alert.show()
+        self.settingsStackedWidget.setCurrentIndex(0)
+
+
+        QMetaObject.connectSlotsByName(settingDialog)
+    # setupUi
 
     def retranslateUi(self, settingDialog):
-        _translate = QtCore.QCoreApplication.translate
-        settingDialog.setWindowTitle(_translate("settingDialog", "Settings"))
-        self.searchLineEdit.setPlaceholderText(_translate("settingDialog", "Find Settings"))
-        self.settingsTreeWidget.headerItem().setText(0, _translate("settingDialog", "1"))
+        settingDialog.setWindowTitle(QCoreApplication.translate("settingDialog", u"Settings", None))
+        self.searchLineEdit.setPlaceholderText(QCoreApplication.translate("settingDialog", u"Find Settings", None))
+        ___qtreewidgetitem = self.settingsTreeWidget.headerItem()
+        ___qtreewidgetitem.setText(0, QCoreApplication.translate("settingDialog", u"1", None));
+
         __sortingEnabled = self.settingsTreeWidget.isSortingEnabled()
         self.settingsTreeWidget.setSortingEnabled(False)
-        self.settingsTreeWidget.topLevelItem(0).setText(0, _translate("settingDialog", "Setting1"))
-        self.settingsTreeWidget.topLevelItem(1).setText(0, _translate("settingDialog", "Setting2"))
-        self.settingsTreeWidget.topLevelItem(1).child(0).setText(0, _translate("settingDialog", "Setting2.1"))
-        self.settingsTreeWidget.topLevelItem(1).child(1).setText(0, _translate("settingDialog", "Setting2.2"))
-        self.settingsTreeWidget.topLevelItem(2).setText(0, _translate("settingDialog", "Setting3"))
-        self.settingsTreeWidget.topLevelItem(3).setText(0, _translate("settingDialog", "Setting4"))
+        ___qtreewidgetitem1 = self.settingsTreeWidget.topLevelItem(0)
+        ___qtreewidgetitem1.setText(0, QCoreApplication.translate("settingDialog", u"Encryption", None));
         self.settingsTreeWidget.setSortingEnabled(__sortingEnabled)
 
+        self.label.setText(QCoreApplication.translate("settingDialog", u"Enter password to change this option.", None))
+        self.label_2.setText(QCoreApplication.translate("settingDialog", u"password", None))
+        self.checkBox.setText(QCoreApplication.translate("settingDialog", u"Encrypt all notes", None))
+    # retranslateUi
 

@@ -12,8 +12,8 @@ from modules.GUIchanges import createNotebook, createSubNotebook, createNote, re
 from modules.searchInNote import searchText,finishedSearch
 from modules.userLogin import setUsernameAndPassword,verifyUser
 
-from GUIs.loginDialog import Ui_loginDialog
-from GUIs.firstLoginDialog import Ui_firstLoginDialog
+
+
 
 def showMenu(self,pos):
     item = self.ui.treeWidget.itemAt(pos)
@@ -140,7 +140,15 @@ def checkFirstLogin(self):
     location = './User/login.txt'
     return os.path.exists(location)
 
+def openSettingsDialog(self):
+    from GUIs.settingsDialog import Ui_settingDialog
+    ui_settingDialog = Ui_settingDialog()
+    settingsDialog = QtWidgets.QDialog()
+    ui_settingDialog.setupUi(settingsDialog)
+    settingsDialog.exec()
+
 def openLoginDialog(self):
+    from GUIs.loginDialog import Ui_loginDialog
     loginDialog = QtWidgets.QDialog()
     ui_loginDialog = Ui_loginDialog()
     ui_loginDialog.setupUi(loginDialog)
@@ -151,6 +159,7 @@ def openLoginDialog(self):
 
 
 def openFirstLoginDialog(self):
+    from GUIs.firstLoginDialog import Ui_firstLoginDialog
     firstLoginDialog = QtWidgets.QDialog()
     ui_firstLoginDialog = Ui_firstLoginDialog()
     ui_firstLoginDialog.setupUi(firstLoginDialog)
@@ -159,7 +168,8 @@ def openFirstLoginDialog(self):
     if(firstLoginDialog.exec() == 0):
         self.closeDialogAndMainWindow(firstLoginDialog)
 
-def closeDialogAndMainWindow(self,dialog):
-    dialog.close()
+def closeDialogAndMainWindow(self,dialog = None):
+    if(dialog != None):
+        dialog.close()
     self.close()
     sys.exit()

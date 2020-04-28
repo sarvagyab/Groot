@@ -110,6 +110,12 @@ class Window(QtWidgets.QMainWindow):
         # Finished search
         self._finishedSearch()
 
+        # open settings
+        self.ui.actionSettings.triggered.connect(lambda:self.openSettingsDialog())
+
+        # close main window from menu
+        self.ui.actionQuit.triggered.connect(lambda:self.closeDialogAndMainWindow())
+
         if(self.checkFirstLogin()):
             QtCore.QTimer.singleShot(0,self,self.openLoginDialog())
         else:
@@ -142,3 +148,4 @@ Window.openLoginDialog = mainWindowFunctions.openLoginDialog
 Window.openFirstLoginDialog = mainWindowFunctions.openFirstLoginDialog
 Window.checkFirstLogin = mainWindowFunctions.checkFirstLogin
 Window.closeDialogAndMainWindow = mainWindowFunctions.closeDialogAndMainWindow
+Window.openSettingsDialog = mainWindowFunctions.openSettingsDialog
