@@ -15,7 +15,6 @@ class AEScipher():
             self.txt = txt
         else:
             self.txt = currentNote.getText(False)
-        print("text in encryption",self.txt)
         if(encrypt == True):
             self.raw = self.txt # type : string
         else:

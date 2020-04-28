@@ -32,7 +32,6 @@ class FILE():
         else:
             txt = self._file.read()
         self._file.seek(0)
-        # print(txt)
         return txt
 
     def getFilename(self):
@@ -52,7 +51,6 @@ class FILE():
             userInfo = readUserInfo()
             aes = AEScipher(str(userInfo[1]),self,text,encrypt = True)
             text = aes.Encrypt()
-            # print("text from encryption",text)
             with open(self._details["path"],"wb") as file:
                 file.write(text)
                 file.seek(0)
