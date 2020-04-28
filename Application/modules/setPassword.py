@@ -12,11 +12,14 @@ from modules.noteHandling import writeText
 from modules.fileHandling import currentNote
 
 class password(object):
-    def __init__(self,Window):
+    def __init__(self,Window,ui = None):
         self.ERROR_MSG = ""
         self.passwordset = False
         self.verifiedPassword = False
         self.main_Window = Window
+        self.pass1 = ""
+        self.pass2 = ""
+        self.ui_p = ui
     
     def openPasswordDialog(self):
         print("Encryption button clicked")

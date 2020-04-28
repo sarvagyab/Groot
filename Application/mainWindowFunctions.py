@@ -1,3 +1,5 @@
+import os
+import sys
 
 from PySide2 import QtWidgets,QtGui,QtCore
 
@@ -8,8 +10,10 @@ from modules.treeHandling import loadfileStructure, noteLoader,itemVal, isNote
 from modules.noteHandling import deleteNote, renameNote, addNote, addNotebook
 from modules.GUIchanges import createNotebook, createSubNotebook, createNote, rename, dlt
 from modules.searchInNote import searchText,finishedSearch
+from modules.userLogin import setUsernameAndPassword,verifyUser
 
 from GUIs.loginDialog import Ui_loginDialog
+from GUIs.firstLoginDialog import Ui_firstLoginDialog
 
 def showMenu(self,pos):
     item = self.ui.treeWidget.itemAt(pos)
@@ -132,8 +136,30 @@ def closeEvent(self,event):
         currentNote.closeFile()
     event.accept()
 
+def checkFirstLogin(self):
+    location = './User/login.txt'
+    return os.path.exists(location)
+
 def openLoginDialog(self):
     loginDialog = QtWidgets.QDialog()
     ui_loginDialog = Ui_loginDialog()
     ui_loginDialog.setupUi(loginDialog)
-    loginDialog.exec()
+    ui_loginDialog.buttonBox.button(QtWidgets.QDialogButtonBox.Ok).clicked.connect(lambda: verifyUser(ui_loginDialog.passwordLineEdit.text(),ui_loginDialog,loginDialog))
+    ui_loginDialog.buttonBox.button(QtWidgets.QDialogButtonBox.Cancel).clicked.connect(lambda:self.closeDialogAndMainWindow(loginDialog))
+    if(loginDialog.exec() == 0):
+        self.closeDialogAndMainWindow(loginDialog)
+
+
+def openFirstLoginDialog(self):
+    firstLoginDialog = QtWidgets.QDialog()
+    ui_firstLoginDialog = Ui_firstLoginDialog()
+    ui_firstLoginDialog.setupUi(firstLoginDialog)
+    ui_firstLoginDialog.buttonBox.button(QtWidgets.QDialogButtonBox.Cancel).clicked.connect(lambda:self.closeDialogAndMainWindow(firstLoginDialog))
+    ui_firstLoginDialog.buttonBox.button(QtWidgets.QDialogButtonBox.Ok).clicked.connect(lambda:setUsernameAndPassword(ui_firstLoginDialog.username.text(),ui_firstLoginDialog.passwordLineEdit.text(),ui_firstLoginDialog.repasswordLineEdit.text(),ui_firstLoginDialog,firstLoginDialog))
+    if(firstLoginDialog.exec() == 0):
+        self.closeDialogAndMainWindow(firstLoginDialog)
+
+def closeDialogAndMainWindow(self,dialog):
+    dialog.close()
+    self.close()
+    sys.exit()

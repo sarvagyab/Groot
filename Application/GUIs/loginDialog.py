@@ -119,16 +119,6 @@ class Ui_loginDialog(object):
     def retranslateUi(self, loginDialog):
         _translate = QtCore.QCoreApplication.translate
         loginDialog.setWindowTitle(_translate("loginDialog", "Please enter your password"))
-        self.instruction.setText(_translate("loginDialog", "<html><head/><body><p>Enter <span style=\" font-weight:600;\">password </span>to view all the notes.</p></body></html>"))
+        self.instruction.setText(_translate("loginDialog", "<html><head/><body><p>Enter <span style=\" font-weight:600;\">password </span>to view all the notes.</p><p>You can disable this option in settings.</p></body></html>"))
         self.password.setText(_translate("loginDialog", "<html><head/><body><p><span style=\" font-size:9pt;\">Password</span></p></body></html>"))
         self.Errortext.setText(_translate("loginDialog", "<html><head/><body><p><br/></p></body></html>"))
-
-
-# if __name__ == "__main__":
-#     import sys
-#     app = QtWidgets.QApplication(sys.argv)
-#     loginDialog = QtWidgets.QDialog()
-#     ui = Ui_loginDialog()
-#     ui.setupUi(loginDialog)
-#     loginDialog.show()
-#     sys.exit(app.exec_())

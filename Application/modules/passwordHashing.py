@@ -10,7 +10,7 @@ def hashPassword(currentNote,currentFileName,password,datalength= 64,encrypted=T
     if(encrypted == True):
         salt = currentNote._details['salt']
     else:
-        salt = str(os.urandom(datalength)) # add dynamic salt
+        salt = generateSalt() # add dynamic salt
         aes = AEScipher(password,currentNote)
         writeText(currentNote._details['path'],aes.Encrypt(),encrypted = True)
 
@@ -36,3 +36,6 @@ def storePassword(currentNote,currentFileName,h_password,salt):
     updateDict['expanded'] = currentNote._details
     updateItem({currentNote.getRandomString():updateDict})
     print("Stored Password")
+
+def generateSalt(datalength = 64):
+    return str(os.urandom(datalength))
