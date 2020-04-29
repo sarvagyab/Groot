@@ -6,7 +6,7 @@ from GUIs.mainWindowPTE import Ui_Groot
 # import modules
 from modules.GUIchanges import fixTreeViewScrolling, createNotebook, createSubNotebook, createNote, rename, dlt
 import mainWindowFunctions
-from modules.markdownHandling import bold, italic, numList, bulletList, hyperlink, inlineCode, datetimenow
+from modules.markdownHandling import bold, italic, numList, bulletList, hyperlink, inlineCode, datetimenow, attachFile
 
 class Window(QtWidgets.QMainWindow):
     def __init__(self):
@@ -73,6 +73,9 @@ class Window(QtWidgets.QMainWindow):
 
         # date time connection
         self.ui.dateTime.clicked.connect(lambda: datetimenow(self.ui.plainTextEdit))
+
+        # attaching file connection
+        self.ui.pushButton_3.clicked.connect(lambda: attachFile(self.ui.plainTextEdit))
         
         # Load tree structure and notes
         self.reloadUI()
