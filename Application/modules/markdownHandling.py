@@ -226,7 +226,8 @@ def attachFile(te):
 
 
 def exportAsPdf(mdView):
-    if "encrypted" in currentNote._details and currentNote._details["encrypted"] == True:
+    if ("encrypted" in currentNote._details) and currentNote._details["encrypted"] == "True":
+        QtWidgets.QMessageBox(QtWidgets.QMessageBox.Information,"Groot", "Cannot Export Encrypted Files",QtWidgets.QMessageBox.Ok).exec_()
         return
     filename, _ = QtWidgets.QFileDialog().getSaveFileName(None,"Export Pdf","./")
     if filename != "":
@@ -239,14 +240,9 @@ def exportAsPdf(mdView):
 
 
 def exportAsMarkdown(mdtext):
-    check = currentNote._details["encrypted"]
-    print(check)
-    if ("encrypted" in currentNote._details):
-        print("Does this shit work at all")
-        if check:
-            print("Oh come on")
-            QtWidgets.QMessageBox(QtWidgets.QMessageBox.Information,"Groot", "Cannot Export Encrypted Files",QtWidgets.QMessageBox.Ok).exec_()
-            return
+    if ("encrypted" in currentNote._details) and currentNote._details["encrypted"] == "True":
+        QtWidgets.QMessageBox(QtWidgets.QMessageBox.Information,"Groot", "Cannot Export Encrypted Files",QtWidgets.QMessageBox.Ok).exec_()
+        return
     filename, _ = QtWidgets.QFileDialog().getSaveFileName(None,"Export Markdown","./")
     if filename != "":
         if QtCore.QFileInfo(filename).suffix() == "":
@@ -256,7 +252,8 @@ def exportAsMarkdown(mdtext):
 
 
 def exportAsHtml(mdtext, extensions):
-    if "encrypted" in currentNote._details and currentNote._details["encrypted"] == True:
+    if ("encrypted" in currentNote._details) and currentNote._details["encrypted"] == "True":
+        QtWidgets.QMessageBox(QtWidgets.QMessageBox.Information,"Groot", "Cannot Export Encrypted Files",QtWidgets.QMessageBox.Ok).exec_()
         return
     filename, _ = QtWidgets.QFileDialog().getSaveFileName(None,"Export Html","./")
     if filename != "":
