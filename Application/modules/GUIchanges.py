@@ -21,3 +21,15 @@ rename.setText("Rename")
 dlt = QtWidgets.QAction()
 dlt.setText("Delete")
 
+importer = QtWidgets.QAction()
+importer.setText("Import")
+
+
+exportPDF = QtWidgets.QAction()
+exportPDF.setText("PDF")
+
+exportMD = QtWidgets.QAction()
+exportMD.setText("Markdown")
+
+exportHTML = QtWidgets.QAction()
+exportHTML.setText("HTML")

@@ -231,7 +231,7 @@ def exportAsPdf(mdView):
         return
     filename, _ = QtWidgets.QFileDialog().getSaveFileName(None,"Export Pdf","./")
     if filename != "":
-        if QtCore.QFileInfo(filename).suffix() == "":
+        if QtCore.QFileInfo(filename).suffix() != "pdf":
             filename+=".pdf"
         printer = QtPrintSupport.QPrinter(QtPrintSupport.QPrinter.HighResolution)
         printer.setOutputFormat(QtPrintSupport.QPrinter.PdfFormat)
@@ -245,7 +245,7 @@ def exportAsMarkdown(mdtext):
         return
     filename, _ = QtWidgets.QFileDialog().getSaveFileName(None,"Export Markdown","./")
     if filename != "":
-        if QtCore.QFileInfo(filename).suffix() == "":
+        if QtCore.QFileInfo(filename).suffix() != "md":
             filename+=".md"
         with open(filename,"w") as newfile:
             newfile.write(mdtext)
@@ -257,7 +257,14 @@ def exportAsHtml(mdtext, extensions):
         return
     filename, _ = QtWidgets.QFileDialog().getSaveFileName(None,"Export Html","./")
     if filename != "":
-        if QtCore.QFileInfo(filename).suffix() == "":
+        if QtCore.QFileInfo(filename).suffix() != "html":
             filename+=".html"
         with open(filename,"w") as newfile:
             newfile.write(mdToHtml(mdtext,extensions))
+
+
+def importMD(item):
+    filename, _ = QtWidgets.QFileDialog().getOpenFileName(None,"Attach File","./","Markdown(*.md)")
+    if filename == "":
+        return
+    print(filename)
