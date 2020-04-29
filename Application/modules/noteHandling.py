@@ -10,7 +10,9 @@ import json, os, datetime
 def loadNote(_fileName, _textEdit):
     loadFileName(currentNote.getFilename(),_fileName)
     if(isEncryped()): 
-        _textEdit.setPlainText(str(currentNote.getText(False)))
+        print("encrypted so don't load the file")
+        _textEdit.setPlainText("")
+        # _textEdit.setPlainText(str(currentNote.getText(False)))
     else:
         _textEdit.setPlainText(str(currentNote.getText()))
     QtWidgets.QApplication.processEvents()
@@ -88,6 +90,7 @@ def addNote(item):
     with open(path,'wb') as file:
         file.write(txt)
         file.seek(0)
+    print("Encrypted in add note method")
     
     # Add to JSON
     newdict = {}

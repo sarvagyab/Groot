@@ -13,7 +13,7 @@ def hashPassword(currentNote,currentFileName,password,main_window,datalength= 64
         aes = AEScipher(password,currentNote)
         enc_txt = aes.Encrypt()
         writeText(currentNote._details['path'],enc_txt,encrypted = True)
-        main_window.ui.plainTextEdit.setPlainText(str(enc_txt))
+        main_window.ui.plainTextEdit.setPlainText("")
         currentNote._details['encrypted'] = "True"
         updateJson(currentNote)
 

@@ -65,11 +65,12 @@ class password(object):
         if(hashed_pass == fetched_pass):
             print("verified")
             self.verifiedPassword = False
-            aes = AEScipher(self.pass1,self.currentNote,txt = None,encrypt = False) # Prepare to decrypt the file
+            txt = currentNote.getText(False)
+            aes = AEScipher(self.pass1,self.currentNote,txt = txt,encrypt = False) # Prepare to decrypt the file
             d_txt = aes.Decrypt()                                       # decrypted text
-            writeText(self.currentNote._details['path'],d_txt,encrypted = False) # write decrypted text in file 
+            writeText(self.currentNote._details['path'],bytes(d_txt,encoding='utf8'),encrypted = True) # write decrypted text in file 
             userinfo =modules.userLogin.readUserInfo()
-            aes_1 = AEScipher(userinfo[1],self.currentNote,txt = d_txt,encrypt = False)
+            aes_1 = AEScipher(userinfo[1],self.currentNote,txt = bytes(d_txt,encoding='utf8'),encrypt = False)
             d_txt_1 = aes_1.Decrypt()
             self.main_Window.ui.plainTextEdit.setPlainText(d_txt_1) # display decrypted text
             
