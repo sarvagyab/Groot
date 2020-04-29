@@ -110,20 +110,28 @@ def getItem(getDict):
     return _traverseJson(getDict,structDict,getItem = True)
 
 
-def noteLoader(item, _fileName, _textEdit,_encryptionButton,_decryptionButton):
+def noteLoader(ui):
+    item = ui.treeWidget.currentItem()
+    _fileName = ui.fileName
+    _textEdit = ui.plainTextEdit
+    _encryptionButton=ui.encryptionButton
+    _decryptionButton=ui.decryptionButton
+    _permanentDecrypt = ui.permanentDecrypt
     note = isNote(item)
     if(note[0]):
         currentNote.openFile(item,note[1])
-        disableEncryptionIfEncrypted(_encryptionButton,_decryptionButton)
+        disableEncryptionIfEncrypted(_encryptionButton,_decryptionButton,_permanentDecrypt)
         from modules.noteHandling import loadNote
         loadNote(_fileName,_textEdit)
 
-def disableEncryptionIfEncrypted(encryptionButton,decryptionButton):
+def disableEncryptionIfEncrypted(encryptionButton,decryptionButton,permanentDecrypt):
     print(currentNote.getFilename())
     if('encrypted' in currentNote._details ):
         if(currentNote._details["encrypted"] == "True"):
             encryptionButton.setEnabled(False)
             decryptionButton.setEnabled(True)
+            permanentDecrypt.setEnabled(True)
     else:
             decryptionButton.setEnabled(False)
             encryptionButton.setEnabled(True)
+            permanentDecrypt.setEnabled(True)

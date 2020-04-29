@@ -47,7 +47,6 @@ class password(object):
         randomstring = self.currentNote._details['randomString']
         if(randomstring in self.main_Window.encryptedInSession):
             self.pass1 = self.main_Window.encryptedInSession[randomstring]
-            print("in the list",randomstring,self.pass1)
             self.verifyAndDecryptPassword(use_savedPassword= True)
         else:
             if(self.currentNote._open == True and self.isEncrypted()):
@@ -92,6 +91,7 @@ class password(object):
         self.main_Window.ui.plainTextEdit.setPlainText(d_txt_1) # display decrypted text
         self.main_Window.ui.encryptionButton.setEnabled(True) # enable encryption button
         self.main_Window.ui.decryptionButton.setEnabled(False) # disable decryption button
+        self.main_Window.ui.permanentDecrypt.setEnabled(False) # disable decryption button
         # update in json tree
         self.updateJson()    
 
@@ -164,10 +164,10 @@ class password(object):
     def updateDList(self):
         randomstring = currentNote._details['randomString']
         if(randomstring not in self.main_Window.decryptedNotes):
+            print(randomstring)
             self.main_Window.decryptedNotes[randomstring] = self.pass1
     
     def updateEList(self):
-        print("Updating E list")
         randomstring = currentNote._details['randomString']
         if(randomstring in self.main_Window.encryptedInSession):
             self.main_Window.encryptedInSession.pop(randomstring)

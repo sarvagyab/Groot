@@ -16,6 +16,7 @@ def hashPassword(currentNote,currentFileName,password,main_window,datalength= 64
         main_window.ui.plainTextEdit.setPlainText("<!--encrypted-->")
         main_window.ui.encryptionButton.setEnabled(False)
         main_window.ui.decryptionButton.setEnabled(True)
+        main_window.ui.permanentDecrypt.setEnabled(True)
         currentNote._details['encrypted'] = "True"
         updateJson(currentNote)
         removeFromDList(main_window,currentNote)
