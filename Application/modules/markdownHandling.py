@@ -1,5 +1,5 @@
 from PySide2 import QtGui, QtWidgets
-import markdown
+import markdown, datetime, shutil
 
 def viewInMarkdown(md,extensions,markdownView):
     html = mdToHtml(md, extensions)
@@ -204,6 +204,19 @@ def inlineCode(te):
     te.setFocus()
 
 def datetimenow(te):
-    import datetime
     te.insertPlainText(datetime.datetime.now().strftime("%d/%m/%Y %H:%M:%S %p"))
+    te.setFocus()
+
+
+def attachFile(te):
+    filename, _ = QtWidgets.QFileDialog().getOpenFileName(None,"Attach File","./")
+    # print(filename)
+    randomString = datetime.datetime.now().strftime("%d%m%Y%H%M%S")
+    destination = shutil.copyfile(filename,"./atch/" + randomString)
+    # print(destination)
+    te.insertPlainText("![fileName](" + destination + ")")
+    for _ in range(len("fileName](" + destination + ")")):
+        te.moveCursor(QtGui.QTextCursor.Left)
+    for I in range(len("filename")):
+        te.moveCursor(QtGui.QTextCursor.Right, QtGui.QTextCursor.KeepAnchor)
     te.setFocus()
