@@ -117,7 +117,7 @@ def _addNote(self):
         (self.ui.treeWidget.currentItem() is self.ui.treeWidget.topLevelItem(0)) or \
         (isNote(self.ui.treeWidget.currentItem())[0]):
             return
-    addNote(self.ui.treeWidget.currentItem())
+    addNote(self.ui.treeWidget.currentItem(),self.ui.plainTextEdit)
 
 
 def _renameNote(self,item,col):

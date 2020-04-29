@@ -63,7 +63,7 @@ def addNotebook(item):
     newItem.setSelected(True)
 
 
-def addNote(item):
+def addNote(item,_plainTextEdit):
     # input name
     text, ok = QtWidgets.QInputDialog().getText(None,"Groot","Enter the name for new note - ")
     if ok is True:
@@ -111,6 +111,9 @@ def addNote(item):
     item.addChild(newItem)
     item.setExpanded(True)
     newItem.setSelected(True)
+
+    # Focus on plainTextEdit
+    _plainTextEdit.setFocus()
 
 
 def renameNote(item,col):
