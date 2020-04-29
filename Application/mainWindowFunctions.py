@@ -6,14 +6,12 @@ from PySide2 import QtWidgets,QtGui,QtCore
 from modules.setPassword import password
 from modules.fileHandling import currentNote
 from modules.markdownHandling import viewInMarkdown, imageResize
-from modules.treeHandling import loadfileStructure, noteLoader,itemVal, isNote
-from modules.noteHandling import deleteNote, renameNote, addNote, addNotebook
+from modules.treeHandling import loadfileStructure, noteLoader,itemVal, isNote,updateItem,getItem
+from modules.noteHandling import deleteNote, renameNote, addNote, addNotebook,readText,writeText
 from modules.GUIchanges import createNotebook, createSubNotebook, createNote, rename, dlt
 from modules.searchInNote import searchText,finishedSearch
 from modules.userLogin import setUsernameAndPassword,verifyUser
-
-
-
+from modules.encryptNote import AEScipher
 
 def showMenu(self,pos):
     item = self.ui.treeWidget.itemAt(pos)
@@ -132,6 +130,7 @@ def resizeEvent(self,event):
     imageResize(self.ui.mdViewer)
 
 def closeEvent(self,event):
+    self.encryptAlldecryptedNotes()
     if currentNote._open:
         currentNote.closeFile()
     event.accept()
@@ -156,6 +155,20 @@ def openLoginDialog(self):
     ui_loginDialog.buttonBox.button(QtWidgets.QDialogButtonBox.Cancel).clicked.connect(lambda:self.closeDialogAndMainWindow(loginDialog))
     if(loginDialog.exec() == 0):
         self.closeDialogAndMainWindow(loginDialog)
+
+def encryptAlldecryptedNotes(self):
+    notes = getItem(list(self.decryptedNotes.keys()))
+    for note in notes:
+        print(note,notes[note])
+        path = notes[note]['expanded']['path']
+        notes[note]['expanded']['encrypted'] = "True"
+        txt = readText(path)
+        print(txt)
+        print(self.decryptedNotes[note])
+        aes = AEScipher(self.decryptedNotes[note],None,txt) 
+        enc_txt = aes.Encrypt()
+        writeText(path,enc_txt,encrypted = True)
+        updateItem({note:notes[note]})
 
 
 def openFirstLoginDialog(self):

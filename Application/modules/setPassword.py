@@ -65,6 +65,8 @@ class password(object):
         if(hashed_pass == fetched_pass):
             print("verified")
             self.verifiedPassword = False
+            
+            # now decrypting and displaying decrypted note
             txt = currentNote.getText(False)
             aes = AEScipher(self.pass1,self.currentNote,txt = txt,encrypt = False) # Prepare to decrypt the file
             d_txt = aes.Decrypt()                                       # decrypted text
@@ -75,11 +77,11 @@ class password(object):
             self.main_Window.ui.plainTextEdit.setPlainText(d_txt_1) # display decrypted text
             
             # update in json tree
-            updateDict = {}
-            updateDict['name'] = self.currentNote._name
-            self.currentNote._details['encrypted'] = "False"
-            updateDict['expanded'] = self.currentNote._details
-            updateItem({self.currentNote.getRandomString():updateDict})
+            self.updateJson()    
+
+            # Add this note to the dict
+            self.updateDList()    
+
             self.closeDialog(self.ui_pv.verifyPasswordDialog) # close dialog
             return True
         else:
@@ -143,3 +145,15 @@ class password(object):
     
     def closeDialog(self,ui_dialog):
         ui_dialog.close()
+
+    def updateDList(self):
+        randomstring = currentNote._details['randomString']
+        if(randomstring not in self.main_Window.decryptedNotes):
+            self.main_Window.decryptedNotes[randomstring] = self.pass1
+
+    def updateJson(self):
+        updateDict = {}
+        updateDict['name'] = self.currentNote._name
+        self.currentNote._details['encrypted'] = "False"
+        updateDict['expanded'] = self.currentNote._details
+        updateItem({self.currentNote.getRandomString():updateDict})
