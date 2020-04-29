@@ -43,14 +43,20 @@ class password(object):
         print("Decryption button clicked")
         # First check whether any note is selected or not
         self.currentNote = currentNote
-        if(self.currentNote._open == True and self.isEncrypted()):
-            self.currentFileName = self.currentNote.getFilename()
-            self.ui_pv = Ui_verifyPasswordDialog()
-            print("Trying to Decrypt {}".format(self.currentFileName))
+        self.currentFileName = self.currentNote.getFilename()
+        randomstring = self.currentNote._details['randomString']
+        if(randomstring in self.main_Window.encryptedInSession):
+            self.pass1 = self.main_Window.encryptedInSession[randomstring]
+            print("in the list",randomstring,self.pass1)
+            self.verifyAndDecryptPassword(use_savedPassword= True)
+        else:
+            if(self.currentNote._open == True and self.isEncrypted()):
+                self.ui_pv = Ui_verifyPasswordDialog()
+                print("Trying to Decrypt {}".format(self.currentFileName))
 
-            # slot-signals
-            self.ui_pv.buttonBox.button(QtWidgets.QDialogButtonBox.Cancel).clicked.connect(lambda:self.closeDialog(self.ui_pv.verifyPasswordDialog))
-            self.ui_pv.buttonBox.button(QtWidgets.QDialogButtonBox.Ok).clicked.connect(lambda:self.verifyAndDecryptPassword())
+                # slot-signals
+                self.ui_pv.buttonBox.button(QtWidgets.QDialogButtonBox.Cancel).clicked.connect(lambda:self.closeDialog(self.ui_pv.verifyPasswordDialog))
+                self.ui_pv.buttonBox.button(QtWidgets.QDialogButtonBox.Ok).clicked.connect(lambda:self.verifyAndDecryptPassword())
 
     
     def passwordEntered(self):
@@ -62,37 +68,41 @@ class password(object):
             self.closeDialog(self.ui_p.passwordDialog)
             hashPassword(self.currentNote,self.currentFileName,self.pass1,self.main_Window,datalength = 64 ,encrypted=False)
             
-    def verifyAndDecryptPassword(self):
-        self.pass1 = self.ui_pv.passwordLineEdit.text()
-        hashed_pass = str(hashPassword(self.currentNote,self.currentFileName,self.pass1,self.main_Window,datalength = 64,encrypted = True))
-        fetched_pass = self.currentNote._details['h_pass']
-        if(hashed_pass == fetched_pass):
-            print("verified")
-            self.verifiedPassword = False
+    def verifyAndDecryptPassword(self,use_savedPassword = False):
+        if(use_savedPassword == False):
+            self.pass1 = self.ui_pv.passwordLineEdit.text()
+            hashed_pass = str(hashPassword(self.currentNote,self.currentFileName,self.pass1,self.main_Window,datalength = 64,encrypted = True))
+            fetched_pass = self.currentNote._details['h_pass']
+            if(hashed_pass == fetched_pass):
+                print("verified")
+                self.verifiedPassword = False
+            else:
+                self.ERROR_MSG = "Incorrect Password"
+                self.displayInstruction(self.ui_pv.Errortext)
+                return False
 
-            # now decrypting and displaying decrypted note
-            txt = currentNote.getText(False)
-            aes = AEScipher(self.pass1,self.currentNote,txt = txt,encrypt = False) # Prepare to decrypt the file
-            d_txt = aes.Decrypt()                                       # decrypted text
-            writeText(self.currentNote._details['path'],bytes(d_txt,encoding='utf8'),encrypted = True) # write decrypted text in file 
-            userinfo =modules.userLogin.readUserInfo()
-            aes_1 = AEScipher(userinfo[1],self.currentNote,txt = bytes(d_txt,encoding='utf8'),encrypt = False)
-            d_txt_1 = aes_1.Decrypt()
-            self.main_Window.ui.plainTextEdit.setPlainText(d_txt_1) # display decrypted text
-            self.main_Window.ui.encryptionButton.setEnabled(True) # enable encryption button
-            self.main_Window.ui.decryptionButton.setEnabled(False) # disable decryption button
-            # update in json tree
-            self.updateJson()    
+        # now decrypting and displaying decrypted note
+        txt = currentNote.getText(False)
+        aes = AEScipher(self.pass1,self.currentNote,txt = txt,encrypt = False) # Prepare to decrypt the file
+        d_txt = aes.Decrypt()                                       # decrypted text
+        writeText(self.currentNote._details['path'],bytes(d_txt,encoding='utf8'),encrypted = True) # write decrypted text in file 
+        userinfo =modules.userLogin.readUserInfo()
+        aes_1 = AEScipher(userinfo[1],self.currentNote,txt = bytes(d_txt,encoding='utf8'),encrypt = False)
+        d_txt_1 = aes_1.Decrypt()
+        self.main_Window.ui.plainTextEdit.setPlainText(d_txt_1) # display decrypted text
+        self.main_Window.ui.encryptionButton.setEnabled(True) # enable encryption button
+        self.main_Window.ui.decryptionButton.setEnabled(False) # disable decryption button
+        # update in json tree
+        self.updateJson()    
 
-            # Add this note to the dict
-            self.updateDList()    
+        # Add this note to the dict
+        self.updateDList()
+        self.updateEList()    
 
+        if(use_savedPassword == False):
             self.closeDialog(self.ui_pv.verifyPasswordDialog) # close dialog
-            return True
-        else:
-            self.ERROR_MSG = "Incorrect Password"
-            self.displayInstruction(self.ui_pv.Errortext)
-            return False
+        return True
+        
 
 
     def setPassword(self):
@@ -112,7 +122,7 @@ class password(object):
     def isEncrypted(self):
         if(self.currentNote._details['encrypted'] == "True"):
             return True
-        print("First encrypt the file you motherfucker")
+        print("First encrypt the file")
         return False
 
     def displayInstruction(self,_textEdit):
@@ -155,6 +165,12 @@ class password(object):
         randomstring = currentNote._details['randomString']
         if(randomstring not in self.main_Window.decryptedNotes):
             self.main_Window.decryptedNotes[randomstring] = self.pass1
+    
+    def updateEList(self):
+        print("Updating E list")
+        randomstring = currentNote._details['randomString']
+        if(randomstring in self.main_Window.encryptedInSession):
+            self.main_Window.encryptedInSession.pop(randomstring)
 
     def updateJson(self):
         updateDict = {}

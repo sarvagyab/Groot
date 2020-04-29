@@ -24,6 +24,7 @@ class Window(QtWidgets.QMainWindow):
         #     u"QTreeWidget::branch:open{ image:url(white-arrow.png);}"
         # )
         self.decryptedNotes= {} # all notes that were encrypted and decrypted in this session
+        self.encryptedInSession = {} # all notes that are encrypted in this session
 
         self.DELAY = 1000   # Delay in displaying Markdown
         self.mdExtensions = []  # Extensions for changing behaviour of markdown viewer

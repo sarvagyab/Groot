@@ -19,6 +19,7 @@ def hashPassword(currentNote,currentFileName,password,main_window,datalength= 64
         currentNote._details['encrypted'] = "True"
         updateJson(currentNote)
         removeFromDList(main_window,currentNote)
+        addInEList(main_window,currentNote,password)
 
     h_pass= Hash(password,salt)
     print("Hashed password")
@@ -55,4 +56,10 @@ def updateJson(currentNote):
 def removeFromDList(main_window,currentNote):
     randomstring= currentNote._details['randomString']
     if(randomstring in main_window.decryptedNotes.keys()):
-        main_window.decryptedNotee.pop(randomstring)
+        main_window.decryptedNotes.pop(randomstring)
+
+def addInEList(main_window,currentNote,password):
+    randomstring= currentNote._details['randomString']
+    if(not randomstring in main_window.encryptedInSession.keys()):
+        main_window.encryptedInSession[randomstring] = password
+    
