@@ -11,7 +11,7 @@ def loadNote(_fileName, _textEdit):
     loadFileName(currentNote.getFilename(),_fileName)
     if(isEncryped()): 
         print("encrypted so don't load the file")
-        _textEdit.setPlainText("")
+        _textEdit.setPlainText("<!--encrypted-->")
         # _textEdit.setPlainText(str(currentNote.getText(False)))
     else:
         _textEdit.setPlainText(str(currentNote.getText()))
