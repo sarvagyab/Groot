@@ -4,9 +4,9 @@ from PySide2 import QtWidgets, QtCore, QtGui
 from GUIs.mainWindowPTE import Ui_Groot
 
 # import modules
-from modules.GUIchanges import fixTreeViewScrolling, createNotebook, createSubNotebook, createNote, rename, dlt
+from modules.GUIchanges import fixTreeViewScrolling, createNotebook, createSubNotebook, createNote, rename, dlt, importer, exportPDF, exportHTML, exportMD
 import mainWindowFunctions
-from modules.markdownHandling import bold, italic, numList, bulletList, hyperlink, inlineCode, datetimenow, attachFile
+from modules.markdownHandling import bold, italic, numList, bulletList, hyperlink, inlineCode, datetimenow, attachFile, exportAsPdf, exportAsHtml, exportAsMarkdown, importMD
 
 class Window(QtWidgets.QMainWindow):
     def __init__(self):
@@ -77,7 +77,23 @@ class Window(QtWidgets.QMainWindow):
 
         # attaching file connection
         self.ui.insertFile.clicked.connect(lambda: attachFile(self.ui.plainTextEdit))
-        
+
+        # export as PDF connection
+        self.ui.actionPDF.triggered.connect(lambda: exportAsPdf(self.ui.mdViewer))
+        exportPDF.triggered.connect(lambda: exportAsPdf(self.ui.mdViewer))
+
+        # export as Markdown connection
+        self.ui.actionMD_2.triggered.connect(lambda: exportAsMarkdown(self.ui.plainTextEdit.toPlainText()))
+        exportMD.triggered.connect(lambda: exportAsMarkdown(self.ui.plainTextEdit.toPlainText()))
+
+        # export as Html connection
+        self.ui.actionHTML.triggered.connect(lambda: exportAsHtml(self.ui.plainTextEdit.toPlainText(),self.mdExtensions))
+        exportHTML.triggered.connect(lambda: exportAsHtml(self.ui.plainTextEdit.toPlainText(),self.mdExtensions))
+       
+        # import MD file
+        self.ui.actionMD.triggered.connect(self._importMD)
+        importer.triggered.connect(lambda: importMD(self.ui.treeWidget.currentItem()))
+
         # Load tree structure and notes
         self.reloadUI()
 
@@ -158,4 +174,4 @@ Window.closeDialogAndMainWindow = mainWindowFunctions.closeDialogAndMainWindow
 Window.openSettingsDialog = mainWindowFunctions.openSettingsDialog
 Window.encryptAlldecryptedNotes = mainWindowFunctions.encryptAlldecryptedNotes
 Window.permenantDecrypt = mainWindowFunctions.permenantDecrypt
-
+Window._importMD = mainWindowFunctions._importMD

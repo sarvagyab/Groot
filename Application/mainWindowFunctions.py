@@ -5,10 +5,10 @@ from PySide2 import QtWidgets,QtGui,QtCore
 
 from modules.setPassword import password
 from modules.fileHandling import currentNote
-from modules.markdownHandling import viewInMarkdown, imageResize
+from modules.markdownHandling import viewInMarkdown, imageResize, importMD
 from modules.treeHandling import loadfileStructure, noteLoader,itemVal, isNote,updateItem,getItem
 from modules.noteHandling import deleteNote, renameNote, addNote, addNotebook,readText,writeText
-from modules.GUIchanges import createNotebook, createSubNotebook, createNote, rename, dlt
+from modules.GUIchanges import createNotebook, createSubNotebook, createNote, rename, dlt, importer, exportPDF, exportHTML, exportMD
 from modules.searchInNote import searchText,finishedSearch
 from modules.userLogin import setUsernameAndPassword,verifyUser
 from modules.encryptNote import AEScipher
@@ -21,14 +21,22 @@ def showMenu(self,pos):
     if item is self.ui.treeWidget.topLevelItem(0):
         menu.addAction(createNotebook)
     elif item is self.ui.treeWidget.topLevelItem(1):
+        menu.addAction(importer)
         menu.addAction(createNote)
     else:
         dets = isNote(item)
         if(dets[0]):
+            exporter = QtWidgets.QMenu()
+            exporter.setTitle("Export")
+            exporter.addAction(exportMD)
+            exporter.addAction(exportHTML)
+            exporter.addAction(exportPDF)
+            menu.addMenu(exporter)
             pass
         else:
             menu.addAction(createSubNotebook)
             menu.addAction(createNote)
+            menu.addAction(importer)
         menu.addAction(rename)
         menu.addAction(dlt)
     menu.exec_(self.ui.treeWidget.mapToGlobal(pos))
@@ -128,6 +136,12 @@ def _renameNote(self,item,col):
 # To resize the images automatically when the text changes
 def resizeEvent(self,event):
     imageResize(self.ui.mdViewer)
+
+def _importMD(self):
+    item = self.ui.treeWidget.currentItem()
+    if (item is None) or (item is self.ui.treeWidget.topLevelItem(0)) or (isNote(item)[0]):
+        item = self.ui.treeWidget.topLevelItem(1)
+    importMD(item)
 
 def closeEvent(self,event):
     self.encryptAlldecryptedNotes()

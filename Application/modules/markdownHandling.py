@@ -226,11 +226,12 @@ def attachFile(te):
 
 
 def exportAsPdf(mdView):
-    if "encrypted" in currentNote._details and currentNote._details["encrypted"] == True:
+    if ("encrypted" in currentNote._details) and currentNote._details["encrypted"] == "True":
+        QtWidgets.QMessageBox(QtWidgets.QMessageBox.Information,"Groot", "Cannot Export Encrypted Files",QtWidgets.QMessageBox.Ok).exec_()
         return
     filename, _ = QtWidgets.QFileDialog().getSaveFileName(None,"Export Pdf","./")
     if filename != "":
-        if QtCore.QFileInfo(filename).suffix() == "":
+        if QtCore.QFileInfo(filename).suffix() != "pdf":
             filename+=".pdf"
         printer = QtPrintSupport.QPrinter(QtPrintSupport.QPrinter.HighResolution)
         printer.setOutputFormat(QtPrintSupport.QPrinter.PdfFormat)
@@ -239,28 +240,31 @@ def exportAsPdf(mdView):
 
 
 def exportAsMarkdown(mdtext):
-    check = currentNote._details["encrypted"]
-    print(check)
-    if ("encrypted" in currentNote._details):
-        print("Does this shit work at all")
-        if check:
-            print("Oh come on")
-            QtWidgets.QMessageBox(QtWidgets.QMessageBox.Information,"Groot", "Cannot Export Encrypted Files",QtWidgets.QMessageBox.Ok).exec_()
-            return
+    if ("encrypted" in currentNote._details) and currentNote._details["encrypted"] == "True":
+        QtWidgets.QMessageBox(QtWidgets.QMessageBox.Information,"Groot", "Cannot Export Encrypted Files",QtWidgets.QMessageBox.Ok).exec_()
+        return
     filename, _ = QtWidgets.QFileDialog().getSaveFileName(None,"Export Markdown","./")
     if filename != "":
-        if QtCore.QFileInfo(filename).suffix() == "":
+        if QtCore.QFileInfo(filename).suffix() != "md":
             filename+=".md"
         with open(filename,"w") as newfile:
             newfile.write(mdtext)
 
 
 def exportAsHtml(mdtext, extensions):
-    if "encrypted" in currentNote._details and currentNote._details["encrypted"] == True:
+    if ("encrypted" in currentNote._details) and currentNote._details["encrypted"] == "True":
+        QtWidgets.QMessageBox(QtWidgets.QMessageBox.Information,"Groot", "Cannot Export Encrypted Files",QtWidgets.QMessageBox.Ok).exec_()
         return
     filename, _ = QtWidgets.QFileDialog().getSaveFileName(None,"Export Html","./")
     if filename != "":
-        if QtCore.QFileInfo(filename).suffix() == "":
+        if QtCore.QFileInfo(filename).suffix() != "html":
             filename+=".html"
         with open(filename,"w") as newfile:
             newfile.write(mdToHtml(mdtext,extensions))
+
+
+def importMD(item):
+    filename, _ = QtWidgets.QFileDialog().getOpenFileName(None,"Attach File","./","Markdown(*.md)")
+    if filename == "":
+        return
+    print(filename)
