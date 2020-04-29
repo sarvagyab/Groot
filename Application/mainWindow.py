@@ -76,7 +76,7 @@ class Window(QtWidgets.QMainWindow):
         self.ui.dateTime.clicked.connect(lambda: datetimenow(self.ui.plainTextEdit))
 
         # attaching file connection
-        self.ui.pushButton_3.clicked.connect(lambda: attachFile(self.ui.plainTextEdit))
+        self.ui.insertFile.clicked.connect(lambda: attachFile(self.ui.plainTextEdit))
         
         # Load tree structure and notes
         self.reloadUI()

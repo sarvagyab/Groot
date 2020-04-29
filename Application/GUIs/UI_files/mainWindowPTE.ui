@@ -1050,7 +1050,7 @@ QPushButton:pressed{
                     </widget>
                    </item>
                    <item>
-                    <widget class="QPushButton" name="pushButton_3">
+                    <widget class="QPushButton" name="insertFile">
                      <property name="cursor">
                       <cursorShape>PointingHandCursor</cursorShape>
                      </property>

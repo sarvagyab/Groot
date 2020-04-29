@@ -217,6 +217,6 @@ def attachFile(te):
     te.insertPlainText("![fileName](" + destination + ")")
     for _ in range(len("fileName](" + destination + ")")):
         te.moveCursor(QtGui.QTextCursor.Left)
-    for I in range(len("filename")):
+    for _ in range(len("filename")):
         te.moveCursor(QtGui.QTextCursor.Right, QtGui.QTextCursor.KeepAnchor)
     te.setFocus()
