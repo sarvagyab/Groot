@@ -43,7 +43,7 @@ def _delayChecker(self):
     self.timer.start(self.DELAY)
 
 def _noteLoader(self):
-    changeNote = lambda : noteLoader(self.ui.treeWidget.currentItem(),self.ui.fileName,self.ui.plainTextEdit)
+    changeNote = lambda : noteLoader(self.ui.treeWidget.currentItem(),self.ui.fileName,self.ui.plainTextEdit,self.ui.encryptionButton,self.ui.decryptionButton)
     self.ui.treeWidget.itemSelectionChanged.connect(changeNote)
 
 def _markdownViewer(self):
@@ -159,12 +159,9 @@ def openLoginDialog(self):
 def encryptAlldecryptedNotes(self):
     notes = getItem(list(self.decryptedNotes.keys()))
     for note in notes:
-        print(note,notes[note])
         path = notes[note]['expanded']['path']
         notes[note]['expanded']['encrypted'] = "True"
         txt = readText(path)
-        print(txt)
-        print(self.decryptedNotes[note])
         aes = AEScipher(self.decryptedNotes[note],None,txt) 
         enc_txt = aes.Encrypt()
         writeText(path,enc_txt,encrypted = True)

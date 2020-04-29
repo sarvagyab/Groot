@@ -26,14 +26,18 @@ class password(object):
         print("Encryption button clicked")
         # First check whether any note is selected or not
         self.currentNote = currentNote
-        if(self.currentNote._open == True):
-            self.currentFileName = self.currentNote._name
+        self.currentFileName = self.currentNote._name
+        randomstring = self.currentNote._details['randomString']
+        if( randomstring in self.main_Window.decryptedNotes):
+            self.pass1 = self.main_Window.decryptedNotes[randomstring]
+            hashPassword(self.currentNote,self.currentFileName,self.pass1,self.main_Window,datalength = 64 ,encrypted=False)
+        else:
             self.ui_p = Ui_passwordDialog()
-
-            print("Trying to encrypt {}".format(self.currentFileName))
-            # slot-signals
-            self.ui_p.buttonBox.button(QtWidgets.QDialogButtonBox.Ok).clicked.connect(lambda:self.passwordEntered())
-            self.ui_p.buttonBox.button(QtWidgets.QDialogButtonBox.Cancel).clicked.connect(lambda:self.closeDialog(self.ui_p.passwordDialog))
+            if(self.currentNote._open == True):
+                print("Trying to encrypt {}".format(self.currentFileName))
+                # slot-signals
+                self.ui_p.buttonBox.button(QtWidgets.QDialogButtonBox.Ok).clicked.connect(lambda:self.passwordEntered())
+                self.ui_p.buttonBox.button(QtWidgets.QDialogButtonBox.Cancel).clicked.connect(lambda:self.closeDialog(self.ui_p.passwordDialog))
 
     def openVerifyPasswordDialog(self):
         print("Decryption button clicked")
@@ -45,7 +49,7 @@ class password(object):
             print("Trying to Decrypt {}".format(self.currentFileName))
 
             # slot-signals
-            self.ui_pv.buttonBox.button(QtWidgets.QDialogButtonBox.Cancel).clicked.connect(lambda:closeDialog(self.ui_pv.verifyPasswordDialog))
+            self.ui_pv.buttonBox.button(QtWidgets.QDialogButtonBox.Cancel).clicked.connect(lambda:self.closeDialog(self.ui_pv.verifyPasswordDialog))
             self.ui_pv.buttonBox.button(QtWidgets.QDialogButtonBox.Ok).clicked.connect(lambda:self.verifyAndDecryptPassword())
 
     
@@ -65,7 +69,7 @@ class password(object):
         if(hashed_pass == fetched_pass):
             print("verified")
             self.verifiedPassword = False
-            
+
             # now decrypting and displaying decrypted note
             txt = currentNote.getText(False)
             aes = AEScipher(self.pass1,self.currentNote,txt = txt,encrypt = False) # Prepare to decrypt the file
@@ -75,7 +79,8 @@ class password(object):
             aes_1 = AEScipher(userinfo[1],self.currentNote,txt = bytes(d_txt,encoding='utf8'),encrypt = False)
             d_txt_1 = aes_1.Decrypt()
             self.main_Window.ui.plainTextEdit.setPlainText(d_txt_1) # display decrypted text
-            
+            self.main_Window.ui.encryptionButton.setEnabled(True) # enable encryption button
+            self.main_Window.ui.decryptionButton.setEnabled(False) # disable decryption button
             # update in json tree
             self.updateJson()    
 
