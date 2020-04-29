@@ -74,20 +74,40 @@ def isNote(item):
     return [False,[]]
 
 
-def _updateItem(changeDict,structDict): # DFS
+def _traverseJson(changeDict,structDict,getItem = False): # DFS
+    """Give the list of keys when getItem is true"""
+    found = {}
+    if(getItem == True):
+        if(type(changeDict)!= type([])):
+            changeDict = [changeDict]
+
     if(type(structDict) == type({})): 
-        for key in changeDict.keys():
+        for key in changeDict:
             if(key in structDict.keys()): # found the key
-                structDict[key] = changeDict[key]
+                if(getItem == True):
+                    found[key] = structDict[key]
+                else:
+                    structDict[key] = changeDict[key]
             elif(len(structDict.keys())> 0):
                 for key in structDict.keys():
-                    _updateItem(changeDict,structDict[key])
+                    if(getItem == True):
+                        result = _traverseJson(changeDict,structDict[key],getItem = True)
+                        if result:
+                            for k,v in result.items():
+                                found[k] = v
+                    else:
+                        _traverseJson(changeDict,structDict[key])
+    return found
 
 
 def updateItem(changeDict):
     structDict = getJsonTree()
-    _updateItem(changeDict,structDict)
+    _traverseJson(changeDict,structDict)
     saveUpdatedJson(structDict) # save updated json to the file
+
+def getItem(getDict):
+    structDict = getJsonTree()
+    return _traverseJson(getDict,structDict,getItem = True)
 
 
 def noteLoader(item, _fileName, _textEdit):

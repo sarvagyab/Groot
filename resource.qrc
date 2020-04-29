@@ -7,6 +7,8 @@
     <file>Icons/16x16/folder_open.png</file>
     <file>Icons/16x16/folder_plus.png</file>
     <file>Icons/16x16/encrypt.png</file>
+    <file>Icons/16x16/encrypt_24.png</file>
+    <file>Icons/16x16/encrypt_20.png</file>
     <file>Icons/16x16/decrypt.png</file>
     <file>Icons/16x16/doc_new.png</file>
     <file>Icons/16x16/subfolder.png</file>
@@ -42,6 +44,8 @@
     <file>Icons/32x32/image.png</file>
     <file>Icons/32x32/encrypt.png</file>
     <file>Icons/32x32/decrypt.png</file>
+    <file>Icons/32x32/key.png</file>
+    <file>Icons/32x32/cancel.png</file>
     <file>Icons/32x32/brackets.png</file>
     <file>Icons/32x32/clock.png</file>
     <file>Icons/32x32/bullets.png</file>

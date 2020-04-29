@@ -804,7 +804,7 @@ background-color:grey;</string>
 
 QPushButton{
 	border-style:None;
-	padding:1px;
+	padding:3px;
 }
 
 QPushButton:hover{
@@ -841,7 +841,7 @@ QPushButton:pressed{
                   <property name="styleSheet">
                    <string notr="true">QPushButton{
 	margin:0px;
-	padding:0px;
+	padding:1px;
 }
 
 QPushButton:hover{
@@ -1000,7 +1000,7 @@ QPushButton:pressed{
                   <property name="styleSheet">
                    <string notr="true">QPushButton{
 	margin:0px;
-	padding:0px;
+	padding:1px;
 }
 
 QPushButton:hover{
@@ -1109,7 +1109,7 @@ QPushButton:pressed{
                   <property name="styleSheet">
                    <string notr="true">QPushButton{
 	margin:0px;
-	padding:0px;
+	padding:1px;
 }
 
 QPushButton:hover{
@@ -1187,6 +1187,56 @@ QPushButton:pressed{
                      <property name="icon">
                       <iconset resource="../../../resource.qrc">
                        <normaloff>:/icons/Icons/32x32/decrypt.png</normaloff>:/icons/Icons/32x32/decrypt.png</iconset>
+                     </property>
+                     <property name="iconSize">
+                      <size>
+                       <width>32</width>
+                       <height>32</height>
+                      </size>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="permanentDecrypt">
+                     <property name="cursor">
+                      <cursorShape>PointingHandCursor</cursorShape>
+                     </property>
+                     <property name="toolTip">
+                      <string>Permanent decrypt</string>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true">image: url(:/icons/Icons/16x16/encrypt_20.png);
+</string>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                     <property name="icon">
+                      <iconset resource="../../../resource.qrc">
+                       <normaloff>:/icons/Icons/32x32/cancel.png</normaloff>:/icons/Icons/32x32/cancel.png</iconset>
+                     </property>
+                     <property name="iconSize">
+                      <size>
+                       <width>32</width>
+                       <height>32</height>
+                      </size>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="changePasswordButton">
+                     <property name="cursor">
+                      <cursorShape>PointingHandCursor</cursorShape>
+                     </property>
+                     <property name="toolTip">
+                      <string>Change encryption password of this note</string>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                     <property name="icon">
+                      <iconset resource="../../../resource.qrc">
+                       <normaloff>:/icons/Icons/32x32/key.png</normaloff>:/icons/Icons/32x32/key.png</iconset>
                      </property>
                      <property name="iconSize">
                       <size>
