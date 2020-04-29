@@ -1572,21 +1572,37 @@ QPushButton:pressed{
    </property>
   </action>
   <action name="actionMD">
+   <property name="icon">
+    <iconset resource="../../../resource.qrc">
+     <normaloff>:/icons/Icons/Format Icons/16x16/markdown.png</normaloff>:/icons/Icons/Format Icons/16x16/markdown.png</iconset>
+   </property>
    <property name="text">
     <string>MD</string>
    </property>
   </action>
   <action name="actionMD_2">
+   <property name="icon">
+    <iconset resource="../../../resource.qrc">
+     <normaloff>:/icons/Icons/Format Icons/16x16/markdown.png</normaloff>:/icons/Icons/Format Icons/16x16/markdown.png</iconset>
+   </property>
    <property name="text">
     <string>MD</string>
    </property>
   </action>
   <action name="actionHTML">
+   <property name="icon">
+    <iconset resource="../../../resource.qrc">
+     <normaloff>:/icons/Icons/Format Icons/16x16/html.png</normaloff>:/icons/Icons/Format Icons/16x16/html.png</iconset>
+   </property>
    <property name="text">
     <string>HTML</string>
    </property>
   </action>
   <action name="actionPDF">
+   <property name="icon">
+    <iconset resource="../../../resource.qrc">
+     <normaloff>:/icons/Icons/Format Icons/16x16/pdf.png</normaloff>:/icons/Icons/Format Icons/16x16/pdf.png</iconset>
+   </property>
    <property name="text">
     <string>PDF</string>
    </property>
