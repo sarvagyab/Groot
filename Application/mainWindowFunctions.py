@@ -168,17 +168,10 @@ def encryptAlldecryptedNotes(self):
         updateItem({note:notes[note]})
 
 def permenantDecrypt(self):
+    print("permenant decrypt click")
     randomstring = currentNote._details['randomString']
-    # if(randomstring in self.encryptedInSession and not randomstring in self.decryptedNotes):
-    #     self.decryptedNotes[randomstring] = self.encryptedInSession[randomstring]
     pwd = password(self)
-    print(randomstring)
-    pwd.openVerifyPasswordDialog()
-    for a in self.decryptedNotes:
-        print(a)
-    self.decryptedNotes.pop(randomstring)
-    for a in self.decryptedNotes:
-        print(a)
+    pwd.openVerifyPasswordDialog(True)
 
 
 def openFirstLoginDialog(self):

@@ -1,5 +1,6 @@
-from PySide2 import QtGui, QtWidgets
+from PySide2 import QtGui, QtWidgets, QtCore, QtPrintSupport
 import markdown, datetime, shutil
+from modules.fileHandling import currentNote
 
 def viewInMarkdown(md,extensions,markdownView):
     html = mdToHtml(md, extensions)
@@ -211,6 +212,8 @@ def datetimenow(te):
 def attachFile(te):
     filename, _ = QtWidgets.QFileDialog().getOpenFileName(None,"Attach File","./")
     # print(filename)
+    if filename == "":
+        return
     randomString = datetime.datetime.now().strftime("%d%m%Y%H%M%S")
     destination = shutil.copyfile(filename,"./atch/" + randomString)
     # print(destination)
@@ -220,3 +223,44 @@ def attachFile(te):
     for _ in range(len("filename")):
         te.moveCursor(QtGui.QTextCursor.Right, QtGui.QTextCursor.KeepAnchor)
     te.setFocus()
+
+
+def exportAsPdf(mdView):
+    if "encrypted" in currentNote._details and currentNote._details["encrypted"] == True:
+        return
+    filename, _ = QtWidgets.QFileDialog().getSaveFileName(None,"Export Pdf","./")
+    if filename != "":
+        if QtCore.QFileInfo(filename).suffix() == "":
+            filename+=".pdf"
+        printer = QtPrintSupport.QPrinter(QtPrintSupport.QPrinter.HighResolution)
+        printer.setOutputFormat(QtPrintSupport.QPrinter.PdfFormat)
+        printer.setOutputFileName(filename)
+        mdView.document().print_(printer)
+
+
+def exportAsMarkdown(mdtext):
+    check = currentNote._details["encrypted"]
+    print(check)
+    if ("encrypted" in currentNote._details):
+        print("Does this shit work at all")
+        if check:
+            print("Oh come on")
+            QtWidgets.QMessageBox(QtWidgets.QMessageBox.Information,"Groot", "Cannot Export Encrypted Files",QtWidgets.QMessageBox.Ok).exec_()
+            return
+    filename, _ = QtWidgets.QFileDialog().getSaveFileName(None,"Export Markdown","./")
+    if filename != "":
+        if QtCore.QFileInfo(filename).suffix() == "":
+            filename+=".md"
+        with open(filename,"w") as newfile:
+            newfile.write(mdtext)
+
+
+def exportAsHtml(mdtext, extensions):
+    if "encrypted" in currentNote._details and currentNote._details["encrypted"] == True:
+        return
+    filename, _ = QtWidgets.QFileDialog().getSaveFileName(None,"Export Html","./")
+    if filename != "":
+        if QtCore.QFileInfo(filename).suffix() == "":
+            filename+=".html"
+        with open(filename,"w") as newfile:
+            newfile.write(mdToHtml(mdtext,extensions))
