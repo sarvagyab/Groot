@@ -1,6 +1,7 @@
 from PySide2 import QtGui, QtWidgets, QtCore, QtPrintSupport
 import markdown, datetime, shutil
 from modules.fileHandling import currentNote
+from modules.treeHandling import itemVal, saveUpdatedJson
 
 def viewInMarkdown(md,extensions,markdownView):
     html = mdToHtml(md, extensions)
@@ -264,7 +265,36 @@ def exportAsHtml(mdtext, extensions):
 
 
 def importMD(item):
+    # Input file
     filename, _ = QtWidgets.QFileDialog().getOpenFileName(None,"Attach File","./","Markdown(*.md)")
     if filename == "":
         return
-    print(filename)
+
+    # Creating file in our app
+    randomString = datetime.datetime.now().strftime("%d%m%Y%H%M%S")
+    path = "./notes/" + randomString + ".txt"
+    shutil.copyfile(filename,path)
+
+
+    # Add to JSON
+    info = QtCore.QFileInfo(filename)
+    newdict = {}
+    newdict["name"] = info.fileName()[:-len("." + info.suffix())]
+    newdict["expanded"] = {}
+    newdict["expanded"]["path"] = path
+    newdict["expanded"]["randomString"] = randomString
+    deets = itemVal(item)
+    if item.parent() is None:
+        deets[2]["Uncategorized"][randomString] = newdict
+    else:
+        deets[1][deets[0]]["expanded"][randomString] = newdict
+
+    saveUpdatedJson(deets[2])
+
+    # Update treeWidget
+    newItem = QtWidgets.QTreeWidgetItem()
+    newItem.setText(0,newdict["name"])
+    newItem.setFlags(QtCore.Qt.ItemIsEditable|QtCore.Qt.ItemIsSelectable|QtCore.Qt.ItemIsUserCheckable|QtCore.Qt.ItemIsEnabled)
+    item.addChild(newItem)
+    item.setExpanded(True)
+    newItem.setSelected(True)
