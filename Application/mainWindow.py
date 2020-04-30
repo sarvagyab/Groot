@@ -97,6 +97,8 @@ class Window(QtWidgets.QMainWindow):
         # Load tree structure and notes
         self.reloadUI()
 
+        # Permanent decrypt click
+        self.ui.permanentDecrypt.clicked.connect(lambda: self.permenantDecrypt())
         # Timer for Loading the Markdown view when the user has stopped typing for a duration
         self.timer = QtCore.QTimer()
         self.timer.setSingleShot(True)
@@ -171,4 +173,5 @@ Window.checkFirstLogin = mainWindowFunctions.checkFirstLogin
 Window.closeDialogAndMainWindow = mainWindowFunctions.closeDialogAndMainWindow
 Window.openSettingsDialog = mainWindowFunctions.openSettingsDialog
 Window.encryptAlldecryptedNotes = mainWindowFunctions.encryptAlldecryptedNotes
+Window.permenantDecrypt = mainWindowFunctions.permenantDecrypt
 Window._importMD = mainWindowFunctions._importMD

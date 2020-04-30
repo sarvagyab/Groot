@@ -51,7 +51,7 @@ def _delayChecker(self):
     self.timer.start(self.DELAY)
 
 def _noteLoader(self):
-    changeNote = lambda : noteLoader(self.ui.treeWidget.currentItem(),self.ui.fileName,self.ui.plainTextEdit,self.ui.encryptionButton,self.ui.decryptionButton)
+    changeNote = lambda : noteLoader(self.ui)
     self.ui.treeWidget.itemSelectionChanged.connect(changeNote)
 
 def _markdownViewer(self):
@@ -180,6 +180,12 @@ def encryptAlldecryptedNotes(self):
         enc_txt = aes.Encrypt()
         writeText(path,enc_txt,encrypted = True)
         updateItem({note:notes[note]})
+
+def permenantDecrypt(self):
+    print("permenant decrypt click")
+    randomstring = currentNote._details['randomString']
+    pwd = password(self)
+    pwd.openVerifyPasswordDialog(True)
 
 
 def openFirstLoginDialog(self):
