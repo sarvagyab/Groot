@@ -23,13 +23,13 @@
       </font>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="tabAppearance">
       <attribute name="title">
        <string>Appearance</string>
       </attribute>
-      <widget class="QComboBox" name="comboBox">
+      <widget class="QComboBox" name="themeChoice">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -54,7 +54,7 @@
         </property>
        </item>
       </widget>
-      <widget class="QLabel" name="label_2">
+      <widget class="QLabel" name="themeLabel">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -72,7 +72,7 @@
         <string>Theme:</string>
        </property>
       </widget>
-      <widget class="QLabel" name="label_3">
+      <widget class="QLabel" name="fontSizeLabel">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -90,7 +90,7 @@
         <string>Font size:</string>
        </property>
       </widget>
-      <widget class="QFontComboBox" name="fontComboBox">
+      <widget class="QFontComboBox" name="fontChoice">
        <property name="geometry">
         <rect>
          <x>140</x>
@@ -105,7 +105,7 @@
         </font>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_2">
+      <widget class="QLineEdit" name="fontSizeValue">
        <property name="geometry">
         <rect>
          <x>140</x>
@@ -123,7 +123,7 @@
         <string>Enter size</string>
        </property>
       </widget>
-      <widget class="QLabel" name="label_4">
+      <widget class="QLabel" name="fontFamilyLabel">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -148,19 +148,7 @@
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
-        <widget class="QCheckBox" name="checkBox">
-         <property name="font">
-          <font>
-           <pointsize>10</pointsize>
-          </font>
-         </property>
-         <property name="text">
-          <string>Tables</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QCheckBox" name="checkBox_2">
+        <widget class="QCheckBox" name="footnotesExt">
          <property name="font">
           <font>
            <pointsize>10</pointsize>
@@ -172,7 +160,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QCheckBox" name="checkBox_3">
+        <widget class="QCheckBox" name="defListsExt">
          <property name="font">
           <font>
            <pointsize>10</pointsize>
@@ -184,7 +172,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QCheckBox" name="checkBox_4">
+        <widget class="QCheckBox" name="mdExt">
          <property name="font">
           <font>
            <pointsize>10</pointsize>
@@ -196,7 +184,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QCheckBox" name="checkBox_5">
+        <widget class="QCheckBox" name="supExt">
          <property name="font">
           <font>
            <pointsize>10</pointsize>
@@ -208,7 +196,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QCheckBox" name="checkBox_6">
+        <widget class="QCheckBox" name="subExt">
          <property name="font">
           <font>
            <pointsize>10</pointsize>
@@ -220,7 +208,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QCheckBox" name="checkBox_7">
+        <widget class="QCheckBox" name="linkExt">
          <property name="font">
           <font>
            <pointsize>10</pointsize>
@@ -232,7 +220,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QCheckBox" name="checkBox_8">
+        <widget class="QCheckBox" name="symbolsExt">
          <property name="font">
           <font>
            <pointsize>10</pointsize>
@@ -244,7 +232,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QCheckBox" name="checkBox_9">
+        <widget class="QCheckBox" name="strikeExt">
          <property name="font">
           <font>
            <pointsize>10</pointsize>
@@ -262,7 +250,7 @@
       <attribute name="title">
        <string>Encryption</string>
       </attribute>
-      <widget class="QLineEdit" name="lineEdit">
+      <widget class="QLineEdit" name="enterPwd">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -280,7 +268,7 @@
         <string>Enter Password</string>
        </property>
       </widget>
-      <widget class="QLabel" name="label">
+      <widget class="QLabel" name="enterPwdLabel">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -295,10 +283,10 @@
         </font>
        </property>
        <property name="text">
-        <string>Enter Password to access encyption settings</string>
+        <string>Enter Password to access encyption settings:</string>
        </property>
       </widget>
-      <widget class="QCheckBox" name="checkBox_10">
+      <widget class="QCheckBox" name="encryptAllChoice">
        <property name="geometry">
         <rect>
          <x>10</x>
@@ -316,7 +304,7 @@
         <string>Encrypt all notes</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="changePwdChoice">
        <property name="geometry">
         <rect>
          <x>10</x>
