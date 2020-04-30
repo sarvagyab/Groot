@@ -11,7 +11,7 @@ def viewInMarkdown(md,extensions,markdownView):
 
 
 def mdToHtml(md, _extensions):
-    html = markdown.markdown(md, extensions = ["sane_lists","tables","fenced_code"] + _extensions)
+    html = markdown.markdown(md, extensions = ["sane_lists","tables","fenced_code"] + _extensions, extension_configs = {"pymdownx.tilde":{"subscript":False}})
     return html
 
 
@@ -227,27 +227,91 @@ def attachFile(te):
     te.setFocus()
 
 
-def pluginHandler(text,check,extensions):
+def pluginHandler(text,check,extensions, configs):
 
     if text == "hardbreak":
         ext = "nl2br"
+        if check: pass
+        else:
+            extensions.remove(ext)
     elif text == "footnotes":
         ext = "footnotes"
+        if check: pass
+        else:
+            extensions.remove(ext)
     elif text == "defLists":
         ext = "def_list"
+        if check: pass
+        else:
+            extensions.remove(ext)
     elif text == "mdExt":
         ext = "md_in_html"
+        if check: pass
+        else:
+            extensions.remove(ext)
     elif text == "superscript":
-        ext = "pymdownx.caret:{smart_insert:false, insert: false}"
+        ext = "pymdownx.caret"
+        if check:
+            configs[ext] = {"smart_insert":False, "insert": False}
+        else:
+            extensions.remove(ext)
+            del configs[ext]
     elif text == "autolink":
         ext = "pymdownx.magiclink"
+        if check: pass
+        else:
+            extensions.remove(ext)
     elif text == "symbols":
         ext = "pymdownx.smartsymbols"
+        if check: pass
+        else:
+            extensions.remove(ext)
     elif text == "strike":
-        ext = "pymdownx.tilde"
+        if check:
+            if "pymdownx.tilde" in extensions:
+                ext = ""
+                configs["pymdownx.tilde"]["smart_delete"] = True
+                configs["pymdownx.tilde"]["delete"] = True
+            else:
+                ext = "pymdownx.tilde"
+                configs["pymdownx.tilde"] = {}
+                configs["pymdownx.tilde"]["smart_delete"] = True
+                configs["pymdownx.tilde"]["delete"] = True
+                configs["pymdownx.tilde"]["subscript"] = False
+        else:
+            if configs["pymdownx.tilde"]["subscript"]:
+                configs["pymdownx.tilde"]["smart_delete"] = False
+                configs["pymdownx.tilde"]["delete"] = False
+            else:
+                extensions.remove("pymdownx.tilde")
+                del configs["pymdownx.tilde"]
+    
     elif text == "subscript":
-        ext = "pymdownx.tilde"
-    extensions+=[ext]
+        if check:
+            if "pymdownx.tilde" in extensions:
+                ext = ""
+                configs["pymdownx.tilde"]["subscript"] = True
+            else:
+                ext = "pymdownx.tilde"
+                configs["pymdownx.tilde"] = {}
+                configs["pymdownx.tilde"]["smart_delete"] = False
+                configs["pymdownx.tilde"]["delete"] = False
+                configs["pymdownx.tilde"]["subscript"] = True
+        else:
+            if configs["pymdownx.tilde"]["delete"]:
+                configs["pymdownx.tilde"]["subscript"] = False
+            else:
+                extensions.remove("pymdownx.tilde")
+                del configs["pymdownx.tilde"]
+    
+    if check and ext!="":
+        extensions+=[ext]
+    
+    print("extensions - ")
+    print(extensions)
+    print("\nconfigs - ")
+    print(configs)
+    print("\n")
 
 
 def exportAsPdf(mdView):

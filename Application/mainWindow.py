@@ -33,7 +33,8 @@ class Window(QtWidgets.QMainWindow):
 
         self.DELAY = 1000   # Delay in displaying Markdown
         self.mdExtensions = []  # Extensions for changing behaviour of markdown viewer
-
+        self.mdExtensionsConfigs = {} # Extensions configurations for changing the behaviour of extensions in markdown
+        
         # Fix no Scrollbar issue in notes tree when file names go out of box
         fixTreeViewScrolling(self.ui.treeWidget)
 
