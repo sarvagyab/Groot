@@ -117,24 +117,29 @@ def noteLoader(ui):
     _encryptionButton=ui.encryptionButton
     _decryptionButton=ui.decryptionButton
     _permanentDecrypt = ui.permanentDecrypt
+    _changePasswordButton = ui.changePasswordButton
     note = isNote(item)
     if(note[0]):
         currentNote.openFile(item,note[1])
-        disableEncryptionIfEncrypted(_encryptionButton,_decryptionButton,_permanentDecrypt)
+        disableEncryptionIfEncrypted(_encryptionButton,_decryptionButton,_permanentDecrypt,_changePasswordButton)
         from modules.noteHandling import loadNote
         loadNote(_fileName,_textEdit)
 
-def disableEncryptionIfEncrypted(encryptionButton,decryptionButton,permanentDecrypt):
+def disableEncryptionIfEncrypted(encryptionButton,decryptionButton,permanentDecrypt,changePasswordButton):
     if('encrypted' in currentNote._details ):
         if(currentNote._details["encrypted"] == "True"):
             encryptionButton.setEnabled(False)
+            changePasswordButton.setEnabled(True)
             decryptionButton.setEnabled(True)
             permanentDecrypt.setEnabled(True)
+
         else:
+            changePasswordButton.setEnabled(False)
             decryptionButton.setEnabled(False)
             permanentDecrypt.setEnabled(False)
             encryptionButton.setEnabled(True)
     else:
+            changePasswordButton.setEnabled(False)
             decryptionButton.setEnabled(False)
             permanentDecrypt.setEnabled(False)
             encryptionButton.setEnabled(True)

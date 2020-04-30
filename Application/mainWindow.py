@@ -99,6 +99,10 @@ class Window(QtWidgets.QMainWindow):
 
         # Permanent decrypt click
         self.ui.permanentDecrypt.clicked.connect(lambda: self.permenantDecrypt())
+
+        # change encryption password
+        self.ui.changePasswordButton.clicked.connect(lambda : self.changeEncryptionPassword())
+
         # Timer for Loading the Markdown view when the user has stopped typing for a duration
         self.timer = QtCore.QTimer()
         self.timer.setSingleShot(True)
@@ -174,4 +178,5 @@ Window.closeDialogAndMainWindow = mainWindowFunctions.closeDialogAndMainWindow
 Window.openSettingsDialog = mainWindowFunctions.openSettingsDialog
 Window.encryptAlldecryptedNotes = mainWindowFunctions.encryptAlldecryptedNotes
 Window.permenantDecrypt = mainWindowFunctions.permenantDecrypt
+Window.changeEncryptionPassword = mainWindowFunctions.changeEncryptionPassword
 Window._importMD = mainWindowFunctions._importMD
