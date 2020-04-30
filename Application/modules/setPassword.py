@@ -3,6 +3,7 @@ from PySide2 import QtWidgets
 #GUI
 from GUIs.passwordDialog import Ui_passwordDialog
 from GUIs.verifyPasswordDialog import Ui_verifyPasswordDialog
+from GUIs.changePasswordDialog import Ui_changePasswordDialog
 
 from modules.Exceptions import *
 from modules.passwordHashing import hashPassword
@@ -40,8 +41,6 @@ class password(object):
                 self.ui_p.buttonBox.button(QtWidgets.QDialogButtonBox.Cancel).clicked.connect(lambda:self.closeDialog(self.ui_p.passwordDialog))
 
     def openVerifyPasswordDialog(self,permanentdecrypt = False):
-        # print("Decryption button clicked")
-        # First check whether any note is selected or not
         self.currentNote = currentNote
         self.currentFileName = self.currentNote.getFilename()
         print("Decryption button clicked",self.currentFileName,permanentdecrypt)
@@ -58,7 +57,13 @@ class password(object):
                 self.ui_pv.buttonBox.button(QtWidgets.QDialogButtonBox.Cancel).clicked.connect(lambda:self.closeDialog(self.ui_pv.verifyPasswordDialog))
                 self.ui_pv.buttonBox.button(QtWidgets.QDialogButtonBox.Ok).clicked.connect(lambda:self.verifyAndDecryptPassword(use_savedPassword=False,permanentdecrypt = permanentdecrypt))
 
-    
+    def openChangeEncryptionPasswordDialog(self):
+        self.currentNote = currentNote
+        self.currentFileName = self.currentNote.getFilename()
+        self.ui_p = Ui_changePasswordDialog()
+        self.ui_p.buttonBox.button(QtWidgets.QDialogButtonBox.Cancel).clicked.connect(lambda:self.closeDialog(self.ui_p.changePasswordDialog))
+        self.ui_p.buttonBox.button(QtWidgets.QDialogButtonBox.Ok).clicked.connect(lambda:self.changeEncryptionPassword())
+
     def passwordEntered(self):
         self.pass1 = self.ui_p.passwordLineEdit.text()
         self.pass2 = self.ui_p.RepasswordLineEdit.text()
@@ -70,29 +75,16 @@ class password(object):
             
     def verifyAndDecryptPassword(self,use_savedPassword = False,permanentdecrypt = False):
         if(use_savedPassword == False):
-            self.pass1 = self.ui_pv.passwordLineEdit.text()
-            hashed_pass = str(hashPassword(self.currentNote,self.currentFileName,self.pass1,self.main_Window,datalength = 64,encrypted = True))
-            fetched_pass = self.currentNote._details['h_pass']
-            if(hashed_pass == fetched_pass):
-                print("verified")
-                self.verifiedPassword = False
-            else:
-                self.ERROR_MSG = "Incorrect Password"
-                self.displayInstruction(self.ui_pv.Errortext)
-                return False
-
+            if(self.verifyPassword(self.ui_pv.passwordLineEdit,self.ui_pv.Errortext) == False):
+                return
+            
         # now decrypting and displaying decrypted note
-        txt = currentNote.getText(False)
-        aes = AEScipher(self.pass1,self.currentNote,txt = txt,encrypt = False) # Prepare to decrypt the file
-        d_txt = aes.Decrypt()                                       # decrypted text
-        writeText(self.currentNote._details['path'],bytes(d_txt,encoding='utf8'),encrypted = True) # write decrypted text in file 
-        userinfo =modules.userLogin.readUserInfo()
-        aes_1 = AEScipher(userinfo[1],self.currentNote,txt = bytes(d_txt,encoding='utf8'),encrypt = False)
-        d_txt_1 = aes_1.Decrypt()
-        self.main_Window.ui.plainTextEdit.setPlainText(d_txt_1) # display decrypted text
+        self.decryptAndDisplay() # display decrypted text
+
         self.main_Window.ui.encryptionButton.setEnabled(True) # enable encryption button
         self.main_Window.ui.decryptionButton.setEnabled(False) # disable decryption button
         self.main_Window.ui.permanentDecrypt.setEnabled(False) # disable decryption button
+        self.main_Window.ui.changePasswordButton.setEnabled(False)
         # update in json tree
         self.updateJson()    
 
@@ -105,6 +97,41 @@ class password(object):
             self.closeDialog(self.ui_pv.verifyPasswordDialog) # close dialog
         return True
         
+    def verifyPassword(self,_passwordLineEdit,_errorLineEdit):
+        self.pass1 = _passwordLineEdit.text()
+        hashed_pass = str(hashPassword(self.currentNote,self.currentFileName,self.pass1,self.main_Window,datalength = 64,encrypted = True))
+        fetched_pass = self.currentNote._details['h_pass']
+        if(hashed_pass == fetched_pass):
+            print("verified")
+            self.verifiedPassword = False
+            return True
+        else:
+            self.ERROR_MSG = "Incorrect Password"
+            self.displayInstruction(_errorLineEdit)
+            return False
+
+    
+    def decryptAndDisplay(self):
+        txt = currentNote.getText(False)
+        aes = AEScipher(self.pass1,self.currentNote,txt = txt,encrypt = False) # Prepare to decrypt the file
+        d_txt = aes.Decrypt()                                       # decrypted text
+        writeText(self.currentNote._details['path'],bytes(d_txt,encoding='utf8'),encrypted = True) # write decrypted text in file 
+        userinfo =modules.userLogin.readUserInfo()
+        aes_1 = AEScipher(userinfo[1],self.currentNote,txt = bytes(d_txt,encoding='utf8'),encrypt = False)
+        d_txt_1 = aes_1.Decrypt()
+        self.main_Window.ui.plainTextEdit.setPlainText(d_txt_1)
+
+    def changeEncryptionPassword(self):
+        if(self.verifyPassword(self.ui_p.oldPasswordLine,self.ui_p.Errortext) == True):
+            self.decryptAndDisplay()
+            self.pass1 = self.ui_p.passwordLineEdit.text()
+            self.pass2 = self.ui_p.RepasswordLineEdit.text()
+            self.setPassword()
+            if(self.passwordset == True):
+                self.closeDialog(self.ui_p.changePasswordDialog)
+                hashPassword(self.currentNote,self.currentFileName,self.pass1,self.main_Window,datalength = 64 ,encrypted=False)
+
+
 
 
     def setPassword(self):

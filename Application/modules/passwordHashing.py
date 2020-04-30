@@ -15,6 +15,7 @@ def hashPassword(currentNote,currentFileName,password,main_window,datalength= 64
         writeText(currentNote._details['path'],enc_txt,encrypted = True)
         main_window.ui.plainTextEdit.setPlainText("<!--encrypted-->")
         main_window.ui.encryptionButton.setEnabled(False)
+        main_window.ui.changePasswordButton.setEnabled(True)
         main_window.ui.decryptionButton.setEnabled(True)
         main_window.ui.permanentDecrypt.setEnabled(True)
         currentNote._details['encrypted'] = "True"

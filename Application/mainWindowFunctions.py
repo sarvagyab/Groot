@@ -187,6 +187,10 @@ def permenantDecrypt(self):
     pwd = password(self)
     pwd.openVerifyPasswordDialog(True)
 
+def changeEncryptionPassword(self):
+    print("change encryption button clicked")
+    pwd = password(self)
+    pwd.openChangeEncryptionPasswordDialog()
 
 def openFirstLoginDialog(self):
     from GUIs.firstLoginDialog import Ui_firstLoginDialog
