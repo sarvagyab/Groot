@@ -5,13 +5,14 @@ from PySide2 import QtWidgets,QtGui,QtCore
 
 from modules.setPassword import password
 from modules.fileHandling import currentNote
-from modules.markdownHandling import viewInMarkdown, imageResize, importMD
+from modules.markdownHandling import viewInMarkdown, imageResize, importMD, pluginHandler
 from modules.treeHandling import loadfileStructure, noteLoader,itemVal, isNote,updateItem,getItem
 from modules.noteHandling import deleteNote, renameNote, addNote, addNotebook,readText,writeText
 from modules.GUIchanges import createNotebook, createSubNotebook, createNote, rename, dlt, importer, exportPDF, exportHTML, exportMD
 from modules.searchInNote import searchText,finishedSearch
 from modules.userLogin import setUsernameAndPassword,verifyUser
 from modules.encryptNote import AEScipher
+from GUIs.settingsDialog import Ui_settingDialog
 
 def showMenu(self,pos):
     item = self.ui.treeWidget.itemAt(pos)
@@ -153,12 +154,23 @@ def checkFirstLogin(self):
     location = './User/login.txt'
     return os.path.exists(location)
 
-def openSettingsDialog(self):
-    from GUIs.settingsDialog import Ui_settingDialog
+def pluginConnections(self,settings):
+    settings.hardExt.stateChanged.connect(lambda: pluginHandler("hardbreak",settings.hardExt.isChecked(),self.mdExtensions))
+    settings.footnotesExt.stateChanged.connect(lambda: pluginHandler("footnotes",settings.footnotesExt.isChecked(),self.mdExtensions))
+    settings.defListsExt.stateChanged.connect(lambda: pluginHandler("defLists",settings.defListsExt.isChecked(),self.mdExtensions))
+    settings.mdExt.stateChanged.connect(lambda: pluginHandler("mdExt",settings.mdExt.isChecked(),self.mdExtensions))
+    settings.supExt.stateChanged.connect(lambda: pluginHandler("superscript",settings.supExt.isChecked(),self.mdExtensions))
+    settings.subExt.stateChanged.connect(lambda: pluginHandler("subscript",settings.subExt.isChecked(),self.mdExtensions))
+    settings.linkExt.stateChanged.connect(lambda: pluginHandler("autolink",settings.linkExt.isChecked(),self.mdExtensions))
+    settings.symbolsExt.stateChanged.connect(lambda: pluginHandler("symbols",settings.symbolsExt.isChecked(),self.mdExtensions))
+    settings.strikeExt.stateChanged.connect(lambda: pluginHandler("strike",settings.strikeExt.isChecked(),self.mdExtensions))
+
+
+def createSettingsDialog(self):
     ui_settingDialog = Ui_settingDialog()
-    settingsDialog = QtWidgets.QDialog()
-    ui_settingDialog.setupUi(settingsDialog)
-    settingsDialog.exec()
+    self.settingsDialog = QtWidgets.QDialog()
+    ui_settingDialog.setupUi(self.settingsDialog)
+    self.pluginConnections(ui_settingDialog)
 
 def openLoginDialog(self):
     from GUIs.loginDialog import Ui_loginDialog

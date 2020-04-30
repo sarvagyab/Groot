@@ -7,6 +7,7 @@ from GUIs.mainWindowPTE import Ui_Groot
 from modules.GUIchanges import fixTreeViewScrolling, createNotebook, createSubNotebook, createNote, rename, dlt, importer, exportPDF, exportHTML, exportMD
 import mainWindowFunctions
 from modules.markdownHandling import bold, italic, numList, bulletList, hyperlink, inlineCode, datetimenow, attachFile, exportAsPdf, exportAsHtml, exportAsMarkdown, importMD
+from GUIs.settingsDialog import Ui_settingDialog
 
 class Window(QtWidgets.QMainWindow):
     def __init__(self):
@@ -15,6 +16,10 @@ class Window(QtWidgets.QMainWindow):
         # Initializing UI
         self.ui = Ui_Groot()
         self.ui.setupUi(self)
+
+        # Create settings Dialog
+        self.createSettingsDialog()
+
         self.encryptAll = True
         # Bring the cursor to text editor
         self.ui.plainTextEdit.setFocus()
@@ -138,7 +143,7 @@ class Window(QtWidgets.QMainWindow):
         self._finishedSearch()
 
         # open settings
-        self.ui.actionSettings.triggered.connect(lambda:self.openSettingsDialog())
+        self.ui.actionSettings.triggered.connect(self.settingsDialog.exec_)
 
         # close main window from menu
         self.ui.actionQuit.triggered.connect(lambda:self.closeDialogAndMainWindow())
@@ -175,8 +180,9 @@ Window.openLoginDialog = mainWindowFunctions.openLoginDialog
 Window.openFirstLoginDialog = mainWindowFunctions.openFirstLoginDialog
 Window.checkFirstLogin = mainWindowFunctions.checkFirstLogin
 Window.closeDialogAndMainWindow = mainWindowFunctions.closeDialogAndMainWindow
-Window.openSettingsDialog = mainWindowFunctions.openSettingsDialog
 Window.encryptAlldecryptedNotes = mainWindowFunctions.encryptAlldecryptedNotes
 Window.permenantDecrypt = mainWindowFunctions.permenantDecrypt
 Window.changeEncryptionPassword = mainWindowFunctions.changeEncryptionPassword
 Window._importMD = mainWindowFunctions._importMD
+Window.createSettingsDialog = mainWindowFunctions.createSettingsDialog
+Window.pluginConnections = mainWindowFunctions.pluginConnections

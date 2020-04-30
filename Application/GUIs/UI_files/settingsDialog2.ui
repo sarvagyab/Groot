@@ -148,6 +148,18 @@
       </attribute>
       <layout class="QVBoxLayout" name="verticalLayout">
        <item>
+        <widget class="QCheckBox" name="hardExt">
+         <property name="font">
+          <font>
+           <pointsize>10</pointsize>
+          </font>
+         </property>
+         <property name="text">
+          <string>Enable hard breaks</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <widget class="QCheckBox" name="footnotesExt">
          <property name="font">
           <font>
@@ -155,7 +167,7 @@
           </font>
          </property>
          <property name="text">
-          <string>Footnotes</string>
+          <string>Enable Footnotes</string>
          </property>
         </widget>
        </item>
@@ -167,7 +179,7 @@
           </font>
          </property>
          <property name="text">
-          <string>Definition Lists</string>
+          <string>Enable Definition Lists</string>
          </property>
         </widget>
        </item>
@@ -179,7 +191,7 @@
           </font>
          </property>
          <property name="text">
-          <string>Markdown in HTML</string>
+          <string>Enable Markdown in HTML</string>
          </property>
         </widget>
        </item>
@@ -191,7 +203,7 @@
           </font>
          </property>
          <property name="text">
-          <string>Superscript</string>
+          <string>Enable Superscript</string>
          </property>
         </widget>
        </item>
@@ -203,7 +215,7 @@
           </font>
          </property>
          <property name="text">
-          <string>Subscript</string>
+          <string>Enable Subscript</string>
          </property>
         </widget>
        </item>
@@ -215,7 +227,7 @@
           </font>
          </property>
          <property name="text">
-          <string>Auto Detect Links</string>
+          <string>Enable Auto Detect Links</string>
          </property>
         </widget>
        </item>
@@ -227,7 +239,7 @@
           </font>
          </property>
          <property name="text">
-          <string>Smart Symbols</string>
+          <string>Enable Smart Symbols</string>
          </property>
         </widget>
        </item>
@@ -240,7 +252,7 @@
           </font>
          </property>
          <property name="text">
-          <string>Strike</string>
+          <string>Enable Strike</string>
          </property>
         </widget>
        </item>

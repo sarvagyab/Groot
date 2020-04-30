@@ -2,6 +2,7 @@ from PySide2 import QtGui, QtWidgets, QtCore, QtPrintSupport
 import markdown, datetime, shutil
 from modules.fileHandling import currentNote
 from modules.treeHandling import itemVal, saveUpdatedJson
+import pymdownx
 
 def viewInMarkdown(md,extensions,markdownView):
     html = mdToHtml(md, extensions)
@@ -10,7 +11,7 @@ def viewInMarkdown(md,extensions,markdownView):
 
 
 def mdToHtml(md, _extensions):
-    html = markdown.markdown(md, extensions = ["sane_lists","tables","fenced_code","pymdownx."] + _extensions)
+    html = markdown.markdown(md, extensions = ["sane_lists","tables","fenced_code"] + _extensions)
     return html
 
 
@@ -224,6 +225,29 @@ def attachFile(te):
     for _ in range(len("filename")):
         te.moveCursor(QtGui.QTextCursor.Right, QtGui.QTextCursor.KeepAnchor)
     te.setFocus()
+
+
+def pluginHandler(text,check,extensions):
+
+    if text == "hardbreak":
+        ext = "nl2br"
+    elif text == "footnotes":
+        ext = "footnotes"
+    elif text == "defLists":
+        ext = "def_list"
+    elif text == "mdExt":
+        ext = "md_in_html"
+    elif text == "superscript":
+        ext = "pymdownx.caret:{smart_insert:false, insert: false}"
+    elif text == "autolink":
+        ext = "pymdownx.magiclink"
+    elif text == "symbols":
+        ext = "pymdownx.smartsymbols"
+    elif text == "strike":
+        ext = "pymdownx.tilde"
+    elif text == "subscript":
+        ext = "pymdownx.tilde"
+    extensions+=[ext]
 
 
 def exportAsPdf(mdView):
