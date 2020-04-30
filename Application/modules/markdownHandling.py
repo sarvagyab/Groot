@@ -2,6 +2,9 @@ from PySide2 import QtGui, QtWidgets, QtCore, QtPrintSupport
 import markdown, datetime, shutil
 from modules.fileHandling import currentNote
 from modules.treeHandling import itemVal, saveUpdatedJson
+from modules.userLogin import readUserInfo
+from modules.noteHandling import readText
+from modules.encryptNote import AEScipher
 import pymdownx
 
 def viewInMarkdown(md,extensions,markdownView):
@@ -363,6 +366,17 @@ def importMD(item):
     path = "./notes/" + randomString + ".txt"
     shutil.copyfile(filename,path)
 
+    # Encrypt file
+    userInfo = readUserInfo()
+    txt = readText(path)
+    aes = AEScipher(str(userInfo[1]),currentNote,txt = txt,encrypt = True)
+    txt = aes.Encrypt()
+    if(not isinstance(txt,bytes)):
+        txt = bytes(txt)
+    with open(path,'wb') as file:
+        file.write(txt)
+        file.seek(0)
+    print("Encrypting after importing")
 
     # Add to JSON
     info = QtCore.QFileInfo(filename)

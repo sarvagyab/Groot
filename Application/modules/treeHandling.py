@@ -112,6 +112,8 @@ def getItem(getDict):
 
 def noteLoader(ui):
     item = ui.treeWidget.currentItem()
+    if (item is None): 
+        return
     _fileName = ui.fileName
     _textEdit = ui.plainTextEdit
     _encryptionButton=ui.encryptionButton
