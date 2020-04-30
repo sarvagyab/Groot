@@ -78,6 +78,11 @@
              <string>Encryption</string>
             </property>
            </item>
+           <item>
+            <property name="text">
+             <string>Plugins</string>
+            </property>
+           </item>
           </widget>
          </item>
         </layout>

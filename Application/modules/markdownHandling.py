@@ -10,7 +10,7 @@ def viewInMarkdown(md,extensions,markdownView):
 
 
 def mdToHtml(md, _extensions):
-    html = markdown.markdown(md, extensions = ["sane_lists"] + _extensions)
+    html = markdown.markdown(md, extensions = ["sane_lists","tables","fenced_code","pymdownx."] + _extensions)
     return html
 
 
