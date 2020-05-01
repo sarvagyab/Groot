@@ -1,5 +1,6 @@
 import os
 import sys
+import json
 
 from PySide2 import QtWidgets,QtGui,QtCore
 
@@ -166,11 +167,73 @@ def pluginConnections(self,settings):
     settings.strikeExt.stateChanged.connect(lambda: pluginHandler("strike",settings.strikeExt.isChecked(),self.mdExtensions,self.mdExtensionsConfigs))
 
 
+# Added the ui_settingDialog to Window object
 def createSettingsDialog(self):
-    ui_settingDialog = Ui_settingDialog()
+    self.ui_settingDialog = Ui_settingDialog()
     self.settingsDialog = QtWidgets.QDialog()
-    ui_settingDialog.setupUi(self.settingsDialog)
-    self.pluginConnections(ui_settingDialog)
+    self.ui_settingDialog.setupUi(self.settingsDialog)
+    self.pluginConnections(self.ui_settingDialog)
+
+
+def loadPlugSettings(self,plugSettings):
+    if(plugSettings["hardExt"]):
+        self.ui_settingDialog.hardExt.setCheckState(QtCore.Qt.Checked)
+    else:
+        self.ui_settingDialog.hardExt.setCheckState(QtCore.Qt.Unchecked)
+    
+    if(plugSettings["footnotesExt"]):
+        self.ui_settingDialog.footnotesExt.setCheckState(QtCore.Qt.Checked)
+    else:
+        self.ui_settingDialog.footnotesExt.setCheckState(QtCore.Qt.Unchecked)
+
+    if(plugSettings["defListsExt"]):
+        self.ui_settingDialog.defListsExt.setCheckState(QtCore.Qt.Checked)
+    else:
+        self.ui_settingDialog.defListsExt.setCheckState(QtCore.Qt.Unchecked)
+
+    if(plugSettings["mdExt"]):
+        self.ui_settingDialog.mdExt.setCheckState(QtCore.Qt.Checked)
+    else:
+        self.ui_settingDialog.mdExt.setCheckState(QtCore.Qt.Unchecked)
+
+    if(plugSettings["supExt"]):
+        self.ui_settingDialog.supExt.setCheckState(QtCore.Qt.Checked)
+    else:
+        self.ui_settingDialog.supExt.setCheckState(QtCore.Qt.Unchecked)
+
+    if(plugSettings["subExt"]):
+        self.ui_settingDialog.subExt.setCheckState(QtCore.Qt.Checked)
+    else:
+        self.ui_settingDialog.subExt.setCheckState(QtCore.Qt.Unchecked)
+
+    if(plugSettings["linkExt"]):
+        self.ui_settingDialog.linkExt.setCheckState(QtCore.Qt.Checked)
+    else:
+        self.ui_settingDialog.linkExt.setCheckState(QtCore.Qt.Unchecked)
+
+    if(plugSettings["symbolsExt"]):
+        self.ui_settingDialog.symbolsExt.setCheckState(QtCore.Qt.Checked)
+    else:
+        self.ui_settingDialog.symbolsExt.setCheckState(QtCore.Qt.Unchecked)
+
+    if(plugSettings["strikeExt"]):
+        self.ui_settingDialog.strikeExt.setCheckState(QtCore.Qt.Checked)
+    else:
+        self.ui_settingDialog.strikeExt.setCheckState(QtCore.Qt.Unchecked)
+
+
+def loadAppearSettings(self,appearSettings):
+    pass
+
+
+def loadSettings(self):
+    with open("./settings.json","r") as sets:
+        settings = json.load(sets)
+    plugSettings = settings["Plugins"]
+    appearSettings = settings["Appearance"]
+    self.loadPlugSettings(plugSettings)
+    self.loadAppearSettings(appearSettings)
+
 
 def openLoginDialog(self):
     from GUIs.loginDialog import Ui_loginDialog

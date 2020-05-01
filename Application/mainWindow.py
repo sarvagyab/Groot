@@ -187,3 +187,6 @@ Window.changeEncryptionPassword = mainWindowFunctions.changeEncryptionPassword
 Window._importMD = mainWindowFunctions._importMD
 Window.createSettingsDialog = mainWindowFunctions.createSettingsDialog
 Window.pluginConnections = mainWindowFunctions.pluginConnections
+Window.loadSettings = mainWindowFunctions.loadSettings
+Window.loadPlugSettings = mainWindowFunctions.loadPlugSettings
+Window.loadAppearSettings = mainWindowFunctions.loadAppearSettings
