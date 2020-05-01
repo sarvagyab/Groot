@@ -23,8 +23,8 @@ def loadFileName(name,fileName):
 def pathContainedNotes(diction):
     if("path" in diction and type(diction["path"]) == str):
         if "atchfiles" in diction:
-            print("adding the to be deleted files")
-            print(diction["atchfiles"])
+            # print("adding the to be deleted files")
+            # print(diction["atchfiles"])
             return ([diction["path"]] + diction["atchfiles"])
         else:
             return [diction["path"]]

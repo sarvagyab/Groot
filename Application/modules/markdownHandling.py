@@ -220,19 +220,21 @@ def attachFile(te):
     if filename == "":
         return
     randomString = datetime.datetime.now().strftime("%d%m%Y%H%M%S")
+    if currentNote._open == False:
+        QtWidgets.QMessageBox(QtWidgets.QMessageBox.Information,"Groot","Cannot attach images when no note is currently loaded",QtWidgets.QMessageBox.Ok).exec_()
+        return
     destination = shutil.copyfile(filename,"./atch/" + randomString)
     # print(destination)
     te.insertPlainText("![fileName](" + destination + ")")
-    if currentNote._open:
-        item = currentNote._item
-        deets = itemVal(item)
-        temp = deets[1][deets[0]]["expanded"]
-        if "atchfiles" in temp: pass
-        else:
-            temp["atchfiles"] = []
-        # print("Attaching file")
-        temp["atchfiles"]+=[destination]
-        saveUpdatedJson(deets[2])
+    item = currentNote._item
+    deets = itemVal(item)
+    temp = deets[1][deets[0]]["expanded"]
+    if "atchfiles" in temp: pass
+    else:
+        temp["atchfiles"] = []
+    # print("Attaching file")
+    temp["atchfiles"]+=[destination]
+    saveUpdatedJson(deets[2])
 
     for _ in range(len("fileName](" + destination + ")")):
         te.moveCursor(QtGui.QTextCursor.Left)
