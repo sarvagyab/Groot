@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1602</width>
+    <width>1448</width>
     <height>795</height>
    </rect>
   </property>
@@ -1432,7 +1432,7 @@ QPushButton:pressed{
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1602</width>
+     <width>1448</width>
      <height>26</height>
     </rect>
    </property>
@@ -1502,6 +1502,8 @@ QPushButton:pressed{
      </property>
      <addaction name="actionEncrypt_note"/>
      <addaction name="actionDecrypt_note"/>
+     <addaction name="actionpermanent_decrypt"/>
+     <addaction name="actionchange_encryption_password_of_note"/>
     </widget>
     <widget class="QMenu" name="menuInsert">
      <property name="title">
@@ -1511,7 +1513,6 @@ QPushButton:pressed{
      <addaction name="actionImage"/>
     </widget>
     <addaction name="actionSearch_in_Current_Note"/>
-    <addaction name="actionSearch_in_All_Notes"/>
     <addaction name="separator"/>
     <addaction name="menuInsert"/>
     <addaction name="menuFormat"/>
@@ -1525,12 +1526,6 @@ QPushButton:pressed{
     <addaction name="actionDark_Theme"/>
     <addaction name="actionLight_Theme"/>
    </widget>
-   <widget class="QMenu" name="menuTools">
-    <property name="title">
-     <string>Tools</string>
-    </property>
-    <addaction name="actionOptions"/>
-   </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
      <string>Help</string>
@@ -1542,7 +1537,6 @@ QPushButton:pressed{
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
    <addaction name="menuView"/>
-   <addaction name="menuTools"/>
    <addaction name="menuHelp"/>
   </widget>
   <action name="actionNotes_Tree">
@@ -1796,6 +1790,24 @@ QPushButton:pressed{
    </property>
    <property name="text">
     <string>Image</string>
+   </property>
+  </action>
+  <action name="actionpermanent_decrypt">
+   <property name="icon">
+    <iconset resource="../../../resource.qrc">
+     <normaloff>:/icons/Icons/16x16/cancel.png</normaloff>:/icons/Icons/16x16/cancel.png</iconset>
+   </property>
+   <property name="text">
+    <string>permanent decrypt</string>
+   </property>
+  </action>
+  <action name="actionchange_encryption_password_of_note">
+   <property name="icon">
+    <iconset resource="../../../resource.qrc">
+     <normaloff>:/icons/Icons/16x16/key.png</normaloff>:/icons/Icons/16x16/key.png</iconset>
+   </property>
+   <property name="text">
+    <string>change encryption password of this note</string>
    </property>
   </action>
  </widget>
