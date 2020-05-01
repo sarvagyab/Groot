@@ -223,6 +223,17 @@ def attachFile(te):
     destination = shutil.copyfile(filename,"./atch/" + randomString)
     # print(destination)
     te.insertPlainText("![fileName](" + destination + ")")
+    if currentNote._open:
+        item = currentNote._item
+        deets = itemVal(item)
+        temp = deets[1][deets[0]]["expanded"]
+        if "atchfiles" in temp: pass
+        else:
+            temp["atchfiles"] = []
+        # print("Attaching file")
+        temp["atchfiles"]+=[destination]
+        saveUpdatedJson(deets[2])
+
     for _ in range(len("fileName](" + destination + ")")):
         te.moveCursor(QtGui.QTextCursor.Left)
     for _ in range(len("filename")):
