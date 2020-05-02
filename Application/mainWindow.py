@@ -4,9 +4,9 @@ from PySide2 import QtWidgets, QtCore, QtGui
 from GUIs.mainWindowPTE import Ui_Groot
 
 # import modules
-from modules.GUIchanges import fixTreeViewScrolling, createNotebook, createSubNotebook, createNote, rename, dlt, importer, exportPDF, exportHTML, exportMD
+from modules.GUIchanges import fixTreeViewScrolling, createNotebook, createSubNotebook, createNote, rename, dlt, importer, exportPDF, exportHTML, exportMD, copyLink
 import mainWindowFunctions
-from modules.markdownHandling import bold, italic, numList, bulletList, hyperlink, inlineCode, datetimenow, attachFile, exportAsPdf, exportAsHtml, exportAsMarkdown, importMD
+from modules.markdownHandling import bold, italic, numList, bulletList, hyperlink, inlineCode, datetimenow, attachFile, exportAsPdf, exportAsHtml, exportAsMarkdown, importMD, copyMarkdownLink
 from GUIs.settingsDialog import Ui_settingDialog
 
 class Window(QtWidgets.QMainWindow):
@@ -88,6 +88,9 @@ class Window(QtWidgets.QMainWindow):
 
         # attaching file connection
         self.ui.insertFile.clicked.connect(lambda: attachFile(self.ui.plainTextEdit))
+
+        # attach copying of markdown link
+        copyLink.triggered.connect(copyMarkdownLink)
 
         # export as PDF connection
         self.ui.actionPDF.triggered.connect(lambda: exportAsPdf(self.ui.mdViewer))

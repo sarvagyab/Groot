@@ -9,7 +9,7 @@ from modules.fileHandling import currentNote
 from modules.markdownHandling import viewInMarkdown, imageResize, importMD, pluginHandler
 from modules.treeHandling import loadfileStructure, noteLoader,itemVal, isNote,updateItem,getItem
 from modules.noteHandling import deleteNote, renameNote, addNote, addNotebook,readText,writeText
-from modules.GUIchanges import createNotebook, createSubNotebook, createNote, rename, dlt, importer, exportPDF, exportHTML, exportMD
+from modules.GUIchanges import createNotebook, createSubNotebook, createNote, rename, dlt, importer, exportPDF, exportHTML, exportMD, copyLink
 from modules.searchInNote import searchText,finishedSearch
 from modules.userLogin import setUsernameAndPassword,verifyUser
 from modules.encryptNote import AEScipher
@@ -28,6 +28,7 @@ def showMenu(self,pos):
     else:
         dets = isNote(item)
         if(dets[0]):
+            menu.addAction(copyLink)
             exporter = QtWidgets.QMenu()
             exporter.setTitle("Export")
             exporter.addAction(exportMD)

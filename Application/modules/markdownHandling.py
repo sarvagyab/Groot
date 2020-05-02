@@ -244,6 +244,12 @@ def attachFile(te):
     te.setFocus()
 
 
+def copyMarkdownLink():
+    nm = currentNote._name
+    rd = currentNote._details["randomString"]
+    txt = "[" + nm + "](./" + rd + ")"
+    QtGui.QClipboard().setText(txt)
+
 def pluginHandler(text,check,extensions, configs):
 
     with open("./settings.json","r") as sets:
