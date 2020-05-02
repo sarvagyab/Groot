@@ -23,8 +23,14 @@ class Ui_settingDialog(object):
         settingDialog.resize(870, 461)
         self.gridLayout = QGridLayout(settingDialog)
         self.gridLayout.setObjectName(u"gridLayout")
+        self.gridLayout.setContentsMargins(5, 2, 5, 5)
         self.settings = QTabWidget(settingDialog)
         self.settings.setObjectName(u"settings")
+        sizePolicy = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.settings.sizePolicy().hasHeightForWidth())
+        self.settings.setSizePolicy(sizePolicy)
         font = QFont()
         font.setFamily(u"Calibri")
         font.setPointSize(14)
@@ -147,10 +153,36 @@ class Ui_settingDialog(object):
 
         self.gridLayout.addWidget(self.settings, 0, 0, 1, 1)
 
+        self.widget = QWidget(settingDialog)
+        self.widget.setObjectName(u"widget")
+        sizePolicy1 = QSizePolicy(QSizePolicy.Expanding, QSizePolicy.Fixed)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.widget.sizePolicy().hasHeightForWidth())
+        self.widget.setSizePolicy(sizePolicy1)
+        self.widget.setMinimumSize(QSize(0, 30))
+        self.widget.setMaximumSize(QSize(16777215, 30))
+        self.horizontalLayout = QHBoxLayout(self.widget)
+        self.horizontalLayout.setObjectName(u"horizontalLayout")
+        self.horizontalLayout.setContentsMargins(0, 0, 0, 0)
+        self.horizontalSpacer = QSpacerItem(757, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout.addItem(self.horizontalSpacer)
+
+        self.closeMe = QPushButton(self.widget)
+        self.closeMe.setObjectName(u"closeMe")
+        self.closeMe.setMinimumSize(QSize(0, 20))
+
+        self.horizontalLayout.addWidget(self.closeMe)
+
+
+        self.gridLayout.addWidget(self.widget, 1, 0, 1, 1)
+
 
         self.retranslateUi(settingDialog)
 
         self.settings.setCurrentIndex(0)
+        self.closeMe.setDefault(True)
 
 
         QMetaObject.connectSlotsByName(settingDialog)
@@ -180,5 +212,6 @@ class Ui_settingDialog(object):
         self.encryptAllChoice.setText(QCoreApplication.translate("settingDialog", u"Encrypt all notes", None))
         self.changePwdChoice.setText(QCoreApplication.translate("settingDialog", u"Change Password", None))
         self.settings.setTabText(self.settings.indexOf(self.tabEncryption), QCoreApplication.translate("settingDialog", u"Encryption", None))
+        self.closeMe.setText(QCoreApplication.translate("settingDialog", u"OK", None))
     # retranslateUi
 

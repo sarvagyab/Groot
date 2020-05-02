@@ -195,6 +195,7 @@ def createSettingsDialog(self):
     self.ui_settingDialog = Ui_settingDialog()
     self.settingsDialog = QtWidgets.QDialog()
     self.ui_settingDialog.setupUi(self.settingsDialog)
+    self.ui_settingDialog.closeMe.clicked.connect(self.settingsDialog.close)
     self.pluginConnections(self.ui_settingDialog)
     # Appearance connections are made in loadSettings
 
