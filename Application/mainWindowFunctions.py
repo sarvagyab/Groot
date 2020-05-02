@@ -255,6 +255,73 @@ def loadSettings(self):
     self.loadAppearSettings(appearSettings)
     self.appearConnections(self.ui_settingDialog)
 
+
+
+def analyzeLink(self,url):
+    text = url.toString()
+    # print(text)
+    # print(text[:2])
+    if(text[:2]!="./"): return False
+    return True
+
+def searchInBooks(self, randomString, diction):
+    keys = [*diction]
+    if randomString in keys:
+        return [keys.index(randomString)]
+    for i in range(len(keys)):
+        if "path" in diction[keys[i]]["expanded"] and type(diction[keys[i]]["expanded"]["path"])==str: continue 
+        result = self.searchInBooks(randomString,diction[keys[i]]["expanded"])
+        if result != []:
+            return [i] + result
+    return []
+
+def searchForFilename(self,randomString):
+    with open("./fileStructure.json","r") as nt:
+        files = json.load(nt)
+    print("searching in uncategorized")
+    keys = [*files["Uncategorized"]]
+    if randomString in keys:
+        print([1] + [keys.index(randomString)])
+        return [1] + [keys.index(randomString)]
+    print("searching in notebooks")
+    path = self.searchInBooks(randomString,files["Notebooks"])
+    if path == []:
+        print("No such note present")
+        return []
+    else:
+        path = [0] + path
+        print(path)
+        return path
+
+
+def handleLinks(self,url):
+    # print(url.scheme())
+    if url.scheme() == "ftp" or url.scheme() == "http" or url.scheme() == "https":
+        QtGui.QDesktopServices.openUrl(url)
+    else:
+        print("Analyzing")
+        check = self.analyzeLink(url)
+        if check == False:
+            QtWidgets.QMessageBox(QtWidgets.QMessageBox.Critical,"Groot","Cannot open this link",QtWidgets.QMessageBox.Ok).exec_()
+            print("doesn't turn out to be a link") 
+            return
+        else:
+            print("Determined to be link")
+            filename = url.toString()[2:]
+            item = self.searchForFilename(filename)
+            if item == []:
+                QtWidgets.QMessageBox(QtWidgets.QMessageBox.Critical,"Groot","Cannot open this link",QtWidgets.QMessageBox.Ok).exec_()
+                return
+            getToItem = self.ui.treeWidget.topLevelItem(item[0])
+            print(getToItem.text(0))
+            for i in range(1,len(item)):
+                getToItem = getToItem.child(item[i])
+                print(getToItem.text(0))
+
+            self.ui.treeWidget.setCurrentItem(getToItem)
+
+
+
 def openLoginDialog(self):
     from GUIs.loginDialog import Ui_loginDialog
     loginDialog = QtWidgets.QDialog()

@@ -1411,6 +1411,9 @@ QPushButton:pressed{
                   <property name="textInteractionFlags">
                    <set>Qt::TextBrowserInteraction</set>
                   </property>
+                  <property name="openLinks">
+                   <bool>false</bool>
+                  </property>
                  </widget>
                 </item>
                </layout>

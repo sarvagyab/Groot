@@ -50,6 +50,9 @@ class Window(QtWidgets.QMainWindow):
         # Connections for deleting
         dlt.triggered.connect(self.showDeleteDialog)
 
+        # Connection for self linking
+        self.ui.mdViewer.anchorClicked.connect(self.handleLinks)
+
         # connection for creating new notebook
         createNotebook.triggered.connect(self._addNotebook)
         self.ui.newNotebook.clicked.connect(self._addNotebook)
@@ -194,3 +197,7 @@ Window.loadPlugSettings = mainWindowFunctions.loadPlugSettings
 Window.loadAppearSettings = mainWindowFunctions.loadAppearSettings
 Window.appearConnections = mainWindowFunctions.appearConnections
 Window.setPlainTextEditFont = mainWindowFunctions.setPlainTextEditFont
+Window.handleLinks = mainWindowFunctions.handleLinks
+Window.analyzeLink = mainWindowFunctions.analyzeLink
+Window.searchForFilename = mainWindowFunctions.searchForFilename
+Window.searchInBooks = mainWindowFunctions.searchInBooks
