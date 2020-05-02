@@ -233,7 +233,10 @@ def loadPlugSettings(self,plugSettings):
 
 
 def loadAppearSettings(self,appearSettings):
-    pass
+    self.ui_settingDialog.fontSizeValue.setValue(appearSettings["size"])
+    self.ui_settingDialog.fontChoice.setCurrentText(appearSettings["family"])
+    font = QtGui.QFont(self.ui_settingDialog.fontChoice.currentText(),int(self.ui_settingDialog.fontSizeValue.text()))
+    self.ui.plainTextEdit.setFont(font)
 
 
 def loadSettings(self):

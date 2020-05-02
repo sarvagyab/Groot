@@ -17,8 +17,12 @@ class Window(QtWidgets.QMainWindow):
         self.ui = Ui_Groot()
         self.ui.setupUi(self)
 
+        self.mdExtensions = []  # Extensions for changing behaviour of markdown viewer
+        self.mdExtensionsConfigs = {} # Extensions configurations for changing the behaviour of extensions in markdown
+        
         # Create settings Dialog
         self.createSettingsDialog()
+        self.loadSettings()
 
         self.encryptAll = True
         # Bring the cursor to text editor
@@ -32,8 +36,6 @@ class Window(QtWidgets.QMainWindow):
         self.encryptedInSession = {} # all notes that are encrypted in this session
 
         self.DELAY = 1000   # Delay in displaying Markdown
-        self.mdExtensions = []  # Extensions for changing behaviour of markdown viewer
-        self.mdExtensionsConfigs = {} # Extensions configurations for changing the behaviour of extensions in markdown
         
         # Fix no Scrollbar issue in notes tree when file names go out of box
         fixTreeViewScrolling(self.ui.treeWidget)
