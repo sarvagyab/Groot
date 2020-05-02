@@ -168,8 +168,15 @@ def pluginConnections(self,settings):
 
 def setPlainTextEditFont(self):
     family = self.ui_settingDialog.fontChoice.currentText()
-    size = self.ui_settingDialog.fontSizeValue.text()
-    font = QtGui.QFont(family,int(size))
+    size = int(self.ui_settingDialog.fontSizeValue.text())
+    with open("./settings.json","r+") as sets:
+        settings = json.load(sets)
+        settings["Appearance"]["size"] = size
+        settings["Appearance"]["family"] = family
+        sets.seek(0)
+        sets.truncate()
+        json.dump(settings,sets)
+    font = QtGui.QFont(family,size)
     self.ui.plainTextEdit.setFont(font)
 
 def appearConnections(self,settings):
@@ -182,7 +189,7 @@ def createSettingsDialog(self):
     self.settingsDialog = QtWidgets.QDialog()
     self.ui_settingDialog.setupUi(self.settingsDialog)
     self.pluginConnections(self.ui_settingDialog)
-    self.appearConnections(self.ui_settingDialog)
+    # Appearance connections are made in loadSettings
 
 
 def loadPlugSettings(self,plugSettings):
@@ -235,7 +242,7 @@ def loadPlugSettings(self,plugSettings):
 def loadAppearSettings(self,appearSettings):
     self.ui_settingDialog.fontSizeValue.setValue(appearSettings["size"])
     self.ui_settingDialog.fontChoice.setCurrentText(appearSettings["family"])
-    font = QtGui.QFont(self.ui_settingDialog.fontChoice.currentText(),int(self.ui_settingDialog.fontSizeValue.text()))
+    font = QtGui.QFont(appearSettings["family"],int(appearSettings["size"]))
     self.ui.plainTextEdit.setFont(font)
 
 
@@ -246,7 +253,7 @@ def loadSettings(self):
     appearSettings = settings["Appearance"]
     self.loadPlugSettings(plugSettings)
     self.loadAppearSettings(appearSettings)
-
+    self.appearConnections(self.ui_settingDialog)
 
 def openLoginDialog(self):
     from GUIs.loginDialog import Ui_loginDialog
