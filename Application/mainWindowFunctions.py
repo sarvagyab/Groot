@@ -6,7 +6,7 @@ from PySide2 import QtWidgets,QtGui,QtCore
 
 from modules.setPassword import password
 from modules.fileHandling import currentNote
-from modules.markdownHandling import viewInMarkdown, imageResize, importMD, pluginHandler
+from modules.markdownHandling import viewInMarkdown, imageResize, importMD, pluginHandler, scrolling
 from modules.treeHandling import loadfileStructure, noteLoader,itemVal, isNote,updateItem,getItem
 from modules.noteHandling import deleteNote, renameNote, addNote, addNotebook,readText,writeText
 from modules.GUIchanges import createNotebook, createSubNotebook, createNote, rename, dlt, importer, exportPDF, exportHTML, exportMD, copyLink
@@ -14,6 +14,12 @@ from modules.searchInNote import searchText,finishedSearch
 from modules.userLogin import setUsernameAndPassword,verifyUser
 from modules.encryptNote import AEScipher
 from GUIs.settingsDialog import Ui_settingDialog
+
+def fixScrolling(self):
+    edBar = self.ui.plainTextEdit.verticalScrollBar()
+    mdBar = self.ui.mdViewer.verticalScrollBar()
+    edBar.valueChanged.connect(lambda:scrolling(edBar,mdBar))
+    mdBar.valueChanged.connect(lambda:scrolling(mdBar,edBar))
 
 def showMenu(self,pos):
     item = self.ui.treeWidget.itemAt(pos)

@@ -8,10 +8,19 @@ from modules.encryptNote import AEScipher
 import pymdownx
 import json
 
+def scrolling(oneBar,twoBar):
+    x = (oneBar.value()*twoBar.maximum())/oneBar.maximum()
+    if oneBar.signalsBlocked(): return
+    oneBar.blockSignals(True)
+    twoBar.setValue(x)
+    oneBar.blockSignals(False)
+
+
 def viewInMarkdown(md,extensions,markdownView):
     html = mdToHtml(md, extensions)
     markdownView.setHtml(html)
     imageResize(markdownView)
+    markdownView.moveCursor(QtGui.QTextCursor.Start)
 
 
 def mdToHtml(md, _extensions):

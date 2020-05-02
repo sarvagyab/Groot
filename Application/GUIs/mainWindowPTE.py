@@ -861,7 +861,7 @@ class Ui_Groot(object):
         self.plainTextEdit.setLineWidth(1)
         self.plainTextEdit.setMidLineWidth(0)
         self.plainTextEdit.setVerticalScrollBarPolicy(Qt.ScrollBarAsNeeded)
-        self.plainTextEdit.setCenterOnScroll(True)
+        self.plainTextEdit.setCenterOnScroll(False)
 
         self.horizontalLayout_2.addWidget(self.plainTextEdit)
 

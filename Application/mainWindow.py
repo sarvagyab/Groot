@@ -39,6 +39,9 @@ class Window(QtWidgets.QMainWindow):
         
         # Fix no Scrollbar issue in notes tree when file names go out of box
         fixTreeViewScrolling(self.ui.treeWidget)
+        
+        # Parallel Scrolling for text editor and markdown viewer
+        self.fixScrolling()
 
         self.ui.treeWidget.customContextMenuRequested.connect(self.showMenu)
 
@@ -213,3 +216,4 @@ Window.handleLinks = mainWindowFunctions.handleLinks
 Window.analyzeLink = mainWindowFunctions.analyzeLink
 Window.searchForFilename = mainWindowFunctions.searchForFilename
 Window.searchInBooks = mainWindowFunctions.searchInBooks
+Window.fixScrolling = mainWindowFunctions.fixScrolling
