@@ -216,14 +216,14 @@ def datetimenow(te):
 
 
 def attachFile(te):
+    if currentNote._open == False:
+        QtWidgets.QMessageBox(QtWidgets.QMessageBox.Information,"Groot","Cannot attach images when no note is currently loaded",QtWidgets.QMessageBox.Ok).exec_()
+        return
     filename, _ = QtWidgets.QFileDialog().getOpenFileName(None,"Attach File","./")
     # print(filename)
     if filename == "":
         return
     randomString = datetime.datetime.now().strftime("%d%m%Y%H%M%S")
-    if currentNote._open == False:
-        QtWidgets.QMessageBox(QtWidgets.QMessageBox.Information,"Groot","Cannot attach images when no note is currently loaded",QtWidgets.QMessageBox.Ok).exec_()
-        return
     destination = shutil.copyfile(filename,"./atch/" + randomString)
     # print(destination)
     te.insertPlainText("![fileName](" + destination + ")")

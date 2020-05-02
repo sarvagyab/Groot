@@ -330,6 +330,7 @@ def openLoginDialog(self):
     ui_loginDialog.setupUi(loginDialog)
     ui_loginDialog.buttonBox.button(QtWidgets.QDialogButtonBox.Ok).clicked.connect(lambda: verifyUser(ui_loginDialog.passwordLineEdit.text(),ui_loginDialog,loginDialog))
     ui_loginDialog.buttonBox.button(QtWidgets.QDialogButtonBox.Cancel).clicked.connect(lambda:self.closeDialogAndMainWindow(loginDialog))
+    ui_loginDialog.passwordLineEdit.setFocus()
     if(loginDialog.exec() == 0):
         self.closeDialogAndMainWindow(loginDialog)
 

@@ -56,20 +56,25 @@ class Window(QtWidgets.QMainWindow):
         # connection for creating new notebook
         createNotebook.triggered.connect(self._addNotebook)
         self.ui.newNotebook.clicked.connect(self._addNotebook)
+        self.ui.actionNew_notebook.triggered.connect(self._addNotebook)
 
         # connection for creating new subnotebook
         createSubNotebook.triggered.connect(self._addSubNotebook)
         self.ui.newSubNotebook.clicked.connect(self._addSubNotebook)
+        self.ui.actionNew_sub_notebook.triggered.connect(self._addSubNotebook)
 
         # connection for creating new note
         createNote.triggered.connect(self._addNote)
         self.ui.newNote.clicked.connect(self._addNote)
+        self.ui.actionNew_note.triggered.connect(self._addNote)
 
         # bold connection
         self.ui.boldButton.clicked.connect(lambda: bold(self.ui.plainTextEdit))
+        self.ui.actionBold.triggered.connect(lambda: bold(self.ui.plainTextEdit))
 
         # italic connection
         self.ui.italicButton.clicked.connect(lambda: italic(self.ui.plainTextEdit))
+        self.ui.actionItalic.triggered.connect(lambda: italic(self.ui.plainTextEdit))
 
         # numbered list connection
         self.ui.numberedList.clicked.connect(lambda: numList(self.ui.plainTextEdit))
@@ -79,15 +84,19 @@ class Window(QtWidgets.QMainWindow):
 
         # hyperlink connection
         self.ui.link.clicked.connect(lambda: hyperlink(self.ui.plainTextEdit))
+        self.ui.actionLink.triggered.connect(lambda: hyperlink(self.ui.plainTextEdit))
 
         # inline code connection
         self.ui.code.clicked.connect(lambda: inlineCode(self.ui.plainTextEdit))
+        self.ui.actionCode.triggered.connect(lambda: inlineCode(self.ui.plainTextEdit))
 
         # date time connection
         self.ui.dateTime.clicked.connect(lambda: datetimenow(self.ui.plainTextEdit))
-
+        self.ui.actionDate_and_Time.triggered.connect(lambda: datetimenow(self.ui.plainTextEdit))
+        
         # attaching file connection
         self.ui.insertFile.clicked.connect(lambda: attachFile(self.ui.plainTextEdit))
+        self.ui.actionImage.triggered.connect(lambda: attachFile(self.ui.plainTextEdit))
 
         # attach copying of markdown link
         copyLink.triggered.connect(copyMarkdownLink)
