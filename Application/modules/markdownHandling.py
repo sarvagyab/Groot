@@ -6,6 +6,7 @@ from modules.userLogin import readUserInfo
 from modules.noteHandling import readText
 from modules.encryptNote import AEScipher
 import pymdownx
+import json
 
 def viewInMarkdown(md,extensions,markdownView):
     html = mdToHtml(md, extensions)
@@ -220,9 +221,22 @@ def attachFile(te):
     if filename == "":
         return
     randomString = datetime.datetime.now().strftime("%d%m%Y%H%M%S")
+    if currentNote._open == False:
+        QtWidgets.QMessageBox(QtWidgets.QMessageBox.Information,"Groot","Cannot attach images when no note is currently loaded",QtWidgets.QMessageBox.Ok).exec_()
+        return
     destination = shutil.copyfile(filename,"./atch/" + randomString)
     # print(destination)
     te.insertPlainText("![fileName](" + destination + ")")
+    item = currentNote._item
+    deets = itemVal(item)
+    temp = deets[1][deets[0]]["expanded"]
+    if "atchfiles" in temp: pass
+    else:
+        temp["atchfiles"] = []
+    # print("Attaching file")
+    temp["atchfiles"]+=[destination]
+    saveUpdatedJson(deets[2])
+
     for _ in range(len("fileName](" + destination + ")")):
         te.moveCursor(QtGui.QTextCursor.Left)
     for _ in range(len("filename")):
@@ -232,45 +246,65 @@ def attachFile(te):
 
 def pluginHandler(text,check,extensions, configs):
 
+    with open("./settings.json","r") as sets:
+        settings = json.load(sets)
+    
+    plugSets = settings["Plugins"]
+
     if text == "hardbreak":
         ext = "nl2br"
-        if check: pass
+        if check: 
+            plugSets["hardExt"] = True
         else:
+            plugSets["hardExt"] = False
             extensions.remove(ext)
     elif text == "footnotes":
         ext = "footnotes"
-        if check: pass
+        if check:
+            plugSets["footnotesExt"] = True
         else:
+            plugSets["footnotesExt"] = False
             extensions.remove(ext)
     elif text == "defLists":
         ext = "def_list"
-        if check: pass
+        if check:
+            plugSets["defListsExt"] = True
         else:
+            plugSets["defListsExt"] = False
             extensions.remove(ext)
     elif text == "mdExt":
         ext = "md_in_html"
-        if check: pass
+        if check:
+            plugSets["mdExt"] = True
         else:
+            plugSets["mdExt"] = False
             extensions.remove(ext)
     elif text == "superscript":
         ext = "pymdownx.caret"
         if check:
+            plugSets["supExt"] = True
             configs[ext] = {"smart_insert":False, "insert": False}
         else:
+            plugSets["supExt"] = False
             extensions.remove(ext)
             del configs[ext]
     elif text == "autolink":
         ext = "pymdownx.magiclink"
-        if check: pass
+        if check:
+            plugSets["linkExt"] = True
         else:
+            plugSets["linkExt"] = False
             extensions.remove(ext)
     elif text == "symbols":
         ext = "pymdownx.smartsymbols"
-        if check: pass
+        if check:
+            plugSets["symbolsExt"] = True
         else:
+            plugSets["symbolsExt"] = False
             extensions.remove(ext)
     elif text == "strike":
         if check:
+            plugSets["strikeExt"] = True
             if "pymdownx.tilde" in extensions:
                 ext = ""
                 configs["pymdownx.tilde"]["smart_delete"] = True
@@ -282,6 +316,7 @@ def pluginHandler(text,check,extensions, configs):
                 configs["pymdownx.tilde"]["delete"] = True
                 configs["pymdownx.tilde"]["subscript"] = False
         else:
+            plugSets["strikeExt"] = False
             if configs["pymdownx.tilde"]["subscript"]:
                 configs["pymdownx.tilde"]["smart_delete"] = False
                 configs["pymdownx.tilde"]["delete"] = False
@@ -291,6 +326,7 @@ def pluginHandler(text,check,extensions, configs):
     
     elif text == "subscript":
         if check:
+            plugSets["subExt"] = True
             if "pymdownx.tilde" in extensions:
                 ext = ""
                 configs["pymdownx.tilde"]["subscript"] = True
@@ -301,20 +337,19 @@ def pluginHandler(text,check,extensions, configs):
                 configs["pymdownx.tilde"]["delete"] = False
                 configs["pymdownx.tilde"]["subscript"] = True
         else:
+            plugSets["subExt"] = False
             if configs["pymdownx.tilde"]["delete"]:
                 configs["pymdownx.tilde"]["subscript"] = False
             else:
                 extensions.remove("pymdownx.tilde")
                 del configs["pymdownx.tilde"]
-    
+
+    location = "./settings.json"
+    with open(location,"w") as jsonfile:
+        json.dump(settings,jsonfile)
+    # print("Json Updated")
     if check and ext!="":
         extensions+=[ext]
-    
-    print("extensions - ")
-    print(extensions)
-    print("\nconfigs - ")
-    print(configs)
-    print("\n")
 
 
 def exportAsPdf(mdView):

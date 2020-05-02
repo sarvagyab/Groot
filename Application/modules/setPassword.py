@@ -24,45 +24,48 @@ class password(object):
         self.ui_p = ui
     
     def openPasswordDialog(self):
-        print("Encryption button clicked")
-        # First check whether any note is selected or not
-        self.currentNote = currentNote
-        self.currentFileName = self.currentNote._name
-        randomstring = self.currentNote._details['randomString']
-        if( randomstring in self.main_Window.decryptedNotes):
-            self.pass1 = self.main_Window.decryptedNotes[randomstring]
-            hashPassword(self.currentNote,self.currentFileName,self.pass1,self.main_Window,datalength = 64 ,encrypted=False)
-        else:
-            self.ui_p = Ui_passwordDialog()
-            if(self.currentNote._open == True):
-                print("Trying to encrypt {}".format(self.currentFileName))
-                # slot-signals
-                self.ui_p.buttonBox.button(QtWidgets.QDialogButtonBox.Ok).clicked.connect(lambda:self.passwordEntered())
-                self.ui_p.buttonBox.button(QtWidgets.QDialogButtonBox.Cancel).clicked.connect(lambda:self.closeDialog(self.ui_p.passwordDialog))
+        if(currentNote._file != None):
+            print("Encryption button clicked")
+            # First check whether any note is selected or not
+            self.currentNote = currentNote
+            self.currentFileName = self.currentNote._name
+            randomstring = self.currentNote._details['randomString']
+            if( randomstring in self.main_Window.decryptedNotes):
+                self.pass1 = self.main_Window.decryptedNotes[randomstring]
+                hashPassword(self.currentNote,self.currentFileName,self.pass1,self.main_Window,datalength = 64 ,encrypted=False)
+            else:
+                self.ui_p = Ui_passwordDialog()
+                if(self.currentNote._open == True):
+                    print("Trying to encrypt {}".format(self.currentFileName))
+                    # slot-signals
+                    self.ui_p.buttonBox.button(QtWidgets.QDialogButtonBox.Ok).clicked.connect(lambda:self.passwordEntered())
+                    self.ui_p.buttonBox.button(QtWidgets.QDialogButtonBox.Cancel).clicked.connect(lambda:self.closeDialog(self.ui_p.passwordDialog))
 
     def openVerifyPasswordDialog(self,permanentdecrypt = False):
-        self.currentNote = currentNote
-        self.currentFileName = self.currentNote.getFilename()
-        print("Decryption button clicked",self.currentFileName,permanentdecrypt)
-        randomstring = self.currentNote._details['randomString']
-        if(randomstring in self.main_Window.encryptedInSession):
-            self.pass1 = self.main_Window.encryptedInSession[randomstring]
-            self.verifyAndDecryptPassword(use_savedPassword= True,permanentdecrypt = permanentdecrypt)
-        else:
-            if(self.currentNote._open == True and self.isEncrypted()):
-                self.ui_pv = Ui_verifyPasswordDialog()
-                print("Trying to Decrypt {}".format(self.currentFileName))
+        if(currentNote._file != None):
+            self.currentNote = currentNote
+            self.currentFileName = self.currentNote.getFilename()
+            print("Decryption button clicked",self.currentFileName,permanentdecrypt)
+            randomstring = self.currentNote._details['randomString']
+            if(randomstring in self.main_Window.encryptedInSession):
+                self.pass1 = self.main_Window.encryptedInSession[randomstring]
+                self.verifyAndDecryptPassword(use_savedPassword= True,permanentdecrypt = permanentdecrypt)
+            else:
+                if(self.currentNote._open == True and self.isEncrypted()):
+                    self.ui_pv = Ui_verifyPasswordDialog()
+                    print("Trying to Decrypt {}".format(self.currentFileName))
 
-                # slot-signals
-                self.ui_pv.buttonBox.button(QtWidgets.QDialogButtonBox.Cancel).clicked.connect(lambda:self.closeDialog(self.ui_pv.verifyPasswordDialog))
-                self.ui_pv.buttonBox.button(QtWidgets.QDialogButtonBox.Ok).clicked.connect(lambda:self.verifyAndDecryptPassword(use_savedPassword=False,permanentdecrypt = permanentdecrypt))
+                    # slot-signals
+                    self.ui_pv.buttonBox.button(QtWidgets.QDialogButtonBox.Cancel).clicked.connect(lambda:self.closeDialog(self.ui_pv.verifyPasswordDialog))
+                    self.ui_pv.buttonBox.button(QtWidgets.QDialogButtonBox.Ok).clicked.connect(lambda:self.verifyAndDecryptPassword(use_savedPassword=False,permanentdecrypt = permanentdecrypt))
 
     def openChangeEncryptionPasswordDialog(self):
-        self.currentNote = currentNote
-        self.currentFileName = self.currentNote.getFilename()
-        self.ui_p = Ui_changePasswordDialog()
-        self.ui_p.buttonBox.button(QtWidgets.QDialogButtonBox.Cancel).clicked.connect(lambda:self.closeDialog(self.ui_p.changePasswordDialog))
-        self.ui_p.buttonBox.button(QtWidgets.QDialogButtonBox.Ok).clicked.connect(lambda:self.changeEncryptionPassword())
+        if(currentNote._file != None):
+            self.currentNote = currentNote
+            self.currentFileName = self.currentNote.getFilename()
+            self.ui_p = Ui_changePasswordDialog()
+            self.ui_p.buttonBox.button(QtWidgets.QDialogButtonBox.Cancel).clicked.connect(lambda:self.closeDialog(self.ui_p.changePasswordDialog))
+            self.ui_p.buttonBox.button(QtWidgets.QDialogButtonBox.Ok).clicked.connect(lambda:self.changeEncryptionPassword())
 
     def passwordEntered(self):
         self.pass1 = self.ui_p.passwordLineEdit.text()

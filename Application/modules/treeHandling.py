@@ -1,5 +1,4 @@
-
-from PySide2 import QtWidgets, QtCore
+from PySide2 import QtWidgets, QtCore,QtGui
 from modules.fileHandling import currentNote
 import json
 
@@ -27,7 +26,6 @@ def fillItem(item,valDict):
             pass
         else :
             fillItem(newItem,val["expanded"])
-
         item.addChild(newItem)
 
 

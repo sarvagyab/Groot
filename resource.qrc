@@ -5,6 +5,7 @@
     <file>Icons/16x16/underline.png</file>
     <file>Icons/16x16/underline.png</file>
     <file>Icons/16x16/folder_open.png</file>
+    <file>Icons/16x16/folder_light.png</file>
     <file>Icons/16x16/folder_plus.png</file>
     <file>Icons/16x16/encrypt.png</file>
     <file>Icons/16x16/encrypt_24.png</file>
@@ -14,6 +15,7 @@
     <file>Icons/16x16/decrypt.png</file>
     <file>Icons/16x16/doc_new.png</file>
     <file>Icons/16x16/subfolder.png</file>
+    <file>Icons/16x16/subfolder_light.png</file>
     <file>Icons/16x16/folder_plus.png</file>
     <file>Icons/16x16/folder_minus.png</file>
     <file>Icons/16x16/folder_open.png</file>
@@ -22,6 +24,7 @@
     <file>Icons/16x16/settings.png</file>
     <file>Icons/16x16/print.png</file>
     <file>Icons/16x16/doc_import.png</file>
+    <file>Icons/16x16/document_light.png</file>
     <file>Icons/16x16/doc_export.png</file>
     <file>Icons/16x16/quit.png</file>
     <file>Icons/16x16/edit.png</file>

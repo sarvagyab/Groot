@@ -22,7 +22,12 @@ def loadFileName(name,fileName):
 
 def pathContainedNotes(diction):
     if("path" in diction and type(diction["path"]) == str):
-        return [diction["path"]]
+        if "atchfiles" in diction:
+            # print("adding the to be deleted files")
+            # print(diction["atchfiles"])
+            return ([diction["path"]] + diction["atchfiles"])
+        else:
+            return [diction["path"]]
     finalList = []
     for keys in diction:
         finalList = finalList + pathContainedNotes(diction[keys]["expanded"])
@@ -128,6 +133,7 @@ def deleteNote(item, plainTextEdit,filename):
     if(currentNote._details["path"] in notesToBeDeleted):
         loadFileName("No Note Selected",filename)
         currentNote.closeFile()
+        currentNote._open = False
         plainTextEdit.clear()
     
     # removed from tree
