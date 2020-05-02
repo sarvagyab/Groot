@@ -45,20 +45,21 @@ class Ui_settingDialog(object):
         self.themeLabel.setFont(font1)
         self.fontSizeLabel = QLabel(self.tabAppearance)
         self.fontSizeLabel.setObjectName(u"fontSizeLabel")
-        self.fontSizeLabel.setGeometry(QRect(10, 160, 101, 21))
+        self.fontSizeLabel.setGeometry(QRect(10, 160, 111, 31))
         self.fontSizeLabel.setFont(font1)
         self.fontChoice = QFontComboBox(self.tabAppearance)
         self.fontChoice.setObjectName(u"fontChoice")
         self.fontChoice.setGeometry(QRect(140, 230, 226, 31))
         self.fontChoice.setFont(font1)
-        self.fontSizeValue = QLineEdit(self.tabAppearance)
-        self.fontSizeValue.setObjectName(u"fontSizeValue")
-        self.fontSizeValue.setGeometry(QRect(140, 160, 121, 22))
-        self.fontSizeValue.setFont(font1)
         self.fontFamilyLabel = QLabel(self.tabAppearance)
         self.fontFamilyLabel.setObjectName(u"fontFamilyLabel")
         self.fontFamilyLabel.setGeometry(QRect(10, 230, 111, 31))
         self.fontFamilyLabel.setFont(font1)
+        self.fontSizeValue = QSpinBox(self.tabAppearance)
+        self.fontSizeValue.setObjectName(u"fontSizeValue")
+        self.fontSizeValue.setGeometry(QRect(140, 160, 191, 31))
+        self.fontSizeValue.setMinimum(1)
+        self.fontSizeValue.setMaximum(255)
         self.settings.addTab(self.tabAppearance, "")
         self.tabPlugins = QWidget()
         self.tabPlugins.setObjectName(u"tabPlugins")
@@ -149,7 +150,7 @@ class Ui_settingDialog(object):
 
         self.retranslateUi(settingDialog)
 
-        self.settings.setCurrentIndex(1)
+        self.settings.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(settingDialog)
@@ -162,7 +163,6 @@ class Ui_settingDialog(object):
 
         self.themeLabel.setText(QCoreApplication.translate("settingDialog", u"Theme:", None))
         self.fontSizeLabel.setText(QCoreApplication.translate("settingDialog", u"Font size:", None))
-        self.fontSizeValue.setPlaceholderText(QCoreApplication.translate("settingDialog", u"Enter size", None))
         self.fontFamilyLabel.setText(QCoreApplication.translate("settingDialog", u"Font Family:", None))
         self.settings.setTabText(self.settings.indexOf(self.tabAppearance), QCoreApplication.translate("settingDialog", u"Appearance", None))
         self.hardExt.setText(QCoreApplication.translate("settingDialog", u"Enable hard breaks", None))

@@ -23,7 +23,7 @@
       </font>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tabAppearance">
       <attribute name="title">
@@ -77,8 +77,8 @@
         <rect>
          <x>10</x>
          <y>160</y>
-         <width>101</width>
-         <height>21</height>
+         <width>111</width>
+         <height>31</height>
         </rect>
        </property>
        <property name="font">
@@ -105,24 +105,6 @@
         </font>
        </property>
       </widget>
-      <widget class="QLineEdit" name="fontSizeValue">
-       <property name="geometry">
-        <rect>
-         <x>140</x>
-         <y>160</y>
-         <width>121</width>
-         <height>22</height>
-        </rect>
-       </property>
-       <property name="font">
-        <font>
-         <pointsize>13</pointsize>
-        </font>
-       </property>
-       <property name="placeholderText">
-        <string>Enter size</string>
-       </property>
-      </widget>
       <widget class="QLabel" name="fontFamilyLabel">
        <property name="geometry">
         <rect>
@@ -139,6 +121,22 @@
        </property>
        <property name="text">
         <string>Font Family:</string>
+       </property>
+      </widget>
+      <widget class="QSpinBox" name="fontSizeValue">
+       <property name="geometry">
+        <rect>
+         <x>140</x>
+         <y>160</y>
+         <width>191</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="minimum">
+        <number>1</number>
+       </property>
+       <property name="maximum">
+        <number>255</number>
        </property>
       </widget>
      </widget>

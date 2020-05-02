@@ -166,6 +166,15 @@ def pluginConnections(self,settings):
     settings.symbolsExt.stateChanged.connect(lambda: pluginHandler("symbols",settings.symbolsExt.isChecked(),self.mdExtensions,self.mdExtensionsConfigs))
     settings.strikeExt.stateChanged.connect(lambda: pluginHandler("strike",settings.strikeExt.isChecked(),self.mdExtensions,self.mdExtensionsConfigs))
 
+def setPlainTextEditFont(self):
+    family = self.ui_settingDialog.fontChoice.currentText()
+    size = self.ui_settingDialog.fontSizeValue.text()
+    font = QtGui.QFont(family,int(size))
+    self.ui.plainTextEdit.setFont(font)
+
+def appearConnections(self,settings):
+    settings.fontSizeValue.textChanged.connect(self.setPlainTextEditFont)
+    settings.fontChoice.currentFontChanged.connect(self.setPlainTextEditFont)
 
 # Added the ui_settingDialog to Window object
 def createSettingsDialog(self):
@@ -173,6 +182,7 @@ def createSettingsDialog(self):
     self.settingsDialog = QtWidgets.QDialog()
     self.ui_settingDialog.setupUi(self.settingsDialog)
     self.pluginConnections(self.ui_settingDialog)
+    self.appearConnections(self.ui_settingDialog)
 
 
 def loadPlugSettings(self,plugSettings):

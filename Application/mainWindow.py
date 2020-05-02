@@ -190,3 +190,5 @@ Window.pluginConnections = mainWindowFunctions.pluginConnections
 Window.loadSettings = mainWindowFunctions.loadSettings
 Window.loadPlugSettings = mainWindowFunctions.loadPlugSettings
 Window.loadAppearSettings = mainWindowFunctions.loadAppearSettings
+Window.appearConnections = mainWindowFunctions.appearConnections
+Window.setPlainTextEditFont = mainWindowFunctions.setPlainTextEditFont
