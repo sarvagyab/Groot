@@ -440,3 +440,4 @@ def importMD(item):
     newItem.setFlags(QtCore.Qt.ItemIsEditable|QtCore.Qt.ItemIsSelectable|QtCore.Qt.ItemIsUserCheckable|QtCore.Qt.ItemIsEnabled)
     item.addChild(newItem)
     item.setExpanded(True)
+    item.treeWidget().setCurrentItem(newItem)
