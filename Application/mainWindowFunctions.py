@@ -18,8 +18,9 @@ from GUIs.settingsDialog import Ui_settingDialog
 def fixScrolling(self):
     edBar = self.ui.plainTextEdit.verticalScrollBar()
     mdBar = self.ui.mdViewer.verticalScrollBar()
-    edBar.valueChanged.connect(lambda:scrolling(edBar,mdBar))
-    mdBar.valueChanged.connect(lambda:scrolling(mdBar,edBar))
+    searchBar = self.ui.searchBar
+    edBar.valueChanged.connect(lambda:scrolling(edBar,mdBar,searchBar))
+    mdBar.valueChanged.connect(lambda:scrolling(mdBar,edBar,searchBar))
 
 def showMenu(self,pos):
     item = self.ui.treeWidget.itemAt(pos)

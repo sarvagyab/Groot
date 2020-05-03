@@ -1,9 +1,10 @@
 from PySide2.QtGui import QTextDocument,QTextCursor
 from PySide2.QtCore import QRegExp,Qt
-
+from modules.markdownHandling import scrolling
 
 def searchText(ui,cursor = QTextCursor.Start,reversed = False):
     ui.errorLabel.setText("")
+    print("$"*5)
     ui.plainTextEdit.moveCursor(cursor) # set the cursor at the beginning of the text
     ui.mdViewer.moveCursor(cursor)
     search_text = ui.searchBar.text()
@@ -11,7 +12,9 @@ def searchText(ui,cursor = QTextCursor.Start,reversed = False):
     matchregex = ui.regexButton.isChecked()
     matchCase = ui.matchCase.isChecked()
     sb_m = ui.mdViewer.verticalScrollBar()
-    prev_sliderPos = sb_m.value()
+    sb_p = ui.plainTextEdit.verticalScrollBar()
+    prev_sliderPosM = sb_m.value()
+    prev_sliderPosP = sb_p.value()
     found = False
     if(matchregex == True): 
         if(matchCase == True): 
@@ -69,9 +72,12 @@ def searchText(ui,cursor = QTextCursor.Start,reversed = False):
                 else:
                     found = ui.plainTextEdit.find(search_text)
                     ui.mdViewer.find(search_text)
-    curr_sliderPos = sb_m.value()
-    if(prev_sliderPos != curr_sliderPos):
+    curr_sliderPosM = sb_m.value()
+    curr_sliderPosP = sb_p.value()
+    if(prev_sliderPosM != curr_sliderPosM):
         scrollToCenter(sb_m)
+    if(prev_sliderPosP != curr_sliderPosP):
+        scrollToCenter(sb_p)
     if(found == False):
         MSG = "<html><head/><body><p><span style=\" color:#ff0000;\">No results</span></p></body></html>"
         ui.errorLabel.setText(MSG)
@@ -79,5 +85,5 @@ def searchText(ui,cursor = QTextCursor.Start,reversed = False):
 def finishedSearch(textLabel):
     textLabel.setText("")
 
-def scrollToCenter(sb_m):
-    sb_m.setValue(sb_m.value()+sb_m.pageStep()/2)
+def scrollToCenter(sb):
+    sb.setValue(sb.value()+sb.pageStep()/2)

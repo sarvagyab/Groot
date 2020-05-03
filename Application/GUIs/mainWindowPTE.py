@@ -1,20 +1,28 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'mainWindowPTE.ui'
-#
-# Created by: PyQt5 UI code generator 5.14.1
-#
-# WARNING! All changes made in this file will be lost!
+################################################################################
+## Form generated from reading UI file 'mainWindowPTE.ui'
+##
+## Created by: Qt User Interface Compiler version 5.14.2
+##
+## WARNING! All changes made in this file will be lost when recompiling UI file!
+################################################################################
 
+from PySide2.QtCore import (QCoreApplication, QDate, QDateTime, QMetaObject,
+    QObject, QPoint, QRect, QSize, QTime, QUrl, Qt)
+from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont,
+    QFontDatabase, QIcon, QKeySequence, QLinearGradient, QPalette, QPainter,
+    QPixmap, QRadialGradient)
+from PySide2.QtWidgets import *
 
-from PySide2 import QtCore, QtGui, QtWidgets
-
+import resource_rc
 
 class Ui_Groot(object):
     def setupUi(self, Groot):
-        Groot.setObjectName("Groot")
+        if not Groot.objectName():
+            Groot.setObjectName(u"Groot")
         Groot.resize(1602, 795)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(Groot.sizePolicy().hasHeightForWidth())
@@ -163,321 +171,330 @@ class Ui_Groot(object):
         self.horizontalLayout_4 = QHBoxLayout(self.centralwidget)
         self.horizontalLayout_4.setObjectName(u"horizontalLayout_4")
         self.horizontalLayout_4.setContentsMargins(0, 5, 0, 0)
-        self.horizontalLayout_4.setObjectName("horizontalLayout_4")
-        self.mainWindow = QtWidgets.QWidget(self.centralwidget)
-        self.mainWindow.setStyleSheet("QWidget{\n"
-"    margin:0px;\n"
-"    padding:0px;\n"
+        self.mainWindow = QWidget(self.centralwidget)
+        self.mainWindow.setObjectName(u"mainWindow")
+        self.mainWindow.setStyleSheet(u"QWidget{\n"
+"	margin:0px;\n"
+"	padding:0px;\n"
 "}")
-        self.mainWindow.setObjectName("mainWindow")
-        self.verticalLayout = QtWidgets.QVBoxLayout(self.mainWindow)
-        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout = QVBoxLayout(self.mainWindow)
         self.verticalLayout.setSpacing(0)
-        self.verticalLayout.setObjectName("verticalLayout")
-        self.rootOptions = QtWidgets.QWidget(self.mainWindow)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.rootOptions.sizePolicy().hasHeightForWidth())
-        self.rootOptions.setSizePolicy(sizePolicy)
-        self.rootOptions.setMinimumSize(QtCore.QSize(0, 0))
-        self.rootOptions.setStyleSheet("QFrame{\n"
-"    border-style:None;\n"
+        self.verticalLayout.setObjectName(u"verticalLayout")
+        self.verticalLayout.setContentsMargins(0, 0, 0, 0)
+        self.rootOptions = QWidget(self.mainWindow)
+        self.rootOptions.setObjectName(u"rootOptions")
+        sizePolicy1 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(0)
+        sizePolicy1.setHeightForWidth(self.rootOptions.sizePolicy().hasHeightForWidth())
+        self.rootOptions.setSizePolicy(sizePolicy1)
+        self.rootOptions.setMinimumSize(QSize(0, 0))
+        self.rootOptions.setStyleSheet(u"QFrame{\n"
+"	border-style:None;\n"
 "}")
-        self.rootOptions.setObjectName("rootOptions")
-        self.horizontalLayout_6 = QtWidgets.QHBoxLayout(self.rootOptions)
-        self.horizontalLayout_6.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_6 = QHBoxLayout(self.rootOptions)
         self.horizontalLayout_6.setSpacing(6)
-        self.horizontalLayout_6.setObjectName("horizontalLayout_6")
-        self.buttonFrame = QtWidgets.QFrame(self.rootOptions)
-        self.buttonFrame.setStyleSheet("QPushButton{\n"
-"    border:None;\n"
+        self.horizontalLayout_6.setObjectName(u"horizontalLayout_6")
+        self.horizontalLayout_6.setContentsMargins(0, 0, 0, 0)
+        self.buttonFrame = QFrame(self.rootOptions)
+        self.buttonFrame.setObjectName(u"buttonFrame")
+        self.buttonFrame.setStyleSheet(u"QPushButton{\n"
+"	border:None;\n"
 "}\n"
 "\n"
 "QPushButton:hover{\n"
-"    background-color:rgba(211,211,211,0.5);\n"
+"	background-color:rgba(211,211,211,0.5);\n"
 "}\n"
 "\n"
 "QPushButton:pressed{\n"
-"    border:1px solid blue;\n"
+"	border:1px solid blue;\n"
 "}")
-        self.buttonFrame.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.buttonFrame.setFrameShadow(QtWidgets.QFrame.Plain)
-        self.buttonFrame.setObjectName("buttonFrame")
-        self.horizontalLayout_12 = QtWidgets.QHBoxLayout(self.buttonFrame)
-        self.horizontalLayout_12.setContentsMargins(3, 0, 0, 0)
+        self.buttonFrame.setFrameShape(QFrame.StyledPanel)
+        self.buttonFrame.setFrameShadow(QFrame.Plain)
+        self.horizontalLayout_12 = QHBoxLayout(self.buttonFrame)
         self.horizontalLayout_12.setSpacing(3)
-        self.horizontalLayout_12.setObjectName("horizontalLayout_12")
-        self.newNote = QtWidgets.QPushButton(self.buttonFrame)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.newNote.sizePolicy().hasHeightForWidth())
-        self.newNote.setSizePolicy(sizePolicy)
-        self.newNote.setMinimumSize(QtCore.QSize(0, 0))
-        self.newNote.setStyleSheet("QPushButton{\n"
-"    border:None;\n"
-"    padding:4px 2px 4px 2px;\n"
+        self.horizontalLayout_12.setObjectName(u"horizontalLayout_12")
+        self.horizontalLayout_12.setContentsMargins(3, 0, 0, 0)
+        self.newNote = QPushButton(self.buttonFrame)
+        self.newNote.setObjectName(u"newNote")
+        sizePolicy1.setHeightForWidth(self.newNote.sizePolicy().hasHeightForWidth())
+        self.newNote.setSizePolicy(sizePolicy1)
+        self.newNote.setMinimumSize(QSize(0, 0))
+        self.newNote.setStyleSheet(u"QPushButton{\n"
+"	border:None;\n"
+"	padding:4px 2px 4px 2px;\n"
 "}\n"
 "\n"
 "QPushButton:hover{\n"
-"    background-color:rgba(211,211,211,0.5);\n"
+"	background-color:rgba(211,211,211,0.5);\n"
 "}\n"
 "\n"
 "QPushButton:pressed{\n"
-"    border:1px solid blue;\n"
+"	border:1px solid blue;\n"
 "}")
-        icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap(":/icons/Icons/16x16/doc_new.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.newNote.setIcon(icon)
-        self.newNote.setObjectName("newNote")
+        self.newNote.setIcon(icon12)
+
         self.horizontalLayout_12.addWidget(self.newNote)
-        self.newNotebook = QtWidgets.QPushButton(self.buttonFrame)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.newNotebook.sizePolicy().hasHeightForWidth())
-        self.newNotebook.setSizePolicy(sizePolicy)
-        self.newNotebook.setMinimumSize(QtCore.QSize(0, 0))
-        self.newNotebook.setStyleSheet("QPushButton{\n"
-"    border:None;\n"
-"    padding:4px 2px 4px 2px;\n"
+
+        self.newNotebook = QPushButton(self.buttonFrame)
+        self.newNotebook.setObjectName(u"newNotebook")
+        sizePolicy1.setHeightForWidth(self.newNotebook.sizePolicy().hasHeightForWidth())
+        self.newNotebook.setSizePolicy(sizePolicy1)
+        self.newNotebook.setMinimumSize(QSize(0, 0))
+        self.newNotebook.setStyleSheet(u"QPushButton{\n"
+"	border:None;\n"
+"	padding:4px 2px 4px 2px;\n"
 "}\n"
 "\n"
 "QPushButton:hover{\n"
-"    background-color:rgba(211,211,211,0.5);\n"
+"	background-color:rgba(211,211,211,0.5);\n"
 "}\n"
 "\n"
 "QPushButton:pressed{\n"
-"    border:1px solid blue;\n"
+"	border:1px solid blue;\n"
 "}")
-        icon1 = QtGui.QIcon()
-        icon1.addPixmap(QtGui.QPixmap(":/icons/Icons/16x16/folder_plus.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.newNotebook.setIcon(icon1)
-        self.newNotebook.setObjectName("newNotebook")
+        self.newNotebook.setIcon(icon14)
+
         self.horizontalLayout_12.addWidget(self.newNotebook)
-        self.newSubNotebook = QtWidgets.QPushButton(self.buttonFrame)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.newSubNotebook.sizePolicy().hasHeightForWidth())
-        self.newSubNotebook.setSizePolicy(sizePolicy)
-        self.newSubNotebook.setMinimumSize(QtCore.QSize(0, 0))
-        self.newSubNotebook.setStyleSheet("QPushButton{\n"
-"    border:None;\n"
-"    padding:4px 2px 4px 2px;\n"
+
+        self.newSubNotebook = QPushButton(self.buttonFrame)
+        self.newSubNotebook.setObjectName(u"newSubNotebook")
+        sizePolicy1.setHeightForWidth(self.newSubNotebook.sizePolicy().hasHeightForWidth())
+        self.newSubNotebook.setSizePolicy(sizePolicy1)
+        self.newSubNotebook.setMinimumSize(QSize(0, 0))
+        self.newSubNotebook.setStyleSheet(u"QPushButton{\n"
+"	border:None;\n"
+"	padding:4px 2px 4px 2px;\n"
 "}\n"
 "\n"
 "QPushButton:hover{\n"
-"    background-color:rgba(211,211,211,0.5);\n"
+"	background-color:rgba(211,211,211,0.5);\n"
 "}\n"
 "\n"
 "QPushButton:pressed{\n"
-"    border:1px solid blue;\n"
+"	border:1px solid blue;\n"
 "}")
-        icon2 = QtGui.QIcon()
-        icon2.addPixmap(QtGui.QPixmap(":/icons/Icons/16x16/subfolder.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.newSubNotebook.setIcon(icon2)
-        self.newSubNotebook.setObjectName("newSubNotebook")
+        self.newSubNotebook.setIcon(icon13)
+
         self.horizontalLayout_12.addWidget(self.newSubNotebook)
+
+
         self.horizontalLayout_6.addWidget(self.buttonFrame)
-        self.findFrame = QtWidgets.QFrame(self.rootOptions)
-        self.findFrame.setStyleSheet("")
-        self.findFrame.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.findFrame.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.findFrame.setObjectName("findFrame")
-        self.horizontalLayout_10 = QtWidgets.QHBoxLayout(self.findFrame)
+
+        self.findFrame = QFrame(self.rootOptions)
+        self.findFrame.setObjectName(u"findFrame")
+        self.findFrame.setStyleSheet(u"")
+        self.findFrame.setFrameShape(QFrame.StyledPanel)
+        self.findFrame.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_10 = QHBoxLayout(self.findFrame)
         self.horizontalLayout_10.setSpacing(1)
-        self.horizontalLayout_10.setObjectName("horizontalLayout_10")
-        self.frame = QtWidgets.QFrame(self.findFrame)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
+        self.horizontalLayout_10.setObjectName(u"horizontalLayout_10")
+        self.frame = QFrame(self.findFrame)
+        self.frame.setObjectName(u"frame")
         sizePolicy.setHeightForWidth(self.frame.sizePolicy().hasHeightForWidth())
         self.frame.setSizePolicy(sizePolicy)
-        self.frame.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.frame.setFrameShadow(QtWidgets.QFrame.Plain)
-        self.frame.setObjectName("frame")
-        self.horizontalLayout_11 = QtWidgets.QHBoxLayout(self.frame)
-        self.horizontalLayout_11.setContentsMargins(3, 0, 3, 3)
+        self.frame.setFrameShape(QFrame.StyledPanel)
+        self.frame.setFrameShadow(QFrame.Plain)
+        self.horizontalLayout_11 = QHBoxLayout(self.frame)
         self.horizontalLayout_11.setSpacing(0)
-        self.horizontalLayout_11.setObjectName("horizontalLayout_11")
-        self.searchBar = QtWidgets.QLineEdit(self.frame)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.searchBar.sizePolicy().hasHeightForWidth())
-        self.searchBar.setSizePolicy(sizePolicy)
-        self.searchBar.setMinimumSize(QtCore.QSize(250, 28))
-        font = QtGui.QFont()
+        self.horizontalLayout_11.setObjectName(u"horizontalLayout_11")
+        self.horizontalLayout_11.setContentsMargins(3, 0, 3, 3)
+        self.searchBar = QLineEdit(self.frame)
+        self.searchBar.setObjectName(u"searchBar")
+        sizePolicy1.setHeightForWidth(self.searchBar.sizePolicy().hasHeightForWidth())
+        self.searchBar.setSizePolicy(sizePolicy1)
+        self.searchBar.setMinimumSize(QSize(250, 28))
+        font = QFont()
         font.setPointSize(10)
         self.searchBar.setFont(font)
-        self.searchBar.setStyleSheet("QLineEdit{\n"
-"    border: 1px solid grey;\n"
+        self.searchBar.setStyleSheet(u"QLineEdit{\n"
+"	border: 1px solid grey;\n"
 "}\n"
 "\n"
 "QLineEdit:focus{\n"
-"    border: 1px solid black;\n"
+"	border: 1px solid black;\n"
 "}")
-        self.searchBar.setObjectName("searchBar")
+
         self.horizontalLayout_11.addWidget(self.searchBar)
-        self.errorLabel = QtWidgets.QLabel(self.frame)
-        self.errorLabel.setText("")
-        self.errorLabel.setObjectName("errorLabel")
+
+        self.errorLabel = QLabel(self.frame)
+        self.errorLabel.setObjectName(u"errorLabel")
+
         self.horizontalLayout_11.addWidget(self.errorLabel)
-        self.wholeWord = QtWidgets.QPushButton(self.frame)
-        self.wholeWord.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.wholeWord.setStyleSheet("QPushButton{\n"
-"    border-style:None;\n"
-"    padding:6px 4px 6px 4px;\n"
+
+        self.wholeWord = QPushButton(self.frame)
+        self.wholeWord.setObjectName(u"wholeWord")
+        self.wholeWord.setCursor(QCursor(Qt.PointingHandCursor))
+        self.wholeWord.setStyleSheet(u"QPushButton{\n"
+"	border-style:None;\n"
+"	padding:6px 4px 6px 4px;\n"
 "}\n"
 "\n"
 "QPushButton:checked{\n"
-"    background-color:rgba(211,211,211,0.4);\n"
+"	background-color:rgba(211,211,211,0.4);\n"
 "}\n"
 "\n"
 "QPushButton:!checked:hover{\n"
-"    padding-top:1px;\n"
-"    padding-left:1px;\n"
+"	padding-top:1px;\n"
+"	padding-left:1px;\n"
 "}")
-        self.wholeWord.setIconSize(QtCore.QSize(31, 31))
+        self.wholeWord.setIconSize(QSize(31, 31))
         self.wholeWord.setCheckable(True)
-        self.wholeWord.setObjectName("wholeWord")
+
         self.horizontalLayout_11.addWidget(self.wholeWord)
-        self.matchCase = QtWidgets.QPushButton(self.frame)
-        self.matchCase.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.matchCase.setStyleSheet("QPushButton{\n"
-"    border-style:None;\n"
-"    padding:6px 4px 6px 4px;\n"
+
+        self.matchCase = QPushButton(self.frame)
+        self.matchCase.setObjectName(u"matchCase")
+        self.matchCase.setCursor(QCursor(Qt.PointingHandCursor))
+        self.matchCase.setStyleSheet(u"QPushButton{\n"
+"	border-style:None;\n"
+"	padding:6px 4px 6px 4px;\n"
 "}\n"
 "\n"
 "QPushButton:checked{\n"
-"    background-color:rgba(211,211,211,0.4);\n"
+"	background-color:rgba(211,211,211,0.4);\n"
 "}\n"
 "\n"
 "QPushButton:!checked:hover{\n"
-"    padding-top:1px;\n"
-"    padding-left:1px;\n"
+"	padding-top:1px;\n"
+"	padding-left:1px;\n"
 "}")
-        self.matchCase.setIconSize(QtCore.QSize(31, 31))
+        self.matchCase.setIconSize(QSize(31, 31))
         self.matchCase.setCheckable(True)
-        self.matchCase.setObjectName("matchCase")
+
         self.horizontalLayout_11.addWidget(self.matchCase)
-        self.regexButton = QtWidgets.QPushButton(self.frame)
-        self.regexButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.regexButton.setStyleSheet("QPushButton{\n"
-"    border-style:None;\n"
-"    padding:6px 4px 6px 4px;\n"
+
+        self.regexButton = QPushButton(self.frame)
+        self.regexButton.setObjectName(u"regexButton")
+        self.regexButton.setCursor(QCursor(Qt.PointingHandCursor))
+        self.regexButton.setStyleSheet(u"QPushButton{\n"
+"	border-style:None;\n"
+"	padding:6px 4px 6px 4px;\n"
 "}\n"
 "\n"
 "QPushButton:checked{\n"
-"    background-color:rgba(211,211,211,0.4);\n"
+"	background-color:rgba(211,211,211,0.4);\n"
 "}\n"
 "\n"
 "QPushButton:!checked:hover{\n"
-"    padding-top:1px;\n"
-"    padding-left:1px;\n"
+"	padding-top:1px;\n"
+"	padding-left:1px;\n"
 "}s")
-        self.regexButton.setIconSize(QtCore.QSize(31, 31))
+        self.regexButton.setIconSize(QSize(31, 31))
         self.regexButton.setCheckable(True)
-        self.regexButton.setObjectName("regexButton")
+
         self.horizontalLayout_11.addWidget(self.regexButton)
+
+
         self.horizontalLayout_10.addWidget(self.frame)
-        self.prevMatch = QtWidgets.QPushButton(self.findFrame)
-        self.prevMatch.setStyleSheet("QPushButton{\n"
-"    border:None;\n"
-"    margin:0px;\n"
-"    padding:0px;\n"
+
+        self.prevMatch = QPushButton(self.findFrame)
+        self.prevMatch.setObjectName(u"prevMatch")
+        self.prevMatch.setStyleSheet(u"QPushButton{\n"
+"	border:None;\n"
+"	margin:0px;\n"
+"	padding:0px;\n"
 "}\n"
 "\n"
 "QPushButton:hover{\n"
-"    border-style:solid;\n"
-"    border-color:black;\n"
-"    background-origin:border-box;\n"
-"    padding-top: 3px;\n"
+"	border-style:solid;\n"
+"	border-color:black;\n"
+"	background-origin:border-box;\n"
+"	padding-top: 3px;\n"
 "    padding-left: 4px;\n"
 "}\n"
 "\n"
 "QPushButton:pressed{\n"
-"    padding-top: 1px;\n"
-"    padding-left :1px;\n"
+"	padding-top: 1px;\n"
+"	padding-left :1px;\n"
 "}")
-        self.prevMatch.setText("")
-        icon3 = QtGui.QIcon()
-        icon3.addPixmap(QtGui.QPixmap(":/icons/Icons/32x32/arrow_top.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.prevMatch.setIcon(icon3)
-        self.prevMatch.setIconSize(QtCore.QSize(20, 20))
-        self.prevMatch.setObjectName("prevMatch")
+        icon22 = QIcon()
+        icon22.addFile(u":/icons/Icons/32x32/arrow_top.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.prevMatch.setIcon(icon22)
+        self.prevMatch.setIconSize(QSize(20, 20))
+
         self.horizontalLayout_10.addWidget(self.prevMatch)
-        self.nextMatch = QtWidgets.QPushButton(self.findFrame)
-        self.nextMatch.setStyleSheet("QPushButton{\n"
-"    border:None;\n"
-"    margin:0px;\n"
-"    padding:0px;\n"
+
+        self.nextMatch = QPushButton(self.findFrame)
+        self.nextMatch.setObjectName(u"nextMatch")
+        self.nextMatch.setStyleSheet(u"QPushButton{\n"
+"	border:None;\n"
+"	margin:0px;\n"
+"	padding:0px;\n"
 "}\n"
 "\n"
 "QPushButton:hover{\n"
-"    border-style:solid;\n"
-"    border-color:black;\n"
-"    background-origin:border-box;\n"
-"    padding-top: 3px;\n"
+"	border-style:solid;\n"
+"	border-color:black;\n"
+"	background-origin:border-box;\n"
+"	padding-top: 3px;\n"
 "    padding-left: 4px;\n"
 "}\n"
 "\n"
 "QPushButton:pressed{\n"
-"    padding-top: 1px;\n"
-"    padding-left :1px;\n"
+"	padding-top: 1px;\n"
+"	padding-left :1px;\n"
 "}")
-        self.nextMatch.setText("")
-        icon4 = QtGui.QIcon()
-        icon4.addPixmap(QtGui.QPixmap(":/icons/Icons/32x32/arrow_bottom.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.nextMatch.setIcon(icon4)
-        self.nextMatch.setIconSize(QtCore.QSize(20, 20))
-        self.nextMatch.setObjectName("nextMatch")
+        icon23 = QIcon()
+        icon23.addFile(u":/icons/Icons/32x32/arrow_bottom.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.nextMatch.setIcon(icon23)
+        self.nextMatch.setIconSize(QSize(20, 20))
+
         self.horizontalLayout_10.addWidget(self.nextMatch)
+
+
         self.horizontalLayout_6.addWidget(self.findFrame)
-        spacerItem = QtWidgets.QSpacerItem(800, 20, QtWidgets.QSizePolicy.Ignored, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_6.addItem(spacerItem)
+
+        self.emptySpaceMainOptions = QSpacerItem(800, 20, QSizePolicy.Ignored, QSizePolicy.Minimum)
+
+        self.horizontalLayout_6.addItem(self.emptySpaceMainOptions)
+
+
         self.verticalLayout.addWidget(self.rootOptions)
-        self.centralView = QtWidgets.QWidget(self.mainWindow)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
+
+        self.centralView = QWidget(self.mainWindow)
+        self.centralView.setObjectName(u"centralView")
         sizePolicy.setHeightForWidth(self.centralView.sizePolicy().hasHeightForWidth())
         self.centralView.setSizePolicy(sizePolicy)
-        self.centralView.setMinimumSize(QtCore.QSize(0, 0))
-        self.centralView.setStyleSheet("QWidget{\n"
-"    margin:0px;\n"
-"    padding:0px;\n"
+        self.centralView.setMinimumSize(QSize(0, 0))
+        self.centralView.setStyleSheet(u"QWidget{\n"
+"	margin:0px;\n"
+"	padding:0px;\n"
 "}")
-        self.centralView.setObjectName("centralView")
-        self.horizontalLayout_5 = QtWidgets.QHBoxLayout(self.centralView)
-        self.horizontalLayout_5.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_5 = QHBoxLayout(self.centralView)
         self.horizontalLayout_5.setSpacing(0)
-        self.horizontalLayout_5.setObjectName("horizontalLayout_5")
-        self.treeWidget = QtWidgets.QTreeWidget(self.centralView)
+        self.horizontalLayout_5.setObjectName(u"horizontalLayout_5")
+        self.horizontalLayout_5.setContentsMargins(0, 0, 0, 0)
+        self.treeWidget = QTreeWidget(self.centralView)
+        font1 = QFont()
+        font1.setPointSize(12)
+        __qtreewidgetitem = QTreeWidgetItem(self.treeWidget)
+        __qtreewidgetitem.setFont(0, font1);
+        __qtreewidgetitem1 = QTreeWidgetItem(self.treeWidget)
+        __qtreewidgetitem1.setFont(0, font1);
+        self.treeWidget.setObjectName(u"treeWidget")
         self.treeWidget.setEnabled(True)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Maximum, QtWidgets.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.treeWidget.sizePolicy().hasHeightForWidth())
-        self.treeWidget.setSizePolicy(sizePolicy)
-        self.treeWidget.setMinimumSize(QtCore.QSize(200, 0))
-        self.treeWidget.setContextMenuPolicy(QtCore.Qt.CustomContextMenu)
+        sizePolicy2 = QSizePolicy(QSizePolicy.Maximum, QSizePolicy.Preferred)
+        sizePolicy2.setHorizontalStretch(0)
+        sizePolicy2.setVerticalStretch(0)
+        sizePolicy2.setHeightForWidth(self.treeWidget.sizePolicy().hasHeightForWidth())
+        self.treeWidget.setSizePolicy(sizePolicy2)
+        self.treeWidget.setMinimumSize(QSize(200, 0))
+        self.treeWidget.setContextMenuPolicy(Qt.CustomContextMenu)
         self.treeWidget.setAutoFillBackground(False)
-        self.treeWidget.setStyleSheet("QTreeView {\n"
-"    background-color:black;\n"
-"    color:white;\n"
-"    alternate-background-color:gray;\n"
+        self.treeWidget.setStyleSheet(u"QTreeView {\n"
+"	background-color:black;\n"
+"	color:white;\n"
+"	alternate-background-color:gray;\n"
 "}\n"
 "\n"
 "")
-        self.treeWidget.setFrameShape(QtWidgets.QFrame.WinPanel)
-        self.treeWidget.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.treeWidget.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAsNeeded)
-        self.treeWidget.setSizeAdjustPolicy(QtWidgets.QAbstractScrollArea.AdjustIgnored)
+        self.treeWidget.setFrameShape(QFrame.WinPanel)
+        self.treeWidget.setFrameShadow(QFrame.Raised)
+        self.treeWidget.setHorizontalScrollBarPolicy(Qt.ScrollBarAsNeeded)
+        self.treeWidget.setSizeAdjustPolicy(QAbstractScrollArea.AdjustIgnored)
         self.treeWidget.setProperty("showDropIndicator", True)
-        self.treeWidget.setHorizontalScrollMode(QtWidgets.QAbstractItemView.ScrollPerPixel)
+        self.treeWidget.setHorizontalScrollMode(QAbstractItemView.ScrollPerPixel)
         self.treeWidget.setRootIsDecorated(True)
         self.treeWidget.setUniformRowHeights(True)
         self.treeWidget.setAnimated(True)
@@ -485,387 +502,405 @@ class Ui_Groot(object):
         self.treeWidget.setHeaderHidden(True)
         self.treeWidget.setExpandsOnDoubleClick(True)
         self.treeWidget.setColumnCount(1)
-        self.treeWidget.setObjectName("treeWidget")
-        item_0 = QtWidgets.QTreeWidgetItem(self.treeWidget)
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        item_0.setFont(0, font)
-        item_0 = QtWidgets.QTreeWidgetItem(self.treeWidget)
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        item_0.setFont(0, font)
         self.treeWidget.header().setVisible(False)
         self.treeWidget.header().setCascadingSectionResizes(False)
         self.treeWidget.header().setHighlightSections(False)
         self.treeWidget.header().setStretchLastSection(False)
+
         self.horizontalLayout_5.addWidget(self.treeWidget)
-        self.editorArea = QtWidgets.QWidget(self.centralView)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
+
+        self.editorArea = QWidget(self.centralView)
+        self.editorArea.setObjectName(u"editorArea")
         sizePolicy.setHeightForWidth(self.editorArea.sizePolicy().hasHeightForWidth())
         self.editorArea.setSizePolicy(sizePolicy)
-        self.editorArea.setStyleSheet("QWidget{\n"
-"    background-color:white;\n"
-"    margin:0px;\n"
-"    padding:0px;\n"
+        self.editorArea.setStyleSheet(u"QWidget{\n"
+"	background-color:white;\n"
+"	margin:0px;\n"
+"	padding:0px;\n"
 "}\n"
 "")
-        self.editorArea.setObjectName("editorArea")
-        self.verticalLayout_2 = QtWidgets.QVBoxLayout(self.editorArea)
-        self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
+        self.verticalLayout_2 = QVBoxLayout(self.editorArea)
         self.verticalLayout_2.setSpacing(0)
-        self.verticalLayout_2.setObjectName("verticalLayout_2")
-        self.titleArea = QtWidgets.QWidget(self.editorArea)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.titleArea.sizePolicy().hasHeightForWidth())
-        self.titleArea.setSizePolicy(sizePolicy)
-        font = QtGui.QFont()
-        font.setFamily("Calibri")
-        font.setPointSize(3)
-        font.setBold(True)
-        font.setItalic(True)
-        font.setWeight(75)
-        font.setKerning(True)
-        self.titleArea.setFont(font)
-        self.titleArea.setStyleSheet("padding:0px;\n"
+        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
+        self.verticalLayout_2.setContentsMargins(0, 0, 0, 0)
+        self.titleArea = QWidget(self.editorArea)
+        self.titleArea.setObjectName(u"titleArea")
+        sizePolicy1.setHeightForWidth(self.titleArea.sizePolicy().hasHeightForWidth())
+        self.titleArea.setSizePolicy(sizePolicy1)
+        font2 = QFont()
+        font2.setFamily(u"Calibri")
+        font2.setPointSize(3)
+        font2.setBold(True)
+        font2.setItalic(True)
+        font2.setWeight(75)
+        font2.setKerning(True)
+        self.titleArea.setFont(font2)
+        self.titleArea.setStyleSheet(u"padding:0px;\n"
 "margin :0px;\n"
 "background-color:grey;")
-        self.titleArea.setObjectName("titleArea")
-        self.horizontalLayout = QtWidgets.QHBoxLayout(self.titleArea)
+        self.horizontalLayout = QHBoxLayout(self.titleArea)
         self.horizontalLayout.setSpacing(0)
-        self.horizontalLayout.setObjectName("horizontalLayout")
-        self.fileName = QtWidgets.QLabel(self.titleArea)
-        font = QtGui.QFont()
-        font.setFamily("Calibri")
-        font.setPointSize(12)
-        self.fileName.setFont(font)
-        self.fileName.setStyleSheet("")
+        self.horizontalLayout.setObjectName(u"horizontalLayout")
+        self.fileName = QLabel(self.titleArea)
+        self.fileName.setObjectName(u"fileName")
+        font3 = QFont()
+        font3.setFamily(u"Calibri")
+        font3.setPointSize(12)
+        self.fileName.setFont(font3)
+        self.fileName.setStyleSheet(u"")
         self.fileName.setScaledContents(False)
-        self.fileName.setAlignment(QtCore.Qt.AlignCenter)
-        self.fileName.setTextInteractionFlags(QtCore.Qt.TextSelectableByMouse)
-        self.fileName.setObjectName("fileName")
+        self.fileName.setAlignment(Qt.AlignCenter)
+        self.fileName.setTextInteractionFlags(Qt.TextSelectableByMouse)
+
         self.horizontalLayout.addWidget(self.fileName)
+
+
         self.verticalLayout_2.addWidget(self.titleArea)
-        self.editingButtons = QtWidgets.QWidget(self.editorArea)
+
+        self.editingButtons = QWidget(self.editorArea)
+        self.editingButtons.setObjectName(u"editingButtons")
         self.editingButtons.setEnabled(True)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Maximum)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.editingButtons.sizePolicy().hasHeightForWidth())
-        self.editingButtons.setSizePolicy(sizePolicy)
+        sizePolicy3 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Maximum)
+        sizePolicy3.setHorizontalStretch(0)
+        sizePolicy3.setVerticalStretch(0)
+        sizePolicy3.setHeightForWidth(self.editingButtons.sizePolicy().hasHeightForWidth())
+        self.editingButtons.setSizePolicy(sizePolicy3)
         self.editingButtons.setMouseTracking(False)
-        self.editingButtons.setLayoutDirection(QtCore.Qt.LeftToRight)
+        self.editingButtons.setLayoutDirection(Qt.LeftToRight)
         self.editingButtons.setAutoFillBackground(False)
-        self.editingButtons.setStyleSheet("QFrame{\n"
-"    border-right:2px solid gray;\n"
-"    padding:0px;\n"
-"    margin:0px;\n"
-"    background-color:white;    \n"
+        self.editingButtons.setStyleSheet(u"QFrame{\n"
+"	border-right:2px solid gray;\n"
+"	padding:0px;\n"
+"	margin:0px;\n"
+"	background-color:white;	\n"
 "}\n"
 "\n"
 "QPushButton{\n"
-"    border-style:None;\n"
-"    padding:3px;\n"
+"	border-style:None;\n"
+"	padding:3px;\n"
 "}\n"
 "\n"
 "QPushButton:hover{\n"
-"    border-style:solid;\n"
-"    border-color:black;\n"
-"    background-origin:border-box;\n"
-"    padding-top: 3px;\n"
+"	border-style:solid;\n"
+"	border-color:black;\n"
+"	background-origin:border-box;\n"
+"	padding-top: 3px;\n"
 "    padding-left: 4px;\n"
 "}\n"
 "\n"
 "QPushButton:pressed{\n"
-"    padding-top: 1px;\n"
-"    padding-left :1px;\n"
+"	padding-top: 1px;\n"
+"	padding-left :1px;\n"
 "}")
-        self.editingButtons.setObjectName("editingButtons")
-        self.horizontalLayout_3 = QtWidgets.QHBoxLayout(self.editingButtons)
-        self.horizontalLayout_3.setContentsMargins(0, 0, 2, 0)
+        self.horizontalLayout_3 = QHBoxLayout(self.editingButtons)
         self.horizontalLayout_3.setSpacing(2)
-        self.horizontalLayout_3.setObjectName("horizontalLayout_3")
-        self.formatFrame = QtWidgets.QFrame(self.editingButtons)
-        self.formatFrame.setStyleSheet("QPushButton{\n"
-"    margin:0px;\n"
-"    padding:1px;\n"
+        self.horizontalLayout_3.setObjectName(u"horizontalLayout_3")
+        self.horizontalLayout_3.setContentsMargins(0, 0, 2, 0)
+        self.formatFrame = QFrame(self.editingButtons)
+        self.formatFrame.setObjectName(u"formatFrame")
+        self.formatFrame.setStyleSheet(u"QPushButton{\n"
+"	margin:0px;\n"
+"	padding:1px;\n"
 "}\n"
 "\n"
 "QPushButton:hover{\n"
-"    border-style:solid;\n"
-"    border-color:black;\n"
-"    background-origin:border-box;\n"
-"    padding-top: 3px;\n"
+"	border-style:solid;\n"
+"	border-color:black;\n"
+"	background-origin:border-box;\n"
+"	padding-top: 3px;\n"
 "    padding-left: 4px;\n"
 "}\n"
 "\n"
 "QPushButton:pressed{\n"
-"    padding-top: 1px;\n"
-"    padding-left :1px;\n"
+"	padding-top: 1px;\n"
+"	padding-left :1px;\n"
 "}")
-        self.formatFrame.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.formatFrame.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.formatFrame.setObjectName("formatFrame")
-        self.horizontalLayout_7 = QtWidgets.QHBoxLayout(self.formatFrame)
-        self.horizontalLayout_7.setObjectName("horizontalLayout_7")
-        self.boldButton = QtWidgets.QPushButton(self.formatFrame)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.boldButton.sizePolicy().hasHeightForWidth())
-        self.boldButton.setSizePolicy(sizePolicy)
-        self.boldButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.boldButton.setFocusPolicy(QtCore.Qt.StrongFocus)
-        self.boldButton.setStyleSheet("")
-        self.boldButton.setText("")
-        icon5 = QtGui.QIcon()
-        icon5.addPixmap(QtGui.QPixmap(":/icons/Icons/32x32/font_bold.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.boldButton.setIcon(icon5)
-        self.boldButton.setIconSize(QtCore.QSize(32, 32))
+        self.formatFrame.setFrameShape(QFrame.StyledPanel)
+        self.formatFrame.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_7 = QHBoxLayout(self.formatFrame)
+        self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
+        self.boldButton = QPushButton(self.formatFrame)
+        self.boldButton.setObjectName(u"boldButton")
+        sizePolicy4 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Fixed)
+        sizePolicy4.setHorizontalStretch(0)
+        sizePolicy4.setVerticalStretch(0)
+        sizePolicy4.setHeightForWidth(self.boldButton.sizePolicy().hasHeightForWidth())
+        self.boldButton.setSizePolicy(sizePolicy4)
+        self.boldButton.setCursor(QCursor(Qt.PointingHandCursor))
+        self.boldButton.setFocusPolicy(Qt.StrongFocus)
+        self.boldButton.setStyleSheet(u"")
+        icon24 = QIcon()
+        icon24.addFile(u":/icons/Icons/32x32/font_bold.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.boldButton.setIcon(icon24)
+        self.boldButton.setIconSize(QSize(32, 32))
         self.boldButton.setAutoExclusive(False)
-        self.boldButton.setObjectName("boldButton")
+
         self.horizontalLayout_7.addWidget(self.boldButton)
-        self.italicButton = QtWidgets.QPushButton(self.formatFrame)
-        self.italicButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.italicButton.setStyleSheet("")
-        self.italicButton.setText("")
-        icon6 = QtGui.QIcon()
-        icon6.addPixmap(QtGui.QPixmap(":/icons/Icons/32x32/font_italic.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.italicButton.setIcon(icon6)
-        self.italicButton.setIconSize(QtCore.QSize(32, 32))
-        self.italicButton.setObjectName("italicButton")
+
+        self.italicButton = QPushButton(self.formatFrame)
+        self.italicButton.setObjectName(u"italicButton")
+        self.italicButton.setCursor(QCursor(Qt.PointingHandCursor))
+        self.italicButton.setStyleSheet(u"")
+        icon25 = QIcon()
+        icon25.addFile(u":/icons/Icons/32x32/font_italic.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.italicButton.setIcon(icon25)
+        self.italicButton.setIconSize(QSize(32, 32))
+
         self.horizontalLayout_7.addWidget(self.italicButton)
-        self.numberedList = QtWidgets.QPushButton(self.formatFrame)
-        self.numberedList.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.numberedList.setStyleSheet("")
-        self.numberedList.setText("")
-        icon7 = QtGui.QIcon()
-        icon7.addPixmap(QtGui.QPixmap(":/icons/Icons/32x32/numbered_list.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.numberedList.setIcon(icon7)
-        self.numberedList.setIconSize(QtCore.QSize(32, 32))
-        self.numberedList.setObjectName("numberedList")
+
+        self.numberedList = QPushButton(self.formatFrame)
+        self.numberedList.setObjectName(u"numberedList")
+        self.numberedList.setCursor(QCursor(Qt.PointingHandCursor))
+        self.numberedList.setStyleSheet(u"")
+        icon26 = QIcon()
+        icon26.addFile(u":/icons/Icons/32x32/numbered_list.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.numberedList.setIcon(icon26)
+        self.numberedList.setIconSize(QSize(32, 32))
+
         self.horizontalLayout_7.addWidget(self.numberedList)
-        self.bullets = QtWidgets.QPushButton(self.formatFrame)
-        self.bullets.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.bullets.setFocusPolicy(QtCore.Qt.ClickFocus)
-        self.bullets.setStyleSheet("")
-        self.bullets.setText("")
-        icon8 = QtGui.QIcon()
-        icon8.addPixmap(QtGui.QPixmap(":/icons/Icons/32x32/bullets.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.bullets.setIcon(icon8)
-        self.bullets.setIconSize(QtCore.QSize(32, 32))
+
+        self.bullets = QPushButton(self.formatFrame)
+        self.bullets.setObjectName(u"bullets")
+        self.bullets.setCursor(QCursor(Qt.PointingHandCursor))
+        self.bullets.setFocusPolicy(Qt.ClickFocus)
+        self.bullets.setStyleSheet(u"")
+        icon27 = QIcon()
+        icon27.addFile(u":/icons/Icons/32x32/bullets.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.bullets.setIcon(icon27)
+        self.bullets.setIconSize(QSize(32, 32))
         self.bullets.setCheckable(False)
-        self.bullets.setDefault(False)
         self.bullets.setFlat(False)
-        self.bullets.setObjectName("bullets")
+
         self.horizontalLayout_7.addWidget(self.bullets)
+
+
         self.horizontalLayout_3.addWidget(self.formatFrame)
-        self.insertFrame = QtWidgets.QFrame(self.editingButtons)
-        self.insertFrame.setStyleSheet("QPushButton{\n"
-"    margin:0px;\n"
-"    padding:1px;\n"
+
+        self.insertFrame = QFrame(self.editingButtons)
+        self.insertFrame.setObjectName(u"insertFrame")
+        self.insertFrame.setStyleSheet(u"QPushButton{\n"
+"	margin:0px;\n"
+"	padding:1px;\n"
 "}\n"
 "\n"
 "QPushButton:hover{\n"
-"    border-style:solid;\n"
-"    border-color:black;\n"
-"    background-origin:border-box;\n"
-"    padding-top: 3px;\n"
+"	border-style:solid;\n"
+"	border-color:black;\n"
+"	background-origin:border-box;\n"
+"	padding-top: 3px;\n"
 "    padding-left: 4px;\n"
 "}\n"
 "\n"
 "QPushButton:pressed{\n"
-"    padding-top: 1px;\n"
-"    padding-left :1px;\n"
+"	padding-top: 1px;\n"
+"	padding-left :1px;\n"
 "}")
-        self.insertFrame.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.insertFrame.setFrameShadow(QtWidgets.QFrame.Raised)
-        self.insertFrame.setObjectName("insertFrame")
-        self.horizontalLayout_8 = QtWidgets.QHBoxLayout(self.insertFrame)
-        self.horizontalLayout_8.setObjectName("horizontalLayout_8")
-        self.link = QtWidgets.QPushButton(self.insertFrame)
-        self.link.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.link.setStyleSheet("")
-        self.link.setText("")
-        icon9 = QtGui.QIcon()
-        icon9.addPixmap(QtGui.QPixmap(":/icons/Icons/32x32/link.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.link.setIcon(icon9)
-        self.link.setIconSize(QtCore.QSize(32, 32))
-        self.link.setObjectName("link")
+        self.insertFrame.setFrameShape(QFrame.StyledPanel)
+        self.insertFrame.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_8 = QHBoxLayout(self.insertFrame)
+        self.horizontalLayout_8.setObjectName(u"horizontalLayout_8")
+        self.link = QPushButton(self.insertFrame)
+        self.link.setObjectName(u"link")
+        self.link.setCursor(QCursor(Qt.PointingHandCursor))
+        self.link.setStyleSheet(u"")
+        icon28 = QIcon()
+        icon28.addFile(u":/icons/Icons/32x32/link.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.link.setIcon(icon28)
+        self.link.setIconSize(QSize(32, 32))
+
         self.horizontalLayout_8.addWidget(self.link)
-        self.insertFile = QtWidgets.QPushButton(self.insertFrame)
-        self.insertFile.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.insertFile.setStyleSheet("")
-        self.insertFile.setText("")
-        icon10 = QtGui.QIcon()
-        icon10.addPixmap(QtGui.QPixmap(":/icons/Icons/32x32/image.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.insertFile.setIcon(icon10)
-        self.insertFile.setIconSize(QtCore.QSize(32, 32))
-        self.insertFile.setObjectName("insertFile")
+
+        self.insertFile = QPushButton(self.insertFrame)
+        self.insertFile.setObjectName(u"insertFile")
+        self.insertFile.setCursor(QCursor(Qt.PointingHandCursor))
+        self.insertFile.setStyleSheet(u"")
+        icon29 = QIcon()
+        icon29.addFile(u":/icons/Icons/32x32/image.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.insertFile.setIcon(icon29)
+        self.insertFile.setIconSize(QSize(32, 32))
+
         self.horizontalLayout_8.addWidget(self.insertFile)
-        self.code = QtWidgets.QPushButton(self.insertFrame)
-        self.code.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.code.setStyleSheet("")
-        self.code.setText("")
-        icon11 = QtGui.QIcon()
-        icon11.addPixmap(QtGui.QPixmap(":/icons/Icons/32x32/brackets.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.code.setIcon(icon11)
-        self.code.setIconSize(QtCore.QSize(32, 32))
-        self.code.setObjectName("code")
+
+        self.code = QPushButton(self.insertFrame)
+        self.code.setObjectName(u"code")
+        self.code.setCursor(QCursor(Qt.PointingHandCursor))
+        self.code.setStyleSheet(u"")
+        icon30 = QIcon()
+        icon30.addFile(u":/icons/Icons/32x32/brackets.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.code.setIcon(icon30)
+        self.code.setIconSize(QSize(32, 32))
+
         self.horizontalLayout_8.addWidget(self.code)
+
+
         self.horizontalLayout_3.addWidget(self.insertFrame)
-        self.encryptionFrame = QtWidgets.QFrame(self.editingButtons)
-        self.encryptionFrame.setStyleSheet("QPushButton{\n"
-"    margin:0px;\n"
-"    padding:1px;\n"
+
+        self.encryptionFrame = QFrame(self.editingButtons)
+        self.encryptionFrame.setObjectName(u"encryptionFrame")
+        self.encryptionFrame.setStyleSheet(u"QPushButton{\n"
+"	margin:0px;\n"
+"	padding:1px;\n"
 "}\n"
 "\n"
 "QPushButton:hover{\n"
-"    border-style:solid;\n"
-"    border-color:black;\n"
-"    background-origin:border-box;\n"
-"    padding-top: 3px;\n"
+"	border-style:solid;\n"
+"	border-color:black;\n"
+"	background-origin:border-box;\n"
+"	padding-top: 3px;\n"
 "    padding-left: 4px;\n"
 "}\n"
 "\n"
 "QPushButton:pressed{\n"
-"    padding-top: 1px;\n"
-"    padding-left :1px;\n"
+"	padding-top: 1px;\n"
+"	padding-left :1px;\n"
 "}")
-        self.encryptionFrame.setFrameShape(QtWidgets.QFrame.StyledPanel)
-        self.encryptionFrame.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.encryptionFrame.setFrameShape(QFrame.StyledPanel)
+        self.encryptionFrame.setFrameShadow(QFrame.Raised)
         self.encryptionFrame.setLineWidth(1)
-        self.encryptionFrame.setObjectName("encryptionFrame")
-        self.horizontalLayout_9 = QtWidgets.QHBoxLayout(self.encryptionFrame)
+        self.horizontalLayout_9 = QHBoxLayout(self.encryptionFrame)
         self.horizontalLayout_9.setSpacing(6)
-        self.horizontalLayout_9.setObjectName("horizontalLayout_9")
-        self.encryptionButton = QtWidgets.QPushButton(self.encryptionFrame)
-        self.encryptionButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.encryptionButton.setStyleSheet("")
-        self.encryptionButton.setText("")
-        icon12 = QtGui.QIcon()
-        icon12.addPixmap(QtGui.QPixmap(":/icons/Icons/32x32/encrypt.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.encryptionButton.setIcon(icon12)
-        self.encryptionButton.setIconSize(QtCore.QSize(32, 32))
+        self.horizontalLayout_9.setObjectName(u"horizontalLayout_9")
+        self.encryptionButton = QPushButton(self.encryptionFrame)
+        self.encryptionButton.setObjectName(u"encryptionButton")
+        self.encryptionButton.setCursor(QCursor(Qt.PointingHandCursor))
+        self.encryptionButton.setStyleSheet(u"")
+        icon31 = QIcon()
+        icon31.addFile(u":/icons/Icons/32x32/encrypt.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.encryptionButton.setIcon(icon31)
+        self.encryptionButton.setIconSize(QSize(32, 32))
         self.encryptionButton.setCheckable(True)
         self.encryptionButton.setChecked(False)
-        self.encryptionButton.setObjectName("encryptionButton")
+
         self.horizontalLayout_9.addWidget(self.encryptionButton)
-        self.decryptionButton = QtWidgets.QPushButton(self.encryptionFrame)
-        self.decryptionButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.decryptionButton.setStyleSheet("")
-        self.decryptionButton.setText("")
-        icon13 = QtGui.QIcon()
-        icon13.addPixmap(QtGui.QPixmap(":/icons/Icons/32x32/decrypt.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.decryptionButton.setIcon(icon13)
-        self.decryptionButton.setIconSize(QtCore.QSize(32, 32))
-        self.decryptionButton.setObjectName("decryptionButton")
+
+        self.decryptionButton = QPushButton(self.encryptionFrame)
+        self.decryptionButton.setObjectName(u"decryptionButton")
+        self.decryptionButton.setCursor(QCursor(Qt.PointingHandCursor))
+        self.decryptionButton.setStyleSheet(u"")
+        icon32 = QIcon()
+        icon32.addFile(u":/icons/Icons/32x32/decrypt.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.decryptionButton.setIcon(icon32)
+        self.decryptionButton.setIconSize(QSize(32, 32))
+
         self.horizontalLayout_9.addWidget(self.decryptionButton)
-        self.permanentDecrypt = QtWidgets.QPushButton(self.encryptionFrame)
-        self.permanentDecrypt.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.permanentDecrypt.setStyleSheet("image: url(:/icons/Icons/16x16/encrypt_20.png);\n"
+
+        self.permanentDecrypt = QPushButton(self.encryptionFrame)
+        self.permanentDecrypt.setObjectName(u"permanentDecrypt")
+        self.permanentDecrypt.setCursor(QCursor(Qt.PointingHandCursor))
+        self.permanentDecrypt.setStyleSheet(u"image: url(:/icons/Icons/16x16/encrypt_20.png);\n"
 "")
-        self.permanentDecrypt.setText("")
-        icon14 = QtGui.QIcon()
-        icon14.addPixmap(QtGui.QPixmap(":/icons/Icons/32x32/cancel.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.permanentDecrypt.setIcon(icon14)
-        self.permanentDecrypt.setIconSize(QtCore.QSize(32, 32))
-        self.permanentDecrypt.setObjectName("permanentDecrypt")
+        icon33 = QIcon()
+        icon33.addFile(u":/icons/Icons/32x32/cancel.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.permanentDecrypt.setIcon(icon33)
+        self.permanentDecrypt.setIconSize(QSize(32, 32))
+
         self.horizontalLayout_9.addWidget(self.permanentDecrypt)
-        self.changePasswordButton = QtWidgets.QPushButton(self.encryptionFrame)
-        self.changePasswordButton.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.changePasswordButton.setText("")
-        icon15 = QtGui.QIcon()
-        icon15.addPixmap(QtGui.QPixmap(":/icons/Icons/32x32/key.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.changePasswordButton.setIcon(icon15)
-        self.changePasswordButton.setIconSize(QtCore.QSize(32, 32))
-        self.changePasswordButton.setObjectName("changePasswordButton")
+
+        self.changePasswordButton = QPushButton(self.encryptionFrame)
+        self.changePasswordButton.setObjectName(u"changePasswordButton")
+        self.changePasswordButton.setCursor(QCursor(Qt.PointingHandCursor))
+        icon34 = QIcon()
+        icon34.addFile(u":/icons/Icons/32x32/key.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.changePasswordButton.setIcon(icon34)
+        self.changePasswordButton.setIconSize(QSize(32, 32))
+
         self.horizontalLayout_9.addWidget(self.changePasswordButton)
+
+
         self.horizontalLayout_3.addWidget(self.encryptionFrame)
-        self.dateTime = QtWidgets.QPushButton(self.editingButtons)
-        self.dateTime.setCursor(QtGui.QCursor(QtCore.Qt.PointingHandCursor))
-        self.dateTime.setStyleSheet("")
-        self.dateTime.setText("")
-        icon16 = QtGui.QIcon()
-        icon16.addPixmap(QtGui.QPixmap(":/icons/Icons/32x32/clock.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
-        self.dateTime.setIcon(icon16)
-        self.dateTime.setIconSize(QtCore.QSize(32, 32))
-        self.dateTime.setObjectName("dateTime")
+
+        self.dateTime = QPushButton(self.editingButtons)
+        self.dateTime.setObjectName(u"dateTime")
+        self.dateTime.setCursor(QCursor(Qt.PointingHandCursor))
+        self.dateTime.setStyleSheet(u"")
+        icon35 = QIcon()
+        icon35.addFile(u":/icons/Icons/32x32/clock.png", QSize(), QIcon.Normal, QIcon.Off)
+        self.dateTime.setIcon(icon35)
+        self.dateTime.setIconSize(QSize(32, 32))
+
         self.horizontalLayout_3.addWidget(self.dateTime)
-        spacerItem1 = QtWidgets.QSpacerItem(20, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout_3.addItem(spacerItem1)
+
+        self.horizontalSpacer = QSpacerItem(20, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_3.addItem(self.horizontalSpacer)
+
+
         self.verticalLayout_2.addWidget(self.editingButtons)
-        self.editingSection = QtWidgets.QWidget(self.editorArea)
-        self.editingSection.setStyleSheet("")
-        self.editingSection.setObjectName("editingSection")
-        self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.editingSection)
-        self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
+
+        self.editingSection = QWidget(self.editorArea)
+        self.editingSection.setObjectName(u"editingSection")
+        self.editingSection.setStyleSheet(u"")
+        self.horizontalLayout_2 = QHBoxLayout(self.editingSection)
         self.horizontalLayout_2.setSpacing(0)
-        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
-        self.plainTextEdit = QtWidgets.QPlainTextEdit(self.editingSection)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
+        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
+        self.plainTextEdit = QPlainTextEdit(self.editingSection)
+        self.plainTextEdit.setObjectName(u"plainTextEdit")
         sizePolicy.setHeightForWidth(self.plainTextEdit.sizePolicy().hasHeightForWidth())
         self.plainTextEdit.setSizePolicy(sizePolicy)
-        font = QtGui.QFont()
-        font.setFamily("Calibri")
-        font.setPointSize(17)
-        font.setBold(False)
-        font.setItalic(False)
-        font.setWeight(50)
-        self.plainTextEdit.setFont(font)
-        self.plainTextEdit.setStyleSheet("QPlainTextEdit{\n"
+        font4 = QFont()
+        font4.setFamily(u"Calibri")
+        font4.setPointSize(17)
+        font4.setBold(False)
+        font4.setItalic(False)
+        font4.setWeight(50)
+        self.plainTextEdit.setFont(font4)
+        self.plainTextEdit.setStyleSheet(u"QPlainTextEdit{\n"
 "    background-color: white;\n"
-"    border-top:1px solid black;\n"
-"    border-right:1px solid black;\n"
-"    selection-background-color:rgba(243, 255, 77,0.4);\n"
-"    selection-color:    darkblue;\n"
+"	border-top:1px solid black;\n"
+"	border-right:1px solid black;\n"
+"	selection-background-color:rgba(243, 255, 77,0.4);\n"
+"	selection-color:	darkblue;\n"
 "}\n"
 "\n"
 "\n"
 "\n"
 "")
-        self.plainTextEdit.setFrameShape(QtWidgets.QFrame.Panel)
-        self.plainTextEdit.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.plainTextEdit.setFrameShape(QFrame.Panel)
+        self.plainTextEdit.setFrameShadow(QFrame.Raised)
         self.plainTextEdit.setLineWidth(1)
         self.plainTextEdit.setMidLineWidth(0)
         self.plainTextEdit.setVerticalScrollBarPolicy(Qt.ScrollBarAsNeeded)
         self.plainTextEdit.setCenterOnScroll(False)
 
         self.horizontalLayout_2.addWidget(self.plainTextEdit)
-        self.mdViewer = QtWidgets.QTextBrowser(self.editingSection)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
-        sizePolicy.setHorizontalStretch(0)
-        sizePolicy.setVerticalStretch(0)
+
+        self.mdViewer = QTextBrowser(self.editingSection)
+        self.mdViewer.setObjectName(u"mdViewer")
         sizePolicy.setHeightForWidth(self.mdViewer.sizePolicy().hasHeightForWidth())
         self.mdViewer.setSizePolicy(sizePolicy)
-        font = QtGui.QFont()
-        font.setPointSize(17)
-        self.mdViewer.setFont(font)
-        self.mdViewer.setStyleSheet("QTextBrowser{\n"
-"    border-top:1px solid black;\n"
+        font5 = QFont()
+        font5.setPointSize(17)
+        self.mdViewer.setFont(font5)
+        self.mdViewer.setStyleSheet(u"QTextBrowser{\n"
+"	border-top:1px solid black;\n"
 "    background-color: white;\n"
-"    selection-background-color:rgba(243, 255, 77,0.4);\n"
-"    selection-color:darkblue;\n"
+"	selection-background-color:rgba(243, 255, 77,0.4);\n"
+"	selection-color:darkblue;\n"
 "}\n"
 "")
-        self.mdViewer.setFrameShape(QtWidgets.QFrame.NoFrame)
-        self.mdViewer.setFrameShadow(QtWidgets.QFrame.Raised)
+        self.mdViewer.setFrameShape(QFrame.NoFrame)
+        self.mdViewer.setFrameShadow(QFrame.Raised)
         self.mdViewer.setLineWidth(1)
-        self.mdViewer.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAsNeeded)
-        self.mdViewer.setHorizontalScrollBarPolicy(QtCore.Qt.ScrollBarAsNeeded)
-        self.mdViewer.setTextInteractionFlags(QtCore.Qt.TextBrowserInteraction)
+        self.mdViewer.setVerticalScrollBarPolicy(Qt.ScrollBarAsNeeded)
+        self.mdViewer.setHorizontalScrollBarPolicy(Qt.ScrollBarAsNeeded)
+        self.mdViewer.setTextInteractionFlags(Qt.TextBrowserInteraction)
         self.mdViewer.setOpenLinks(False)
-        self.mdViewer.setObjectName("mdViewer")
+
         self.horizontalLayout_2.addWidget(self.mdViewer)
+
+
         self.verticalLayout_2.addWidget(self.editingSection)
+
+
         self.horizontalLayout_5.addWidget(self.editorArea)
+
+
         self.verticalLayout.addWidget(self.centralView)
+
+
         self.horizontalLayout_4.addWidget(self.mainWindow)
+
         Groot.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(Groot)
         self.menubar.setObjectName(u"menubar")
@@ -938,14 +973,14 @@ class Ui_Groot(object):
         self.menuHelp.addAction(self.actionAbout)
         self.menuHelp.addAction(self.actionReport_a_bug)
         self.menuHelp.addAction(self.actionRequest)
-        self.menubar.addAction(self.menuFile.menuAction())
-        self.menubar.addAction(self.menuEdit.menuAction())
-        self.menubar.addAction(self.menuView.menuAction())
-        self.menubar.addAction(self.menuTools.menuAction())
-        self.menubar.addAction(self.menuHelp.menuAction())
 
         self.retranslateUi(Groot)
-        QtCore.QMetaObject.connectSlotsByName(Groot)
+
+        self.bullets.setDefault(False)
+
+
+        QMetaObject.connectSlotsByName(Groot)
+    # setupUi
 
     def retranslateUi(self, Groot):
         Groot.setWindowTitle(QCoreApplication.translate("Groot", u"Groot", None))
@@ -1048,8 +1083,10 @@ class Ui_Groot(object):
 
         __sortingEnabled = self.treeWidget.isSortingEnabled()
         self.treeWidget.setSortingEnabled(False)
-        self.treeWidget.topLevelItem(0).setText(0, _translate("Groot", "Notebooks"))
-        self.treeWidget.topLevelItem(1).setText(0, _translate("Groot", "Uncategorized"))
+        ___qtreewidgetitem1 = self.treeWidget.topLevelItem(0)
+        ___qtreewidgetitem1.setText(0, QCoreApplication.translate("Groot", u"Notebooks", None));
+        ___qtreewidgetitem2 = self.treeWidget.topLevelItem(1)
+        ___qtreewidgetitem2.setText(0, QCoreApplication.translate("Groot", u"Uncategorized", None));
         self.treeWidget.setSortingEnabled(__sortingEnabled)
 
         self.fileName.setText(QCoreApplication.translate("Groot", u"<html><head/><body><p><span style=\" color:#ffffff;\">No Note Selected</span></p></body></html>", None))

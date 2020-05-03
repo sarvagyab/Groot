@@ -8,12 +8,13 @@ from modules.encryptNote import AEScipher
 import pymdownx
 import json
 
-def scrolling(oneBar,twoBar):
-    x = (oneBar.value()*twoBar.maximum())/oneBar.maximum()
-    if oneBar.signalsBlocked(): return
-    oneBar.blockSignals(True)
-    twoBar.setValue(x)
-    oneBar.blockSignals(False)
+def scrolling(oneBar,twoBar,searchBar):
+    if(not searchBar.hasFocus()):
+        x = (oneBar.value()*twoBar.maximum())/oneBar.maximum()
+        if oneBar.signalsBlocked(): return
+        oneBar.blockSignals(True)
+        twoBar.setValue(x)
+        oneBar.blockSignals(False)
 
 
 def viewInMarkdown(md,extensions,markdownView):
