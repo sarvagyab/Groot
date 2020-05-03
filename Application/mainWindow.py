@@ -4,9 +4,9 @@ from PySide2 import QtWidgets, QtCore, QtGui
 from GUIs.mainWindowPTE import Ui_Groot
 
 # import modules
-from modules.GUIchanges import fixTreeViewScrolling, createNotebook, createSubNotebook, createNote, rename, dlt, importer, exportPDF, exportHTML, exportMD
+from modules.GUIchanges import fixTreeViewScrolling, createNotebook, createSubNotebook, createNote, rename, dlt, importer, exportPDF, exportHTML, exportMD, copyLink
 import mainWindowFunctions
-from modules.markdownHandling import bold, italic, numList, bulletList, hyperlink, inlineCode, datetimenow, attachFile, exportAsPdf, exportAsHtml, exportAsMarkdown, importMD
+from modules.markdownHandling import bold, italic, numList, bulletList, hyperlink, inlineCode, datetimenow, attachFile, exportAsPdf, exportAsHtml, exportAsMarkdown, importMD, copyMarkdownLink
 from GUIs.settingsDialog import Ui_settingDialog
 
 class Window(QtWidgets.QMainWindow):
@@ -17,8 +17,12 @@ class Window(QtWidgets.QMainWindow):
         self.ui = Ui_Groot()
         self.ui.setupUi(self)
 
+        self.mdExtensions = []  # Extensions for changing behaviour of markdown viewer
+        self.mdExtensionsConfigs = {} # Extensions configurations for changing the behaviour of extensions in markdown
+        
         # Create settings Dialog
         self.createSettingsDialog()
+        self.loadSettings()
 
         self.encryptAll = True
         # Bring the cursor to text editor
@@ -32,8 +36,6 @@ class Window(QtWidgets.QMainWindow):
         self.encryptedInSession = {} # all notes that are encrypted in this session
 
         self.DELAY = 1000   # Delay in displaying Markdown
-        self.mdExtensions = []  # Extensions for changing behaviour of markdown viewer
-        self.mdExtensionsConfigs = {} # Extensions configurations for changing the behaviour of extensions in markdown
         
         # Fix no Scrollbar issue in notes tree when file names go out of box
         fixTreeViewScrolling(self.ui.treeWidget)
@@ -47,6 +49,9 @@ class Window(QtWidgets.QMainWindow):
 
         # Connections for deleting
         dlt.triggered.connect(self.showDeleteDialog)
+
+        # Connection for self linking
+        self.ui.mdViewer.anchorClicked.connect(self.handleLinks)
 
         # connection for creating new notebook
         createNotebook.triggered.connect(self._addNotebook)
@@ -83,6 +88,9 @@ class Window(QtWidgets.QMainWindow):
 
         # attaching file connection
         self.ui.insertFile.clicked.connect(lambda: attachFile(self.ui.plainTextEdit))
+
+        # attach copying of markdown link
+        copyLink.triggered.connect(copyMarkdownLink)
 
         # export as PDF connection
         self.ui.actionPDF.triggered.connect(lambda: exportAsPdf(self.ui.mdViewer))
@@ -192,3 +200,7 @@ Window.loadPlugSettings = mainWindowFunctions.loadPlugSettings
 Window.loadAppearSettings = mainWindowFunctions.loadAppearSettings
 Window.appearConnections = mainWindowFunctions.appearConnections
 Window.setPlainTextEditFont = mainWindowFunctions.setPlainTextEditFont
+Window.handleLinks = mainWindowFunctions.handleLinks
+Window.analyzeLink = mainWindowFunctions.analyzeLink
+Window.searchForFilename = mainWindowFunctions.searchForFilename
+Window.searchInBooks = mainWindowFunctions.searchInBooks

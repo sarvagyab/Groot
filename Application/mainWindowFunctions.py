@@ -9,7 +9,7 @@ from modules.fileHandling import currentNote
 from modules.markdownHandling import viewInMarkdown, imageResize, importMD, pluginHandler
 from modules.treeHandling import loadfileStructure, noteLoader,itemVal, isNote,updateItem,getItem
 from modules.noteHandling import deleteNote, renameNote, addNote, addNotebook,readText,writeText
-from modules.GUIchanges import createNotebook, createSubNotebook, createNote, rename, dlt, importer, exportPDF, exportHTML, exportMD
+from modules.GUIchanges import createNotebook, createSubNotebook, createNote, rename, dlt, importer, exportPDF, exportHTML, exportMD, copyLink
 from modules.searchInNote import searchText,finishedSearch
 from modules.userLogin import setUsernameAndPassword,verifyUser
 from modules.encryptNote import AEScipher
@@ -28,6 +28,7 @@ def showMenu(self,pos):
     else:
         dets = isNote(item)
         if(dets[0]):
+            menu.addAction(copyLink)
             exporter = QtWidgets.QMenu()
             exporter.setTitle("Export")
             exporter.addAction(exportMD)
@@ -168,8 +169,15 @@ def pluginConnections(self,settings):
 
 def setPlainTextEditFont(self):
     family = self.ui_settingDialog.fontChoice.currentText()
-    size = self.ui_settingDialog.fontSizeValue.text()
-    font = QtGui.QFont(family,int(size))
+    size = int(self.ui_settingDialog.fontSizeValue.text())
+    with open("./settings.json","r+") as sets:
+        settings = json.load(sets)
+        settings["Appearance"]["size"] = size
+        settings["Appearance"]["family"] = family
+        sets.seek(0)
+        sets.truncate()
+        json.dump(settings,sets)
+    font = QtGui.QFont(family,size)
     self.ui.plainTextEdit.setFont(font)
 
 def appearConnections(self,settings):
@@ -182,7 +190,7 @@ def createSettingsDialog(self):
     self.settingsDialog = QtWidgets.QDialog()
     self.ui_settingDialog.setupUi(self.settingsDialog)
     self.pluginConnections(self.ui_settingDialog)
-    self.appearConnections(self.ui_settingDialog)
+    # Appearance connections are made in loadSettings
 
 
 def loadPlugSettings(self,plugSettings):
@@ -233,7 +241,10 @@ def loadPlugSettings(self,plugSettings):
 
 
 def loadAppearSettings(self,appearSettings):
-    pass
+    self.ui_settingDialog.fontSizeValue.setValue(appearSettings["size"])
+    self.ui_settingDialog.fontChoice.setCurrentText(appearSettings["family"])
+    font = QtGui.QFont(appearSettings["family"],int(appearSettings["size"]))
+    self.ui.plainTextEdit.setFont(font)
 
 
 def loadSettings(self):
@@ -243,6 +254,73 @@ def loadSettings(self):
     appearSettings = settings["Appearance"]
     self.loadPlugSettings(plugSettings)
     self.loadAppearSettings(appearSettings)
+    self.appearConnections(self.ui_settingDialog)
+
+
+
+def analyzeLink(self,url):
+    text = url.toString()
+    # print(text)
+    # print(text[:2])
+    if(text[:2]!="./"): return False
+    return True
+
+def searchInBooks(self, randomString, diction):
+    keys = [*diction]
+    if randomString in keys:
+        return [keys.index(randomString)]
+    for i in range(len(keys)):
+        if "path" in diction[keys[i]]["expanded"] and type(diction[keys[i]]["expanded"]["path"])==str: continue 
+        result = self.searchInBooks(randomString,diction[keys[i]]["expanded"])
+        if result != []:
+            return [i] + result
+    return []
+
+def searchForFilename(self,randomString):
+    with open("./fileStructure.json","r") as nt:
+        files = json.load(nt)
+    print("searching in uncategorized")
+    keys = [*files["Uncategorized"]]
+    if randomString in keys:
+        print([1] + [keys.index(randomString)])
+        return [1] + [keys.index(randomString)]
+    print("searching in notebooks")
+    path = self.searchInBooks(randomString,files["Notebooks"])
+    if path == []:
+        print("No such note present")
+        return []
+    else:
+        path = [0] + path
+        print(path)
+        return path
+
+
+def handleLinks(self,url):
+    # print(url.scheme())
+    if url.scheme() == "ftp" or url.scheme() == "http" or url.scheme() == "https":
+        QtGui.QDesktopServices.openUrl(url)
+    else:
+        print("Analyzing")
+        check = self.analyzeLink(url)
+        if check == False:
+            QtWidgets.QMessageBox(QtWidgets.QMessageBox.Critical,"Groot","Cannot open this link",QtWidgets.QMessageBox.Ok).exec_()
+            print("doesn't turn out to be a link") 
+            return
+        else:
+            print("Determined to be link")
+            filename = url.toString()[2:]
+            item = self.searchForFilename(filename)
+            if item == []:
+                QtWidgets.QMessageBox(QtWidgets.QMessageBox.Critical,"Groot","Cannot open this link",QtWidgets.QMessageBox.Ok).exec_()
+                return
+            getToItem = self.ui.treeWidget.topLevelItem(item[0])
+            print(getToItem.text(0))
+            for i in range(1,len(item)):
+                getToItem = getToItem.child(item[i])
+                print(getToItem.text(0))
+
+            self.ui.treeWidget.setCurrentItem(getToItem)
+
 
 
 def openLoginDialog(self):

@@ -33,3 +33,6 @@ exportMD.setText("Markdown")
 
 exportHTML = QtWidgets.QAction()
 exportHTML.setText("HTML")
+
+copyLink = QtWidgets.QAction()
+copyLink.setText("Copy Markdown Link")
