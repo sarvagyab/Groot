@@ -1468,8 +1468,6 @@ QPushButton:pressed{
     <addaction name="actionNew_note"/>
     <addaction name="actionNew_sub_notebook"/>
     <addaction name="actionNew_notebook"/>
-    <addaction name="actionSave_note"/>
-    <addaction name="actionNotes_Tree"/>
     <addaction name="separator"/>
     <addaction name="menuImport"/>
     <addaction name="menuExport"/>
@@ -1493,7 +1491,6 @@ QPushButton:pressed{
      </property>
      <addaction name="actionBold"/>
      <addaction name="actionItalic"/>
-     <addaction name="actionUnderline"/>
     </widget>
     <widget class="QMenu" name="menuEncrption">
      <property name="title">
@@ -1512,9 +1509,10 @@ QPushButton:pressed{
      </property>
      <addaction name="actionLink"/>
      <addaction name="actionImage"/>
+     <addaction name="actionCode"/>
+     <addaction name="actionDate_and_Time"/>
     </widget>
     <addaction name="actionSearch_in_Current_Note"/>
-    <addaction name="actionSearch_in_All_Notes"/>
     <addaction name="separator"/>
     <addaction name="menuInsert"/>
     <addaction name="menuFormat"/>
@@ -1528,12 +1526,6 @@ QPushButton:pressed{
     <addaction name="actionDark_Theme"/>
     <addaction name="actionLight_Theme"/>
    </widget>
-   <widget class="QMenu" name="menuTools">
-    <property name="title">
-     <string>Tools</string>
-    </property>
-    <addaction name="actionOptions"/>
-   </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
      <string>Help</string>
@@ -1545,7 +1537,6 @@ QPushButton:pressed{
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
    <addaction name="menuView"/>
-   <addaction name="menuTools"/>
    <addaction name="menuHelp"/>
   </widget>
   <action name="actionNotes_Tree">
@@ -1572,6 +1563,12 @@ QPushButton:pressed{
    </property>
    <property name="text">
     <string>Quit</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+   <property name="shortcutVisibleInContextMenu">
+    <bool>true</bool>
    </property>
   </action>
   <action name="actionMD">
@@ -1617,6 +1614,9 @@ QPushButton:pressed{
    </property>
    <property name="text">
     <string>Search in Current Note</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+F</string>
    </property>
   </action>
   <action name="actionSearch_in_All_Notes">
@@ -1687,6 +1687,9 @@ QPushButton:pressed{
    <property name="shortcut">
     <string>Ctrl+I</string>
    </property>
+   <property name="shortcutVisibleInContextMenu">
+    <bool>true</bool>
+   </property>
   </action>
   <action name="actionUnderline">
    <property name="icon">
@@ -1711,6 +1714,9 @@ QPushButton:pressed{
    <property name="shortcut">
     <string>Ctrl+N</string>
    </property>
+   <property name="shortcutVisibleInContextMenu">
+    <bool>true</bool>
+   </property>
   </action>
   <action name="actionNew_sub_notebook">
    <property name="icon">
@@ -1720,6 +1726,12 @@ QPushButton:pressed{
    <property name="text">
     <string>New sub-notebook</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+   <property name="shortcutVisibleInContextMenu">
+    <bool>true</bool>
+   </property>
   </action>
   <action name="actionNew_notebook">
    <property name="icon">
@@ -1728,6 +1740,12 @@ QPushButton:pressed{
    </property>
    <property name="text">
     <string>New notebook</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+J</string>
+   </property>
+   <property name="shortcutVisibleInContextMenu">
+    <bool>true</bool>
    </property>
   </action>
   <action name="actionEncrypt_note">
@@ -1755,6 +1773,12 @@ QPushButton:pressed{
    </property>
    <property name="text">
     <string>Settings</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+,</string>
+   </property>
+   <property name="shortcutVisibleInContextMenu">
+    <bool>true</bool>
    </property>
   </action>
   <action name="actionSave_note">
@@ -1791,6 +1815,12 @@ QPushButton:pressed{
    <property name="text">
     <string>Link</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+K</string>
+   </property>
+   <property name="shortcutVisibleInContextMenu">
+    <bool>true</bool>
+   </property>
   </action>
   <action name="actionImage">
    <property name="icon">
@@ -1798,7 +1828,35 @@ QPushButton:pressed{
      <normaloff>:/icons/Icons/16x16/image.png</normaloff>:/icons/Icons/16x16/image.png</iconset>
    </property>
    <property name="text">
-    <string>Image</string>
+    <string>File</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+M</string>
+   </property>
+   <property name="shortcutVisibleInContextMenu">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionCode">
+   <property name="text">
+    <string>Code</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+`</string>
+   </property>
+   <property name="shortcutVisibleInContextMenu">
+    <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionDate_and_Time">
+   <property name="text">
+    <string>Date and Time</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+T</string>
+   </property>
+   <property name="shortcutVisibleInContextMenu">
+    <bool>true</bool>
    </property>
   </action>
  </widget>

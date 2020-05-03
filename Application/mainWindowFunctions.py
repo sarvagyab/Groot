@@ -6,7 +6,7 @@ from PySide2 import QtWidgets,QtGui,QtCore
 
 from modules.setPassword import password
 from modules.fileHandling import currentNote
-from modules.markdownHandling import viewInMarkdown, imageResize, importMD, pluginHandler
+from modules.markdownHandling import viewInMarkdown, imageResize, importMD, pluginHandler, scrolling
 from modules.treeHandling import loadfileStructure, noteLoader,itemVal, isNote,updateItem,getItem
 from modules.noteHandling import deleteNote, renameNote, addNote, addNotebook,readText,writeText
 from modules.GUIchanges import createNotebook, createSubNotebook, createNote, rename, dlt, importer, exportPDF, exportHTML, exportMD, copyLink
@@ -14,6 +14,12 @@ from modules.searchInNote import searchText,finishedSearch
 from modules.userLogin import setUsernameAndPassword,verifyUser
 from modules.encryptNote import AEScipher
 from GUIs.settingsDialog import Ui_settingDialog
+
+def fixScrolling(self):
+    edBar = self.ui.plainTextEdit.verticalScrollBar()
+    mdBar = self.ui.mdViewer.verticalScrollBar()
+    edBar.valueChanged.connect(lambda:scrolling(edBar,mdBar))
+    mdBar.valueChanged.connect(lambda:scrolling(mdBar,edBar))
 
 def showMenu(self,pos):
     item = self.ui.treeWidget.itemAt(pos)
@@ -189,6 +195,7 @@ def createSettingsDialog(self):
     self.ui_settingDialog = Ui_settingDialog()
     self.settingsDialog = QtWidgets.QDialog()
     self.ui_settingDialog.setupUi(self.settingsDialog)
+    self.ui_settingDialog.closeMe.clicked.connect(self.settingsDialog.close)
     self.pluginConnections(self.ui_settingDialog)
     # Appearance connections are made in loadSettings
 
@@ -330,6 +337,7 @@ def openLoginDialog(self):
     ui_loginDialog.setupUi(loginDialog)
     ui_loginDialog.buttonBox.button(QtWidgets.QDialogButtonBox.Ok).clicked.connect(lambda: verifyUser(ui_loginDialog.passwordLineEdit.text(),ui_loginDialog,loginDialog))
     ui_loginDialog.buttonBox.button(QtWidgets.QDialogButtonBox.Cancel).clicked.connect(lambda:self.closeDialogAndMainWindow(loginDialog))
+    ui_loginDialog.passwordLineEdit.setFocus()
     if(loginDialog.exec() == 0):
         self.closeDialogAndMainWindow(loginDialog)
 

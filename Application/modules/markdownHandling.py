@@ -8,10 +8,19 @@ from modules.encryptNote import AEScipher
 import pymdownx
 import json
 
+def scrolling(oneBar,twoBar):
+    x = (oneBar.value()*twoBar.maximum())/oneBar.maximum()
+    if oneBar.signalsBlocked(): return
+    oneBar.blockSignals(True)
+    twoBar.setValue(x)
+    oneBar.blockSignals(False)
+
+
 def viewInMarkdown(md,extensions,markdownView):
     html = mdToHtml(md, extensions)
     markdownView.setHtml(html)
     imageResize(markdownView)
+    markdownView.moveCursor(QtGui.QTextCursor.Start)
 
 
 def mdToHtml(md, _extensions):
@@ -216,14 +225,14 @@ def datetimenow(te):
 
 
 def attachFile(te):
+    if currentNote._open == False:
+        QtWidgets.QMessageBox(QtWidgets.QMessageBox.Information,"Groot","Cannot attach images when no note is currently loaded",QtWidgets.QMessageBox.Ok).exec_()
+        return
     filename, _ = QtWidgets.QFileDialog().getOpenFileName(None,"Attach File","./")
     # print(filename)
     if filename == "":
         return
     randomString = datetime.datetime.now().strftime("%d%m%Y%H%M%S")
-    if currentNote._open == False:
-        QtWidgets.QMessageBox(QtWidgets.QMessageBox.Information,"Groot","Cannot attach images when no note is currently loaded",QtWidgets.QMessageBox.Ok).exec_()
-        return
     destination = shutil.copyfile(filename,"./atch/" + randomString)
     # print(destination)
     te.insertPlainText("![fileName](" + destination + ")")
