@@ -3,18 +3,18 @@ from PySide2 import QtCore, QtWidgets
 from modules.fileHandling import currentNote
 from modules.treeHandling import itemVal, saveUpdatedJson
 from modules.encryptNote import AEScipher
-from modules.userLogin import readUserInfo
+import modules.userLogin
 
 import json, os, datetime
 
-def loadNote(_fileName, _textEdit):
+def loadNote(_fileName, _textEdit,encryptAll):
     loadFileName(currentNote.getFilename(),_fileName)
     if(isEncryped()): 
         print("encrypted so don't load the file")
         _textEdit.setPlainText("<!--encrypted-->")
         # _textEdit.setPlainText(str(currentNote.getText(False)))
     else:
-        _textEdit.setPlainText(str(currentNote.getText()))
+        _textEdit.setPlainText(str(currentNote.getText(encryptAll)))
     QtWidgets.QApplication.processEvents()
 
 def loadFileName(name,fileName):
@@ -67,7 +67,7 @@ def addNotebook(item):
     item.setExpanded(True)
 
 
-def addNote(item,_plainTextEdit):
+def addNote(item,_plainTextEdit,window):
     # input name
     text, ok = QtWidgets.QInputDialog().getText(None,"Groot","Enter the name for new note - ")
     if ok is True:
@@ -86,16 +86,17 @@ def addNote(item,_plainTextEdit):
     open(path,'a').close()
 
     # encrypt file
-    userInfo = readUserInfo()
-    aes = AEScipher(str(userInfo[1]),currentNote,txt ="",encrypt = True)
-    txt = aes.Encrypt()
-    if(not isinstance(txt,bytes)):
-        txt = bytes(txt)
-    with open(path,'wb') as file:
-        file.write(txt)
-        file.seek(0)
-    print("Encrypted in add note method")
-    
+    if(window.encryptAll == True):
+        userInfo = modules.userLogin.readUserInfo()
+        aes = AEScipher(str(userInfo[1]),currentNote,txt ="",encrypt = True)
+        txt = aes.Encrypt()
+        if(not isinstance(txt,bytes)):
+            txt = bytes(txt)
+        with open(path,'wb') as file:
+            file.write(txt)
+            file.seek(0)
+        print("Encrypted in add note method")
+        
     # Add to JSON
     newdict = {}
     newdict["name"] = name

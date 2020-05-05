@@ -12,6 +12,7 @@ from modules.noteHandling import deleteNote, renameNote, addNote, addNotebook,re
 from modules.GUIchanges import createNotebook, createSubNotebook, createNote, rename, dlt, importer, exportPDF, exportHTML, exportMD, copyLink
 from modules.searchInNote import searchText,finishedSearch
 from modules.userLogin import setUsernameAndPassword,verifyUser
+from modules.encryptAllNotes import _encryptDecryptAllNotes
 from modules.encryptNote import AEScipher
 from GUIs.settingsDialog import Ui_settingDialog
 
@@ -61,12 +62,12 @@ def _delayChecker(self):
     self.timer.start(self.DELAY)
 
 def _noteLoader(self):
-    changeNote = lambda : noteLoader(self.ui)
+    changeNote = lambda : noteLoader(self.ui,self.encryptAll)
     self.ui.treeWidget.itemSelectionChanged.connect(changeNote)
 
 def _markdownViewer(self):
     mdView = lambda: viewInMarkdown(self.ui.plainTextEdit.toPlainText(),self.mdExtensions,self.ui.mdViewer)
-    sFile = lambda: currentNote.saveFile(self.ui.plainTextEdit.toPlainText())
+    sFile = lambda: currentNote.saveFile(self.ui.plainTextEdit.toPlainText(),self.encryptAll)
     self.timer.timeout.connect(sFile)
     self.timer.timeout.connect(mdView)
     self.ui.plainTextEdit.textChanged.connect(self._delayChecker)
@@ -135,7 +136,7 @@ def _addNote(self):
         (self.ui.treeWidget.currentItem() is self.ui.treeWidget.topLevelItem(0)) or \
         (isNote(self.ui.treeWidget.currentItem())[0]):
             return
-    addNote(self.ui.treeWidget.currentItem(),self.ui.plainTextEdit)
+    addNote(self.ui.treeWidget.currentItem(),self.ui.plainTextEdit,self)
 
 
 def _renameNote(self,item,col):
@@ -197,7 +198,9 @@ def createSettingsDialog(self):
     self.settingsDialog = QtWidgets.QDialog()
     self.ui_settingDialog.setupUi(self.settingsDialog)
     self.ui_settingDialog.closeMe.clicked.connect(self.settingsDialog.close)
+    self.ui_settingDialog.encryptAllChoice.setChecked(self.encryptAll)
     self.pluginConnections(self.ui_settingDialog)
+    self.encryptionSettings(self.ui_settingDialog)
     # Appearance connections are made in loadSettings
 
 
@@ -341,6 +344,26 @@ def openLoginDialog(self):
     ui_loginDialog.passwordLineEdit.setFocus()
     if(loginDialog.exec() == 0):
         self.closeDialogAndMainWindow(loginDialog)
+
+def encryptionSettings(self,settings):
+    settings.okPushButton_2.clicked.connect(lambda :self._verifyUser(settings))
+
+def _verifyUser(self,settings):
+    if(verifyUser(settings.enterPwd.text(),settings)):
+        settings.enterPwd.setText("")
+        settings.encryptAllChoice.setEnabled(True)
+        settings.encryptAllChoice.stateChanged.connect(lambda:self.encryptAllChoiceChanged(settings.encryptAllChoice))
+
+def encryptAllChoiceChanged(self,checkbox):
+    if(checkbox.isChecked()):
+        if(self.encryptAll == False):
+            print("Store encrypted notes")
+            _encryptDecryptAllNotes(self,True)
+    else:
+        if(self.encryptAll == True):
+            print("Store decrypted notes")
+            _encryptDecryptAllNotes(self,False)
+        
 
 def encryptAlldecryptedNotes(self):
     notes = getItem(list(self.decryptedNotes.keys()))

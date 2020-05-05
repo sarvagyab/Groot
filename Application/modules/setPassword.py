@@ -53,10 +53,13 @@ class password(object):
             else:
                 if(self.currentNote._open == True and self.isEncrypted()):
                     self.ui_pv = Ui_verifyPasswordDialog()
+                    self.verifyDialog = QtWidgets.QDialog()
+                    self.ui_pv.setupUi(self.verifyDialog)
+                    self.verifyDialog.show()
                     print("Trying to Decrypt {}".format(self.currentFileName))
 
                     # slot-signals
-                    self.ui_pv.buttonBox.button(QtWidgets.QDialogButtonBox.Cancel).clicked.connect(lambda:self.closeDialog(self.ui_pv.verifyPasswordDialog))
+                    self.ui_pv.buttonBox.button(QtWidgets.QDialogButtonBox.Cancel).clicked.connect(lambda:self.closeDialog(self.verifyDialog))
                     self.ui_pv.buttonBox.button(QtWidgets.QDialogButtonBox.Ok).clicked.connect(lambda:self.verifyAndDecryptPassword(use_savedPassword=False,permanentdecrypt = permanentdecrypt))
 
     def openChangeEncryptionPasswordDialog(self):
@@ -97,7 +100,7 @@ class password(object):
         self.updateEList()    
 
         if(use_savedPassword == False):
-            self.closeDialog(self.ui_pv.verifyPasswordDialog) # close dialog
+            self.closeDialog(self.verifyDialog) # close dialog
         return True
         
     def verifyPassword(self,_passwordLineEdit,_errorLineEdit):
@@ -118,11 +121,16 @@ class password(object):
         txt = currentNote.getText(False)
         aes = AEScipher(self.pass1,self.currentNote,txt = txt,encrypt = False) # Prepare to decrypt the file
         d_txt = aes.Decrypt()                                       # decrypted text
-        writeText(self.currentNote._details['path'],bytes(d_txt,encoding='utf8'),encrypted = True) # write decrypted text in file 
         userinfo =modules.userLogin.readUserInfo()
-        aes_1 = AEScipher(userinfo[1],self.currentNote,txt = bytes(d_txt,encoding='utf8'),encrypt = False)
-        d_txt_1 = aes_1.Decrypt()
-        self.main_Window.ui.plainTextEdit.setPlainText(d_txt_1)
+        if(userinfo[3] == 'True'):
+            writeText(self.currentNote._details['path'],bytes(d_txt,encoding='utf8'),encrypted = True) # write decrypted text in file 
+            aes_1 = AEScipher(userinfo[1],self.currentNote,txt = bytes(d_txt,encoding='utf8'),encrypt = False)
+            d_txt_1 = aes_1.Decrypt()
+            self.main_Window.ui.plainTextEdit.setPlainText(d_txt_1)
+        else:
+            self.main_Window.ui.plainTextEdit.setPlainText(d_txt)
+            writeText(self.currentNote._details['path'],d_txt) # write decrypted text in file 
+
 
     def changeEncryptionPassword(self):
         if(self.verifyPassword(self.ui_p.oldPasswordLine,self.ui_p.Errortext) == True):

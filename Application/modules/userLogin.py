@@ -8,31 +8,39 @@ def setUsernameAndPassword(username,pas,rpas,ui,dialog):
         dialog.accept()
         salt = modules.passwordHashing.generateSalt()
         h_pass = modules.passwordHashing.Hash(pas,salt)
-        storeUsernameAndPasswordInFile('./User',username,"login",h_pass,salt)
+        userInfo = [username,str(h_pass),salt,"True"]
+        storeUserInfoInFile('./User',"login",userInfo)
 
 
-def storeUsernameAndPasswordInFile(path,username,filename,h_pass,salt):
+def storeUserInfoInFile(path,filename,userInfo):
     if(not os.path.exists(path)):
         os.makedirs(path)
     with open(os.path.join(path,filename + ".txt"),"w") as store_file:
-        txt = username + '\n' + str(h_pass) + '\n' + salt + '\n' + "True"
+        txt = ''
+        for info in userInfo:
+            txt += info + '\n'     
         store_file.write(txt)
 
-def verifyUser(password,ui,dialog):
+def verifyUser(password,ui,dialog = None):
     (username,h_pass,salt,encryptAll) = readUserInfo()
     enteredH_pass = modules.passwordHashing.Hash(password,salt)
     if(str(enteredH_pass) == h_pass):
         print("user verified")
-        dialog.accept()     
+        MSG = "<html><head/><body><p><span style=\" color:#00ff00;\">Correct password</span></p></body></html>"
+        ui.Errortext.setText(MSG)
+        if(dialog is not None):
+                dialog.accept()
+        return True
     else:
         print("incorrect password")
         MSG = "<html><head/><body><p><span style=\" color:#ff0000;\">Incorrect password</span></p></body></html>"
         ui.Errortext.setText(MSG)
+        return False
 
 def readUserInfo():
     path = './User/login.txt'
     with open(path,"r") as file:
-        return file.read().split('\n')
+        return file.read().strip().split('\n')
 
 def isValidPassword(pass1,pass2):
     try:

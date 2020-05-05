@@ -4,6 +4,7 @@ from PySide2 import QtWidgets, QtCore, QtGui
 from GUIs.mainWindowPTE import Ui_Groot
 
 # import modules
+from modules.userLogin import readUserInfo,storeUserInfoInFile
 from modules.GUIchanges import fixTreeViewScrolling, createNotebook, createSubNotebook, createNote, rename, dlt, importer, exportPDF, exportHTML, exportMD, copyLink
 import mainWindowFunctions
 from modules.markdownHandling import bold, italic, numList, bulletList, hyperlink, inlineCode, datetimenow, attachFile, exportAsPdf, exportAsHtml, exportAsMarkdown, importMD, copyMarkdownLink
@@ -20,11 +21,16 @@ class Window(QtWidgets.QMainWindow):
         self.mdExtensions = []  # Extensions for changing behaviour of markdown viewer
         self.mdExtensionsConfigs = {} # Extensions configurations for changing the behaviour of extensions in markdown
         
+        userInfo = readUserInfo()
+        if(userInfo[3] == "True"):
+            self.encryptAll = True
+        else:
+            self.encryptAll = False
+        print(self.encryptAll)
         # Create settings Dialog
         self.createSettingsDialog()
         self.loadSettings()
 
-        self.encryptAll = True
         # Bring the cursor to text editor
         self.ui.plainTextEdit.setFocus()
 
@@ -217,3 +223,6 @@ Window.analyzeLink = mainWindowFunctions.analyzeLink
 Window.searchForFilename = mainWindowFunctions.searchForFilename
 Window.searchInBooks = mainWindowFunctions.searchInBooks
 Window.fixScrolling = mainWindowFunctions.fixScrolling
+Window.encryptionSettings = mainWindowFunctions.encryptionSettings
+Window._verifyUser = mainWindowFunctions._verifyUser
+Window.encryptAllChoiceChanged = mainWindowFunctions.encryptAllChoiceChanged

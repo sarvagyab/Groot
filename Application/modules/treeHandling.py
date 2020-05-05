@@ -108,7 +108,7 @@ def getItem(getDict):
     return _traverseJson(getDict,structDict,getItem = True)
 
 
-def noteLoader(ui):
+def noteLoader(ui,encryptAll):
     item = ui.treeWidget.currentItem()
     if (item is None): 
         return
@@ -123,7 +123,7 @@ def noteLoader(ui):
         currentNote.openFile(item,note[1])
         disableEncryptionIfEncrypted(_encryptionButton,_decryptionButton,_permanentDecrypt,_changePasswordButton)
         from modules.noteHandling import loadNote
-        loadNote(_fileName,_textEdit)
+        loadNote(_fileName,_textEdit,encryptAll)
 
 def disableEncryptionIfEncrypted(encryptionButton,decryptionButton,permanentDecrypt,changePasswordButton):
     if('encrypted' in currentNote._details ):

@@ -1,34 +1,41 @@
+# -*- coding: utf-8 -*-
+
+# Form implementation generated from reading ui file 'verifyPasswordDialog.ui'
+#
+# Created by: PyQt5 UI code generator 5.14.1
+#
+# WARNING! All changes made in this file will be lost!
+
 
 from PySide2 import QtCore, QtGui, QtWidgets
 
 
 class Ui_verifyPasswordDialog(object):
-    def __init__(self):
-        self.verifyPasswordDialog = QtWidgets.QDialog()
-        self.setupUi()
-        self.verifyPasswordDialog.show()
-
-    def setupUi(self):
-        self.verifyPasswordDialog.setObjectName("verifyPasswordDialog")
-        self.verifyPasswordDialog.resize(565, 286)
+    def setupUi(self, verifyPasswordDialog):
+        verifyPasswordDialog.setObjectName("verifyPasswordDialog")
+        verifyPasswordDialog.resize(565, 286)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.verifyPasswordDialog.sizePolicy().hasHeightForWidth())
-        self.verifyPasswordDialog.setSizePolicy(sizePolicy)
-        self.verifyPasswordDialog.setFocusPolicy(QtCore.Qt.NoFocus)
-        self.gridLayout = QtWidgets.QGridLayout(self.verifyPasswordDialog)
+        sizePolicy.setHeightForWidth(verifyPasswordDialog.sizePolicy().hasHeightForWidth())
+        verifyPasswordDialog.setSizePolicy(sizePolicy)
+        verifyPasswordDialog.setFocusPolicy(QtCore.Qt.NoFocus)
+        self.gridLayout = QtWidgets.QGridLayout(verifyPasswordDialog)
         self.gridLayout.setObjectName("gridLayout")
-        self.buttonBox = QtWidgets.QDialogButtonBox(self.verifyPasswordDialog)
+        self.buttonBox = QtWidgets.QDialogButtonBox(verifyPasswordDialog)
         self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Cancel|QtWidgets.QDialogButtonBox.Ok)
         self.buttonBox.setObjectName("buttonBox")
         self.gridLayout.addWidget(self.buttonBox, 2, 0, 1, 1)
-        self.mainFrame = QtWidgets.QFrame(self.verifyPasswordDialog)
+        self.mainFrame = QtWidgets.QFrame(verifyPasswordDialog)
         self.mainFrame.setFrameShape(QtWidgets.QFrame.StyledPanel)
         self.mainFrame.setFrameShadow(QtWidgets.QFrame.Raised)
         self.mainFrame.setObjectName("mainFrame")
         self.verticalLayout = QtWidgets.QVBoxLayout(self.mainFrame)
         self.verticalLayout.setObjectName("verticalLayout")
+        self.title = QtWidgets.QLabel(self.mainFrame)
+        self.title.setText("")
+        self.title.setObjectName("title")
+        self.verticalLayout.addWidget(self.title)
         self.upperFrame = QtWidgets.QFrame(self.mainFrame)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
@@ -109,13 +116,12 @@ class Ui_verifyPasswordDialog(object):
         self.verticalLayout.addWidget(self.errorFrame)
         self.gridLayout.addWidget(self.mainFrame, 0, 0, 1, 1)
 
-        self.retranslateUi()
-        QtCore.QMetaObject.connectSlotsByName(self.verifyPasswordDialog)
+        self.retranslateUi(verifyPasswordDialog)
+        QtCore.QMetaObject.connectSlotsByName(verifyPasswordDialog)
 
-    def retranslateUi(self):
+    def retranslateUi(self, verifyPasswordDialog):
         _translate = QtCore.QCoreApplication.translate
-        self.verifyPasswordDialog.setWindowTitle(_translate("verifyPasswordDialog", "Please enter your password"))
+        verifyPasswordDialog.setWindowTitle(_translate("verifyPasswordDialog", "Please enter your password"))
         self.instruction.setText(_translate("verifyPasswordDialog", "<html><head/><body><p>Please enter <span style=\" font-weight:600;\">password </span>to enter decrypt the note.</p><p>Keep in mind that you have to <span style=\" font-weight:600;\">remember </span>your password to read the content of the note</p><p>and that you can <span style=\" font-weight:600;\">only</span> do that <span style=\" font-weight:600;\">in Groot</span>.</p></body></html>"))
         self.password.setText(_translate("verifyPasswordDialog", "<html><head/><body><p><span style=\" font-size:9pt;\">Password</span></p></body></html>"))
         self.Errortext.setText(_translate("verifyPasswordDialog", "<html><head/><body><p><br/></p></body></html>"))
-
