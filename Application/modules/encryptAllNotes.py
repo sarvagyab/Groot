@@ -36,7 +36,10 @@ def _encryptDecryptAllNotes(window,encrypt):
             if(note['encrypted'] == 'True'):
                 openDialog(note)
     userInfo = readUserInfo()
-    encrpytDecryptAllNotes(userInfo[1],userInfo[2],notes,encrypt)
+    if(encrypt == True):
+        encryptAllNotes(userInfo[1],userInfo[2],notes)
+    else:
+        decryptAllNotes(userInfo[1],userInfo[2],notes)
     window.encryptAll = encrypt
     userInfo[3] = str(encrypt) 
     storeUserInfoInFile('./User',"login",userInfo)
@@ -67,36 +70,49 @@ def fetchPassAndVerify(ui,dialog,note):
         return
 
 
-def encrpytDecryptAllNotes(userPass,userSalt,notes,encrypt):
+def decryptAllNotes(userPass,userSalt,notes):
     for note in notes:
         randomString = note['randomString']
         path = note['path']
         encrypted = False
         if (randomString in encNotes.keys()):
-            encText0 = readText(path)
+            encText0 = readText(path) # bytes
             aesD = AEScipher(encNotes[randomString],None,encText0,False)
-            if(encrypt == False):
-                Text = bytes(aesD.Decrypt(),'utf8') # bytes
-            else:
-                Text = aesD.Decrypt() # string
+            Text = bytes(aesD.Decrypt(),'utf8') # bytes
             encrypted = True
         else:
-            Text = readText(path)
-        if(encrypt == True):
-            aes = AEScipher(userPass,None,Text,True)
-            outText = aes.Encrypt() # bytes
+            Text = readText(path) # bytes
+        aes = AEScipher(userPass,None,Text,False)
+        outText = aes.Decrypt() # string
+        if(encrypted == False):
+            writeText(path,outText)
         else:
-            aes = AEScipher(userPass,None,Text,False)
-            outText = aes.Decrypt() # string
-        if(encrypted == True):
-            aesE = AEScipher(encNotes[randomString],None,str(outText),True)
-            txt = aesE.Encrypt() # bytes
-            writeText(path,txt,encrypted = True)
+            aesE = AEScipher(encNotes[randomString],None,outText,True)
+            outText1 = aesE.Encrypt() # bytes
+            writeText(path,outText1,encrypted = True)
+
+
+def encryptAllNotes(userPass,userSalt,notes):
+    for note in notes:
+        randomString = note['randomString']
+        path = note['path']
+        encrypted = False
+        if(randomString in encNotes.keys()):
+            encText0 = readText(path) # bytes
+            aesD = AEScipher(encNotes[randomString],None,encText0,False)
+            Text = aesD.Decrypt() # string 
+            encrypted = True
         else:
-            if(encrypt == True):
-                writeText(path,outText,encrypted = True)
-            else:
-                writeText(path,outText)
+            Text = readText(path) # string
+        aes = AEScipher(userPass,None,Text,True)
+        outText = aes.Encrypt() # bytes
+        if(encrypted == False):
+            writeText(path,outText,encrypted = True)
+        else:
+            outText = str(outText)
+            aesE = AEScipher(encNotes[randomString],None,outText,True)
+            outText1 = aesE.Encrypt() # bytes
+            writeText(path,outText1,encrypted = True)
 
 
 

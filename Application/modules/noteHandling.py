@@ -91,7 +91,8 @@ def addNote(item,_plainTextEdit,window):
         aes = AEScipher(str(userInfo[1]),currentNote,txt ="",encrypt = True)
         txt = aes.Encrypt()
         if(not isinstance(txt,bytes)):
-            txt = bytes(txt)
+            print("here")
+            txt = bytes(txt,encoding = 'utf8')
         with open(path,'wb') as file:
             file.write(txt)
             file.seek(0)
