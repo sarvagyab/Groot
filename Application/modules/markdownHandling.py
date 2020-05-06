@@ -201,7 +201,11 @@ def numList(te):
 
 def hyperlink(te):
     # input name
-    text, ok = QtWidgets.QInputDialog().getText(None,"Groot","Enter link - ")
+    msg = QtWidgets.QInputDialog()
+    icon = QtGui.QIcon()
+    icon.addPixmap(QtGui.QPixmap(":/icons/Icons/32x32/link.png"),QtGui.QIcon.Normal,QtGui.QIcon.Off)
+    msg.setWindowIcon(icon)
+    text, ok = msg.getText(None,"Groot","Enter link - ")
     if ok is True:
             linkpath = str(text)
     else:
@@ -228,8 +232,12 @@ def datetimenow(te):
 
 
 def attachFile(te):
-    if currentNote._open == False:
-        QtWidgets.QMessageBox(QtWidgets.QMessageBox.Information,"Groot","Cannot attach images when no note is currently loaded",QtWidgets.QMessageBox.Ok).exec_()
+    if currentNote._open == False: 
+        msg = QtWidgets.QMessageBox(QtWidgets.QMessageBox.Information,"Groot","Cannot attach images when no note is currently loaded",QtWidgets.QMessageBox.Ok)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/icons/Icons/32x32/attention.png"),QtGui.QIcon.Normal,QtGui.QIcon.Off)
+        msg.setWindowIcon(icon)
+        msg.exec_()
         return
     filename, _ = QtWidgets.QFileDialog().getOpenFileName(None,"Attach File","./")
     # print(filename)
@@ -372,7 +380,11 @@ def pluginHandler(text,check,extensions, configs):
 
 def exportAsPdf(mdView):
     if ("encrypted" in currentNote._details) and currentNote._details["encrypted"] == "True":
-        QtWidgets.QMessageBox(QtWidgets.QMessageBox.Information,"Groot", "Cannot Export Encrypted Files",QtWidgets.QMessageBox.Ok).exec_()
+        msg = QtWidgets.QMessageBox(QtWidgets.QMessageBox.Information,"Groot", "Cannot Export Encrypted Files",QtWidgets.QMessageBox.Ok)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/icons/Icons/32x32/attention.png"),QtGui.QIcon.Normal,QtGui.QIcon.Off)
+        msg.setWindowIcon(icon)
+        msg.exec_()
         return
     filename, _ = QtWidgets.QFileDialog().getSaveFileName(None,"Export Pdf","./")
     if filename != "":
@@ -386,7 +398,11 @@ def exportAsPdf(mdView):
 
 def exportAsMarkdown(mdtext):
     if ("encrypted" in currentNote._details) and currentNote._details["encrypted"] == "True":
-        QtWidgets.QMessageBox(QtWidgets.QMessageBox.Information,"Groot", "Cannot Export Encrypted Files",QtWidgets.QMessageBox.Ok).exec_()
+        msg = QtWidgets.QMessageBox(QtWidgets.QMessageBox.Information,"Groot", "Cannot Export Encrypted Files",QtWidgets.QMessageBox.Ok)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/icons/Icons/32x32/attention.png"),QtGui.QIcon.Normal,QtGui.QIcon.Off)
+        msg.setWindowIcon(icon)
+        msg.exec_()
         return
     filename, _ = QtWidgets.QFileDialog().getSaveFileName(None,"Export Markdown","./")
     if filename != "":
@@ -398,7 +414,11 @@ def exportAsMarkdown(mdtext):
 
 def exportAsHtml(mdtext, extensions):
     if ("encrypted" in currentNote._details) and currentNote._details["encrypted"] == "True":
-        QtWidgets.QMessageBox(QtWidgets.QMessageBox.Information,"Groot", "Cannot Export Encrypted Files",QtWidgets.QMessageBox.Ok).exec_()
+        msg = QtWidgets.QMessageBox(QtWidgets.QMessageBox.Information,"Groot", "Cannot Export Encrypted Files",QtWidgets.QMessageBox.Ok)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap(":/icons/Icons/32x32/attention.png"),QtGui.QIcon.Normal,QtGui.QIcon.Off)
+        msg.setWindowIcon(icon)
+        msg.exec_()
         return
     filename, _ = QtWidgets.QFileDialog().getSaveFileName(None,"Export Html","./")
     if filename != "":

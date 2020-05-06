@@ -15,12 +15,13 @@ from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont,
     QPixmap, QRadialGradient)
 from PySide2.QtWidgets import *
 
+import resource_rc
 
 class Ui_firstLoginDialog(object):
     def setupUi(self, firstLoginDialog):
         if not firstLoginDialog.objectName():
             firstLoginDialog.setObjectName(u"firstLoginDialog")
-        firstLoginDialog.resize(565, 276)
+        firstLoginDialog.resize(565, 288)
         sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -31,6 +32,9 @@ class Ui_firstLoginDialog(object):
         font.setPointSize(9)
         firstLoginDialog.setFont(font)
         firstLoginDialog.setFocusPolicy(Qt.NoFocus)
+        icon = QIcon()
+        icon.addFile(u":/icons/Icons/16x16/key.png", QSize(), QIcon.Normal, QIcon.Off)
+        firstLoginDialog.setWindowIcon(icon)
         self.gridLayout = QGridLayout(firstLoginDialog)
         self.gridLayout.setObjectName(u"gridLayout")
         self.buttonBox = QDialogButtonBox(firstLoginDialog)

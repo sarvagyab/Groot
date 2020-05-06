@@ -109,6 +109,9 @@ def reloadUI(self):
 
 def showDeleteDialog(self):
     msg = QtWidgets.QMessageBox()
+    icon = QtGui.QIcon()
+    icon.addPixmap(QtGui.QPixmap(":/icons/Icons/32x32/delete_note.png"),QtGui.QIcon.Normal,QtGui.QIcon.Off)
+    msg.setWindowIcon(icon)
     msg.setWindowTitle("Delete Confirmation?")
     msg.setText("Are you sure you want to delete " + self.ui.treeWidget.currentItem().text(0) + " ?")
     msg.setIcon(QtWidgets.QMessageBox.Information)
@@ -315,7 +318,11 @@ def handleLinks(self,url):
         print("Analyzing")
         check = self.analyzeLink(url)
         if check == False:
-            QtWidgets.QMessageBox(QtWidgets.QMessageBox.Critical,"Groot","Cannot open this link",QtWidgets.QMessageBox.Ok).exec_()
+            msg = QtWidgets.QMessageBox(QtWidgets.QMessageBox.Critical,"Groot","Cannot open this link",QtWidgets.QMessageBox.Ok)
+            icon = QtGui.QIcon()
+            icon.addPixmap(QtGui.QPixmap(":/icons/Icons/32x32/attention.png"),QtGui.QIcon.Normal,QtGui.QIcon.Off)
+            msg.setWindowIcon(icon)
+            msg.exec_()
             print("doesn't turn out to be a link") 
             return
         else:
@@ -323,7 +330,11 @@ def handleLinks(self,url):
             filename = url.toString()[2:]
             item = self.searchForFilename(filename)
             if item == []:
-                QtWidgets.QMessageBox(QtWidgets.QMessageBox.Critical,"Groot","Cannot open this link",QtWidgets.QMessageBox.Ok).exec_()
+                msg = QtWidgets.QMessageBox(QtWidgets.QMessageBox.Critical,"Groot","Cannot open this link",QtWidgets.QMessageBox.Ok)
+                icon = QtGui.QIcon()
+                icon.addPixmap(QtGui.QPixmap(":/icons/Icons/32x32/attention.png"),QtGui.QIcon.Normal,QtGui.QIcon.Off)
+                msg.setWindowIcon(icon)
+                msg.exec_()
                 return
             getToItem = self.ui.treeWidget.topLevelItem(item[0])
             print(getToItem.text(0))

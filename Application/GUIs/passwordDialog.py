@@ -15,6 +15,7 @@ from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont,
     QPixmap, QRadialGradient)
 from PySide2.QtWidgets import *
 
+import resource_rc
 
 class Ui_passwordDialog(object):
     def setupUi(self, passwordDialog):
@@ -31,6 +32,9 @@ class Ui_passwordDialog(object):
         font.setPointSize(9)
         passwordDialog.setFont(font)
         passwordDialog.setFocusPolicy(Qt.NoFocus)
+        icon = QIcon()
+        icon.addFile(u":/icons/Icons/16x16/key.png", QSize(), QIcon.Normal, QIcon.Off)
+        passwordDialog.setWindowIcon(icon)
         self.gridLayout = QGridLayout(passwordDialog)
         self.gridLayout.setObjectName(u"gridLayout")
         self.buttonBox = QDialogButtonBox(passwordDialog)

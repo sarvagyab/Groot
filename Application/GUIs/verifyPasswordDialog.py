@@ -15,12 +15,13 @@ from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont,
     QPixmap, QRadialGradient)
 from PySide2.QtWidgets import *
 
+import resource_rc
 
 class Ui_verifyPasswordDialog(object):
     def setupUi(self, verifyPasswordDialog):
         if not verifyPasswordDialog.objectName():
             verifyPasswordDialog.setObjectName(u"verifyPasswordDialog")
-        verifyPasswordDialog.resize(565, 318)
+        verifyPasswordDialog.resize(599, 327)
         sizePolicy = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Maximum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -31,6 +32,9 @@ class Ui_verifyPasswordDialog(object):
         font.setPointSize(11)
         verifyPasswordDialog.setFont(font)
         verifyPasswordDialog.setFocusPolicy(Qt.TabFocus)
+        icon = QIcon()
+        icon.addFile(u":/icons/Icons/16x16/key.png", QSize(), QIcon.Normal, QIcon.Off)
+        verifyPasswordDialog.setWindowIcon(icon)
         self.verticalLayout_3 = QVBoxLayout(verifyPasswordDialog)
         self.verticalLayout_3.setObjectName(u"verticalLayout_3")
         self.mainFrame = QFrame(verifyPasswordDialog)

@@ -35,11 +35,14 @@ class password(object):
                 hashPassword(self.currentNote,self.currentFileName,self.pass1,self.main_Window,datalength = 64 ,encrypted=False)
             else:
                 self.ui_p = Ui_passwordDialog()
+                self.passDialog = QtWidgets.QDialog()
+                self.ui_p.setupUi(self.passDialog)
+                self.passDialog.show()
                 if(self.currentNote._open == True):
                     print("Trying to encrypt {}".format(self.currentFileName))
                     # slot-signals
                     self.ui_p.buttonBox.button(QtWidgets.QDialogButtonBox.Ok).clicked.connect(lambda:self.passwordEntered())
-                    self.ui_p.buttonBox.button(QtWidgets.QDialogButtonBox.Cancel).clicked.connect(lambda:self.closeDialog(self.ui_p.passwordDialog))
+                    self.ui_p.buttonBox.button(QtWidgets.QDialogButtonBox.Cancel).clicked.connect(lambda:self.closeDialog(self.passDialog))
 
     def openVerifyPasswordDialog(self,permanentdecrypt = False):
         if(currentNote._file != None):
@@ -66,9 +69,12 @@ class password(object):
         if(currentNote._file != None):
             self.currentNote = currentNote
             self.currentFileName = self.currentNote.getFilename()
+            self.changePasswordDialog = QtWidgets.QDialog()
             self.ui_p = Ui_changePasswordDialog()
-            self.ui_p.buttonBox.button(QtWidgets.QDialogButtonBox.Cancel).clicked.connect(lambda:self.closeDialog(self.ui_p.changePasswordDialog))
+            self.ui_p.setupUi(self.changePasswordDialog)
+            self.ui_p.buttonBox.button(QtWidgets.QDialogButtonBox.Cancel).clicked.connect(lambda:self.closeDialog(self.changePasswordDialog))
             self.ui_p.buttonBox.button(QtWidgets.QDialogButtonBox.Ok).clicked.connect(lambda:self.changeEncryptionPassword())
+            self.changePasswordDialog.exec()
 
     def passwordEntered(self):
         self.pass1 = self.ui_p.passwordLineEdit.text()
@@ -76,7 +82,7 @@ class password(object):
         self.setPassword()
         if(self.passwordset == True ):
             print("Password valid")
-            self.closeDialog(self.ui_p.passwordDialog)
+            self.closeDialog(self.passDialog)
             hashPassword(self.currentNote,self.currentFileName,self.pass1,self.main_Window,datalength = 64 ,encrypted=False)
             
     def verifyAndDecryptPassword(self,use_savedPassword = False,permanentdecrypt = False):
@@ -144,7 +150,7 @@ class password(object):
             self.pass2 = self.ui_p.RepasswordLineEdit.text()
             self.setPassword()
             if(self.passwordset == True):
-                self.closeDialog(self.ui_p.changePasswordDialog)
+                self.closeDialog(self.changePasswordDialog)
                 hashPassword(self.currentNote,self.currentFileName,self.pass1,self.main_Window,datalength = 64 ,encrypted=False)
 
 

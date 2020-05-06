@@ -34,10 +34,6 @@ class Window(QtWidgets.QMainWindow):
         # Bring the cursor to text editor
         self.ui.plainTextEdit.setFocus()
 
-        # To be used to change color of Arrows to white in QtreeWidget
-        # self.ui.treeWidget.setStyleSheet(
-        #     u"QTreeWidget::branch:open{ image:url(white-arrow.png);}"
-        # )
         self.decryptedNotes= {} # all notes that were encrypted and decrypted in this session
         self.encryptedInSession = {} # all notes that are encrypted in this session
 

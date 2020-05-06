@@ -28,6 +28,10 @@
   <property name="windowTitle">
    <string>Please enter your password</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="../../../resource.qrc">
+    <normaloff>:/icons/Icons/16x16/key.png</normaloff>:/icons/Icons/16x16/key.png</iconset>
+  </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="2" column="0">
     <widget class="QDialogButtonBox" name="buttonBox">
@@ -190,6 +194,8 @@
  <tabstops>
   <tabstop>passwordLineEdit</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="../../../resource.qrc"/>
+ </resources>
  <connections/>
 </ui>

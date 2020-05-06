@@ -15,6 +15,7 @@ from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont,
     QPixmap, QRadialGradient)
 from PySide2.QtWidgets import *
 
+import resource_rc
 
 class Ui_loginDialog(object):
     def setupUi(self, loginDialog):
@@ -31,6 +32,9 @@ class Ui_loginDialog(object):
         font.setPointSize(11)
         loginDialog.setFont(font)
         loginDialog.setFocusPolicy(Qt.NoFocus)
+        icon = QIcon()
+        icon.addFile(u":/icons/Icons/16x16/key.png", QSize(), QIcon.Normal, QIcon.Off)
+        loginDialog.setWindowIcon(icon)
         self.gridLayout = QGridLayout(loginDialog)
         self.gridLayout.setObjectName(u"gridLayout")
         self.buttonBox = QDialogButtonBox(loginDialog)
