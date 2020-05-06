@@ -1,4 +1,4 @@
-from PySide2 import QtCore, QtWidgets
+from PySide2 import QtCore, QtWidgets, QtGui
 
 from modules.fileHandling import currentNote
 from modules.treeHandling import itemVal, saveUpdatedJson
@@ -63,6 +63,9 @@ def addNotebook(item):
     newItem = QtWidgets.QTreeWidgetItem()
     newItem.setText(0,name)
     newItem.setFlags(QtCore.Qt.ItemIsEditable|QtCore.Qt.ItemIsSelectable|QtCore.Qt.ItemIsUserCheckable|QtCore.Qt.ItemIsEnabled)
+    icon = QtGui.QIcon()
+    icon.addPixmap(QtGui.QPixmap(":/icons/Icons/16x16/subfolder_light.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)        
+    newItem.setIcon(0,icon)
     item.addChild(newItem)
     item.setExpanded(True)
 
@@ -114,6 +117,9 @@ def addNote(item,_plainTextEdit,window):
     newItem = QtWidgets.QTreeWidgetItem()
     newItem.setText(0,name)
     newItem.setFlags(QtCore.Qt.ItemIsEditable|QtCore.Qt.ItemIsSelectable|QtCore.Qt.ItemIsUserCheckable|QtCore.Qt.ItemIsEnabled)
+    icon = QtGui.QIcon()
+    icon.addPixmap(QtGui.QPixmap(":/icons/Icons/16x16/document_light.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)        
+    newItem.setIcon(0,icon)
     item.addChild(newItem)
     item.setExpanded(True)
     item.treeWidget().setCurrentItem(newItem)

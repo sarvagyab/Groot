@@ -23,8 +23,13 @@ def fillItem(item,valDict):
         newItem.setText(0,val["name"])
         newItem.setFlags(QtCore.Qt.ItemIsEditable|QtCore.Qt.ItemIsSelectable|QtCore.Qt.ItemIsUserCheckable|QtCore.Qt.ItemIsEnabled)
         if "path" in val["expanded"] and type(val["expanded"]["path"]) == str:
-            pass
+            icon = QtGui.QIcon()
+            icon.addPixmap(QtGui.QPixmap(":/icons/Icons/16x16/document_light.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)        
+            newItem.setIcon(0,icon)
         else :
+            icon = QtGui.QIcon()
+            icon.addPixmap(QtGui.QPixmap(":/icons/Icons/16x16/subfolder_light.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)        
+            newItem.setIcon(0,icon)
             fillItem(newItem,val["expanded"])
         item.addChild(newItem)
 
@@ -32,10 +37,10 @@ def fillItem(item,valDict):
 def loadfileStructure(tree):
     structDict = getJsonTree()
     item = tree.topLevelItem(0)
-    item.takeChildren() # Current design is such that whenever a new note is created or a note is deleted the note is deleted from json and the file structure is reloaded. This design can be changed later
+    # item.takeChildren() # Current design is such that whenever a new note is created or a note is deleted the note is deleted from json and the file structure is reloaded. This design can be changed later
     fillItem(item, structDict["Notebooks"])
     item = tree.topLevelItem(1)
-    item.takeChildren()
+    # item.takeChildren()
     fillItem(item, structDict["Uncategorized"])
 
 
