@@ -4,7 +4,6 @@ from modules.markdownHandling import scrolling
 
 def searchText(ui,cursor = QTextCursor.Start,reversed = False):
     ui.errorLabel.setText("")
-    print("$"*5)
     ui.plainTextEdit.moveCursor(cursor) # set the cursor at the beginning of the text
     ui.mdViewer.moveCursor(cursor)
     search_text = ui.searchBar.text()

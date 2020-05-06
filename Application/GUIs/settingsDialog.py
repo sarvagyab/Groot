@@ -15,12 +15,16 @@ from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont,
     QPixmap, QRadialGradient)
 from PySide2.QtWidgets import *
 
+import resource_rc
 
 class Ui_settingDialog(object):
     def setupUi(self, settingDialog):
         if not settingDialog.objectName():
             settingDialog.setObjectName(u"settingDialog")
         settingDialog.resize(870, 461)
+        icon = QIcon()
+        icon.addFile(u":/icons/Icons/16x16/settings.png", QSize(), QIcon.Normal, QIcon.Off)
+        settingDialog.setWindowIcon(icon)
         self.gridLayout = QGridLayout(settingDialog)
         self.gridLayout.setObjectName(u"gridLayout")
         self.gridLayout.setContentsMargins(5, 2, 5, 5)
@@ -310,7 +314,7 @@ class Ui_settingDialog(object):
         self.retranslateUi(settingDialog)
 
         self.closeMe.setDefault(True)
-        self.settings.setCurrentIndex(3)
+        self.settings.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(settingDialog)

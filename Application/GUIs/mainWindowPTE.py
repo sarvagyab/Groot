@@ -34,6 +34,16 @@ class Ui_Groot(object):
         icon = QIcon()
         icon.addFile(u":/icons/Icons/App Icon/groot.png", QSize(), QIcon.Normal, QIcon.Off)
         Groot.setWindowIcon(icon)
+        Groot.setStyleSheet(u" QScrollBar:vertical {\n"
+"     background: #32CC99;\n"
+"     width: 15px;\n"
+"     margin: 22px 0 22px 0;\n"
+" }\n"
+" QScrollBar::handle:vertical {\n"
+"     background: gray;\n"
+"     min-height: 40px;\n"
+" }\n"
+" ")
         self.actionNotes_Tree = QAction(Groot)
         self.actionNotes_Tree.setObjectName(u"actionNotes_Tree")
         self.actionPrint = QAction(Groot)
@@ -601,7 +611,8 @@ class Ui_Groot(object):
         self.titleArea.setFont(font6)
         self.titleArea.setStyleSheet(u"padding:0px;\n"
 "margin :0px;\n"
-"background-color:grey;")
+"background-color:gray;\n"
+"color:white;")
         self.horizontalLayout = QHBoxLayout(self.titleArea)
         self.horizontalLayout.setSpacing(0)
         self.horizontalLayout.setObjectName(u"horizontalLayout")
@@ -877,7 +888,23 @@ class Ui_Groot(object):
         self.dateTime = QPushButton(self.editingButtons)
         self.dateTime.setObjectName(u"dateTime")
         self.dateTime.setCursor(QCursor(Qt.PointingHandCursor))
-        self.dateTime.setStyleSheet(u"")
+        self.dateTime.setStyleSheet(u"QPushButton{\n"
+"	margin:0px;\n"
+"	padding:1px;\n"
+"}\n"
+"\n"
+"QPushButton:hover{\n"
+"	border-style:solid;\n"
+"	border-color:black;\n"
+"	background-origin:border-box;\n"
+"	padding-top: 3px;\n"
+"    padding-left: 4px;\n"
+"}\n"
+"\n"
+"QPushButton:pressed{\n"
+"	padding-top: 1px;\n"
+"	padding-left :1px;\n"
+"}")
         icon36 = QIcon()
         icon36.addFile(u":/icons/Icons/32x32/clock.png", QSize(), QIcon.Normal, QIcon.Off)
         self.dateTime.setIcon(icon36)
@@ -969,7 +996,7 @@ class Ui_Groot(object):
         Groot.setCentralWidget(self.centralwidget)
         self.menubar = QMenuBar(Groot)
         self.menubar.setObjectName(u"menubar")
-        self.menubar.setGeometry(QRect(0, 0, 1602, 28))
+        self.menubar.setGeometry(QRect(0, 0, 1602, 26))
         self.menuFile = QMenu(self.menubar)
         self.menuFile.setObjectName(u"menuFile")
         self.menuImport = QMenu(self.menuFile)

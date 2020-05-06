@@ -29,6 +29,18 @@
    <iconset resource="../../../resource.qrc">
     <normaloff>:/icons/Icons/App Icon/groot.png</normaloff>:/icons/Icons/App Icon/groot.png</iconset>
   </property>
+  <property name="styleSheet">
+   <string notr="true"> QScrollBar:vertical {
+     background: #32CC99;
+     width: 15px;
+     margin: 22px 0 22px 0;
+ }
+ QScrollBar::handle:vertical {
+     background: gray;
+     min-height: 40px;
+ }
+ </string>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <property name="styleSheet">
     <string notr="true">background-color:rgb(252, 252, 252);</string>
@@ -836,7 +848,8 @@ QTreeView::branch:open:has-children:has-siblings  {
                <property name="styleSheet">
                 <string notr="true">padding:0px;
 margin :0px;
-background-color:grey;</string>
+background-color:gray;
+color:white;</string>
                </property>
                <layout class="QHBoxLayout" name="horizontalLayout">
                 <property name="spacing">
@@ -1355,7 +1368,23 @@ QPushButton:pressed{
                    <string>Date and time</string>
                   </property>
                   <property name="styleSheet">
-                   <string notr="true"/>
+                   <string notr="true">QPushButton{
+	margin:0px;
+	padding:1px;
+}
+
+QPushButton:hover{
+	border-style:solid;
+	border-color:black;
+	background-origin:border-box;
+	padding-top: 3px;
+    padding-left: 4px;
+}
+
+QPushButton:pressed{
+	padding-top: 1px;
+	padding-left :1px;
+}</string>
                   </property>
                   <property name="text">
                    <string/>
@@ -1533,7 +1562,7 @@ QPushButton:pressed{
      <x>0</x>
      <y>0</y>
      <width>1602</width>
-     <height>28</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">

@@ -10,7 +10,9 @@ import json
 
 def scrolling(oneBar,twoBar,searchBar):
     if(not searchBar.hasFocus()):
-        x = (oneBar.value()*twoBar.maximum())/oneBar.maximum()
+        Max = oneBar.maximum() 
+        if(Max != 0):
+            x = (oneBar.value()*twoBar.maximum())/Max
         if oneBar.signalsBlocked(): return
         oneBar.blockSignals(True)
         twoBar.setValue(x)
