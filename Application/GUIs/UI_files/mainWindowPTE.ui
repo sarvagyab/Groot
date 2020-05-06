@@ -16,8 +16,18 @@
     <verstretch>0</verstretch>
    </sizepolicy>
   </property>
+  <property name="font">
+   <font>
+    <family>Calibri</family>
+    <pointsize>11</pointsize>
+   </font>
+  </property>
   <property name="windowTitle">
    <string>Groot</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="../../../resource.qrc">
+    <normaloff>:/icons/Icons/App Icon/groot.png</normaloff>:/icons/Icons/App Icon/groot.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="styleSheet">
@@ -97,6 +107,12 @@
           </property>
           <item>
            <widget class="QFrame" name="buttonFrame">
+            <property name="font">
+             <font>
+              <family>Calibri</family>
+              <pointsize>8</pointsize>
+             </font>
+            </property>
             <property name="styleSheet">
              <string notr="true">QPushButton{
 	border:None;
@@ -146,6 +162,15 @@ QPushButton:pressed{
                  <height>0</height>
                 </size>
                </property>
+               <property name="font">
+                <font>
+                 <family>Calibri</family>
+                 <pointsize>9</pointsize>
+                </font>
+               </property>
+               <property name="cursor">
+                <cursorShape>PointingHandCursor</cursorShape>
+               </property>
                <property name="styleSheet">
                 <string notr="true">QPushButton{
 	border:None;
@@ -183,6 +208,15 @@ QPushButton:pressed{
                  <height>0</height>
                 </size>
                </property>
+               <property name="font">
+                <font>
+                 <family>Calibri</family>
+                 <pointsize>9</pointsize>
+                </font>
+               </property>
+               <property name="cursor">
+                <cursorShape>PointingHandCursor</cursorShape>
+               </property>
                <property name="styleSheet">
                 <string notr="true">QPushButton{
 	border:None;
@@ -219,6 +253,15 @@ QPushButton:pressed{
                  <width>0</width>
                  <height>0</height>
                 </size>
+               </property>
+               <property name="font">
+                <font>
+                 <family>Calibri</family>
+                 <pointsize>9</pointsize>
+                </font>
+               </property>
+               <property name="cursor">
+                <cursorShape>PointingHandCursor</cursorShape>
                </property>
                <property name="styleSheet">
                 <string notr="true">QPushButton{
@@ -307,6 +350,7 @@ QPushButton:pressed{
                   </property>
                   <property name="font">
                    <font>
+                    <family>Calibri</family>
                     <pointsize>10</pointsize>
                    </font>
                   </property>
@@ -333,6 +377,12 @@ QLineEdit:focus{
                 </item>
                 <item>
                  <widget class="QPushButton" name="wholeWord">
+                  <property name="font">
+                   <font>
+                    <family>Calibri</family>
+                    <pointsize>9</pointsize>
+                   </font>
+                  </property>
                   <property name="cursor">
                    <cursorShape>PointingHandCursor</cursorShape>
                   </property>
@@ -367,6 +417,12 @@ QPushButton:!checked:hover{
                 </item>
                 <item>
                  <widget class="QPushButton" name="matchCase">
+                  <property name="font">
+                   <font>
+                    <family>Calibri</family>
+                    <pointsize>9</pointsize>
+                   </font>
+                  </property>
                   <property name="cursor">
                    <cursorShape>PointingHandCursor</cursorShape>
                   </property>
@@ -404,6 +460,12 @@ QPushButton:!checked:hover{
                 </item>
                 <item>
                  <widget class="QPushButton" name="regexButton">
+                  <property name="font">
+                   <font>
+                    <family>Calibri</family>
+                    <pointsize>9</pointsize>
+                   </font>
+                  </property>
                   <property name="cursor">
                    <cursorShape>PointingHandCursor</cursorShape>
                   </property>
@@ -441,6 +503,9 @@ QPushButton:!checked:hover{
              </item>
              <item>
               <widget class="QPushButton" name="prevMatch">
+               <property name="cursor">
+                <cursorShape>PointingHandCursor</cursorShape>
+               </property>
                <property name="toolTip">
                 <string>Previous match</string>
                </property>
@@ -481,6 +546,9 @@ QPushButton:pressed{
              </item>
              <item>
               <widget class="QPushButton" name="nextMatch">
+               <property name="cursor">
+                <cursorShape>PointingHandCursor</cursorShape>
+               </property>
                <property name="toolTip">
                 <string>Next match</string>
                </property>
@@ -594,6 +662,12 @@ QPushButton:pressed{
               <height>0</height>
              </size>
             </property>
+            <property name="font">
+             <font>
+              <family>Calibri</family>
+              <pointsize>10</pointsize>
+             </font>
+            </property>
             <property name="contextMenuPolicy">
              <enum>Qt::CustomContextMenu</enum>
             </property>
@@ -607,7 +681,29 @@ QPushButton:pressed{
 	alternate-background-color:gray;
 }
 
-</string>
+QTreeView::item:selected {
+   background-color:rga(53, 113, 242);
+}
+QTreeView::item:selected:active{
+	background-color:rga(53, 113, 242);
+    /*background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #6ea1f1, stop: 1 #567dbc);*/
+}
+
+QTreeView::item:selected:!active {
+    /*background: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1, stop: 0 #6b9be8, stop: 1 #577fbf);*/
+}
+
+QTreeView::branch:has-children:!has-siblings:closed,
+QTreeView::branch:closed:has-children:has-siblings {
+    border-image: none;
+	image: url(:/icons/Icons/16x16/branch_close_light.png);
+}
+
+QTreeView::branch:open:has-children:!has-siblings,
+QTreeView::branch:open:has-children:has-siblings  {
+    border-image: none;
+	image: url(:/icons/Icons/16x16/branch_open_light.png);
+}</string>
             </property>
             <property name="frameShape">
              <enum>QFrame::WinPanel</enum>
@@ -752,6 +848,7 @@ background-color:grey;</string>
                    <font>
                     <family>Calibri</family>
                     <pointsize>12</pointsize>
+                    <underline>false</underline>
                    </font>
                   </property>
                   <property name="styleSheet">
@@ -1436,7 +1533,7 @@ QPushButton:pressed{
      <x>0</x>
      <y>0</y>
      <width>1602</width>
-     <height>26</height>
+     <height>28</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -1444,6 +1541,12 @@ QPushButton:pressed{
      <string>File</string>
     </property>
     <widget class="QMenu" name="menuImport">
+     <property name="font">
+      <font>
+       <family>Calibri</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
      <property name="title">
       <string>Import</string>
      </property>
@@ -1454,6 +1557,12 @@ QPushButton:pressed{
      <addaction name="actionMD"/>
     </widget>
     <widget class="QMenu" name="menuExport">
+     <property name="font">
+      <font>
+       <family>Calibri</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
      <property name="title">
       <string>Export</string>
      </property>
@@ -1482,6 +1591,12 @@ QPushButton:pressed{
      <string>Edit</string>
     </property>
     <widget class="QMenu" name="menuFormat">
+     <property name="font">
+      <font>
+       <family>Calibri</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
      <property name="title">
       <string>Format</string>
      </property>
@@ -1493,6 +1608,12 @@ QPushButton:pressed{
      <addaction name="actionItalic"/>
     </widget>
     <widget class="QMenu" name="menuEncrption">
+     <property name="font">
+      <font>
+       <family>Calibri</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
      <property name="title">
       <string>Encrption</string>
      </property>
@@ -1504,6 +1625,12 @@ QPushButton:pressed{
      <addaction name="actionDecrypt_note"/>
     </widget>
     <widget class="QMenu" name="menuInsert">
+     <property name="font">
+      <font>
+       <family>Calibri</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
      <property name="title">
       <string>Insert</string>
      </property>
@@ -1520,6 +1647,12 @@ QPushButton:pressed{
     <addaction name="menuEncrption"/>
    </widget>
    <widget class="QMenu" name="menuView">
+    <property name="font">
+     <font>
+      <family>Calibri</family>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
     <property name="title">
      <string>View</string>
     </property>
@@ -1552,6 +1685,12 @@ QPushButton:pressed{
    <property name="text">
     <string>Print</string>
    </property>
+   <property name="font">
+    <font>
+     <family>Calibri</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
    <property name="shortcut">
     <string>Ctrl+P</string>
    </property>
@@ -1563,6 +1702,12 @@ QPushButton:pressed{
    </property>
    <property name="text">
     <string>Quit</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Calibri</family>
+     <pointsize>10</pointsize>
+    </font>
    </property>
    <property name="shortcut">
     <string>Ctrl+Q</string>
@@ -1615,6 +1760,12 @@ QPushButton:pressed{
    <property name="text">
     <string>Search in Current Note</string>
    </property>
+   <property name="font">
+    <font>
+     <family>Calibri</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
    <property name="shortcut">
     <string>Ctrl+F</string>
    </property>
@@ -1637,10 +1788,22 @@ QPushButton:pressed{
    <property name="text">
     <string>About</string>
    </property>
+   <property name="font">
+    <font>
+     <family>Calibri</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
   </action>
   <action name="actionRequest">
    <property name="text">
     <string>Request</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Calibri</family>
+     <pointsize>10</pointsize>
+    </font>
    </property>
   </action>
   <action name="actionDark_Theme">
@@ -1651,6 +1814,12 @@ QPushButton:pressed{
    <property name="text">
     <string>Dark Theme</string>
    </property>
+   <property name="font">
+    <font>
+     <family>Calibri</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
   </action>
   <action name="actionLight_Theme">
    <property name="icon">
@@ -1659,6 +1828,12 @@ QPushButton:pressed{
    </property>
    <property name="text">
     <string>Light Theme</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Calibri</family>
+     <pointsize>10</pointsize>
+    </font>
    </property>
   </action>
   <action name="actionBold">
@@ -1711,6 +1886,12 @@ QPushButton:pressed{
    <property name="text">
     <string>New note</string>
    </property>
+   <property name="font">
+    <font>
+     <family>Calibri</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
    <property name="shortcut">
     <string>Ctrl+N</string>
    </property>
@@ -1726,6 +1907,12 @@ QPushButton:pressed{
    <property name="text">
     <string>New sub-notebook</string>
    </property>
+   <property name="font">
+    <font>
+     <family>Calibri</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
    <property name="shortcut">
     <string>Ctrl+S</string>
    </property>
@@ -1740,6 +1927,12 @@ QPushButton:pressed{
    </property>
    <property name="text">
     <string>New notebook</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Calibri</family>
+     <pointsize>10</pointsize>
+    </font>
    </property>
    <property name="shortcut">
     <string>Ctrl+J</string>
@@ -1774,6 +1967,12 @@ QPushButton:pressed{
    <property name="text">
     <string>Settings</string>
    </property>
+   <property name="font">
+    <font>
+     <family>Calibri</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
    <property name="shortcut">
     <string>Ctrl+,</string>
    </property>
@@ -1806,6 +2005,12 @@ QPushButton:pressed{
    <property name="text">
     <string>Report a bug</string>
    </property>
+   <property name="font">
+    <font>
+     <family>Calibri</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
   </action>
   <action name="actionLink">
    <property name="icon">
@@ -1814,6 +2019,11 @@ QPushButton:pressed{
    </property>
    <property name="text">
     <string>Link</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>Calibri</family>
+    </font>
    </property>
    <property name="shortcut">
     <string>Ctrl+K</string>

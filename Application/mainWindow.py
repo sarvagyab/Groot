@@ -17,7 +17,7 @@ class Window(QtWidgets.QMainWindow):
         # Initializing UI
         self.ui = Ui_Groot()
         self.ui.setupUi(self)
-
+        
         self.mdExtensions = []  # Extensions for changing behaviour of markdown viewer
         self.mdExtensionsConfigs = {} # Extensions configurations for changing the behaviour of extensions in markdown
         

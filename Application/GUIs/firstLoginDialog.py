@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'firstloginDialog.ui'
+## Form generated from reading UI file 'firstLoginDialog.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.14.2
 ##
@@ -20,12 +20,16 @@ class Ui_firstLoginDialog(object):
     def setupUi(self, firstLoginDialog):
         if not firstLoginDialog.objectName():
             firstLoginDialog.setObjectName(u"firstLoginDialog")
-        firstLoginDialog.resize(565, 274)
+        firstLoginDialog.resize(565, 276)
         sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(firstLoginDialog.sizePolicy().hasHeightForWidth())
         firstLoginDialog.setSizePolicy(sizePolicy)
+        font = QFont()
+        font.setFamily(u"Calibri")
+        font.setPointSize(9)
+        firstLoginDialog.setFont(font)
         firstLoginDialog.setFocusPolicy(Qt.NoFocus)
         self.gridLayout = QGridLayout(firstLoginDialog)
         self.gridLayout.setObjectName(u"gridLayout")

@@ -1,6 +1,9 @@
 <RCC>
   <qresource prefix="icons">
+    <file>Icons/App Icon/groot.png</file>
     <file>Icons/16x16/bold.png</file>
+    <file>Icons/16x16/branch_open_light.png</file>
+    <file>Icons/16x16/branch_close_light.png</file>
     <file>Icons/16x16/italic.png</file>
     <file>Icons/16x16/underline.png</file>
     <file>Icons/16x16/underline.png</file>
