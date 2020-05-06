@@ -88,16 +88,18 @@ def decryptAllNotes(userPass,notes,encNotes):
             encText0 = readText(path) # bytes
 
             aesD = AEScipher(encNotes[randomString],None,bytes(encText0,encoding = 'utf8'),False)
-            Text = bytes(aesD.Decrypt(),'utf8') # bytes
+            Text = aesD.Decrypt() # string
 
             encrypted = True
         else:
             Text = readText(path) # bytes
-        aes = AEScipher(userPass,None,Text,False)
+        aes = AEScipher(userPass,None,bytes(Text,encoding='utf8'),False)
         outText = aes.Decrypt() # string
         if(encrypted == False):
             writeText(path,outText)
         else:
+            if(not isinstance(outText,str)):
+                outText = str(outText,encoding='utf8') 
             aesE = AEScipher(encNotes[randomString],None,outText,True)
             outText1 = aesE.Encrypt() # bytes
             writeText(path,outText1,encrypted = True)
@@ -123,7 +125,9 @@ def encryptAllNotes(userPass,notes,encNotes):
         if(encrypted == False):
             writeText(path,outText,encrypted = True)
         else:
-            aesE = AEScipher(encNotes[randomString],None,str(outText,encoding = 'utf8'),True)
+            if(not isinstance(outText,str)):
+                outText = str(outText,encoding='utf8') 
+            aesE = AEScipher(encNotes[randomString],None,outText,True)
             outText1 = aesE.Encrypt() # bytes
             writeText(path,outText1,encrypted = True)
 
