@@ -119,12 +119,17 @@ class password(object):
     
     def decryptAndDisplay(self):
         txt = currentNote.getText(False)
+        if(type(txt) !=  bytes):
+            txt = bytes(txt,encoding = 'utf8')
+
         aes = AEScipher(self.pass1,self.currentNote,txt = txt,encrypt = False) # Prepare to decrypt the file
-        d_txt = aes.Decrypt()                                       # decrypted text
+        d_txt = aes.Decrypt()                                       # decrypted text  
+
         userinfo =modules.userLogin.readUserInfo()
+        
         if(userinfo[3] == 'True'):
             writeText(self.currentNote._details['path'],bytes(d_txt,encoding='utf8'),encrypted = True) # write decrypted text in file 
-            aes_1 = AEScipher(userinfo[1],self.currentNote,txt = bytes(d_txt,encoding='utf8'),encrypt = False)
+            aes_1 = AEScipher(str(userinfo[1]),self.currentNote,txt = bytes(d_txt,encoding='utf8'),encrypt = False)
             d_txt_1 = aes_1.Decrypt()
             self.main_Window.ui.plainTextEdit.setPlainText(d_txt_1)
         else:

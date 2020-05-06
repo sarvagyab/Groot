@@ -2,14 +2,18 @@ import os
 
 from modules.Exceptions import *
 import modules.passwordHashing
+import modules.encryptAllNotes
 
-def setUsernameAndPassword(username,pas,rpas,ui,dialog):
+def setUsernameAndPassword(username,pas,rpas,dialog = None,store = True):
     if(isValidPassword(pas,rpas) == True):
-        dialog.accept()
+        if (dialog is not None):
+            dialog.accept()
         salt = modules.passwordHashing.generateSalt()
-        h_pass = modules.passwordHashing.Hash(pas,salt)
-        userInfo = [username,str(h_pass),salt,"True"]
-        storeUserInfoInFile('./User',"login",userInfo)
+        h_pass = modules.passwordHashing.Hash(pas,salt) # bytes
+        if(store == True):
+            userInfo = [username,str(h_pass),salt,"True"]
+            storeUserInfoInFile('./User',"login",userInfo)
+        return (str(h_pass),salt)
 
 
 def storeUserInfoInFile(path,filename,userInfo):
@@ -21,20 +25,20 @@ def storeUserInfoInFile(path,filename,userInfo):
             txt += info + '\n'     
         store_file.write(txt)
 
-def verifyUser(password,ui,dialog = None):
+def verifyUser(password,label,dialog = None):
     (username,h_pass,salt,encryptAll) = readUserInfo()
     enteredH_pass = modules.passwordHashing.Hash(password,salt)
     if(str(enteredH_pass) == h_pass):
         print("user verified")
         MSG = "<html><head/><body><p><span style=\" color:#00ff00;\">Correct password</span></p></body></html>"
-        ui.Errortext.setText(MSG)
+        label.setText(MSG)
         if(dialog is not None):
                 dialog.accept()
         return True
     else:
         print("incorrect password")
         MSG = "<html><head/><body><p><span style=\" color:#ff0000;\">Incorrect password</span></p></body></html>"
-        ui.Errortext.setText(MSG)
+        label.setText(MSG)
         return False
 
 def readUserInfo():
@@ -51,6 +55,19 @@ def isValidPassword(pass1,pass2):
         return True
     except:
         return False
+
+
+def changePassword(h_pass,salt):
+    EncDict,notes = modules.encryptAllNotes.getEncNoteList()
+    userInfo = readUserInfo()
+    oldPass = userInfo[1]
+    if(userInfo[3] == 'True'):
+        modules.encryptAllNotes.decryptAllNotes(oldPass,notes,EncDict) # decrypt all notes using old password
+        modules.encryptAllNotes.encryptAllNotes(h_pass,notes,EncDict) # encrypt all notes using new password
+    userInfo[1] = h_pass
+    userInfo[2] = salt
+    storeUserInfoInFile('./User',"login",userInfo) # store new pass
+
 
 def arePasswordSame(pass1,pass2):
         """Check whether entered passwards are same or not"""

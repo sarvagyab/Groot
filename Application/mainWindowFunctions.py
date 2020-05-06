@@ -11,7 +11,7 @@ from modules.treeHandling import loadfileStructure, noteLoader,itemVal, isNote,u
 from modules.noteHandling import deleteNote, renameNote, addNote, addNotebook,readText,writeText
 from modules.GUIchanges import createNotebook, createSubNotebook, createNote, rename, dlt, importer, exportPDF, exportHTML, exportMD, copyLink
 from modules.searchInNote import searchText,finishedSearch
-from modules.userLogin import setUsernameAndPassword,verifyUser
+from modules.userLogin import setUsernameAndPassword,verifyUser,changePassword
 from modules.encryptAllNotes import _encryptDecryptAllNotes
 from modules.encryptNote import AEScipher
 from GUIs.settingsDialog import Ui_settingDialog
@@ -201,6 +201,7 @@ def createSettingsDialog(self):
     self.ui_settingDialog.encryptAllChoice.setChecked(self.encryptAll)
     self.pluginConnections(self.ui_settingDialog)
     self.encryptionSettings(self.ui_settingDialog)
+    self.changeUserPasswordSettings(self.ui_settingDialog)
     # Appearance connections are made in loadSettings
 
 
@@ -332,14 +333,26 @@ def handleLinks(self,url):
 
             self.ui.treeWidget.setCurrentItem(getToItem)
 
+def changeUserPasswordSettings(self,settings):
+    settings.okPushButton.clicked.connect(lambda : self.changeUserPassword(settings))
 
+def changeUserPassword(self,settings):
+    if(verifyUser(settings.oldPasswordLineEdit.text(),settings.Errortext_2)):
+        username = self.userInfo[0]
+        newPass = settings.passwordLineEdit_2.text()
+        h_pass, salt = setUsernameAndPassword(username,newPass,settings.RepasswordLineEdit.text(),dialog = None,store = False)
+        changePassword(h_pass,salt)
+        settings.oldPasswordLineEdit.setText("")
+        settings.passwordLineEdit_2.setText("")
+        settings.RepasswordLineEdit.setText("")
+        settings.Errortext_2.setText("<html><head/><body><p><span style=\" color:#00ff00;\">New password set</span></p></body></html>")
 
 def openLoginDialog(self):
     from GUIs.loginDialog import Ui_loginDialog
     loginDialog = QtWidgets.QDialog()
     ui_loginDialog = Ui_loginDialog()
     ui_loginDialog.setupUi(loginDialog)
-    ui_loginDialog.buttonBox.button(QtWidgets.QDialogButtonBox.Ok).clicked.connect(lambda: verifyUser(ui_loginDialog.passwordLineEdit.text(),ui_loginDialog,loginDialog))
+    ui_loginDialog.buttonBox.button(QtWidgets.QDialogButtonBox.Ok).clicked.connect(lambda: verifyUser(ui_loginDialog.passwordLineEdit.text(),ui_loginDialog.Errortext,loginDialog))
     ui_loginDialog.buttonBox.button(QtWidgets.QDialogButtonBox.Cancel).clicked.connect(lambda:self.closeDialogAndMainWindow(loginDialog))
     ui_loginDialog.passwordLineEdit.setFocus()
     if(loginDialog.exec() == 0):
@@ -349,9 +362,10 @@ def encryptionSettings(self,settings):
     settings.okPushButton_2.clicked.connect(lambda :self._verifyUser(settings))
 
 def _verifyUser(self,settings):
-    if(verifyUser(settings.enterPwd.text(),settings)):
+    if(verifyUser(settings.enterPwd.text(),settings.Errortext)):
         settings.enterPwd.setText("")
         settings.encryptAllChoice.setEnabled(True)
+        settings.Errortext.setText("")
         settings.encryptAllChoice.stateChanged.connect(lambda:self.encryptAllChoiceChanged(settings.encryptAllChoice))
 
 def encryptAllChoiceChanged(self,checkbox):
@@ -388,13 +402,14 @@ def changeEncryptionPassword(self):
     pwd = password(self)
     pwd.openChangeEncryptionPasswordDialog()
 
+
 def openFirstLoginDialog(self):
     from GUIs.firstLoginDialog import Ui_firstLoginDialog
     firstLoginDialog = QtWidgets.QDialog()
     ui_firstLoginDialog = Ui_firstLoginDialog()
     ui_firstLoginDialog.setupUi(firstLoginDialog)
     ui_firstLoginDialog.buttonBox.button(QtWidgets.QDialogButtonBox.Cancel).clicked.connect(lambda:self.closeDialogAndMainWindow(firstLoginDialog))
-    ui_firstLoginDialog.buttonBox.button(QtWidgets.QDialogButtonBox.Ok).clicked.connect(lambda:setUsernameAndPassword(ui_firstLoginDialog.username.text(),ui_firstLoginDialog.passwordLineEdit.text(),ui_firstLoginDialog.repasswordLineEdit.text(),ui_firstLoginDialog,firstLoginDialog))
+    ui_firstLoginDialog.buttonBox.button(QtWidgets.QDialogButtonBox.Ok).clicked.connect(lambda:setUsernameAndPassword(ui_firstLoginDialog.username.text(),ui_firstLoginDialog.passwordLineEdit.text(),ui_firstLoginDialog.repasswordLineEdit.text(),firstLoginDialog))
     if(firstLoginDialog.exec() == 0):
         self.closeDialogAndMainWindow(firstLoginDialog)
 

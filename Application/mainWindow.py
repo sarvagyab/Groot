@@ -21,12 +21,12 @@ class Window(QtWidgets.QMainWindow):
         self.mdExtensions = []  # Extensions for changing behaviour of markdown viewer
         self.mdExtensionsConfigs = {} # Extensions configurations for changing the behaviour of extensions in markdown
         
-        userInfo = readUserInfo()
-        if(userInfo[3] == "True"):
+        self.userInfo = readUserInfo()
+        if(self.userInfo[3] == "True"):
             self.encryptAll = True
         else:
             self.encryptAll = False
-        print(self.encryptAll)
+            
         # Create settings Dialog
         self.createSettingsDialog()
         self.loadSettings()
@@ -226,3 +226,5 @@ Window.fixScrolling = mainWindowFunctions.fixScrolling
 Window.encryptionSettings = mainWindowFunctions.encryptionSettings
 Window._verifyUser = mainWindowFunctions._verifyUser
 Window.encryptAllChoiceChanged = mainWindowFunctions.encryptAllChoiceChanged
+Window.changeUserPasswordSettings = mainWindowFunctions.changeUserPasswordSettings
+Window.changeUserPassword = mainWindowFunctions.changeUserPassword

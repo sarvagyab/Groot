@@ -1,8 +1,10 @@
+import copy
+
 from PySide2 import QtWidgets
 
+import modules.userLogin
 from modules.treeHandling import getJsonTree
 from modules.passwordHashing import Hash
-from modules.userLogin import readUserInfo,storeUserInfoInFile
 from modules.noteHandling import readText,writeText
 from modules.encryptNote import AEScipher
 
@@ -29,20 +31,27 @@ def getAllNotes():
     fileStruct = getJsonTree()
     return traverseDict(fileStruct,[])
 
-def _encryptDecryptAllNotes(window,encrypt):
+def getEncNoteList():
+    EDict = {}
     notes = getAllNotes()
     for note in notes:
         if('encrypted' in note): 
             if(note['encrypted'] == 'True'):
                 openDialog(note)
-    userInfo = readUserInfo()
+    EDict = copy.deepcopy(encNotes)
+    return (EDict,notes)
+
+def _encryptDecryptAllNotes(window,encrypt):
+    EDict,notes = getEncNoteList()
+    userInfo = modules.userLogin.readUserInfo()
+    uPass = userInfo[1]
     if(encrypt == True):
-        encryptAllNotes(userInfo[1],userInfo[2],notes)
+        encryptAllNotes(uPass,notes,EDict)
     else:
-        decryptAllNotes(userInfo[1],userInfo[2],notes)
+        decryptAllNotes(uPass,notes,EDict)
     window.encryptAll = encrypt
     userInfo[3] = str(encrypt) 
-    storeUserInfoInFile('./User',"login",userInfo)
+    modules.userLogin.storeUserInfoInFile('./User',"login",userInfo)
 
 def openDialog(note):
     ui_pv = Ui_verifyPasswordDialog()
@@ -70,15 +79,17 @@ def fetchPassAndVerify(ui,dialog,note):
         return
 
 
-def decryptAllNotes(userPass,userSalt,notes):
+def decryptAllNotes(userPass,notes,encNotes):
     for note in notes:
         randomString = note['randomString']
         path = note['path']
         encrypted = False
         if (randomString in encNotes.keys()):
             encText0 = readText(path) # bytes
-            aesD = AEScipher(encNotes[randomString],None,encText0,False)
+
+            aesD = AEScipher(encNotes[randomString],None,bytes(encText0,encoding = 'utf8'),False)
             Text = bytes(aesD.Decrypt(),'utf8') # bytes
+
             encrypted = True
         else:
             Text = readText(path) # bytes
@@ -92,25 +103,27 @@ def decryptAllNotes(userPass,userSalt,notes):
             writeText(path,outText1,encrypted = True)
 
 
-def encryptAllNotes(userPass,userSalt,notes):
+def encryptAllNotes(userPass,notes,encNotes):
     for note in notes:
         randomString = note['randomString']
         path = note['path']
         encrypted = False
         if(randomString in encNotes.keys()):
             encText0 = readText(path) # bytes
-            aesD = AEScipher(encNotes[randomString],None,encText0,False)
+
+            aesD = AEScipher(encNotes[randomString],None,bytes(encText0,encoding = 'utf8'),False)
             Text = aesD.Decrypt() # string 
+            
             encrypted = True
         else:
             Text = readText(path) # string
         aes = AEScipher(userPass,None,Text,True)
         outText = aes.Encrypt() # bytes
+
         if(encrypted == False):
             writeText(path,outText,encrypted = True)
         else:
-            outText = str(outText)
-            aesE = AEScipher(encNotes[randomString],None,outText,True)
+            aesE = AEScipher(encNotes[randomString],None,str(outText,encoding = 'utf8'),True)
             outText1 = aesE.Encrypt() # bytes
             writeText(path,outText1,encrypted = True)
 
