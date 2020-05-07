@@ -130,6 +130,9 @@ class Window(QtWidgets.QMainWindow):
         # print connection
         self.ui.actionPrint.triggered.connect(lambda:self.printingNote())
 
+        # print preview connection
+        self.ui.actionPrint_preview.triggered.connect(lambda:self._printPreview())
+
         # import MD file
         self.ui.actionMD.triggered.connect(self._importMD)
         importer.triggered.connect(lambda: importMD(self.ui.treeWidget.currentItem()))
@@ -236,3 +239,4 @@ Window.changeUserPassword = mainWindowFunctions.changeUserPassword
 Window.openEncryptionWithMenu = mainWindowFunctions.openEncryptionWithMenu
 Window.openDecryptionWithMenu = mainWindowFunctions.openDecryptionWithMenu
 Window.printingNote = mainWindowFunctions.printingNote
+Window._printPreview = mainWindowFunctions._printPreview

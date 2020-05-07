@@ -1618,6 +1618,7 @@ QPushButton:pressed{
     <addaction name="menuImport"/>
     <addaction name="menuExport"/>
     <addaction name="actionPrint"/>
+    <addaction name="actionPrint_preview"/>
     <addaction name="separator"/>
     <addaction name="actionSettings"/>
     <addaction name="separator"/>
@@ -2104,6 +2105,15 @@ QPushButton:pressed{
    </property>
    <property name="shortcutVisibleInContextMenu">
     <bool>true</bool>
+   </property>
+  </action>
+  <action name="actionPrint_preview">
+   <property name="icon">
+    <iconset resource="../../../resource.qrc">
+     <normaloff>:/icons/Icons/16x16/preview.png</normaloff>:/icons/Icons/16x16/preview.png</iconset>
+   </property>
+   <property name="text">
+    <string>Print preview</string>
    </property>
   </action>
  </widget>

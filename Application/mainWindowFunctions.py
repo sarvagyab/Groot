@@ -14,7 +14,7 @@ from modules.searchInNote import searchText,finishedSearch
 from modules.userLogin import setUsernameAndPassword,verifyUser,changePassword
 from modules.encryptAllNotes import _encryptDecryptAllNotes
 from modules.encryptNote import AEScipher
-from modules.printNote import Print
+from modules.printNote import Print,printPreview
 from GUIs.settingsDialog import Ui_settingDialog
 
 def fixScrolling(self):
@@ -443,6 +443,9 @@ def openFirstLoginDialog(self):
 
 def printingNote(self):
     Print(self.ui)
+
+def _printPreview(self):
+    printPreview(self.ui)
 
 def closeDialogAndMainWindow(self,dialog = None):
     if(dialog != None):
