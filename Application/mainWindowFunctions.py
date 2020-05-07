@@ -14,6 +14,7 @@ from modules.searchInNote import searchText,finishedSearch
 from modules.userLogin import setUsernameAndPassword,verifyUser,changePassword
 from modules.encryptAllNotes import _encryptDecryptAllNotes
 from modules.encryptNote import AEScipher
+from modules.printNote import Print
 from GUIs.settingsDialog import Ui_settingDialog
 
 def fixScrolling(self):
@@ -439,6 +440,9 @@ def openFirstLoginDialog(self):
     ui_firstLoginDialog.buttonBox.button(QtWidgets.QDialogButtonBox.Ok).clicked.connect(lambda:setUsernameAndPassword(ui_firstLoginDialog.username.text(),ui_firstLoginDialog.passwordLineEdit.text(),ui_firstLoginDialog.repasswordLineEdit.text(),firstLoginDialog))
     if(firstLoginDialog.exec() == 0):
         self.closeDialogAndMainWindow(firstLoginDialog)
+
+def printingNote(self):
+    Print(self.ui)
 
 def closeDialogAndMainWindow(self,dialog = None):
     if(dialog != None):

@@ -6,11 +6,12 @@ from modules.userLogin import readUserInfo
 from modules.noteHandling import readText
 from modules.encryptNote import AEScipher
 import pymdownx
-import json
+import json,os
 
 def scrolling(oneBar,twoBar,searchBar):
     if(not searchBar.hasFocus()):
         Max = oneBar.maximum() 
+        x = 0
         if(Max != 0):
             x = (oneBar.value()*twoBar.maximum())/Max
         if oneBar.signalsBlocked(): return
@@ -244,6 +245,8 @@ def attachFile(te):
     if filename == "":
         return
     randomString = datetime.datetime.now().strftime("%d%m%Y%H%M%S")
+    if(not os.path.exists("./atch")):
+        os.makedirs("./atch")
     destination = shutil.copyfile(filename,"./atch/" + randomString)
     # print(destination)
     te.insertPlainText("![fileName](" + destination + ")")

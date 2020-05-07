@@ -127,6 +127,9 @@ class Window(QtWidgets.QMainWindow):
         # decryption connection
         self.ui.actionDecrypt_note.triggered.connect(lambda:self.openDecryptionWithMenu())
 
+        # print connection
+        self.ui.actionPrint.triggered.connect(lambda:self.printingNote())
+
         # import MD file
         self.ui.actionMD.triggered.connect(self._importMD)
         importer.triggered.connect(lambda: importMD(self.ui.treeWidget.currentItem()))
@@ -232,3 +235,4 @@ Window.changeUserPasswordSettings = mainWindowFunctions.changeUserPasswordSettin
 Window.changeUserPassword = mainWindowFunctions.changeUserPassword
 Window.openEncryptionWithMenu = mainWindowFunctions.openEncryptionWithMenu
 Window.openDecryptionWithMenu = mainWindowFunctions.openDecryptionWithMenu
+Window.printingNote = mainWindowFunctions.printingNote
