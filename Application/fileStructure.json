@@ -1,1 +1,45 @@
-{"Notebooks": {"28042020215654": {"name": "Notebook1", "expanded": {"28042020215703": {"name": "sub-notebook1", "expanded": {"06052020172738": {"name": "note1", "expanded": {"path": "./notes/06052020172738.txt", "randomString": "06052020172738"}}}}, "28042020220402": {"name": "sub-notebook2", "expanded": {"06052020172824": {"name": "note2", "expanded": {"path": "./notes/06052020172824.txt", "randomString": "06052020172824"}}}}}}}, "Uncategorized": {"06052020172515": {"name": "1", "expanded": {"path": "./notes/06052020172515.txt", "randomString": "06052020172515", "encrypted": "False", "salt": "b\"\\xf1_\\x92\\xfc\\x02\\r\\xdd\\x03\\xa3\\xa5\\x06\\xf6\\x8d'p\\xa4o\\x1c\\x1e\\xf8\\xa1\\xa8\\x16\\xe1\\xb9B\\xcd\\xc0R*\\x12\\xc4c~\\xb2)\\x91R\\x0fP\\xb18.\\x0fQ\\x95\\x81\\xb4\\x94\\x11\\x81\\xfd\\xef\\x15\\xa4\\xe4\\x05\\xaejDvG;z\"", "h_pass": "b'\\xfaM1Y8\\x15 i\\x1d\\xcd\\xec\\xe3m\\x04\\x11\\xa2\\xf7\\x13\\xac\\xca\\xd3\\xc27\\xf9\\xa3\"<u:=E\\x1d\\xfd\\xcb\\xed\\xa9U\\x8bQt\\xe0*\\x00\\x9f\\xa3Ch\\xec\\xd2t|\\x8d\\xecL0\\xad\\xb6\\x13L\\xc9C\\xc5\\x0f\\xe8'"}}}}
+{
+    "Notebooks": {
+        "28042020215654": {
+            "name": "Notebook1",
+            "expanded": {
+                "28042020215703": {
+                    "name": "sub-notebook1",
+                    "expanded": {
+                        "06052020172738": {
+                            "name": "note1",
+                            "expanded": {
+                                "path": "./notes/06052020172738.txt",
+                                "randomString": "06052020172738"
+                            }
+                        }
+                    }
+                },
+                "28042020220402": {
+                    "name": "sub-notebook2",
+                    "expanded": {
+                        "06052020172824": {
+                            "name": "note2",
+                            "expanded": {
+                                "path": "./notes/06052020172824.txt",
+                                "randomString": "06052020172824"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "Uncategorized": {
+        "06052020172515": {
+            "name": "1",
+            "expanded": {
+                "path": "./notes/06052020172515.txt",
+                "randomString": "06052020172515",
+                "encrypted": "False",
+                "salt": "b\"\\xf1_\\x92\\xfc\\x02\\r\\xdd\\x03\\xa3\\xa5\\x06\\xf6\\x8d'p\\xa4o\\x1c\\x1e\\xf8\\xa1\\xa8\\x16\\xe1\\xb9B\\xcd\\xc0R*\\x12\\xc4c~\\xb2)\\x91R\\x0fP\\xb18.\\x0fQ\\x95\\x81\\xb4\\x94\\x11\\x81\\xfd\\xef\\x15\\xa4\\xe4\\x05\\xaejDvG;z\"",
+                "h_pass": "b'\\xfaM1Y8\\x15 i\\x1d\\xcd\\xec\\xe3m\\x04\\x11\\xa2\\xf7\\x13\\xac\\xca\\xd3\\xc27\\xf9\\xa3\"<u:=E\\x1d\\xfd\\xcb\\xed\\xa9U\\x8bQt\\xe0*\\x00\\x9f\\xa3Ch\\xec\\xd2t|\\x8d\\xecL0\\xad\\xb6\\x13L\\xc9C\\xc5\\x0f\\xe8'"
+            }
+        }
+    }
+}
