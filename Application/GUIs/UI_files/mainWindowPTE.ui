@@ -1652,7 +1652,7 @@ QPushButton:pressed{
       </font>
      </property>
      <property name="title">
-      <string>Encrption</string>
+      <string>Encryption</string>
      </property>
      <property name="icon">
       <iconset resource="../../../resource.qrc">

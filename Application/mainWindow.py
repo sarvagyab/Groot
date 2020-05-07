@@ -118,9 +118,19 @@ class Window(QtWidgets.QMainWindow):
         self.ui.actionHTML.triggered.connect(lambda: exportAsHtml(self.ui.plainTextEdit.toPlainText(),self.mdExtensions))
         exportHTML.triggered.connect(lambda: exportAsHtml(self.ui.plainTextEdit.toPlainText(),self.mdExtensions))
        
+        # search in note connection
+        self.ui.actionSearch_in_Current_Note.triggered.connect(lambda:self.ui.searchBar.setFocus())
+
+        # encryption connection
+        self.ui.actionEncrypt_note.triggered.connect(lambda :self.openEncryptionWithMenu())
+
+        # decryption connection
+        self.ui.actionDecrypt_note.triggered.connect(lambda:self.openDecryptionWithMenu())
+
         # import MD file
         self.ui.actionMD.triggered.connect(self._importMD)
         importer.triggered.connect(lambda: importMD(self.ui.treeWidget.currentItem()))
+
 
         # Load tree structure and notes
         self.reloadUI()
@@ -140,9 +150,6 @@ class Window(QtWidgets.QMainWindow):
 
         # Display UI
         self.showMaximized()
-
-        # shortcut bindings
-        self.shortcutBinding()
 
         # Encrypt Note
         self.encryptNote()
@@ -192,7 +199,6 @@ Window.searchModeChanged = mainWindowFunctions.searchModeChanged
 Window.findNextOccurance = mainWindowFunctions.findNextOccurance
 Window.findPrevOccurance = mainWindowFunctions.findPrevOccurance
 Window._finishedSearch = mainWindowFunctions._finishedSearch
-Window.shortcutBinding = mainWindowFunctions.shortcutBinding
 Window.showDeleteDialog = mainWindowFunctions.showDeleteDialog
 Window._renameNote = mainWindowFunctions._renameNote
 Window._addNote = mainWindowFunctions._addNote
@@ -224,3 +230,5 @@ Window._verifyUser = mainWindowFunctions._verifyUser
 Window.encryptAllChoiceChanged = mainWindowFunctions.encryptAllChoiceChanged
 Window.changeUserPasswordSettings = mainWindowFunctions.changeUserPasswordSettings
 Window.changeUserPassword = mainWindowFunctions.changeUserPassword
+Window.openEncryptionWithMenu = mainWindowFunctions.openEncryptionWithMenu
+Window.openDecryptionWithMenu = mainWindowFunctions.openDecryptionWithMenu

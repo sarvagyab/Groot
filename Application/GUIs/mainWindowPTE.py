@@ -1250,7 +1250,7 @@ class Ui_Groot(object):
         self.menuExport.setTitle(QCoreApplication.translate("Groot", u"Export", None))
         self.menuEdit.setTitle(QCoreApplication.translate("Groot", u"Edit", None))
         self.menuFormat.setTitle(QCoreApplication.translate("Groot", u"Format", None))
-        self.menuEncrption.setTitle(QCoreApplication.translate("Groot", u"Encrption", None))
+        self.menuEncrption.setTitle(QCoreApplication.translate("Groot", u"Encryption", None))
         self.menuInsert.setTitle(QCoreApplication.translate("Groot", u"Insert", None))
         self.menuView.setTitle(QCoreApplication.translate("Groot", u"View", None))
         self.menuHelp.setTitle(QCoreApplication.translate("Groot", u"Help", None))

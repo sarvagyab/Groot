@@ -53,9 +53,6 @@ def showMenu(self,pos):
     menu.exec_(self.ui.treeWidget.mapToGlobal(pos))
 
 
-def shortcutBinding(self):
-    QtWidgets.QShortcut(QtGui.QKeySequence("Ctrl+F"),self).activated.connect(lambda:self.ui.searchBar.setFocus())
-
 def _delayChecker(self):
     if(self.timer.isActive()):
         self.timer.stop()
@@ -73,14 +70,7 @@ def _markdownViewer(self):
     self.ui.plainTextEdit.textChanged.connect(self._delayChecker)
 
 
-def encryptNote(self):
-    self.passwdE = password(self)
-    self.ui.encryptionButton.clicked.connect(lambda: self.passwdE.openPasswordDialog())
 
-    
-def decryptNote(self):
-    self.passwdD = password(self)
-    self.ui.decryptionButton.clicked.connect(lambda: self.passwdD.openVerifyPasswordDialog())
 
 def searchInNote(self):
     self.ui.searchBar.textChanged.connect(lambda: searchText(self.ui))
@@ -202,6 +192,10 @@ def createSettingsDialog(self):
     self.ui_settingDialog.setupUi(self.settingsDialog)
     self.ui_settingDialog.closeMe.clicked.connect(self.settingsDialog.close)
     self.ui_settingDialog.encryptAllChoice.setChecked(self.encryptAll)
+    self.ui_settingDialog.settings.setTabIcon(0,QtGui.QIcon(":/icons/Icons/32x32/display.png"))
+    self.ui_settingDialog.settings.setTabIcon(1,QtGui.QIcon(":/icons/Icons/32x32/box.png"))
+    self.ui_settingDialog.settings.setTabIcon(2,QtGui.QIcon(":/icons/Icons/32x32/encrypt.png"))
+    self.ui_settingDialog.settings.setTabIcon(3,QtGui.QIcon(":/icons/Icons/32x32/user.png"))
     self.pluginConnections(self.ui_settingDialog)
     self.encryptionSettings(self.ui_settingDialog)
     self.changeUserPasswordSettings(self.ui_settingDialog)
@@ -344,8 +338,30 @@ def handleLinks(self,url):
 
             self.ui.treeWidget.setCurrentItem(getToItem)
 
+def encryptNote(self):
+    self.passwdE = password(self)
+    self.ui.encryptionButton.clicked.connect(lambda: self.passwdE.openPasswordDialog())
+    
+def decryptNote(self):
+    self.passwdD = password(self)
+    self.ui.decryptionButton.clicked.connect(lambda: self.passwdD.openVerifyPasswordDialog())
+
+def openEncryptionWithMenu(self):
+    self.passwdE = password(self)
+    self.passwdE.openPasswordDialog()
+
+def openDecryptionWithMenu(self):
+    self.passwdD = password(self)
+    self.passwdD.openVerifyPasswordDialog()
+
 def changeUserPasswordSettings(self,settings):
     settings.okPushButton.clicked.connect(lambda : self.changeUserPassword(settings))
+    # clear = lambda line1,line2,line3: line1.setText("") line2.setText("") line3.setText("") 
+    settings.cancelPushButton.clicked.connect(
+            lambda : (settings.oldPasswordLineEdit.setText(""),
+            settings.passwordLineEdit_2.setText(""),
+            settings.RepasswordLineEdit.setText("")))
+
 
 def changeUserPassword(self,settings):
     if(verifyUser(settings.oldPasswordLineEdit.text(),settings.Errortext_2)):
