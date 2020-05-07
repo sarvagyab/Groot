@@ -1,12 +1,4 @@
-# -*- coding: utf-8 -*-
-
-# Resource object code
-#
-# Created by: The Resource Compiler for PyQt5 (Qt v5.14.1)
-#
-# WARNING! All changes made in this file will be lost!
-
-from PyQt5 import QtCore
+from PySide2 import QtCore
 
 qt_resource_data = b"\
 \x00\x00\x00\xd7\

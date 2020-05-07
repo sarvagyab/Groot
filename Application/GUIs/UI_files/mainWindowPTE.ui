@@ -782,6 +782,10 @@ QTreeView::branch:open:has-children:has-siblings  {
                <pointsize>12</pointsize>
               </font>
              </property>
+             <property name="icon">
+              <iconset resource="../../../resource.qrc">
+               <normaloff>:/icons/Icons/16x16/folder_light.png</normaloff>:/icons/Icons/16x16/folder_light.png</iconset>
+             </property>
             </item>
             <item>
              <property name="text">
@@ -791,6 +795,10 @@ QTreeView::branch:open:has-children:has-siblings  {
               <font>
                <pointsize>12</pointsize>
               </font>
+             </property>
+             <property name="icon">
+              <iconset resource="../../../resource.qrc">
+               <normaloff>:/icons/Icons/16x16/folder_light.png</normaloff>:/icons/Icons/16x16/folder_light.png</iconset>
              </property>
             </item>
            </widget>
