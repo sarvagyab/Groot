@@ -27,7 +27,7 @@
   </property>
   <property name="windowIcon">
    <iconset resource="../../../resource.qrc">
-    <normaloff>:/icons/Icons/App Icon/groot.png</normaloff>:/icons/Icons/App Icon/groot.png</iconset>
+    <normaloff>:/icons/Icons/App Icon/groot_48.png</normaloff>:/icons/Icons/App Icon/groot_48.png</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true"> QScrollBar:vertical {

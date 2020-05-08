@@ -32,7 +32,7 @@ class Ui_Groot(object):
         font.setPointSize(11)
         Groot.setFont(font)
         icon = QIcon()
-        icon.addFile(u":/icons/Icons/App Icon/groot.png", QSize(), QIcon.Normal, QIcon.Off)
+        icon.addFile(u":/icons/Icons/App Icon/groot_48.png", QSize(), QIcon.Normal, QIcon.Off)
         Groot.setWindowIcon(icon)
         Groot.setStyleSheet(u" QScrollBar:vertical {\n"
 "     background: #32CC99;\n"
