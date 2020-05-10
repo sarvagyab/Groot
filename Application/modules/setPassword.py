@@ -1,17 +1,17 @@
-from PySide2 import QtWidgets
+from PySide2 import QtWidgets,QtCore
 
 #GUI
-from GUIs.passwordDialog import Ui_passwordDialog
-from GUIs.verifyPasswordDialog import Ui_verifyPasswordDialog
-from GUIs.changePasswordDialog import Ui_changePasswordDialog
+from Application.GUIs.passwordDialog import Ui_passwordDialog
+from Application.GUIs.verifyPasswordDialog import Ui_verifyPasswordDialog
+from Application.GUIs.changePasswordDialog import Ui_changePasswordDialog
 
-from modules.Exceptions import *
-from modules.passwordHashing import hashPassword
-from modules.treeHandling import itemVal,_itemVal,updateItem
-from modules.encryptNote import AEScipher
-from modules.noteHandling import writeText
-from modules.fileHandling import currentNote
-import modules.userLogin
+import Application.modules.userLogin
+from Application.modules.Exceptions import *
+from Application.modules.passwordHashing import hashPassword
+from Application.modules.treeHandling import itemVal,_itemVal,updateItem
+from Application.modules.encryptNote import AEScipher
+from Application.modules.noteHandling import writeText
+from Application.modules.fileHandling import currentNote
 
 class password(object):
     def __init__(self,Window,ui = None):
@@ -36,6 +36,7 @@ class password(object):
             else:
                 self.ui_p = Ui_passwordDialog()
                 self.passDialog = QtWidgets.QDialog()
+                self.passDialog.setParent(self.main_Window,QtCore.Qt.Window)
                 self.ui_p.setupUi(self.passDialog)
                 self.passDialog.show()
                 if(self.currentNote._open == True):
@@ -57,6 +58,7 @@ class password(object):
                 if(self.currentNote._open == True and self.isEncrypted()):
                     self.ui_pv = Ui_verifyPasswordDialog()
                     self.verifyDialog = QtWidgets.QDialog()
+                    self.verifyDialog.setParent(self.main_Window,QtCore.Qt.Window)
                     self.ui_pv.setupUi(self.verifyDialog)
                     self.verifyDialog.show()
                     print("Trying to Decrypt {}".format(self.currentFileName))
@@ -71,6 +73,7 @@ class password(object):
             self.currentFileName = self.currentNote.getFilename()
             self.changePasswordDialog = QtWidgets.QDialog()
             self.ui_p = Ui_changePasswordDialog()
+            self.changePasswordDialog.setParent(self.main_Window,QtCore.Qt.Window)
             self.ui_p.setupUi(self.changePasswordDialog)
             self.ui_p.buttonBox.button(QtWidgets.QDialogButtonBox.Cancel).clicked.connect(lambda:self.closeDialog(self.changePasswordDialog))
             self.ui_p.buttonBox.button(QtWidgets.QDialogButtonBox.Ok).clicked.connect(lambda:self.changeEncryptionPassword())
@@ -131,7 +134,7 @@ class password(object):
         aes = AEScipher(self.pass1,self.currentNote,txt = txt,encrypt = False) # Prepare to decrypt the file
         d_txt = aes.Decrypt()                                       # decrypted text  
 
-        userinfo =modules.userLogin.readUserInfo()
+        userinfo = Application.modules.userLogin.readUserInfo()
         
         if(userinfo[3] == 'True'):
             writeText(self.currentNote._details['path'],bytes(d_txt,encoding='utf8'),encrypted = True) # write decrypted text in file 

@@ -1,14 +1,14 @@
 from PySide2 import QtWidgets, QtCore, QtGui
 
 # import GUIs
-from GUIs.mainWindowPTE import Ui_Groot
+from Application.GUIs.mainWindowPTE import Ui_Groot
 
 # import modules
-from modules.userLogin import readUserInfo,storeUserInfoInFile
-from modules.GUIchanges import fixTreeViewScrolling, createNotebook, createSubNotebook, createNote, rename, dlt, importer, exportPDF, exportHTML, exportMD, copyLink
-import mainWindowFunctions
-from modules.markdownHandling import bold, italic, numList, bulletList, hyperlink, inlineCode, datetimenow, attachFile, exportAsPdf, exportAsHtml, exportAsMarkdown, importMD, copyMarkdownLink
-from GUIs.settingsDialog import Ui_settingDialog
+import Application.mainWindowFunctions
+from Application.modules.userLogin import readUserInfo,storeUserInfoInFile
+from Application.modules.GUIchanges import fixTreeViewScrolling, createNotebook, createSubNotebook, createNote, rename, dlt, importer, exportPDF, exportHTML, exportMD, copyLink
+from Application.modules.markdownHandling import bold, italic, numList, bulletList, hyperlink, inlineCode, datetimenow, attachFile, exportAsPdf, exportAsHtml, exportAsMarkdown, importMD, copyMarkdownLink
+from Application.GUIs.settingsDialog import Ui_settingDialog
 
 class Window(QtWidgets.QMainWindow):
     def __init__(self):
@@ -20,7 +20,13 @@ class Window(QtWidgets.QMainWindow):
         
         self.mdExtensions = []  # Extensions for changing behaviour of markdown viewer
         self.mdExtensionsConfigs = {} # Extensions configurations for changing the behaviour of extensions in markdown
+
         
+        if(self.checkFirstLogin()):
+            QtCore.QTimer.singleShot(0,self,self.openLoginDialog())
+        else:
+            QtCore.QTimer.singleShot(0,self,self.openFirstLoginDialog())
+
         self.userInfo = readUserInfo()
         if(self.userInfo[3] == "True"):
             self.encryptAll = True
@@ -88,8 +94,8 @@ class Window(QtWidgets.QMainWindow):
         self.ui.bullets.clicked.connect(lambda: bulletList(self.ui.plainTextEdit))
 
         # hyperlink connection
-        self.ui.link.clicked.connect(lambda: hyperlink(self.ui.plainTextEdit))
-        self.ui.actionLink.triggered.connect(lambda: hyperlink(self.ui.plainTextEdit))
+        self.ui.link.clicked.connect(lambda: hyperlink(self))
+        self.ui.actionLink.triggered.connect(lambda: hyperlink(self))
 
         # inline code connection
         self.ui.code.clicked.connect(lambda: inlineCode(self.ui.plainTextEdit))
@@ -100,23 +106,23 @@ class Window(QtWidgets.QMainWindow):
         self.ui.actionDate_and_Time.triggered.connect(lambda: datetimenow(self.ui.plainTextEdit))
         
         # attaching file connection
-        self.ui.insertFile.clicked.connect(lambda: attachFile(self.ui.plainTextEdit))
-        self.ui.actionImage.triggered.connect(lambda: attachFile(self.ui.plainTextEdit))
+        self.ui.insertFile.clicked.connect(lambda: attachFile(self))
+        self.ui.actionImage.triggered.connect(lambda: attachFile(self))
 
         # attach copying of markdown link
         copyLink.triggered.connect(copyMarkdownLink)
 
         # export as PDF connection
-        self.ui.actionPDF.triggered.connect(lambda: exportAsPdf(self.ui.mdViewer))
-        exportPDF.triggered.connect(lambda: exportAsPdf(self.ui.mdViewer))
+        self.ui.actionPDF.triggered.connect(lambda: exportAsPdf(self))
+        exportPDF.triggered.connect(lambda: exportAsPdf(self))
 
         # export as Markdown connection
-        self.ui.actionMD_2.triggered.connect(lambda: exportAsMarkdown(self.ui.plainTextEdit.toPlainText()))
-        exportMD.triggered.connect(lambda: exportAsMarkdown(self.ui.plainTextEdit.toPlainText()))
+        self.ui.actionMD_2.triggered.connect(lambda: exportAsMarkdown(self))
+        exportMD.triggered.connect(lambda: exportAsMarkdown(self))
 
         # export as Html connection
-        self.ui.actionHTML.triggered.connect(lambda: exportAsHtml(self.ui.plainTextEdit.toPlainText(),self.mdExtensions))
-        exportHTML.triggered.connect(lambda: exportAsHtml(self.ui.plainTextEdit.toPlainText(),self.mdExtensions))
+        self.ui.actionHTML.triggered.connect(lambda: exportAsHtml(self,self.mdExtensions))
+        exportHTML.triggered.connect(lambda: exportAsHtml(self,self.mdExtensions))
        
         # search in note connection
         self.ui.actionSearch_in_Current_Note.triggered.connect(lambda:self.ui.searchBar.setFocus())
@@ -184,59 +190,55 @@ class Window(QtWidgets.QMainWindow):
         # close main window from menu
         self.ui.actionQuit.triggered.connect(lambda:self.closeDialogAndMainWindow())
 
-        if(self.checkFirstLogin()):
-            QtCore.QTimer.singleShot(0,self,self.openLoginDialog())
-        else:
-            QtCore.QTimer.singleShot(0,self,self.openFirstLoginDialog())
+     
 
 
 
-
-Window._noteLoader = mainWindowFunctions._noteLoader
-Window.closeEvent = mainWindowFunctions.closeEvent
-Window.reloadUI = mainWindowFunctions.reloadUI
-Window.decryptNote = mainWindowFunctions.decryptNote
-Window.encryptNote = mainWindowFunctions.encryptNote
-Window._markdownViewer = mainWindowFunctions._markdownViewer
-Window._delayChecker = mainWindowFunctions._delayChecker
-Window.showMenu = mainWindowFunctions.showMenu
-Window.searchInNote = mainWindowFunctions.searchInNote
-Window.searchModeChanged = mainWindowFunctions.searchModeChanged
-Window.findNextOccurance = mainWindowFunctions.findNextOccurance
-Window.findPrevOccurance = mainWindowFunctions.findPrevOccurance
-Window._finishedSearch = mainWindowFunctions._finishedSearch
-Window.showDeleteDialog = mainWindowFunctions.showDeleteDialog
-Window._renameNote = mainWindowFunctions._renameNote
-Window._addNote = mainWindowFunctions._addNote
-Window._addNotebook = mainWindowFunctions._addNotebook
-Window._addSubNotebook = mainWindowFunctions._addSubNotebook
-Window.resizeEvent = mainWindowFunctions.resizeEvent
-Window.openLoginDialog = mainWindowFunctions.openLoginDialog
-Window.openFirstLoginDialog = mainWindowFunctions.openFirstLoginDialog
-Window.checkFirstLogin = mainWindowFunctions.checkFirstLogin
-Window.closeDialogAndMainWindow = mainWindowFunctions.closeDialogAndMainWindow
-Window.encryptAlldecryptedNotes = mainWindowFunctions.encryptAlldecryptedNotes
-Window.permenantDecrypt = mainWindowFunctions.permenantDecrypt
-Window.changeEncryptionPassword = mainWindowFunctions.changeEncryptionPassword
-Window._importMD = mainWindowFunctions._importMD
-Window.createSettingsDialog = mainWindowFunctions.createSettingsDialog
-Window.pluginConnections = mainWindowFunctions.pluginConnections
-Window.loadSettings = mainWindowFunctions.loadSettings
-Window.loadPlugSettings = mainWindowFunctions.loadPlugSettings
-Window.loadAppearSettings = mainWindowFunctions.loadAppearSettings
-Window.appearConnections = mainWindowFunctions.appearConnections
-Window.setPlainTextEditFont = mainWindowFunctions.setPlainTextEditFont
-Window.handleLinks = mainWindowFunctions.handleLinks
-Window.analyzeLink = mainWindowFunctions.analyzeLink
-Window.searchForFilename = mainWindowFunctions.searchForFilename
-Window.searchInBooks = mainWindowFunctions.searchInBooks
-Window.fixScrolling = mainWindowFunctions.fixScrolling
-Window.encryptionSettings = mainWindowFunctions.encryptionSettings
-Window._verifyUser = mainWindowFunctions._verifyUser
-Window.encryptAllChoiceChanged = mainWindowFunctions.encryptAllChoiceChanged
-Window.changeUserPasswordSettings = mainWindowFunctions.changeUserPasswordSettings
-Window.changeUserPassword = mainWindowFunctions.changeUserPassword
-Window.openEncryptionWithMenu = mainWindowFunctions.openEncryptionWithMenu
-Window.openDecryptionWithMenu = mainWindowFunctions.openDecryptionWithMenu
-Window.printingNote = mainWindowFunctions.printingNote
-Window._printPreview = mainWindowFunctions._printPreview
+Window._noteLoader = Application.mainWindowFunctions._noteLoader
+Window.closeEvent = Application.mainWindowFunctions.closeEvent
+Window.reloadUI = Application.mainWindowFunctions.reloadUI
+Window.decryptNote = Application.mainWindowFunctions.decryptNote
+Window.encryptNote = Application.mainWindowFunctions.encryptNote
+Window._markdownViewer = Application.mainWindowFunctions._markdownViewer
+Window._delayChecker = Application.mainWindowFunctions._delayChecker
+Window.showMenu = Application.mainWindowFunctions.showMenu
+Window.searchInNote = Application.mainWindowFunctions.searchInNote
+Window.searchModeChanged = Application.mainWindowFunctions.searchModeChanged
+Window.findNextOccurance = Application.mainWindowFunctions.findNextOccurance
+Window.findPrevOccurance = Application.mainWindowFunctions.findPrevOccurance
+Window._finishedSearch = Application.mainWindowFunctions._finishedSearch
+Window.showDeleteDialog = Application.mainWindowFunctions.showDeleteDialog
+Window._renameNote = Application.mainWindowFunctions._renameNote
+Window._addNote = Application.mainWindowFunctions._addNote
+Window._addNotebook = Application.mainWindowFunctions._addNotebook
+Window._addSubNotebook = Application.mainWindowFunctions._addSubNotebook
+Window.resizeEvent = Application.mainWindowFunctions.resizeEvent
+Window.openLoginDialog = Application.mainWindowFunctions.openLoginDialog
+Window.openFirstLoginDialog = Application.mainWindowFunctions.openFirstLoginDialog
+Window.checkFirstLogin = Application.mainWindowFunctions.checkFirstLogin
+Window.closeDialogAndMainWindow = Application.mainWindowFunctions.closeDialogAndMainWindow
+Window.encryptAlldecryptedNotes = Application.mainWindowFunctions.encryptAlldecryptedNotes
+Window.permenantDecrypt = Application.mainWindowFunctions.permenantDecrypt
+Window.changeEncryptionPassword = Application.mainWindowFunctions.changeEncryptionPassword
+Window._importMD = Application.mainWindowFunctions._importMD
+Window.createSettingsDialog = Application.mainWindowFunctions.createSettingsDialog
+Window.pluginConnections = Application.mainWindowFunctions.pluginConnections
+Window.loadSettings = Application.mainWindowFunctions.loadSettings
+Window.loadPlugSettings = Application.mainWindowFunctions.loadPlugSettings
+Window.loadAppearSettings = Application.mainWindowFunctions.loadAppearSettings
+Window.appearConnections = Application.mainWindowFunctions.appearConnections
+Window.setPlainTextEditFont = Application.mainWindowFunctions.setPlainTextEditFont
+Window.handleLinks = Application.mainWindowFunctions.handleLinks
+Window.analyzeLink = Application.mainWindowFunctions.analyzeLink
+Window.searchForFilename = Application.mainWindowFunctions.searchForFilename
+Window.searchInBooks = Application.mainWindowFunctions.searchInBooks
+Window.fixScrolling = Application.mainWindowFunctions.fixScrolling
+Window.encryptionSettings = Application.mainWindowFunctions.encryptionSettings
+Window._verifyUser = Application.mainWindowFunctions._verifyUser
+Window.encryptAllChoiceChanged = Application.mainWindowFunctions.encryptAllChoiceChanged
+Window.changeUserPasswordSettings = Application.mainWindowFunctions.changeUserPasswordSettings
+Window.changeUserPassword = Application.mainWindowFunctions.changeUserPassword
+Window.openEncryptionWithMenu = Application.mainWindowFunctions.openEncryptionWithMenu
+Window.openDecryptionWithMenu = Application.mainWindowFunctions.openDecryptionWithMenu
+Window.printingNote = Application.mainWindowFunctions.printingNote
+Window._printPreview = Application.mainWindowFunctions._printPreview

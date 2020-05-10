@@ -1,9 +1,9 @@
-import scrypt
 import os
+import hashlib
 import json
-from modules.treeHandling import updateItem
-from modules.encryptNote import AEScipher
-from modules.noteHandling import writeText
+from Application.modules.treeHandling import updateItem
+from Application.modules.encryptNote import AEScipher
+from Application.modules.noteHandling import writeText
 
 def hashPassword(currentNote,currentFileName,password,main_window,datalength= 64,encrypted=True):
     if(encrypted == True):
@@ -31,7 +31,8 @@ def hashPassword(currentNote,currentFileName,password,main_window,datalength= 64
 
 def Hash(password,salt,datalength=64):
     """Hash password using scrypt"""
-    hashed_password = scrypt.hash(password,salt) # hash password
+    hashed_password = hashlib.scrypt(bytes(password,encoding='utf8'),salt =bytes(salt,encoding='utf8'),n = 1<<14,r =8,p=1)
+    # hashed_password = scrypt.hash(password,salt) # hash password
     return hashed_password
 
 def storePassword(currentNote,currentFileName,h_password,salt):

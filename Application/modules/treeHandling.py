@@ -1,10 +1,13 @@
-from PySide2 import QtWidgets, QtCore,QtGui
-from modules.fileHandling import currentNote
 import json
+
+from PySide2 import QtWidgets, QtCore,QtGui
+
+from Application.modules.fileHandling import currentNote
+from Application.modules.noteHandling import loadNote
 
 
 def getJsonTree():
-    location = "../Application/fileStructure.json"
+    location = "./Application/fileStructure.json"
     structDict  = ""
     with open(location,"r") as jsonfile:
         structDict = json.load(jsonfile)
@@ -12,7 +15,7 @@ def getJsonTree():
 
 
 def saveUpdatedJson(structDict):
-    location = "../Application/fileStructure.json"
+    location = "./Application/fileStructure.json"
     with open(location,"w") as jsonfile:
         json.dump(structDict,jsonfile)
 
@@ -127,7 +130,6 @@ def noteLoader(ui,encryptAll):
     if(note[0]):
         currentNote.openFile(item,note[1])
         disableEncryptionIfEncrypted(_encryptionButton,_decryptionButton,_permanentDecrypt,_changePasswordButton)
-        from modules.noteHandling import loadNote
         loadNote(_fileName,_textEdit,encryptAll)
 
 def disableEncryptionIfEncrypted(encryptionButton,decryptionButton,permanentDecrypt,changePasswordButton):

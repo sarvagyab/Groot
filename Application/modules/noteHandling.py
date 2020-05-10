@@ -1,11 +1,14 @@
-from PySide2 import QtCore, QtWidgets, QtGui
+import datetime
+import json
+import os
 
-from modules.fileHandling import currentNote
-from modules.treeHandling import itemVal, saveUpdatedJson
-from modules.encryptNote import AEScipher
-import modules.userLogin
+from PySide2 import QtCore,QtGui,QtWidgets
 
-import json, os, datetime
+from Application.modules.encryptNote import AEScipher
+from Application.modules.fileHandling import currentNote
+import Application.modules.treeHandling as treeHandling
+import Application.modules.userLogin
+
 
 def loadNote(_fileName, _textEdit,encryptAll):
     loadFileName(currentNote.getFilename(),_fileName)
@@ -34,9 +37,10 @@ def pathContainedNotes(diction):
     return finalList
 
 
-def addNotebook(item):
+def addNotebook(window):
     # input name
-    text, ok = QtWidgets.QInputDialog().getText(None,"Groot","Enter the name for new notebook - ")
+    item = window.ui.treeWidget.currentItem()
+    text, ok = QtWidgets.QInputDialog().getText(window,"Groot","Enter the name for new notebook - ",flags= QtCore.Qt.Dialog )
     if ok is True:
         if str(text) != "":
             name = str(text)
@@ -45,7 +49,7 @@ def addNotebook(item):
     else:
         return
     
-    deets = itemVal(item)
+    deets = treeHandling.itemVal(item)
 
     # Make changes to fileStructure
     randomString = datetime.datetime.now().strftime("%d%m%Y%H%M%S")
@@ -57,7 +61,7 @@ def addNotebook(item):
     else:
         deets[1][deets[0]]["expanded"][randomString] = newdict
 
-    saveUpdatedJson(deets[2])
+    treeHandling.saveUpdatedJson(deets[2])
 
     # Update treeWidget
     newItem = QtWidgets.QTreeWidgetItem()
@@ -72,7 +76,7 @@ def addNotebook(item):
 
 def addNote(item,_plainTextEdit,window):
     # input name
-    text, ok = QtWidgets.QInputDialog().getText(None,"Groot","Enter the name for new note - ")
+    text, ok = QtWidgets.QInputDialog().getText(window,"Groot","Enter the name for new note - ",flags=QtCore.Qt.Dialog)
     if ok is True:
         if str(text) != "":
             name = str(text)
@@ -81,22 +85,28 @@ def addNote(item,_plainTextEdit,window):
     else:
         return
 
-    deets = itemVal(item)
+    deets = treeHandling.itemVal(item)
     randomString = datetime.datetime.now().strftime("%d%m%Y%H%M%S")
-    path = "./notes/" + randomString + ".txt"
+    path = "./Application/notes/" 
+    filename = randomString + ".txt"
+
+    # create notes folder if not exists
+    if(not os.path.exists(path)):
+        os.makedirs(path)
 
     # Creating file
-    open(path,'a').close()
+    open(os.path.join(path,filename),'a').close()
+    # open(path,'a').close()
 
     # encrypt file
     if(window.encryptAll == True):
-        userInfo = modules.userLogin.readUserInfo()
+        userInfo = Application.modules.userLogin.readUserInfo()
         aes = AEScipher(str(userInfo[1]),currentNote,txt ="",encrypt = True)
         txt = aes.Encrypt()
         if(not isinstance(txt,bytes)):
             print("here")
             txt = bytes(txt,encoding = 'utf8')
-        with open(path,'wb') as file:
+        with open(path+filename,'wb') as file:
             file.write(txt)
             file.seek(0)
         print("Encrypted in add note method")
@@ -105,13 +115,13 @@ def addNote(item,_plainTextEdit,window):
     newdict = {}
     newdict["name"] = name
     newdict["expanded"] = {}
-    newdict["expanded"]["path"] = path
+    newdict["expanded"]["path"] = path + filename
     newdict["expanded"]["randomString"] = randomString
     if item is item.treeWidget().topLevelItem(1):
         deets[2]["Uncategorized"][randomString] = newdict
     else:
         deets[1][deets[0]]["expanded"][randomString] = newdict
-    saveUpdatedJson(deets[2])
+    treeHandling.saveUpdatedJson(deets[2])
     
     # Update treeWidget
     newItem = QtWidgets.QTreeWidgetItem()
@@ -128,14 +138,14 @@ def addNote(item,_plainTextEdit,window):
 
 
 def renameNote(item,col):
-    deets = itemVal(item)
+    deets = treeHandling.itemVal(item)
     dic = deets[1][deets[0]]
     dic["name"] = item.text(0)
-    saveUpdatedJson(deets[2])
+    treeHandling.saveUpdatedJson(deets[2])
 
 
 def deleteNote(item, plainTextEdit,filename):
-    toBeDlt = itemVal(item)
+    toBeDlt = treeHandling.itemVal(item)
     # Notes to be deleted
     notesToBeDeleted = pathContainedNotes(toBeDlt[1][toBeDlt[0]]["expanded"])
     if(currentNote._details["path"] in notesToBeDeleted):
@@ -151,7 +161,7 @@ def deleteNote(item, plainTextEdit,filename):
     # all files deleted
     del toBeDlt[1][toBeDlt[0]]
     # Updated dictionary
-    saveUpdatedJson(toBeDlt[2])
+    treeHandling.saveUpdatedJson(toBeDlt[2])
     # Updated JSON
 
 

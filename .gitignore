@@ -1,2 +1,5 @@
 environment/
 .vscode/
+build
+dist
+cli.spec

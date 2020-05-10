@@ -4,18 +4,21 @@ import json
 
 from PySide2 import QtWidgets,QtGui,QtCore
 
-from modules.setPassword import password
-from modules.fileHandling import currentNote
-from modules.markdownHandling import viewInMarkdown, imageResize, importMD, pluginHandler, scrolling
-from modules.treeHandling import loadfileStructure, noteLoader,itemVal, isNote,updateItem,getItem
-from modules.noteHandling import deleteNote, renameNote, addNote, addNotebook,readText,writeText
-from modules.GUIchanges import createNotebook, createSubNotebook, createNote, rename, dlt, importer, exportPDF, exportHTML, exportMD, copyLink
-from modules.searchInNote import searchText,finishedSearch
-from modules.userLogin import setUsernameAndPassword,verifyUser,changePassword
-from modules.encryptAllNotes import _encryptDecryptAllNotes
-from modules.encryptNote import AEScipher
-from modules.printNote import Print,printPreview
-from GUIs.settingsDialog import Ui_settingDialog
+from Application.modules.setPassword import password
+from Application.modules.fileHandling import currentNote
+from Application.modules.markdownHandling import viewInMarkdown, imageResize, importMD, pluginHandler, scrolling
+from Application.modules.treeHandling import loadfileStructure, noteLoader,itemVal, isNote,updateItem,getItem
+from Application.modules.noteHandling import deleteNote, renameNote, addNote, addNotebook,readText,writeText
+from Application.modules.GUIchanges import createNotebook, createSubNotebook, createNote, rename, dlt, importer, exportPDF, exportHTML, exportMD, copyLink
+from Application.modules.searchInNote import searchText,finishedSearch
+from Application.modules.userLogin import setUsernameAndPassword,verifyUser,changePassword
+from Application.modules.encryptAllNotes import _encryptDecryptAllNotes
+from Application.modules.encryptNote import AEScipher
+from Application.modules.printNote import Print,printPreview
+from Application.GUIs.settingsDialog import Ui_settingDialog
+from Application.GUIs.firstLoginDialog import Ui_firstLoginDialog
+from Application.GUIs.loginDialog import Ui_loginDialog
+
 
 def fixScrolling(self):
     edBar = self.ui.plainTextEdit.verticalScrollBar()
@@ -100,6 +103,7 @@ def reloadUI(self):
 
 def showDeleteDialog(self):
     msg = QtWidgets.QMessageBox()
+    msg.setParent(self,QtCore.Qt.Window)
     icon = QtGui.QIcon()
     icon.addPixmap(QtGui.QPixmap(":/icons/Icons/32x32/delete_note.png"),QtGui.QIcon.Normal,QtGui.QIcon.Off)
     msg.setWindowIcon(icon)
@@ -113,7 +117,7 @@ def showDeleteDialog(self):
 
 def _addNotebook(self):
     if(self.ui.treeWidget.currentItem() is self.ui.treeWidget.topLevelItem(0)):
-        addNotebook(self.ui.treeWidget.currentItem())
+        addNotebook(self)
     return
 
 
@@ -122,7 +126,7 @@ def _addSubNotebook(self):
         (self.ui.treeWidget.currentItem() is self.ui.treeWidget.topLevelItem(1)) or \
         (isNote(self.ui.treeWidget.currentItem())[0]):
             return
-    addNotebook(self.ui.treeWidget.currentItem())
+    addNotebook(self)
 
 
 def _addNote(self):
@@ -155,7 +159,7 @@ def closeEvent(self,event):
     event.accept()
 
 def checkFirstLogin(self):
-    location = './User/login.txt'
+    location = './Application/User/login.txt'
     return os.path.exists(location)
 
 def pluginConnections(self,settings):
@@ -172,7 +176,7 @@ def pluginConnections(self,settings):
 def setPlainTextEditFont(self):
     family = self.ui_settingDialog.fontChoice.currentText()
     size = int(self.ui_settingDialog.fontSizeValue.text())
-    with open("./settings.json","r+") as sets:
+    with open("./Application/settings.json","r+") as sets:
         settings = json.load(sets)
         settings["Appearance"]["size"] = size
         settings["Appearance"]["family"] = family
@@ -190,6 +194,7 @@ def appearConnections(self,settings):
 def createSettingsDialog(self):
     self.ui_settingDialog = Ui_settingDialog()
     self.settingsDialog = QtWidgets.QDialog()
+    self.settingsDialog.setParent(self,QtCore.Qt.Window)
     self.ui_settingDialog.setupUi(self.settingsDialog)
     self.ui_settingDialog.closeMe.clicked.connect(self.settingsDialog.close)
     self.ui_settingDialog.encryptAllChoice.setChecked(self.encryptAll)
@@ -258,7 +263,7 @@ def loadAppearSettings(self,appearSettings):
 
 
 def loadSettings(self):
-    with open("./settings.json","r") as sets:
+    with open("./Application/settings.json","r") as sets:
         settings = json.load(sets)
     plugSettings = settings["Plugins"]
     appearSettings = settings["Appearance"]
@@ -376,8 +381,8 @@ def changeUserPassword(self,settings):
         settings.Errortext_2.setText("<html><head/><body><p><span style=\" color:#00ff00;\">New password set</span></p></body></html>")
 
 def openLoginDialog(self):
-    from GUIs.loginDialog import Ui_loginDialog
     loginDialog = QtWidgets.QDialog()
+    loginDialog.setParent(self,QtCore.Qt.Window)
     ui_loginDialog = Ui_loginDialog()
     ui_loginDialog.setupUi(loginDialog)
     ui_loginDialog.buttonBox.button(QtWidgets.QDialogButtonBox.Ok).clicked.connect(lambda: verifyUser(ui_loginDialog.passwordLineEdit.text(),ui_loginDialog.Errortext,loginDialog))
@@ -432,8 +437,8 @@ def changeEncryptionPassword(self):
 
 
 def openFirstLoginDialog(self):
-    from GUIs.firstLoginDialog import Ui_firstLoginDialog
     firstLoginDialog = QtWidgets.QDialog()
+    firstLoginDialog.setParent(self,QtCore.Qt.Window)
     ui_firstLoginDialog = Ui_firstLoginDialog()
     ui_firstLoginDialog.setupUi(firstLoginDialog)
     ui_firstLoginDialog.buttonBox.button(QtWidgets.QDialogButtonBox.Cancel).clicked.connect(lambda:self.closeDialogAndMainWindow(firstLoginDialog))

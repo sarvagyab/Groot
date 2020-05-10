@@ -15,7 +15,7 @@ from PySide2.QtGui import (QBrush, QColor, QConicalGradient, QCursor, QFont,
     QPixmap, QRadialGradient)
 from PySide2.QtWidgets import *
 
-import resource_rc
+import Application.resource_rc
 
 class Ui_firstLoginDialog(object):
     def setupUi(self, firstLoginDialog):

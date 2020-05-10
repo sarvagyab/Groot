@@ -1,12 +1,27 @@
-from PySide2 import QtGui, QtWidgets, QtCore, QtPrintSupport
 import markdown, datetime, shutil
-from modules.fileHandling import currentNote
-from modules.treeHandling import itemVal, saveUpdatedJson
-from modules.userLogin import readUserInfo
-from modules.noteHandling import readText
-from modules.encryptNote import AEScipher
-import pymdownx
+import copy
 import json,os
+import pymdownx
+from markdown.extensions.sane_lists import SaneListExtension
+from markdown.extensions.tables import TableExtension
+from markdown.extensions.fenced_code import FencedCodeExtension
+from markdown.extensions.nl2br import Nl2BrExtension
+from markdown.extensions.footnotes import FootnoteExtension
+from markdown.extensions.def_list import DefListExtension
+from markdown.extensions.md_in_html import MarkdownInHtmlExtension
+from pymdownx.magiclink import MagiclinkExtension
+from pymdownx.caret import InsertSupExtension
+from pymdownx.smartsymbols import SmartSymbolsExtension
+from pymdownx.tilde import DeleteSubExtension
+
+
+from PySide2 import QtGui, QtWidgets, QtCore, QtPrintSupport
+
+from Application.modules.fileHandling import currentNote
+from Application.modules.treeHandling import itemVal, saveUpdatedJson
+from Application.modules.userLogin import readUserInfo
+from Application.modules.noteHandling import readText
+from Application.modules.encryptNote import AEScipher
 
 def scrolling(oneBar,twoBar,searchBar):
     if(not searchBar.hasFocus()):
@@ -28,9 +43,44 @@ def viewInMarkdown(md,extensions,markdownView):
 
 
 def mdToHtml(md, _extensions):
-    html = markdown.markdown(md, extensions = ["sane_lists","tables","fenced_code"] + _extensions, extension_configs = {"pymdownx.tilde":{"subscript":False}})
+    html = markdown.markdown(md, extensions = [SaneListExtension(),TableExtension(),FencedCodeExtension()] + strToClassEXt(_extensions), extension_configs = {"pymdownx.tilde":{"subscript":False}})
     return html
 
+def strToClassEXt(extensions):
+    e_idx = []
+    if("nl2br" in extensions):
+        idx = extensions.index("nl2br")
+        extensions.pop(idx)
+        extensions.insert(idx,Nl2BrExtension())
+    if("footnotes" in extensions):
+        idx = extensions.index("footnotes")
+        extensions.pop(idx)
+        extensions.insert(idx,FootnoteExtension())
+    if("def_list" in extensions):
+        idx = extensions.index("def_list")
+        extensions.pop(idx)
+        extensions.insert(idx,DefListExtension())
+    if("md_in_html" in extensions):
+        idx = extensions.index("md_in_html")
+        extensions.pop(idx)
+        extensions.insert(idx,MarkdownInHtmlExtension())
+    if("pymdownx.caret" in extensions):
+        idx = extensions.index("pymdownx.caret")
+        extensions.pop(idx)
+        extensions.insert(idx,InsertSupExtension())
+    if("pymdownx.magiclink" in extensions):
+        idx = extensions.index("pymdownx.magiclink")
+        extensions.pop(idx)
+        extensions.insert(idx,MagiclinkExtension())
+    if("pymdownx.smartsymbols" in extensions):
+        idx = extensions.index("pymdownx.smartsymbols")
+        extensions.pop(idx)
+        extensions.insert(idx,SmartSymbolsExtension())
+    if("pymdownx.tilde" in extensions):
+        idx = extensions.index("pymdownx.tilde")
+        extensions.pop(idx)
+        extensions.insert(idx,DeleteSubExtension())
+    return extensions
 
 def imageResize(markdownView):
     markdownView.moveCursor(QtGui.QTextCursor.Start)
@@ -200,13 +250,14 @@ def numList(te):
     te.setFocus()
 
 
-def hyperlink(te):
+def hyperlink(window):
     # input name
-    msg = QtWidgets.QInputDialog()
+    te = window.ui.plainTextEdit
     icon = QtGui.QIcon()
+    dialog = QtWidgets.QInputDialog()
     icon.addPixmap(QtGui.QPixmap(":/icons/Icons/32x32/link.png"),QtGui.QIcon.Normal,QtGui.QIcon.Off)
-    msg.setWindowIcon(icon)
-    text, ok = msg.getText(None,"Groot","Enter link - ")
+    text, ok = dialog.getText(window,"Groot","Enter link - ",flags= QtCore.Qt.Dialog)
+    dialog.setWindowIcon(icon)
     if ok is True:
             linkpath = str(text)
     else:
@@ -232,9 +283,11 @@ def datetimenow(te):
     te.setFocus()
 
 
-def attachFile(te):
+def attachFile(window):
+    te = window.ui.plainTextEdit
     if currentNote._open == False: 
         msg = QtWidgets.QMessageBox(QtWidgets.QMessageBox.Information,"Groot","Cannot attach images when no note is currently loaded",QtWidgets.QMessageBox.Ok)
+        msg.setParent(window,QtCore.Qt.Window)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(":/icons/Icons/32x32/attention.png"),QtGui.QIcon.Normal,QtGui.QIcon.Off)
         msg.setWindowIcon(icon)
@@ -245,9 +298,9 @@ def attachFile(te):
     if filename == "":
         return
     randomString = datetime.datetime.now().strftime("%d%m%Y%H%M%S")
-    if(not os.path.exists("./atch")):
-        os.makedirs("./atch")
-    destination = shutil.copyfile(filename,"./atch/" + randomString)
+    if(not os.path.exists("./Application/atch")):
+        os.makedirs("./Application/atch")
+    destination = shutil.copyfile(filename,"./Application/atch/" + randomString)
     # print(destination)
     te.insertPlainText("![fileName](" + destination + ")")
     item = currentNote._item
@@ -275,7 +328,7 @@ def copyMarkdownLink():
 
 def pluginHandler(text,check,extensions, configs):
 
-    with open("./settings.json","r") as sets:
+    with open("./Application/settings.json","r") as sets:
         settings = json.load(sets)
     
     plugSets = settings["Plugins"]
@@ -373,7 +426,7 @@ def pluginHandler(text,check,extensions, configs):
                 extensions.remove("pymdownx.tilde")
                 del configs["pymdownx.tilde"]
 
-    location = "./settings.json"
+    location = "./Application/settings.json"
     with open(location,"w") as jsonfile:
         json.dump(settings,jsonfile)
     # print("Json Updated")
@@ -381,9 +434,11 @@ def pluginHandler(text,check,extensions, configs):
         extensions+=[ext]
 
 
-def exportAsPdf(mdView):
+def exportAsPdf(window):
+    mdView = window.ui.mdViewer
     if ("encrypted" in currentNote._details) and currentNote._details["encrypted"] == "True":
         msg = QtWidgets.QMessageBox(QtWidgets.QMessageBox.Information,"Groot", "Cannot Export Encrypted Files",QtWidgets.QMessageBox.Ok)
+        msg.setParent(window,QtCore.Qt.Window)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(":/icons/Icons/32x32/attention.png"),QtGui.QIcon.Normal,QtGui.QIcon.Off)
         msg.setWindowIcon(icon)
@@ -399,9 +454,11 @@ def exportAsPdf(mdView):
         mdView.document().print_(printer)
 
 
-def exportAsMarkdown(mdtext):
+def exportAsMarkdown(window):
+    mdtext = window.ui.plainTextEdit.toPlainText()
     if ("encrypted" in currentNote._details) and currentNote._details["encrypted"] == "True":
         msg = QtWidgets.QMessageBox(QtWidgets.QMessageBox.Information,"Groot", "Cannot Export Encrypted Files",QtWidgets.QMessageBox.Ok)
+        msg.setParent(window,QtCore.Qt.Window)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(":/icons/Icons/32x32/attention.png"),QtGui.QIcon.Normal,QtGui.QIcon.Off)
         msg.setWindowIcon(icon)
@@ -415,9 +472,11 @@ def exportAsMarkdown(mdtext):
             newfile.write(mdtext)
 
 
-def exportAsHtml(mdtext, extensions):
+def exportAsHtml(window, extensions):
+    mdtext = window.ui.plainTextEdit.toPlainText()
     if ("encrypted" in currentNote._details) and currentNote._details["encrypted"] == "True":
         msg = QtWidgets.QMessageBox(QtWidgets.QMessageBox.Information,"Groot", "Cannot Export Encrypted Files",QtWidgets.QMessageBox.Ok)
+        msg.setParent(window,QtCore.Qt.Window)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap(":/icons/Icons/32x32/attention.png"),QtGui.QIcon.Normal,QtGui.QIcon.Off)
         msg.setWindowIcon(icon)

@@ -1,7 +1,7 @@
 from PySide2 import QtCore
 
-from modules.encryptNote import AEScipher
-import modules.userLogin
+import Application.modules.userLogin
+from Application.modules.encryptNote import AEScipher
 
 class FILE():
     _file = None
@@ -26,7 +26,7 @@ class FILE():
 
     def getText(self,encryptAll = True):
         if(encryptAll == True): # decrypt text
-            userInfo = modules.userLogin.readUserInfo()
+            userInfo = Application.modules.userLogin.readUserInfo()
             aes = AEScipher(userInfo[1],self,encrypt = False)
             print("decrypting from getText method")
             txt = aes.Decrypt()
@@ -50,7 +50,7 @@ class FILE():
         self._file.seek(0)
         self._file.truncate()
         if(encryptAll == True):
-            userInfo = modules.userLogin.readUserInfo()
+            userInfo = Application.modules.userLogin.readUserInfo()
             aes = AEScipher(str(userInfo[1]),self,text,encrypt = True)
             print("Encrypting from saveFile method")
             text = aes.Encrypt()

@@ -2,13 +2,13 @@ import copy
 
 from PySide2 import QtWidgets
 
-import modules.userLogin
-from modules.treeHandling import getJsonTree
-from modules.passwordHashing import Hash
-from modules.noteHandling import readText,writeText
-from modules.encryptNote import AEScipher
+import Application.modules.userLogin
+from Application.modules.treeHandling import getJsonTree
+from Application.modules.passwordHashing import Hash
+from Application.modules.noteHandling import readText,writeText
+from Application.modules.encryptNote import AEScipher
 
-from GUIs.verifyPasswordDialog import Ui_verifyPasswordDialog
+from Application.GUIs.verifyPasswordDialog import Ui_verifyPasswordDialog
 
 encNotes = {}
 
@@ -43,7 +43,7 @@ def getEncNoteList():
 
 def _encryptDecryptAllNotes(window,encrypt):
     EDict,notes = getEncNoteList()
-    userInfo = modules.userLogin.readUserInfo()
+    userInfo = Application.modules.userLogin.readUserInfo()
     uPass = userInfo[1]
     if(encrypt == True):
         encryptAllNotes(uPass,notes,EDict)
@@ -51,7 +51,7 @@ def _encryptDecryptAllNotes(window,encrypt):
         decryptAllNotes(uPass,notes,EDict)
     window.encryptAll = encrypt
     userInfo[3] = str(encrypt) 
-    modules.userLogin.storeUserInfoInFile('./User',"login",userInfo)
+    Application.modules.userLogin.storeUserInfoInFile('./User',"login",userInfo)
 
 def openDialog(note):
     ui_pv = Ui_verifyPasswordDialog()

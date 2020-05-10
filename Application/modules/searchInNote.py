@@ -1,6 +1,6 @@
 from PySide2.QtGui import QTextDocument,QTextCursor
 from PySide2.QtCore import QRegExp,Qt
-from modules.markdownHandling import scrolling
+from Application.modules.markdownHandling import scrolling
 
 def searchText(ui,cursor = QTextCursor.Start,reversed = False):
     ui.errorLabel.setText("")
