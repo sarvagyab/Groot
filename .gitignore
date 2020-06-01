@@ -3,3 +3,4 @@ environment/
 build
 dist
 cli.spec
+__pycache__/

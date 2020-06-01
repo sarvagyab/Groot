@@ -4,7 +4,7 @@ import sys
 
 def main():
     try:
-        from PyQt5.QtWinExtras import QtWin
+        from PySide2.QtWinExtras import QtWin
         myappid = 'mycompany.myproduct.subproduct.version'
         QtWin.setCurrentProcessExplicitAppUserModelID(myappid)    
     except ImportError:

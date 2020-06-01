@@ -1,0 +1,4 @@
+PySide2
+markdown
+pycryptodomex
+git+https://github.com/Lincoln2000/pymdown-extensions#egg=pymdown-extensions
