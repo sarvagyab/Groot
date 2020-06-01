@@ -14,6 +14,9 @@ class Window(QtWidgets.QMainWindow):
     def __init__(self):
         super().__init__()
 
+        # create settings.json and file structure.json if not exists
+        self.createSettingAndFileStructurejson()
+
         # Initializing UI
         self.ui = Ui_Groot()
         self.ui.setupUi(self)
@@ -194,6 +197,7 @@ class Window(QtWidgets.QMainWindow):
 
 
 
+Window.createSettingAndFileStructurejson = Application.mainWindowFunctions.createSettingAndFileStructurejson
 Window._noteLoader = Application.mainWindowFunctions._noteLoader
 Window.closeEvent = Application.mainWindowFunctions.closeEvent
 Window.reloadUI = Application.mainWindowFunctions.reloadUI

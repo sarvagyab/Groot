@@ -68,7 +68,7 @@ def changePassword(h_pass,salt):
         Application.modules.encryptAllNotes.encryptAllNotes(h_pass,notes,EncDict) # encrypt all notes using new password
     userInfo[1] = h_pass
     userInfo[2] = salt
-    storeUserInfoInFile('./User',"login",userInfo) # store new pass
+    storeUserInfoInFile('./Application/User',"login",userInfo) # store new pass
 
 
 def arePasswordSame(pass1,pass2):
