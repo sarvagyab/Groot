@@ -116,6 +116,8 @@ def _finishedSearch(self):
 def reloadUI(self):
     loadfileStructure(self.ui.treeWidget)
     self._noteLoader()
+    self.ui.treeWidget.topLevelItem(1).setExpanded(True)
+    self.ui.treeWidget.setCurrentItem(self.ui.treeWidget.topLevelItem(1))
 
 
 def showDeleteDialog(self):
