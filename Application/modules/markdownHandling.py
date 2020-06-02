@@ -35,11 +35,83 @@ def scrolling(oneBar,twoBar,searchBar):
         oneBar.blockSignals(False)
 
 
-def viewInMarkdown(md,extensions,markdownView):
+def cntLinesAbove(ptedit):
+    st = QtCore.QPoint(0,0)
+    startpos = ptedit.cursorForPosition(st)    
+    cnt = 0
+    # print("The lines I am going up by")
+    while True: 
+        val = startpos.movePosition(QtGui.QTextCursor.Up)
+        if(val == False): break
+        # startpos.select(QtGui.QTextCursor.LineUnderCursor)
+        # print(startpos.selectedText())
+        # startpos.clearSelection()
+        # startpos.movePosition(QtGui.QTextCursor.StartOfLine)
+        cnt+=1
+    return cnt
+
+def viewInMarkdown(ptedit,extensions,markdownView,searchBar):
+
+    md = ptedit.toPlainText()
+    currentPosition = ptedit.textCursor().position()
+    # print("CUrrent position = " + str(currentPosition))
+    ed = QtCore.QPoint(ptedit.viewport().width()-1,ptedit.viewport().height()-1)
+    cnt = cntLinesAbove(ptedit)
+    # print("to match cnt = " + str(cnt))
+
+    cntformarkdown = cntLinesAbove(markdownView)
+
     html = mdToHtml(md, extensions)
     markdownView.setHtml(html)
     imageResize(markdownView)
-    markdownView.moveCursor(QtGui.QTextCursor.Start)
+
+    # print(cntformarkdown)
+    ptedit.moveCursor(QtGui.QTextCursor.Start)
+    while True:
+        # print(cntLinesAbove(markdownView))
+        if(cntformarkdown==cntLinesAbove(markdownView)): break
+        markdownView.moveCursor(QtGui.QTextCursor.Down)
+
+    if(cnt != 0):
+        # print("The lines above are more than 0")
+        while True: 
+            ptedit.moveCursor(QtGui.QTextCursor.Down)
+            newcnt = cntLinesAbove(ptedit)
+            # print("cnting = " + str(newcnt))
+            if(newcnt == cnt): break
+    
+    # print("Final above lines = " + str(cntLinesAbove(ptedit)))
+    # print("Current position as of before shifting = " + str(ptedit.textCursor().position()))
+    while(ptedit.textCursor().position() != currentPosition):
+        if(currentPosition>ptedit.textCursor().position()): ptedit.moveCursor(QtGui.QTextCursor.Right)
+        else: ptedit.moveCursor(QtGui.QTextCursor.Left)  
+    
+    # print("after setting = " + str(markdownView.textCursor().position()))
+
+
+
+def imageResize(markdownView):
+    doc = markdownView.document()
+    count = doc.blockCount()
+    for i in range(1,count+1):
+        currentBlock = doc.findBlockByNumber(i)
+        it = currentBlock.begin()
+        while it.atEnd() is not True:
+            fragment = it.fragment()
+            if(fragment.isValid()):
+                if( fragment.charFormat().isImageFormat() ):
+                    newImageFormat = fragment.charFormat().toImageFormat()
+                    path = newImageFormat.name()
+                    img = QtGui.QImage(path)
+                    if(img.width() > (markdownView.width()-30)):
+                        newImageFormat.setWidth(markdownView.width()-30)
+                        if(newImageFormat.isValid()):
+                            helper = markdownView.textCursor()
+                            helper.setPosition(fragment.position())
+                            helper.setPosition(fragment.position() + fragment.length(), QtGui.QTextCursor.KeepAnchor)
+                            helper.setCharFormat(newImageFormat)
+            it+=1
+
 
 
 def mdToHtml(md, _extensions):
@@ -81,31 +153,6 @@ def strToClassEXt(extensions):
         extensions.pop(idx)
         extensions.insert(idx,DeleteSubExtension())
     return extensions
-
-def imageResize(markdownView):
-    markdownView.moveCursor(QtGui.QTextCursor.Start)
-    while True:
-        currentBlock = markdownView.textCursor().block()
-        it = currentBlock.begin()
-        while it.atEnd() is not True:
-            fragment = it.fragment()
-            if(fragment.isValid()):
-                if( fragment.charFormat().isImageFormat() ):
-                    newImageFormat = fragment.charFormat().toImageFormat()
-                    path = newImageFormat.name()
-                    img = QtGui.QImage(path)
-                    if(img.width() > (markdownView.width()-30)):
-                        newImageFormat.setWidth(markdownView.width()-30)
-                        if(newImageFormat.isValid()):
-                            helper = markdownView.textCursor()
-                            helper.setPosition(fragment.position())
-                            helper.setPosition(fragment.position() + fragment.length(), QtGui.QTextCursor.KeepAnchor)
-                            helper.setCharFormat(newImageFormat)
-            it+=1
-        no = markdownView.textCursor().blockNumber()
-        markdownView.moveCursor(QtGui.QTextCursor.NextBlock)
-        if(markdownView.textCursor().blockNumber() == no):
-            return
 
 
 def bold(te):

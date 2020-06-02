@@ -37,9 +37,12 @@ def pathContainedNotes(diction):
     return finalList
 
 
-def addNotebook(window):
+def addNotebook(window,check):
     # input name
-    item = window.ui.treeWidget.currentItem()
+    if check:
+        item = window.ui.treeWidget.topLevelItem(0)
+    else:
+        item = window.ui.treeWidget.currentItem()
     text, ok = QtWidgets.QInputDialog().getText(window,"Groot","Enter the name for new notebook - ",flags= QtCore.Qt.Dialog )
     if ok is True:
         if str(text) != "":
@@ -72,6 +75,7 @@ def addNotebook(window):
     newItem.setIcon(0,icon)
     item.addChild(newItem)
     item.setExpanded(True)
+    item.treeWidget().setCurrentItem(newItem)
 
 
 def addNote(item,_plainTextEdit,window):

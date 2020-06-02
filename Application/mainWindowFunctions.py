@@ -84,7 +84,7 @@ def _noteLoader(self):
     self.ui.treeWidget.itemSelectionChanged.connect(changeNote)
 
 def _markdownViewer(self):
-    mdView = lambda: viewInMarkdown(self.ui.plainTextEdit.toPlainText(),self.mdExtensions,self.ui.mdViewer)
+    mdView = lambda: viewInMarkdown(self.ui.plainTextEdit,self.mdExtensions,self.ui.mdViewer,self.ui.searchBar)
     sFile = lambda: currentNote.saveFile(self.ui.plainTextEdit.toPlainText(),self.encryptAll)
     self.timer.timeout.connect(sFile)
     self.timer.timeout.connect(mdView)
@@ -135,9 +135,7 @@ def showDeleteDialog(self):
 
 
 def _addNotebook(self):
-    if(self.ui.treeWidget.currentItem() is self.ui.treeWidget.topLevelItem(0)):
-        addNotebook(self)
-    return
+    addNotebook(self,True)
 
 
 def _addSubNotebook(self):
@@ -145,7 +143,7 @@ def _addSubNotebook(self):
         (self.ui.treeWidget.currentItem() is self.ui.treeWidget.topLevelItem(1)) or \
         (isNote(self.ui.treeWidget.currentItem())[0]):
             return
-    addNotebook(self)
+    addNotebook(self,False)
 
 
 def _addNote(self):
