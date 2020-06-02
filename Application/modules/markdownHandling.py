@@ -65,13 +65,16 @@ def viewInMarkdown(ptedit,extensions,markdownView,searchBar):
     markdownView.setHtml(html)
     imageResize(markdownView)
 
-    # print(cntformarkdown)
-    ptedit.moveCursor(QtGui.QTextCursor.Start)
+    markdownView.moveCursor(QtGui.QTextCursor.Start)
+    print(markdownView.textCursor().position())
     while True:
         # print(cntLinesAbove(markdownView))
-        if(cntformarkdown==cntLinesAbove(markdownView)): break
+        # print("cnt for markdown = " + str(cntformarkdown))
+        # print("markdown lines above - " + str(cntLinesAbove(markdownView)))
+        if(cntformarkdown<=cntLinesAbove(markdownView)): break
         markdownView.moveCursor(QtGui.QTextCursor.Down)
 
+    ptedit.moveCursor(QtGui.QTextCursor.Start)
     if(cnt != 0):
         # print("The lines above are more than 0")
         while True: 
