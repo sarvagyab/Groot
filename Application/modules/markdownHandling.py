@@ -161,38 +161,22 @@ def mdToHtml(md, _extensions):
 def strToClassEXt(extensions):
     e_idx = []
     if("nl2br" in extensions):
-        idx = extensions.index("nl2br")
-        extensions.pop(idx)
-        extensions.insert(idx,Nl2BrExtension())
+        e_idx.append(Nl2BrExtension())
     if("footnotes" in extensions):
-        idx = extensions.index("footnotes")
-        extensions.pop(idx)
-        extensions.insert(idx,FootnoteExtension())
+        e_idx.append(FootnoteExtension())
     if("def_list" in extensions):
-        idx = extensions.index("def_list")
-        extensions.pop(idx)
-        extensions.insert(idx,DefListExtension())
+        e_idx.append(DefListExtension())
     if("md_in_html" in extensions):
-        idx = extensions.index("md_in_html")
-        extensions.pop(idx)
-        extensions.insert(idx,MarkdownInHtmlExtension())
+        e_idx.append(MarkdownInHtmlExtension())
     if("pymdownx.caret" in extensions):
-        idx = extensions.index("pymdownx.caret")
-        extensions.pop(idx)
-        extensions.insert(idx,InsertSupExtension())
+        e_idx.append(InsertSupExtension())
     if("pymdownx.magiclink" in extensions):
-        idx = extensions.index("pymdownx.magiclink")
-        extensions.pop(idx)
-        extensions.insert(idx,MagiclinkExtension())
+        e_idx.append(MagiclinkExtension())
     if("pymdownx.smartsymbols" in extensions):
-        idx = extensions.index("pymdownx.smartsymbols")
-        extensions.pop(idx)
-        extensions.insert(idx,SmartSymbolsExtension())
+        e_idx.append(SmartSymbolsExtension())
     if("pymdownx.tilde" in extensions):
-        idx = extensions.index("pymdownx.tilde")
-        extensions.pop(idx)
-        extensions.insert(idx,DeleteSubExtension())
-    return extensions
+        e_idx.append(DeleteSubExtension())
+    return e_idx
 
 
 def bold(te):
