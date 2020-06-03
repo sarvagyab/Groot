@@ -1,1 +1,1 @@
-{"Plugins": {"hardExt": true, "footnotesExt": false, "defListsExt": false, "mdExt": false, "supExt": false, "subExt": false, "linkExt": false, "symbolsExt": false, "strikeExt": true}, "Appearance": {"size": 17, "family": "MS Shell Dlg 2"}}
+{"Plugins": {"hardExt": true, "footnotesExt": true, "defListsExt": true, "mdExt": true, "supExt": true, "subExt": true, "linkExt": true, "symbolsExt": true, "strikeExt": true}, "Appearance": {"size": 17, "family": "MS Shell Dlg 2"}}

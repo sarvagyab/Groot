@@ -161,22 +161,38 @@ def mdToHtml(md, _extensions):
 def strToClassEXt(extensions):
     e_idx = []
     if("nl2br" in extensions):
-        e_idx.append(Nl2BrExtension())
+        idx = extensions.index("nl2br")
+        extensions.pop(idx)
+        extensions.insert(idx,Nl2BrExtension())
     if("footnotes" in extensions):
-        e_idx.append(FootnoteExtension())
+        idx = extensions.index("footnotes")
+        extensions.pop(idx)
+        extensions.insert(idx,FootnoteExtension())
     if("def_list" in extensions):
-        e_idx.append(DefListExtension())
+        idx = extensions.index("def_list")
+        extensions.pop(idx)
+        extensions.insert(idx,DefListExtension())
     if("md_in_html" in extensions):
-        e_idx.append(MarkdownInHtmlExtension())
+        idx = extensions.index("md_in_html")
+        extensions.pop(idx)
+        extensions.insert(idx,MarkdownInHtmlExtension())
     if("pymdownx.caret" in extensions):
-        e_idx.append(InsertSupExtension())
+        idx = extensions.index("pymdownx.caret")
+        extensions.pop(idx)
+        extensions.insert(idx,InsertSupExtension())
     if("pymdownx.magiclink" in extensions):
-        e_idx.append(MagiclinkExtension())
+        idx = extensions.index("pymdownx.magiclink")
+        extensions.pop(idx)
+        extensions.insert(idx,MagiclinkExtension())
     if("pymdownx.smartsymbols" in extensions):
-        e_idx.append(SmartSymbolsExtension())
+        idx = extensions.index("pymdownx.smartsymbols")
+        extensions.pop(idx)
+        extensions.insert(idx,SmartSymbolsExtension())
     if("pymdownx.tilde" in extensions):
-        e_idx.append(DeleteSubExtension())
-    return e_idx
+        idx = extensions.index("pymdownx.tilde")
+        extensions.pop(idx)
+        extensions.insert(idx,DeleteSubExtension())
+    return extensions
 
 
 def bold(te):
@@ -503,7 +519,6 @@ def pluginHandler(text,check,extensions, configs):
     # print("Json Updated")
     if check and ext!="":
         extensions+=[ext]
-    # print(extensions)
 
 
 def exportAsPdf(window):
