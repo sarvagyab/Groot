@@ -92,13 +92,21 @@ def viewInMarkdown(ptedit,extensions,markdownView,searchBar):
 
     # print("markdown seperation begins - \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
     # print(markdownView.textCursor().position())
+    prev = -1
+    nooftimesnochange = 0
     while True:
         # print(cntLinesAbove(markdownView))
         cntmd = cntLinesAbove(markdownView)
         # print("cnt for markdown = " + str(cntformarkdown))
         # print("markdown lines above - " + str(cntmd))
         # print("checking for infinity loop")
-        if(cntformarkdown<=cntmd): break
+        if cntmd == prev: nooftimesnochange+=1
+        else: 
+            prev = cntmd
+            nooftimesnochange = 0
+
+        # if(cntformarkdown<=cntmd): break
+        if(cntformarkdown<=cntmd or nooftimesnochange>50): break
         markdownView.moveCursor(QtGui.QTextCursor.Down)
 
     # print("markdown seperation ends - \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
