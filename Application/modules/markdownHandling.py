@@ -37,18 +37,31 @@ def scrolling(oneBar,twoBar,searchBar):
 
 def cntLinesAbove(ptedit):
     st = QtCore.QPoint(0,0)
-    startpos = ptedit.cursorForPosition(st)    
+    startpos = ptedit.cursorForPosition(st)  
+    # startpos.select(QtGui.QTextCursor.LineUnderCursor)  
+    # print(startpos.selectedText())
     cnt = 0
+    # print("Starting pos = " + str(startpos.position()))
     # print("The lines I am going up by")
     while True: 
         val = startpos.movePosition(QtGui.QTextCursor.Up)
+        # print("checking position = " + str(startpos.position()))
+        # print(val)
         if(val == False): break
         # startpos.select(QtGui.QTextCursor.LineUnderCursor)
         # print(startpos.selectedText())
         # startpos.clearSelection()
         # startpos.movePosition(QtGui.QTextCursor.StartOfLine)
         cnt+=1
+        # print("Start  position - " + str(startpos.position()))
+        # print("cnt = " + str(cnt))
     return cnt
+
+def printfirstvisibleline(markdownview):
+    st = QtCore.QPoint(0,0)
+    startpos = markdownview.cursorForPosition(st)  
+    startpos.select(QtGui.QTextCursor.LineUnderCursor)  
+    return startpos.selectedText()
 
 def viewInMarkdown(ptedit,extensions,markdownView,searchBar):
 
@@ -58,21 +71,37 @@ def viewInMarkdown(ptedit,extensions,markdownView,searchBar):
     ed = QtCore.QPoint(ptedit.viewport().width()-1,ptedit.viewport().height()-1)
     cnt = cntLinesAbove(ptedit)
     # print("to match cnt = " + str(cnt))
-
     cntformarkdown = cntLinesAbove(markdownView)
+    
+    # print("after counting - ")
+    # printfirstvisibleline(markdownView)
 
     html = mdToHtml(md, extensions)
     markdownView.setHtml(html)
     imageResize(markdownView)
 
+    # print("after new set")
+    # print("cout<<'hello world'" + printfirstvisibleline(markdownView))
     markdownView.moveCursor(QtGui.QTextCursor.Start)
-    print(markdownView.textCursor().position())
+    # cur = markdownView.textCursor()
+    # cur.setPosition(0)
+    # markdownView.setTextCursor(cur)
+
+    print("after going to top - ")
+    printfirstvisibleline(markdownView)
+
+    # print("markdown seperation begins - \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
+    # print(markdownView.textCursor().position())
     while True:
         # print(cntLinesAbove(markdownView))
+        cntmd = cntLinesAbove(markdownView)
         # print("cnt for markdown = " + str(cntformarkdown))
-        # print("markdown lines above - " + str(cntLinesAbove(markdownView)))
-        if(cntformarkdown<=cntLinesAbove(markdownView)): break
+        # print("markdown lines above - " + str(cntmd))
+        # print("checking for infinity loop")
+        if(cntformarkdown<=cntmd): break
         markdownView.moveCursor(QtGui.QTextCursor.Down)
+
+    # print("markdown seperation ends - \n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
 
     ptedit.moveCursor(QtGui.QTextCursor.Start)
     if(cnt != 0):
