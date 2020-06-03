@@ -118,7 +118,7 @@ def viewInMarkdown(ptedit,extensions,markdownView,searchBar):
             ptedit.moveCursor(QtGui.QTextCursor.Down)
             newcnt = cntLinesAbove(ptedit)
             # print("cnting = " + str(newcnt))
-            if(newcnt == cnt): break
+            if(newcnt >= cnt): break
     
     # print("Final above lines = " + str(cntLinesAbove(ptedit)))
     # print("Current position as of before shifting = " + str(ptedit.textCursor().position()))
