@@ -544,7 +544,7 @@ def exportAsMarkdown(window):
     if filename != "":
         if QtCore.QFileInfo(filename).suffix() != "md":
             filename+=".md"
-        with open(filename,"w") as newfile:
+        with open(filename,"w", encoding="utf-8") as newfile:
             newfile.write(mdtext)
 
 
@@ -562,7 +562,7 @@ def exportAsHtml(window, extensions):
     if filename != "":
         if QtCore.QFileInfo(filename).suffix() != "html":
             filename+=".html"
-        with open(filename,"w") as newfile:
+        with open(filename,"w", encoding="utf-8") as newfile:
             newfile.write(mdToHtml(mdtext,extensions))
 
 

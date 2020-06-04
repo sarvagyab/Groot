@@ -92,7 +92,7 @@ def addNote(item,_plainTextEdit,window):
     deets = treeHandling.itemVal(item)
     randomString = datetime.datetime.now().strftime("%d%m%Y%H%M%S")
     path = "./Application/notes/" 
-    filename = randomString + ".txt"
+    filename = randomString
 
     # create notes folder if not exists
     if(not os.path.exists(path)):

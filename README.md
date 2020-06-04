@@ -1,5 +1,5 @@
 # Groot--Markdown_Note_Management_System
-Groot is a free, open source, markdown note management system developed with PySide2. It can handle a large no of documents, organized in notebooks and sub-notebooks. The notes are searchable with regex. Groot has been inspired from another great open source note management system made with Electron, [Joplin](https://github.com/laurent22/joplin).
+<img width="64" src="https://raw.githubusercontent.com/Lincoln2000/Groot--Markdown_Note_Management_System/master/Application/Icons/App Icon/groot_256.png" align="left" />Groot is a free, open source, markdown note management system developed with PySide2. It can handle a large no of documents, organized in notebooks and sub-notebooks. The notes are searchable with regex. Groot has been inspired from another great open source note management system made with Electron, [Joplin](https://github.com/laurent22/joplin).
 
 Credit for Icons Set - <a target="_blank" href="https://all-free-download.com/free-icon/download/mono-icon-set-icons-pack_120933.html">Free Mono Icon Set</a> by <a target="_blank" href="https://gentleface.com">gentleface</a>
 
