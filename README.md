@@ -29,7 +29,7 @@ There are three ways to install Groot -
  
  ### Markdown
  
- The text written in the Editor(left) is rendered in realtime in the Markdown Viewer(right). The experience can be enhanced with the use of plugins available in settings. Note Links are also available for cross linking in notes. For more info, have a look at [Markdown Guide](https://github.com/Lincoln2000/Groot--Markdown_Note_Management_System/blob/master/Markdown%20Guide.md)
+ The text written in the Editor(left) is rendered in realtime in the Markdown Viewer(right). The experience can be enhanced with the use of plugins available in settings. Note Links are also available for cross linking in notes.
  
  ### Importing and Exporting
  
