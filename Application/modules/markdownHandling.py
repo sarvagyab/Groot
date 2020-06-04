@@ -24,12 +24,17 @@ from Application.modules.noteHandling import readText
 from Application.modules.encryptNote import AEScipher
 
 def scrolling(oneBar,twoBar,searchBar):
+    # note it's not perfect because qt has a problem such that when typing at the last line
+    # the scroll automatically remains at the bottom which is good
+    # but it's value does not get updated according the new size of scrollbar 
+    # which breaks the synchronous scrolling until scrollbar is moved manually
+    # which updates the values
     if(not searchBar.hasFocus()):
         Max = oneBar.maximum() 
         x = 0
         if(Max != 0):
             x = (oneBar.value()*twoBar.maximum())/Max
-        if oneBar.signalsBlocked(): return
+        if twoBar.signalsBlocked(): return
         oneBar.blockSignals(True)
         twoBar.setValue(x)
         oneBar.blockSignals(False)
