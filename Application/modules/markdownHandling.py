@@ -574,7 +574,7 @@ def importMD(item):
 
     # Creating file in our app
     randomString = datetime.datetime.now().strftime("%d%m%Y%H%M%S")
-    path = "./notes/" + randomString + ".txt"
+    path = "./Application/notes/" + randomString
     shutil.copyfile(filename,path)
 
     # Encrypt file
