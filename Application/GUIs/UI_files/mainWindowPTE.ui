@@ -33,20 +33,21 @@
    <string notr="true"> QScrollBar:vertical {
      background: #32CC99;
      width: 15px;
-     margin: 22px 0 22px 0;
+     margin: 22px 0px 22px 0px;
  }
  QScrollBar::handle:vertical {
      background: gray;
      min-height: 40px;
  }
-  QScrollBar:horizontal {
+
+ QScrollBar:horizontal {
      background: #32CC99;
-     width: 15px;
-     margin: 22px 0 22px 0;
+     height: 15px;
+     margin: 0px 22px 0px 22px;
  }
  QScrollBar::handle:horizontal {
      background: gray;
-     min-height: 40px;
+     min-width: 40px;
  }
  </string>
   </property>

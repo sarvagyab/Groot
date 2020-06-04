@@ -37,20 +37,21 @@ class Ui_Groot(object):
         Groot.setStyleSheet(u" QScrollBar:vertical {\n"
 "     background: #32CC99;\n"
 "     width: 15px;\n"
-"     margin: 22px 0 22px 0;\n"
+"     margin: 22px 0px 22px 0px;\n"
 " }\n"
 " QScrollBar::handle:vertical {\n"
 "     background: gray;\n"
 "     min-height: 40px;\n"
 " }\n"
-"  QScrollBar:horizontal {\n"
+"\n"
+" QScrollBar:horizontal {\n"
 "     background: #32CC99;\n"
-"     width: 15px;\n"
-"     margin: 22px 0 22px 0;\n"
+"     height: 15px;\n"
+"     margin: 0px 22px 0px 22px;\n"
 " }\n"
 " QScrollBar::handle:horizontal {\n"
 "     background: gray;\n"
-"     min-height: 40px;\n"
+"     min-width: 40px;\n"
 " }\n"
 " ")
         self.actionNotes_Tree = QAction(Groot)
@@ -1092,7 +1093,6 @@ class Ui_Groot(object):
         self.menuView.addAction(self.actionLight_Theme)
         self.menuHelp.addAction(self.actionAbout)
         self.menuHelp.addAction(self.actionReport_a_bug)
-        self.menuHelp.addAction(self.actionRequest)
 
         self.retranslateUi(Groot)
 
