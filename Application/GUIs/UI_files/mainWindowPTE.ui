@@ -1704,7 +1704,6 @@ QPushButton:pressed{
     <property name="title">
      <string>View</string>
     </property>
-    <addaction name="actionDark_Theme"/>
     <addaction name="actionLight_Theme"/>
    </widget>
    <widget class="QMenu" name="menuHelp">

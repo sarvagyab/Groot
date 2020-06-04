@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'mainWindowPTE.ui'
 ##
-## Created by: Qt User Interface Compiler version 5.14.2
+## Created by: Qt User Interface Compiler version 5.15.0
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -1089,7 +1089,6 @@ class Ui_Groot(object):
         self.menuInsert.addAction(self.actionImage)
         self.menuInsert.addAction(self.actionCode)
         self.menuInsert.addAction(self.actionDate_and_Time)
-        self.menuView.addAction(self.actionDark_Theme)
         self.menuView.addAction(self.actionLight_Theme)
         self.menuHelp.addAction(self.actionAbout)
         self.menuHelp.addAction(self.actionReport_a_bug)
