@@ -90,8 +90,7 @@ def _markdownViewer(self):
     self.timer.timeout.connect(mdView)
     self.ui.plainTextEdit.textChanged.connect(self._delayChecker)
 
-
-
+# Search in note
 
 def searchInNote(self):
     self.ui.searchBar.textChanged.connect(lambda: searchText(self.ui))
@@ -112,6 +111,7 @@ def findPrevOccurance(self):
 
 def _finishedSearch(self):
     self.ui.searchBar.editingFinished.connect(lambda :finishedSearch(self.ui.errorLabel))
+
 
 def reloadUI(self):
     loadfileStructure(self.ui.treeWidget)
@@ -289,7 +289,6 @@ def loadSettings(self):
     self.appearConnections(self.ui_settingDialog)
 
 
-
 def analyzeLink(self,url):
     text = url.toString()
     # print(text)
@@ -326,7 +325,6 @@ def searchForFilename(self,randomString):
         print(path)
         return path
 
-
 def handleLinks(self,url):
     # print(url.scheme())
     if url.scheme() == "ftp" or url.scheme() == "http" or url.scheme() == "https":
@@ -361,6 +359,8 @@ def handleLinks(self,url):
 
             self.ui.treeWidget.setCurrentItem(getToItem)
 
+# Encryption Decryption
+
 def encryptNote(self):
     self.passwdE = password(self)
     self.ui.encryptionButton.clicked.connect(lambda: self.passwdE.openPasswordDialog())
@@ -377,57 +377,8 @@ def openDecryptionWithMenu(self):
     self.passwdD = password(self)
     self.passwdD.openVerifyPasswordDialog()
 
-def changeUserPasswordSettings(self,settings):
-    settings.okPushButton.clicked.connect(lambda : self.changeUserPassword(settings))
-    # clear = lambda line1,line2,line3: line1.setText("") line2.setText("") line3.setText("") 
-    settings.cancelPushButton.clicked.connect(
-            lambda : (settings.oldPasswordLineEdit.setText(""),
-            settings.passwordLineEdit_2.setText(""),
-            settings.RepasswordLineEdit.setText("")))
-
-
-def changeUserPassword(self,settings):
-    if(verifyUser(settings.oldPasswordLineEdit.text(),settings.Errortext_2)):
-        username = self.userInfo[0]
-        newPass = settings.passwordLineEdit_2.text()
-        h_pass, salt = setUsernameAndPassword(username,newPass,settings.RepasswordLineEdit.text(),dialog = None,store = False)
-        changePassword(h_pass,salt)
-        settings.oldPasswordLineEdit.setText("")
-        settings.passwordLineEdit_2.setText("")
-        settings.RepasswordLineEdit.setText("")
-        settings.Errortext_2.setText("<html><head/><body><p><span style=\" color:#00ff00;\">New password set</span></p></body></html>")
-
-def openLoginDialog(self):
-    loginDialog = QtWidgets.QDialog()
-    loginDialog.setParent(self,QtCore.Qt.Window)
-    ui_loginDialog = Ui_loginDialog()
-    ui_loginDialog.setupUi(loginDialog)
-    ui_loginDialog.buttonBox.button(QtWidgets.QDialogButtonBox.Ok).clicked.connect(lambda: verifyUser(ui_loginDialog.passwordLineEdit.text(),ui_loginDialog.Errortext,loginDialog))
-    ui_loginDialog.buttonBox.button(QtWidgets.QDialogButtonBox.Cancel).clicked.connect(lambda:self.closeDialogAndMainWindow(loginDialog))
-    ui_loginDialog.passwordLineEdit.setFocus()
-    if(loginDialog.exec() == 0):
-        self.closeDialogAndMainWindow(loginDialog)
-
 def encryptionSettings(self,settings):
     settings.okPushButton_2.clicked.connect(lambda :self._verifyUser(settings))
-
-def _verifyUser(self,settings):
-    if(verifyUser(settings.enterPwd.text(),settings.Errortext)):
-        settings.enterPwd.setText("")
-        settings.encryptAllChoice.setEnabled(True)
-        settings.Errortext.setText("")
-        settings.encryptAllChoice.stateChanged.connect(lambda:self.encryptAllChoiceChanged(settings.encryptAllChoice))
-
-def encryptAllChoiceChanged(self,checkbox):
-    if(checkbox.isChecked()):
-        if(self.encryptAll == False):
-            print("Store encrypted notes")
-            _encryptDecryptAllNotes(self,True)
-    else:
-        if(self.encryptAll == True):
-            print("Store decrypted notes")
-            _encryptDecryptAllNotes(self,False)
-        
 
 def encryptAlldecryptedNotes(self):
     notes = getItem(list(self.decryptedNotes.keys()))
@@ -452,6 +403,17 @@ def changeEncryptionPassword(self):
     pwd = password(self)
     pwd.openChangeEncryptionPasswordDialog()
 
+def encryptAllChoiceChanged(self,checkbox):
+    if(checkbox.isChecked()):
+        if(self.encryptAll == False):
+            print("Store encrypted notes")
+            _encryptDecryptAllNotes(self,True)
+    else:
+        if(self.encryptAll == True):
+            print("Store decrypted notes")
+            _encryptDecryptAllNotes(self,False)
+        
+# User login
 
 def openFirstLoginDialog(self):
     firstLoginDialog = QtWidgets.QDialog()
@@ -463,11 +425,65 @@ def openFirstLoginDialog(self):
     if(firstLoginDialog.exec() == 0):
         self.closeDialogAndMainWindow(firstLoginDialog)
 
+def openLoginDialog(self):
+    loginDialog = QtWidgets.QDialog()
+    loginDialog.setParent(self,QtCore.Qt.Window)
+    ui_loginDialog = Ui_loginDialog()
+    ui_loginDialog.setupUi(loginDialog)
+    ui_loginDialog.buttonBox.button(QtWidgets.QDialogButtonBox.Ok).clicked.connect(lambda: verifyUser(ui_loginDialog.passwordLineEdit.text(),ui_loginDialog.Errortext,loginDialog))
+    ui_loginDialog.buttonBox.button(QtWidgets.QDialogButtonBox.Cancel).clicked.connect(lambda:self.closeDialogAndMainWindow(loginDialog))
+    ui_loginDialog.passwordLineEdit.setFocus()
+    if(loginDialog.exec() == 0):
+        self.closeDialogAndMainWindow(loginDialog)
+
+def _verifyUser(self,settings):
+    if(verifyUser(settings.enterPwd.text(),settings.Errortext)):
+        settings.enterPwd.setText("")
+        settings.encryptAllChoice.setEnabled(True)
+        settings.Errortext.setText("")
+        settings.encryptAllChoice.stateChanged.connect(lambda:self.encryptAllChoiceChanged(settings.encryptAllChoice))
+
+# change user password
+
+def changeUserPasswordSettings(self,settings):
+    settings.okPushButton.clicked.connect(lambda : self.changeUserPassword(settings))
+    # clear = lambda line1,line2,line3: line1.setText("") line2.setText("") line3.setText("") 
+    settings.cancelPushButton.clicked.connect(
+            lambda : (settings.oldPasswordLineEdit.setText(""),
+            settings.passwordLineEdit_2.setText(""),
+            settings.RepasswordLineEdit.setText("")))
+
+def changeUserPassword(self,settings):
+    if(verifyUser(settings.oldPasswordLineEdit.text(),settings.Errortext_2)):
+        username = self.userInfo[0]
+        newPass = settings.passwordLineEdit_2.text()
+        h_pass, salt = setUsernameAndPassword(username,newPass,settings.RepasswordLineEdit.text(),dialog = None,store = False)
+        changePassword(h_pass,salt)
+        settings.oldPasswordLineEdit.setText("")
+        settings.passwordLineEdit_2.setText("")
+        settings.RepasswordLineEdit.setText("")
+        settings.Errortext_2.setText("<html><head/><body><p><span style=\" color:#00ff00;\">New password set</span></p></body></html>")
+
+# print note
+
 def printingNote(self):
     Print(self.ui)
 
 def _printPreview(self):
     printPreview(self.ui)
+
+# about us 
+def aboutUs(self):
+    txt= "<html><head/><body><p align=\"center\"> \
+    Groot Markdown Note Management System</p> \
+    <p align=\"left\">MIT License</p> \
+    <p align=\"left\"><a name=\"LC2\"/>Copyright (c) 2020 Sarvagya Bansal</p>\
+    <p align=\"left\">Groot 1.0.1</p>\
+    <p align=\"left\">revision:7d351e (master)</p>"
+    dialog = QtWidgets.QMessageBox(self) 
+    dialog.setWindowTitle("Groot") 
+    dialog.setText(txt)
+    dialog.exec_()
 
 def closeDialogAndMainWindow(self,dialog = None):
     if(dialog != None):

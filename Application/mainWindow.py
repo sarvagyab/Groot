@@ -146,6 +146,11 @@ class Window(QtWidgets.QMainWindow):
         self.ui.actionMD.triggered.connect(self._importMD)
         importer.triggered.connect(lambda: importMD(self.ui.treeWidget.currentItem()))
 
+        # about us
+        self.ui.actionAbout.triggered.connect(self.aboutUs)
+
+        # Report a bug
+        self.ui.actionReport_a_bug.triggered.connect(lambda: QtGui.QDesktopServices.openUrl("https://github.com/Lincoln2000/Groot--Markdown_Note_Management_System/issues"))
 
         # Load tree structure and notes
         self.reloadUI()
@@ -246,3 +251,4 @@ Window.openEncryptionWithMenu = Application.mainWindowFunctions.openEncryptionWi
 Window.openDecryptionWithMenu = Application.mainWindowFunctions.openDecryptionWithMenu
 Window.printingNote = Application.mainWindowFunctions.printingNote
 Window._printPreview = Application.mainWindowFunctions._printPreview
+Window.aboutUs = Application.mainWindowFunctions.aboutUs

@@ -26,7 +26,7 @@
    <string>Groot</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../../../resource.qrc">
+   <iconset>
     <normaloff>:/icons/Icons/App Icon/groot_48.png</normaloff>:/icons/Icons/App Icon/groot_48.png</iconset>
   </property>
   <property name="styleSheet">
@@ -36,6 +36,15 @@
      margin: 22px 0 22px 0;
  }
  QScrollBar::handle:vertical {
+     background: gray;
+     min-height: 40px;
+ }
+  QScrollBar:horizontal {
+     background: #32CC99;
+     width: 15px;
+     margin: 22px 0 22px 0;
+ }
+ QScrollBar::handle:horizontal {
      background: gray;
      min-height: 40px;
  }
@@ -201,7 +210,7 @@ QPushButton:pressed{
                 <string>New Note</string>
                </property>
                <property name="icon">
-                <iconset resource="../../../resource.qrc">
+                <iconset>
                  <normaloff>:/icons/Icons/16x16/doc_new.png</normaloff>:/icons/Icons/16x16/doc_new.png</iconset>
                </property>
               </widget>
@@ -247,7 +256,7 @@ QPushButton:pressed{
                 <string>New notebook</string>
                </property>
                <property name="icon">
-                <iconset resource="../../../resource.qrc">
+                <iconset>
                  <normaloff>:/icons/Icons/16x16/folder_plus.png</normaloff>:/icons/Icons/16x16/folder_plus.png</iconset>
                </property>
               </widget>
@@ -293,7 +302,7 @@ QPushButton:pressed{
                 <string>New sub-notebook</string>
                </property>
                <property name="icon">
-                <iconset resource="../../../resource.qrc">
+                <iconset>
                  <normaloff>:/icons/Icons/16x16/subfolder.png</normaloff>:/icons/Icons/16x16/subfolder.png</iconset>
                </property>
               </widget>
@@ -545,7 +554,7 @@ QPushButton:pressed{
                 <string/>
                </property>
                <property name="icon">
-                <iconset resource="../../../resource.qrc">
+                <iconset>
                  <normaloff>:/icons/Icons/32x32/arrow_top.png</normaloff>:/icons/Icons/32x32/arrow_top.png</iconset>
                </property>
                <property name="iconSize">
@@ -588,7 +597,7 @@ QPushButton:pressed{
                 <string/>
                </property>
                <property name="icon">
-                <iconset resource="../../../resource.qrc">
+                <iconset>
                  <normaloff>:/icons/Icons/32x32/arrow_bottom.png</normaloff>:/icons/Icons/32x32/arrow_bottom.png</iconset>
                </property>
                <property name="iconSize">
@@ -694,11 +703,11 @@ QPushButton:pressed{
 }
 
 QTreeView::item:selected{
-	color : rgb(53, 113, 242);
+	color : rgb(106, 240, 252);
 }
 
 QTreeView::item:selected:active{
-	color : rgb(53, 113, 242);
+	color : rgb(106, 240, 252);
 }
 
 QTreeView::item:selected:!active {
@@ -783,7 +792,7 @@ QTreeView::branch:open:has-children:has-siblings  {
               </font>
              </property>
              <property name="icon">
-              <iconset resource="../../../resource.qrc">
+              <iconset>
                <normaloff>:/icons/Icons/16x16/folder_light.png</normaloff>:/icons/Icons/16x16/folder_light.png</iconset>
              </property>
             </item>
@@ -797,7 +806,7 @@ QTreeView::branch:open:has-children:has-siblings  {
               </font>
              </property>
              <property name="icon">
-              <iconset resource="../../../resource.qrc">
+              <iconset>
                <normaloff>:/icons/Icons/16x16/folder_light.png</normaloff>:/icons/Icons/16x16/folder_light.png</iconset>
              </property>
             </item>
@@ -1006,7 +1015,7 @@ QPushButton:pressed{
                       <string/>
                      </property>
                      <property name="icon">
-                      <iconset resource="../../../resource.qrc">
+                      <iconset>
                        <normaloff>:/icons/Icons/32x32/font_bold.png</normaloff>:/icons/Icons/32x32/font_bold.png</iconset>
                      </property>
                      <property name="iconSize">
@@ -1035,7 +1044,7 @@ QPushButton:pressed{
                       <string/>
                      </property>
                      <property name="icon">
-                      <iconset resource="../../../resource.qrc">
+                      <iconset>
                        <normaloff>:/icons/Icons/32x32/font_italic.png</normaloff>:/icons/Icons/32x32/font_italic.png</iconset>
                      </property>
                      <property name="iconSize">
@@ -1061,7 +1070,7 @@ QPushButton:pressed{
                       <string/>
                      </property>
                      <property name="icon">
-                      <iconset resource="../../../resource.qrc">
+                      <iconset>
                        <normaloff>:/icons/Icons/32x32/numbered_list.png</normaloff>:/icons/Icons/32x32/numbered_list.png</iconset>
                      </property>
                      <property name="iconSize">
@@ -1090,7 +1099,7 @@ QPushButton:pressed{
                       <string/>
                      </property>
                      <property name="icon">
-                      <iconset resource="../../../resource.qrc">
+                      <iconset>
                        <normaloff>:/icons/Icons/32x32/bullets.png</normaloff>:/icons/Icons/32x32/bullets.png</iconset>
                      </property>
                      <property name="iconSize">
@@ -1156,7 +1165,7 @@ QPushButton:pressed{
                       <string/>
                      </property>
                      <property name="icon">
-                      <iconset resource="../../../resource.qrc">
+                      <iconset>
                        <normaloff>:/icons/Icons/32x32/link.png</normaloff>:/icons/Icons/32x32/link.png</iconset>
                      </property>
                      <property name="iconSize">
@@ -1182,7 +1191,7 @@ QPushButton:pressed{
                       <string/>
                      </property>
                      <property name="icon">
-                      <iconset resource="../../../resource.qrc">
+                      <iconset>
                        <normaloff>:/icons/Icons/32x32/image.png</normaloff>:/icons/Icons/32x32/image.png</iconset>
                      </property>
                      <property name="iconSize">
@@ -1208,7 +1217,7 @@ QPushButton:pressed{
                       <string/>
                      </property>
                      <property name="icon">
-                      <iconset resource="../../../resource.qrc">
+                      <iconset>
                        <normaloff>:/icons/Icons/32x32/brackets.png</normaloff>:/icons/Icons/32x32/brackets.png</iconset>
                      </property>
                      <property name="iconSize">
@@ -1271,7 +1280,7 @@ QPushButton:pressed{
                       <string/>
                      </property>
                      <property name="icon">
-                      <iconset resource="../../../resource.qrc">
+                      <iconset>
                        <normaloff>:/icons/Icons/32x32/encrypt.png</normaloff>:/icons/Icons/32x32/encrypt.png</iconset>
                      </property>
                      <property name="iconSize">
@@ -1303,7 +1312,7 @@ QPushButton:pressed{
                       <string/>
                      </property>
                      <property name="icon">
-                      <iconset resource="../../../resource.qrc">
+                      <iconset>
                        <normaloff>:/icons/Icons/32x32/decrypt.png</normaloff>:/icons/Icons/32x32/decrypt.png</iconset>
                      </property>
                      <property name="iconSize">
@@ -1330,7 +1339,7 @@ QPushButton:pressed{
                       <string/>
                      </property>
                      <property name="icon">
-                      <iconset resource="../../../resource.qrc">
+                      <iconset>
                        <normaloff>:/icons/Icons/32x32/cancel.png</normaloff>:/icons/Icons/32x32/cancel.png</iconset>
                      </property>
                      <property name="iconSize">
@@ -1353,7 +1362,7 @@ QPushButton:pressed{
                       <string/>
                      </property>
                      <property name="icon">
-                      <iconset resource="../../../resource.qrc">
+                      <iconset>
                        <normaloff>:/icons/Icons/32x32/key.png</normaloff>:/icons/Icons/32x32/key.png</iconset>
                      </property>
                      <property name="iconSize">
@@ -1398,7 +1407,7 @@ QPushButton:pressed{
                    <string/>
                   </property>
                   <property name="icon">
-                   <iconset resource="../../../resource.qrc">
+                   <iconset>
                     <normaloff>:/icons/Icons/32x32/clock.png</normaloff>:/icons/Icons/32x32/clock.png</iconset>
                   </property>
                   <property name="iconSize">
@@ -1588,7 +1597,7 @@ QPushButton:pressed{
       <string>Import</string>
      </property>
      <property name="icon">
-      <iconset resource="../../../resource.qrc">
+      <iconset>
        <normaloff>:/icons/Icons/16x16/doc_import.png</normaloff>:/icons/Icons/16x16/doc_import.png</iconset>
      </property>
      <addaction name="actionMD"/>
@@ -1604,7 +1613,7 @@ QPushButton:pressed{
       <string>Export</string>
      </property>
      <property name="icon">
-      <iconset resource="../../../resource.qrc">
+      <iconset>
        <normaloff>:/icons/Icons/16x16/doc_export.png</normaloff>:/icons/Icons/16x16/doc_export.png</iconset>
      </property>
      <addaction name="actionMD_2"/>
@@ -1639,7 +1648,7 @@ QPushButton:pressed{
       <string>Format</string>
      </property>
      <property name="icon">
-      <iconset resource="../../../resource.qrc">
+      <iconset>
        <normaloff>:/icons/Icons/16x16/edit.png</normaloff>:/icons/Icons/16x16/edit.png</iconset>
      </property>
      <addaction name="actionBold"/>
@@ -1656,7 +1665,7 @@ QPushButton:pressed{
       <string>Encryption</string>
      </property>
      <property name="icon">
-      <iconset resource="../../../resource.qrc">
+      <iconset>
        <normaloff>:/icons/Icons/16x16/encrypt.png</normaloff>:/icons/Icons/16x16/encrypt.png</iconset>
      </property>
      <addaction name="actionEncrypt_note"/>
@@ -1703,7 +1712,6 @@ QPushButton:pressed{
     </property>
     <addaction name="actionAbout"/>
     <addaction name="actionReport_a_bug"/>
-    <addaction name="actionRequest"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuEdit"/>
@@ -1717,7 +1725,7 @@ QPushButton:pressed{
   </action>
   <action name="actionPrint">
    <property name="icon">
-    <iconset resource="../../../resource.qrc">
+    <iconset>
      <normaloff>:/icons/Icons/16x16/print.png</normaloff>:/icons/Icons/16x16/print.png</iconset>
    </property>
    <property name="text">
@@ -1735,7 +1743,7 @@ QPushButton:pressed{
   </action>
   <action name="actionQuit">
    <property name="icon">
-    <iconset resource="../../../resource.qrc">
+    <iconset>
      <normaloff>:/icons/Icons/16x16/quit.png</normaloff>:/icons/Icons/16x16/quit.png</iconset>
    </property>
    <property name="text">
@@ -1756,7 +1764,7 @@ QPushButton:pressed{
   </action>
   <action name="actionMD">
    <property name="icon">
-    <iconset resource="../../../resource.qrc">
+    <iconset>
      <normaloff>:/icons/Icons/Format Icons/16x16/markdown.png</normaloff>:/icons/Icons/Format Icons/16x16/markdown.png</iconset>
    </property>
    <property name="text">
@@ -1765,7 +1773,7 @@ QPushButton:pressed{
   </action>
   <action name="actionMD_2">
    <property name="icon">
-    <iconset resource="../../../resource.qrc">
+    <iconset>
      <normaloff>:/icons/Icons/Format Icons/16x16/markdown.png</normaloff>:/icons/Icons/Format Icons/16x16/markdown.png</iconset>
    </property>
    <property name="text">
@@ -1774,7 +1782,7 @@ QPushButton:pressed{
   </action>
   <action name="actionHTML">
    <property name="icon">
-    <iconset resource="../../../resource.qrc">
+    <iconset>
      <normaloff>:/icons/Icons/Format Icons/16x16/html.png</normaloff>:/icons/Icons/Format Icons/16x16/html.png</iconset>
    </property>
    <property name="text">
@@ -1783,7 +1791,7 @@ QPushButton:pressed{
   </action>
   <action name="actionPDF">
    <property name="icon">
-    <iconset resource="../../../resource.qrc">
+    <iconset>
      <normaloff>:/icons/Icons/Format Icons/16x16/pdf.png</normaloff>:/icons/Icons/Format Icons/16x16/pdf.png</iconset>
    </property>
    <property name="text">
@@ -1792,7 +1800,7 @@ QPushButton:pressed{
   </action>
   <action name="actionSearch_in_Current_Note">
    <property name="icon">
-    <iconset resource="../../../resource.qrc">
+    <iconset>
      <normaloff>:/icons/Icons/16x16/find.png</normaloff>:/icons/Icons/16x16/find.png</iconset>
    </property>
    <property name="text">
@@ -1820,7 +1828,7 @@ QPushButton:pressed{
   </action>
   <action name="actionAbout">
    <property name="icon">
-    <iconset resource="../../../resource.qrc">
+    <iconset>
      <normaloff>:/icons/Icons/16x16/info.png</normaloff>:/icons/Icons/16x16/info.png</iconset>
    </property>
    <property name="text">
@@ -1846,7 +1854,7 @@ QPushButton:pressed{
   </action>
   <action name="actionDark_Theme">
    <property name="icon">
-    <iconset resource="../../../resource.qrc">
+    <iconset>
      <normaloff>:/icons/Icons/16x16/sun_dark.png</normaloff>:/icons/Icons/16x16/sun_dark.png</iconset>
    </property>
    <property name="text">
@@ -1861,7 +1869,7 @@ QPushButton:pressed{
   </action>
   <action name="actionLight_Theme">
    <property name="icon">
-    <iconset resource="../../../resource.qrc">
+    <iconset>
      <normaloff>:/icons/Icons/16x16/sun_light.png</normaloff>:/icons/Icons/16x16/sun_light.png</iconset>
    </property>
    <property name="text">
@@ -1876,7 +1884,7 @@ QPushButton:pressed{
   </action>
   <action name="actionBold">
    <property name="icon">
-    <iconset resource="../../../resource.qrc">
+    <iconset>
      <normaloff>:/icons/Icons/16x16/bold.png</normaloff>:/icons/Icons/16x16/bold.png</iconset>
    </property>
    <property name="text">
@@ -1891,7 +1899,7 @@ QPushButton:pressed{
   </action>
   <action name="actionItalic">
    <property name="icon">
-    <iconset resource="../../../resource.qrc">
+    <iconset>
      <normaloff>:/icons/Icons/16x16/italic.png</normaloff>:/icons/Icons/16x16/italic.png</iconset>
    </property>
    <property name="text">
@@ -1906,7 +1914,7 @@ QPushButton:pressed{
   </action>
   <action name="actionUnderline">
    <property name="icon">
-    <iconset resource="../../../resource.qrc">
+    <iconset>
      <normaloff>:/icons/Icons/16x16/underline.png</normaloff>:/icons/Icons/16x16/underline.png</iconset>
    </property>
    <property name="text">
@@ -1918,7 +1926,7 @@ QPushButton:pressed{
   </action>
   <action name="actionNew_note">
    <property name="icon">
-    <iconset resource="../../../resource.qrc">
+    <iconset>
      <normaloff>:/icons/Icons/16x16/doc_new.png</normaloff>:/icons/Icons/16x16/doc_new.png</iconset>
    </property>
    <property name="text">
@@ -1939,7 +1947,7 @@ QPushButton:pressed{
   </action>
   <action name="actionNew_sub_notebook">
    <property name="icon">
-    <iconset resource="../../../resource.qrc">
+    <iconset>
      <normaloff>:/icons/Icons/16x16/subfolder.png</normaloff>:/icons/Icons/16x16/subfolder.png</iconset>
    </property>
    <property name="text">
@@ -1960,7 +1968,7 @@ QPushButton:pressed{
   </action>
   <action name="actionNew_notebook">
    <property name="icon">
-    <iconset resource="../../../resource.qrc">
+    <iconset>
      <normaloff>:/icons/Icons/16x16/folder_plus.png</normaloff>:/icons/Icons/16x16/folder_plus.png</iconset>
    </property>
    <property name="text">
@@ -1981,7 +1989,7 @@ QPushButton:pressed{
   </action>
   <action name="actionEncrypt_note">
    <property name="icon">
-    <iconset resource="../../../resource.qrc">
+    <iconset>
      <normaloff>:/icons/Icons/16x16/encrypt.png</normaloff>:/icons/Icons/16x16/encrypt.png</iconset>
    </property>
    <property name="text">
@@ -1990,7 +1998,7 @@ QPushButton:pressed{
   </action>
   <action name="actionDecrypt_note">
    <property name="icon">
-    <iconset resource="../../../resource.qrc">
+    <iconset>
      <normaloff>:/icons/Icons/16x16/decrypt.png</normaloff>:/icons/Icons/16x16/decrypt.png</iconset>
    </property>
    <property name="text">
@@ -1999,7 +2007,7 @@ QPushButton:pressed{
   </action>
   <action name="actionSettings">
    <property name="icon">
-    <iconset resource="../../../resource.qrc">
+    <iconset>
      <normaloff>:/icons/Icons/16x16/settings.png</normaloff>:/icons/Icons/16x16/settings.png</iconset>
    </property>
    <property name="text">
@@ -2020,7 +2028,7 @@ QPushButton:pressed{
   </action>
   <action name="actionSave_note">
    <property name="icon">
-    <iconset resource="../../../resource.qrc">
+    <iconset>
      <normaloff>:/icons/Icons/16x16/save.png</normaloff>:/icons/Icons/16x16/save.png</iconset>
    </property>
    <property name="text">
@@ -2037,7 +2045,7 @@ QPushButton:pressed{
   </action>
   <action name="actionReport_a_bug">
    <property name="icon">
-    <iconset resource="../../../resource.qrc">
+    <iconset>
      <normaloff>:/icons/Icons/16x16/bug.png</normaloff>:/icons/Icons/16x16/bug.png</iconset>
    </property>
    <property name="text">
@@ -2052,7 +2060,7 @@ QPushButton:pressed{
   </action>
   <action name="actionLink">
    <property name="icon">
-    <iconset resource="../../../resource.qrc">
+    <iconset>
      <normaloff>:/icons/Icons/16x16/link.png</normaloff>:/icons/Icons/16x16/link.png</iconset>
    </property>
    <property name="text">
@@ -2072,7 +2080,7 @@ QPushButton:pressed{
   </action>
   <action name="actionImage">
    <property name="icon">
-    <iconset resource="../../../resource.qrc">
+    <iconset>
      <normaloff>:/icons/Icons/16x16/image.png</normaloff>:/icons/Icons/16x16/image.png</iconset>
    </property>
    <property name="text">
@@ -2109,7 +2117,7 @@ QPushButton:pressed{
   </action>
   <action name="actionPrint_preview">
    <property name="icon">
-    <iconset resource="../../../resource.qrc">
+    <iconset>
      <normaloff>:/icons/Icons/16x16/preview.png</normaloff>:/icons/Icons/16x16/preview.png</iconset>
    </property>
    <property name="text">
