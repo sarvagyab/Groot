@@ -126,7 +126,7 @@ def showDeleteDialog(self):
     icon = QtGui.QIcon()
     icon.addPixmap(QtGui.QPixmap(":/icons/Icons/32x32/delete_note.png"),QtGui.QIcon.Normal,QtGui.QIcon.Off)
     msg.setWindowIcon(icon)
-    msg.setWindowTitle("Delete Confirmation?")
+    msg.setWindowTitle("Delete Confirmation")
     msg.setText("Are you sure you want to delete " + self.ui.treeWidget.currentItem().text(0) + " ?")
     msg.setIcon(QtWidgets.QMessageBox.Information)
     msg.setStandardButtons(QtWidgets.QMessageBox.Ok | QtWidgets.QMessageBox.Cancel)
@@ -308,7 +308,7 @@ def searchInBooks(self, randomString, diction):
     return []
 
 def searchForFilename(self,randomString):
-    with open("./fileStructure.json","r") as nt:
+    with open("./Application/fileStructure.json","r") as nt:
         files = json.load(nt)
     print("searching in uncategorized")
     keys = [*files["Uncategorized"]]
@@ -325,10 +325,26 @@ def searchForFilename(self,randomString):
         print(path)
         return path
 
+def askConfirmationExternalWebsite(url):
+    msg = QtWidgets.QMessageBox()
+    # msg.setParent(self,QtCore.Qt.Window)
+    icon = QtGui.QIcon()
+    icon.addPixmap(QtGui.QPixmap(":/icons/Icons/32x32/display.png"),QtGui.QIcon.Normal,QtGui.QIcon.Off)
+    msg.setWindowIcon(icon)
+    msg.setWindowTitle("External Link Confirmation")
+    msg.setText("This link will be opened in your default browser. Are you sure you want to do this?")
+    msg.setIcon(QtWidgets.QMessageBox.Information)
+    msg.setStandardButtons(QtWidgets.QMessageBox.Ok | QtWidgets.QMessageBox.Cancel)
+    msg.button(QtWidgets.QMessageBox.Ok).clicked.connect(lambda: QtGui.QDesktopServices.openUrl(url))
+    msg.exec_()
+
 def handleLinks(self,url):
     # print(url.scheme())
     if url.scheme() == "ftp" or url.scheme() == "http" or url.scheme() == "https":
-        QtGui.QDesktopServices.openUrl(url)
+        askConfirmationExternalWebsite(url)
+    elif url.hasFragment():
+        self.ui.mdViewer.setSource(url)
+        return
     else:
         print("Analyzing")
         check = self.analyzeLink(url)
