@@ -22,7 +22,7 @@ class Window(QtWidgets.QMainWindow):
         self.ui.setupUi(self)
         
         self.mdExtensions = []  # Extensions for changing behaviour of markdown viewer
-        self.mdExtensionsConfigs = {} # Extensions configurations for changing the behaviour of extensions in markdown
+        self.mdExtensionsConfigs = {"subscript":False,"delete":False,"smart_delete":False} # Extensions configurations for changing the behaviour of extensions in markdown
 
         
         if(self.checkFirstLogin()):
@@ -124,8 +124,8 @@ class Window(QtWidgets.QMainWindow):
         exportMD.triggered.connect(lambda: exportAsMarkdown(self))
 
         # export as Html connection
-        self.ui.actionHTML.triggered.connect(lambda: exportAsHtml(self,self.mdExtensions))
-        exportHTML.triggered.connect(lambda: exportAsHtml(self,self.mdExtensions))
+        self.ui.actionHTML.triggered.connect(lambda: exportAsHtml(self,self.mdExtensions,self.mdExtensionsConfigs))
+        exportHTML.triggered.connect(lambda: exportAsHtml(self,self.mdExtensions,self.mdExtensionsConfigs))
        
         # search in note connection
         self.ui.actionSearch_in_Current_Note.triggered.connect(lambda:self.ui.searchBar.setFocus())

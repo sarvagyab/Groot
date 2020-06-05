@@ -84,7 +84,7 @@ def _noteLoader(self):
     self.ui.treeWidget.itemSelectionChanged.connect(changeNote)
 
 def _markdownViewer(self):
-    mdView = lambda: viewInMarkdown(self.ui.plainTextEdit,self.mdExtensions,self.ui.mdViewer,self.ui.searchBar)
+    mdView = lambda: viewInMarkdown(self.ui.plainTextEdit,self.mdExtensions,self.mdExtensionsConfigs,self.ui.mdViewer,self.ui.searchBar)
     sFile = lambda: currentNote.saveFile(self.ui.plainTextEdit.toPlainText(),self.encryptAll)
     self.timer.timeout.connect(sFile)
     self.timer.timeout.connect(mdView)

@@ -68,7 +68,7 @@ def printfirstvisibleline(markdownview):
     startpos.select(QtGui.QTextCursor.LineUnderCursor)  
     return startpos.selectedText()
 
-def viewInMarkdown(ptedit,extensions,markdownView,searchBar):
+def viewInMarkdown(ptedit,extensions,configs,markdownView,searchBar):
 
     md = ptedit.toPlainText()
     currentPosition = ptedit.textCursor().position()
@@ -81,7 +81,7 @@ def viewInMarkdown(ptedit,extensions,markdownView,searchBar):
     # print("after counting - ")
     # printfirstvisibleline(markdownView)
 
-    html = mdToHtml(md, extensions)
+    html = mdToHtml(md, extensions,configs)
     markdownView.setHtml(html)
     imageResize(markdownView)
 
@@ -159,8 +159,8 @@ def imageResize(markdownView):
 
 
 
-def mdToHtml(md, _extensions):
-    html = markdown.markdown(md, extensions = [SaneListExtension(),TableExtension(),FencedCodeExtension()] + strToClassEXt(_extensions), extension_configs = {"pymdownx.tilde":{"subscript":False}})
+def mdToHtml(md, _extensions,configs):
+    html = markdown.markdown(md, extensions = [SaneListExtension(),TableExtension(),FencedCodeExtension(),DeleteSubExtension(**configs)] + strToClassEXt(_extensions))
     return html
 
 def strToClassEXt(extensions):
@@ -174,13 +174,11 @@ def strToClassEXt(extensions):
     if("md_in_html" in extensions):
         e_idx.append(MarkdownInHtmlExtension())
     if("pymdownx.caret" in extensions):
-        e_idx.append(InsertSupExtension())
+        e_idx.append(InsertSupExtension(smart_insert = False, insert = False))
     if("pymdownx.magiclink" in extensions):
         e_idx.append(MagiclinkExtension())
     if("pymdownx.smartsymbols" in extensions):
         e_idx.append(SmartSymbolsExtension())
-    if("pymdownx.tilde" in extensions):
-        e_idx.append(DeleteSubExtension())
     return e_idx
 
 
@@ -441,11 +439,9 @@ def pluginHandler(text,check,extensions, configs):
         ext = "pymdownx.caret"
         if check:
             plugSets["supExt"] = True
-            configs[ext] = {"smart_insert":False, "insert": False}
         else:
             plugSets["supExt"] = False
             extensions.remove(ext)
-            del configs[ext]
     elif text == "autolink":
         ext = "pymdownx.magiclink"
         if check:
@@ -462,45 +458,22 @@ def pluginHandler(text,check,extensions, configs):
             extensions.remove(ext)
     elif text == "strike":
         if check:
+            ext = ""
             plugSets["strikeExt"] = True
-            if "pymdownx.tilde" in extensions:
-                ext = ""
-                configs["pymdownx.tilde"]["smart_delete"] = True
-                configs["pymdownx.tilde"]["delete"] = True
-            else:
-                ext = "pymdownx.tilde"
-                configs["pymdownx.tilde"] = {}
-                configs["pymdownx.tilde"]["smart_delete"] = True
-                configs["pymdownx.tilde"]["delete"] = True
-                configs["pymdownx.tilde"]["subscript"] = False
+            configs["smart_delete"] = True
+            configs["delete"] = True
         else:
             plugSets["strikeExt"] = False
-            if configs["pymdownx.tilde"]["subscript"]:
-                configs["pymdownx.tilde"]["smart_delete"] = False
-                configs["pymdownx.tilde"]["delete"] = False
-            else:
-                extensions.remove("pymdownx.tilde")
-                del configs["pymdownx.tilde"]
-    
+            configs["smart_delete"] = False
+            configs["delete"] = False
     elif text == "subscript":
         if check:
+            ext = ""
             plugSets["subExt"] = True
-            if "pymdownx.tilde" in extensions:
-                ext = ""
-                configs["pymdownx.tilde"]["subscript"] = True
-            else:
-                ext = "pymdownx.tilde"
-                configs["pymdownx.tilde"] = {}
-                configs["pymdownx.tilde"]["smart_delete"] = False
-                configs["pymdownx.tilde"]["delete"] = False
-                configs["pymdownx.tilde"]["subscript"] = True
+            configs["subscript"] = True
         else:
             plugSets["subExt"] = False
-            if configs["pymdownx.tilde"]["delete"]:
-                configs["pymdownx.tilde"]["subscript"] = False
-            else:
-                extensions.remove("pymdownx.tilde")
-                del configs["pymdownx.tilde"]
+            configs["subscript"] = False
 
     location = "./Application/settings.json"
     with open(location,"w") as jsonfile:
@@ -548,7 +521,7 @@ def exportAsMarkdown(window):
             newfile.write(mdtext)
 
 
-def exportAsHtml(window, extensions):
+def exportAsHtml(window, extensions,configs):
     mdtext = window.ui.plainTextEdit.toPlainText()
     if ("encrypted" in currentNote._details) and currentNote._details["encrypted"] == "True":
         msg = QtWidgets.QMessageBox(QtWidgets.QMessageBox.Information,"Groot", "Cannot Export Encrypted Files",QtWidgets.QMessageBox.Ok)
@@ -563,7 +536,7 @@ def exportAsHtml(window, extensions):
         if QtCore.QFileInfo(filename).suffix() != "html":
             filename+=".html"
         with open(filename,"w", encoding="utf-8") as newfile:
-            newfile.write(mdToHtml(mdtext,extensions))
+            newfile.write(mdToHtml(mdtext,extensions,configs))
 
 
 def importMD(item):
