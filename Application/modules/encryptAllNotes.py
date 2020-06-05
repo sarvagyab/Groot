@@ -51,7 +51,7 @@ def _encryptDecryptAllNotes(window,encrypt):
         decryptAllNotes(uPass,notes,EDict)
     window.encryptAll = encrypt
     userInfo[3] = str(encrypt) 
-    Application.modules.userLogin.storeUserInfoInFile('./User',"login",userInfo)
+    Application.modules.userLogin.storeUserInfoInFile('./Application/User',"login",userInfo)
 
 def openDialog(note):
     ui_pv = Ui_verifyPasswordDialog()
