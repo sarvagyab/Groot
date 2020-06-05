@@ -9,14 +9,14 @@ from Application.modules.noteHandling import loadNote
 def getJsonTree():
     location = "./Application/fileStructure.json"
     structDict  = ""
-    with open(location,"r") as jsonfile:
+    with open(location,"r",encoding='utf8') as jsonfile:
         structDict = json.load(jsonfile)
     return structDict
 
 
 def saveUpdatedJson(structDict):
     location = "./Application/fileStructure.json"
-    with open(location,"w") as jsonfile:
+    with open(location,"w",encoding='utf8') as jsonfile:
         json.dump(structDict,jsonfile)
 
 

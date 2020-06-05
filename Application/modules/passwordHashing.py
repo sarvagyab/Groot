@@ -63,6 +63,4 @@ def removeFromDList(main_window,currentNote):
 
 def addInEList(main_window,currentNote,password):
     randomstring= currentNote._details['randomString']
-    if(not randomstring in main_window.encryptedInSession.keys()):
-        main_window.encryptedInSession[randomstring] = password
-    
+    main_window.encryptedInSession[randomstring] = password

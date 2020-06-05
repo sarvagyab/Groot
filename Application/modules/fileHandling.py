@@ -17,7 +17,7 @@ class FILE():
         self._item = item
         self._name = item.text(0)
         self._details = details
-        self._file = open(self._details["path"],"r+")
+        self._file = open(self._details["path"],"r+",encoding='utf8')
         self._open = True
 
     def closeFile(self):
