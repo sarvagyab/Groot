@@ -176,11 +176,12 @@ def readText(path):
     return stream.readAll()
 
 def writeText(path,txt,encrypted = False):
-    cnt = "w"
     if(encrypted == True):
-        cnt = "wb"
-    with open(path,cnt) as file:
-        file.write(txt)
+        with open(path,"wb") as file:
+            file.write(txt)
+    else:
+        with open(path,"w",encoding = 'utf8') as file:
+            file.write(txt)
     
 def isEncryped():
     if('encrypted' in currentNote._details and currentNote._details['encrypted'] == 'True'):
