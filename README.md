@@ -29,7 +29,7 @@ There are three ways to install Groot -
  
  ### Markdown
  
- The text written in the Editor(left) is rendered in realtime in the Markdown Viewer(right). The experience can be enhanced with the use of plugins available in settings. Note Links are also available for cross linking in notes.
+ The text written in the Editor(left) is rendered in realtime in the Markdown Viewer(right). The experience can be enhanced with the use of plugins available in settings. Note Links are also available for cross linking in notes. For more info, have a look at [Markdown Guide](https://github.com/Lincoln2000/Groot--Markdown_Note_Management_System/blob/master/Markdown%20Guide.md)
  
  ### Importing and Exporting
  
@@ -37,6 +37,11 @@ There are three ways to install Groot -
  Notes can be exported in markdown(.md), HTML and PDF formats.
  
  ### Security
+ 
+ Security has been the top priority in designing Groot. The app asks you for a password on its first run. By default, this password is used to encrypt all your notes on your storage. This is done so that the decrypted notes never exist on your storage. Only when you open a note, it is decrypted in RAM edited there and encrypted before putting back on the storage. This ensures total security from anyone accessing the notes outside the app even if someone gets access to your storage device. You can opt out of this encryption of all notes, but it is not recommended to do so.  
+ The app requires a password for starting irrespective of encrypting notes or not for security purposes.  
+For additional security, notes can be encrypted within the app too. If a note is encrypted inside the app, the note would require a password for decrypting before you can read it and make changes to it. Even if the user forgets to encrypt the note again, unless the user has removed the password, the app will encrypt all the decrypted automatically upon closing. This provides an extra layer of security to your notes.  
+At all stages, standard AES encryption is used for top of the line security and protection.
  
  ### Subnotebooks
  
