@@ -68,7 +68,6 @@ class Ui_settingDialog(object):
         self.tabAppearance.setObjectName(u"tabAppearance")
         self.themeChoice = QComboBox(self.tabAppearance)
         self.themeChoice.addItem("")
-        self.themeChoice.addItem("")
         self.themeChoice.setObjectName(u"themeChoice")
         self.themeChoice.setGeometry(QRect(10, 70, 161, 31))
         font1 = QFont()
@@ -315,6 +314,7 @@ class Ui_settingDialog(object):
 
         self.closeMe.setDefault(True)
         self.settings.setCurrentIndex(0)
+        self.themeChoice.setCurrentIndex(0)
 
 
         QMetaObject.connectSlotsByName(settingDialog)
@@ -324,7 +324,6 @@ class Ui_settingDialog(object):
         settingDialog.setWindowTitle(QCoreApplication.translate("settingDialog", u"Settings", None))
         self.closeMe.setText(QCoreApplication.translate("settingDialog", u"OK", None))
         self.themeChoice.setItemText(0, QCoreApplication.translate("settingDialog", u"Light Theme", None))
-        self.themeChoice.setItemText(1, QCoreApplication.translate("settingDialog", u"Dark Theme", None))
 
         self.themeLabel.setText(QCoreApplication.translate("settingDialog", u"Theme:", None))
         self.fontSizeLabel.setText(QCoreApplication.translate("settingDialog", u"Font Size:", None))

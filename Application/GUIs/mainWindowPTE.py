@@ -1089,7 +1089,6 @@ class Ui_Groot(object):
         self.menuInsert.addAction(self.actionImage)
         self.menuInsert.addAction(self.actionCode)
         self.menuInsert.addAction(self.actionDate_and_Time)
-        self.menuView.addAction(self.actionDark_Theme)
         self.menuView.addAction(self.actionLight_Theme)
         self.menuHelp.addAction(self.actionAbout)
         self.menuHelp.addAction(self.actionReport_a_bug)

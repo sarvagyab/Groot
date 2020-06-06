@@ -14,7 +14,7 @@
    <string>Settings</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../../../resource.qrc">
+   <iconset>
     <normaloff>:/icons/Icons/16x16/settings.png</normaloff>:/icons/Icons/16x16/settings.png</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout">
@@ -130,14 +130,12 @@
          <pointsize>13</pointsize>
         </font>
        </property>
+       <property name="currentIndex">
+        <number>0</number>
+       </property>
        <item>
         <property name="text">
          <string>Light Theme</string>
-        </property>
-       </item>
-       <item>
-        <property name="text">
-         <string>Dark Theme</string>
         </property>
        </item>
       </widget>
