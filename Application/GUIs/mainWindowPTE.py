@@ -678,7 +678,7 @@ class Ui_Groot(object):
         self.editingButtons.setStyleSheet(u"QFrame{\n"
 "	border-right:1px solid black;\n"
 "	padding:0px;\n"
-"	margin:0px;\n"
+"	margin:1px;\n"
 "	background-color:white;\n"
 "}\n"
 "\n"
@@ -709,7 +709,7 @@ class Ui_Groot(object):
         self.formatFrame.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_7 = QHBoxLayout(self.formatFrame)
         self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
-        self.horizontalLayout_7.setContentsMargins(3, 0, 4, 0)
+        self.horizontalLayout_7.setContentsMargins(3, 1, 4, 1)
         self.boldButton = QPushButton(self.formatFrame)
         self.boldButton.setObjectName(u"boldButton")
         sizePolicy4 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Fixed)
@@ -787,7 +787,7 @@ class Ui_Groot(object):
         self.insertFrame.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_8 = QHBoxLayout(self.insertFrame)
         self.horizontalLayout_8.setObjectName(u"horizontalLayout_8")
-        self.horizontalLayout_8.setContentsMargins(3, 0, 3, 0)
+        self.horizontalLayout_8.setContentsMargins(3, 1, 3, 1)
         self.link = QPushButton(self.insertFrame)
         self.link.setObjectName(u"link")
         self.link.setCursor(QCursor(Qt.PointingHandCursor))
@@ -846,7 +846,7 @@ class Ui_Groot(object):
         self.horizontalLayout_9 = QHBoxLayout(self.encryptionFrame)
         self.horizontalLayout_9.setSpacing(6)
         self.horizontalLayout_9.setObjectName(u"horizontalLayout_9")
-        self.horizontalLayout_9.setContentsMargins(3, 0, 3, 0)
+        self.horizontalLayout_9.setContentsMargins(3, 1, 3, 1)
         self.encryptionButton = QPushButton(self.encryptionFrame)
         self.encryptionButton.setObjectName(u"encryptionButton")
         self.encryptionButton.setCursor(QCursor(Qt.PointingHandCursor))
@@ -916,7 +916,7 @@ class Ui_Groot(object):
         self.dateTimeFrame.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_13 = QHBoxLayout(self.dateTimeFrame)
         self.horizontalLayout_13.setObjectName(u"horizontalLayout_13")
-        self.horizontalLayout_13.setContentsMargins(3, 0, 3, 0)
+        self.horizontalLayout_13.setContentsMargins(3, 1, 3, 1)
         self.dateTime = QPushButton(self.dateTimeFrame)
         self.dateTime.setObjectName(u"dateTime")
         self.dateTime.setCursor(QCursor(Qt.PointingHandCursor))
@@ -957,9 +957,12 @@ class Ui_Groot(object):
         font8.setWeight(50)
         self.plainTextEdit.setFont(font8)
         self.plainTextEdit.setStyleSheet(u"QPlainTextEdit{\n"
+"	padding: 4px;\n"
 "    background-color: white;\n"
 "	border-top:1px solid black;\n"
 "	border-right:1px solid black;\n"
+"	selection-background-color:rgb(69, 103, 255);\n"
+"	selection-color:	white;\n"
 "}\n"
 "\n"
 "\n"
@@ -982,8 +985,11 @@ class Ui_Groot(object):
         font9.setPointSize(17)
         self.mdViewer.setFont(font9)
         self.mdViewer.setStyleSheet(u"QTextBrowser{\n"
+"	padding:4px;\n"
 "	border-top:1px solid black;\n"
 "    background-color: white;\n"
+"	selection-background-color:rgb(69, 103, 255);\n"
+"	selection-color:	white;\n"
 "}\n"
 "")
         self.mdViewer.setFrameShape(QFrame.NoFrame)
