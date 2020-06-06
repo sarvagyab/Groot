@@ -504,12 +504,14 @@ def _printPreview(self):
 
 # about us 
 def aboutUs(self):
-    txt= "<html><head/><body><p align=\"center\"> \
-    Groot Markdown Note Management System</p> \
-    <p align=\"left\">MIT License</p> \
-    <p align=\"left\"><a name=\"LC2\"/>Copyright (c) 2020 Sarvagya Bansal</p>\
-    <p align=\"left\">Groot 1.0.1</p>\
-    <p align=\"left\">revision:7d351e (master)</p>"
+    txt= "<html><head/><body><p align=\"left\"> \
+    Groot Markdown Note Management System<br><br> \
+    MIT License<br> \
+    Copyright (c) 2020 Sarvagya Bansal, Hitanshu Mehta<br>\
+    Groot 1.0.1<br><br>\
+    Developers:<br>\
+    Sarvagya: <a href = 'https://github.com/Lincoln2000/Groot--Markdown_Note_Management_System'>https://github.com/Lincoln2000/Groot--Markdown_Note_Management_System</a></p> \
+    Hitanshu: <a href = 'https://github.com/hitanshu-mehta/Groot--Markdown_Note_Management_System'>https://github.com/hitanshu-mehta/Groot--Markdown_Note_Management_System</a></p>"
     dialog = QtWidgets.QMessageBox(self) 
     dialog.setWindowTitle("Groot") 
     dialog.setText(txt)
