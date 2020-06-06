@@ -1481,8 +1481,6 @@ QPushButton:pressed{
     background-color: white;
 	border-top:1px solid black;
 	border-right:1px solid black;
-	selection-background-color:rgba(243, 255, 77,0.4);
-	selection-color:	darkblue;
 }
 
 
@@ -1532,8 +1530,6 @@ QPushButton:pressed{
                    <string notr="true">QTextBrowser{
 	border-top:1px solid black;
     background-color: white;
-	selection-background-color:rgba(243, 255, 77,0.4);
-	selection-color:darkblue;
 }
 </string>
                   </property>

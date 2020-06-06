@@ -960,8 +960,6 @@ class Ui_Groot(object):
 "    background-color: white;\n"
 "	border-top:1px solid black;\n"
 "	border-right:1px solid black;\n"
-"	selection-background-color:rgba(243, 255, 77,0.4);\n"
-"	selection-color:	darkblue;\n"
 "}\n"
 "\n"
 "\n"
@@ -986,8 +984,6 @@ class Ui_Groot(object):
         self.mdViewer.setStyleSheet(u"QTextBrowser{\n"
 "	border-top:1px solid black;\n"
 "    background-color: white;\n"
-"	selection-background-color:rgba(243, 255, 77,0.4);\n"
-"	selection-color:darkblue;\n"
 "}\n"
 "")
         self.mdViewer.setFrameShape(QFrame.NoFrame)
