@@ -20,7 +20,6 @@ def traverseDict(Dict,notes):
                 resDict = Dict['expanded']
                 resDict['name'] = Dict['name']
                 notes.append(resDict)
-
         if(len(Dict.keys())> 0):
             for key in Dict.keys():  
                 traverseDict(Dict[key],notes)
@@ -34,15 +33,23 @@ def getAllNotes():
 def getEncNoteList():
     EDict = {}
     notes = getAllNotes()
+    success = []
     for note in notes:
         if('encrypted' in note): 
             if(note['encrypted'] == 'True'):
-                openDialog(note)
+                openDialog(note,success)
+                if len(success) > 0:
+                    encNotes.clear()
+                    return (False,False)
     EDict = copy.deepcopy(encNotes)
+    encNotes.clear()
     return (EDict,notes)
 
 def _encryptDecryptAllNotes(window,encrypt):
     EDict,notes = getEncNoteList()
+    if(EDict == False):
+        encNotes.clear()
+        return False
     userInfo = Application.modules.userLogin.readUserInfo()
     uPass = userInfo[1]
     if(encrypt == True):
@@ -52,16 +59,22 @@ def _encryptDecryptAllNotes(window,encrypt):
     window.encryptAll = encrypt
     userInfo[3] = str(encrypt) 
     Application.modules.userLogin.storeUserInfoInFile('./Application/User',"login",userInfo)
+    return True
 
-def openDialog(note):
+def openDialog(note,success):
     ui_pv = Ui_verifyPasswordDialog()
     verifyDialog = QtWidgets.QDialog()
     ui_pv.setupUi(verifyDialog)
-    # signal slots 
-    ui_pv.buttonBox.button(QtWidgets.QDialogButtonBox.Cancel).clicked.connect(lambda:verifyDialog.close())
-    ui_pv.buttonBox.button(QtWidgets.QDialogButtonBox.Ok).clicked.connect(lambda: fetchPassAndVerify(ui_pv,verifyDialog,note))
     ui_pv.title.setText("<b>"+note['name']+"</b>")
-    verifyDialog.exec()
+    # signal slots
+    ui_pv.buttonBox.button(QtWidgets.QDialogButtonBox.Cancel).clicked.connect(lambda: closeAndReturn(verifyDialog,success))
+    ui_pv.buttonBox.button(QtWidgets.QDialogButtonBox.Ok).clicked.connect(lambda: fetchPassAndVerify(ui_pv,verifyDialog,note))
+    verifyDialog.exec_()
+
+def closeAndReturn(verifyDialog,success):
+    verifyDialog.close()
+    success.append(0)
+
 
 def fetchPassAndVerify(ui,dialog,note):
     enteredPass = ui.passwordLineEdit.text()
@@ -76,7 +89,6 @@ def fetchPassAndVerify(ui,dialog,note):
     else:
         MSG ="<html><head/><body><p><span style=\" color:#ff0000;\">Incorrect Password</span></p></body></html>"
         ui.Errortext.setText(MSG)
-        return
 
 
 def decryptAllNotes(userPass,notes,encNotes):

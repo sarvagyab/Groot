@@ -25,5 +25,3 @@ class DoesNotContainDigitError(Error):
     def __init__(self,msg):
         self.message = msg
         print(msg)
-
-        

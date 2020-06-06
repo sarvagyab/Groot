@@ -38,6 +38,7 @@ class password(object):
                 self.passDialog = QtWidgets.QDialog()
                 self.passDialog.setParent(self.main_Window,QtCore.Qt.Window)
                 self.ui_p.setupUi(self.passDialog)
+                self.ui_p.passwordLineEdit.setFocus()
                 self.passDialog.show()
                 if(self.currentNote._open == True):
                     print("Trying to encrypt {}".format(self.currentFileName))

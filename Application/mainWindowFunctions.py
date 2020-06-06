@@ -11,7 +11,7 @@ from Application.modules.treeHandling import loadfileStructure, noteLoader,itemV
 from Application.modules.noteHandling import deleteNote, renameNote, addNote, addNotebook,readText,writeText
 from Application.modules.GUIchanges import createNotebook, createSubNotebook, createNote, rename, dlt, importer, exportPDF, exportHTML, exportMD, copyLink
 from Application.modules.searchInNote import searchText,finishedSearch
-from Application.modules.userLogin import setUsernameAndPassword,verifyUser,changePassword
+from Application.modules.userLogin import setUsernameAndPassword,verifyUser,changePassword,storeUserInfoInFile
 from Application.modules.encryptAllNotes import _encryptDecryptAllNotes
 from Application.modules.encryptNote import AEScipher
 from Application.modules.printNote import Print,printPreview
@@ -420,14 +420,20 @@ def changeEncryptionPassword(self):
     pwd.openChangeEncryptionPasswordDialog()
 
 def encryptAllChoiceChanged(self,checkbox):
+    print("state changed")
     if(checkbox.isChecked()):
         if(self.encryptAll == False):
             print("Store encrypted notes")
-            _encryptDecryptAllNotes(self,True)
+            if(_encryptDecryptAllNotes(self,True) == False):
+                print("here")
+                checkbox.toggle()
+                self.encryptAll = False
     else:
         if(self.encryptAll == True):
             print("Store decrypted notes")
-            _encryptDecryptAllNotes(self,False)
+            if(_encryptDecryptAllNotes(self,False) == False):
+                self.encryptAll = True
+                checkbox.toggle()
         
 # User login
 
@@ -457,7 +463,7 @@ def _verifyUser(self,settings):
         settings.enterPwd.setText("")
         settings.encryptAllChoice.setEnabled(True)
         settings.Errortext.setText("")
-        settings.encryptAllChoice.stateChanged.connect(lambda:self.encryptAllChoiceChanged(settings.encryptAllChoice))
+        settings.encryptAllChoice.clicked.connect(lambda:self.encryptAllChoiceChanged(settings.encryptAllChoice))
 
 # change user password
 
@@ -470,15 +476,23 @@ def changeUserPasswordSettings(self,settings):
             settings.RepasswordLineEdit.setText("")))
 
 def changeUserPassword(self,settings):
-    if(verifyUser(settings.oldPasswordLineEdit.text(),settings.Errortext_2)):
+    oldP = settings.oldPasswordLineEdit.text()
+    if(verifyUser(oldP,settings.Errortext_2)):
         username = self.userInfo[0]
         newPass = settings.passwordLineEdit_2.text()
+        if(newPass == ''):
+            settings.Errortext_2.setText("<html><head/><body><p><span style=\" color:#ff0000;\">Cannot left New Password field empty</span></p></body></html>")
+            return
         h_pass, salt = setUsernameAndPassword(username,newPass,settings.RepasswordLineEdit.text(),dialog = None,store = False)
-        changePassword(h_pass,salt)
-        settings.oldPasswordLineEdit.setText("")
-        settings.passwordLineEdit_2.setText("")
-        settings.RepasswordLineEdit.setText("")
-        settings.Errortext_2.setText("<html><head/><body><p><span style=\" color:#00ff00;\">New password set</span></p></body></html>")
+        if(changePassword(h_pass,salt)):
+            settings.oldPasswordLineEdit.setText("")
+            settings.passwordLineEdit_2.setText("")
+            settings.RepasswordLineEdit.setText("")
+            settings.Errortext_2.setText("<html><head/><body><p><span style=\" color:#00ff00;\">New password set</span></p></body></html>")
+        else:
+            storeUserInfoInFile('./Application/User',"login",self.userInfo)
+            settings.Errortext_2.setText("<html><head/><body><p><span style=\" color:#ff0000;\">Failed to set new password</span></p></body></html>")
+
 
 # print note
 

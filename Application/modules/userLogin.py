@@ -19,7 +19,7 @@ def setUsernameAndPassword(username,pas,rpas,dialog = None,store = True):
 def storeUserInfoInFile(path,filename,userInfo):
     if(not os.path.exists(path)):
         os.makedirs(path)
-    with open(os.path.join(path,filename + ".txt"),"w") as store_file:
+    with open(os.path.join(path,filename + ".txt"),"w",encoding='utf8') as store_file:
         txt = ''
         for info in userInfo:
             txt += info + '\n'     
@@ -61,14 +61,19 @@ def isValidPassword(pass1,pass2):
 
 def changePassword(h_pass,salt):
     EncDict,notes = Application.modules.encryptAllNotes.getEncNoteList()
+    if(EncDict == False):
+        print("here")
+        return False
     userInfo = readUserInfo()
     oldPass = userInfo[1]
+    print(EncDict)
     if(userInfo[3] == 'True'):
         Application.modules.encryptAllNotes.decryptAllNotes(oldPass,notes,EncDict) # decrypt all notes using old password
         Application.modules.encryptAllNotes.encryptAllNotes(h_pass,notes,EncDict) # encrypt all notes using new password
     userInfo[1] = h_pass
     userInfo[2] = salt
     storeUserInfoInFile('./Application/User',"login",userInfo) # store new pass
+    return True
 
 
 def arePasswordSame(pass1,pass2):
