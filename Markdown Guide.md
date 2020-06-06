@@ -52,7 +52,7 @@ Combined emphasis with **asterisks and _underscores_**.
 Emphasis, aka italics, with *asterisks* or _underscores_.
 
 Strong emphasis, aka bold, with **asterisks** or __underscores__.
-d
+
 Combined emphasis with **asterisks and _underscores_**.
 
 ---
@@ -100,30 +100,24 @@ Combined emphasis with **asterisks and _underscores_**.
 There are two ways to create links.
 
 ```markdown
-[I'm an inline-style link](https://www.google.com)
+[I'm an inline-style link](https://www.duckduckgo.com)
 
-[I'm an inline-style link with title](https://www.google.com "Google's Homepage")
-
-[You can use numbers for reference-style link definitions][1]
-
-URLs and URLs in angle brackets will automatically get turned into links in the preview. 
-http://www.example.com or <http://www.example.com>
-
-[1]: https://www.qownnotes.org
-```
-
-[I'm an inline-style link](https://www.google.com)
-
-[I'm an inline-style link with title](https://www.google.com "Google's Homepage")
+[I'm an inline-style link with title](https://www.duckduckgo.com "DuckDuckGo's Homepage")
 
 [You can use numbers for reference-style link definitions][1]
 
 URLs in angle brackets will automatically get turned into links in the preview. 
-http://www.example.com or <http://www.example.com>
+<https://privacytools.io>
+```
+
+[I'm an inline-style link](https://www.duckduckgo.com)
+
+[I'm an inline-style link with title](https://www.duckduckgo.com "DuckDuckGo's Homepage")
+
+URLs in angle brackets will automatically get turned into links in the preview. 
+<https://www.privacytools.io>
 
 If the "Automatically Detect Links Extension" is checked, URLs without angular brackets will also be detected
-
-[1]: https://www.qownnotes.org
 
 ---
 ## Inline code and code blocks
@@ -294,6 +288,15 @@ Footnotes[^1] have a label[^@#$%] and the footnote's content.
 ```
 
 - **Enable Definition Lists**
+
+```markdown
+Apple
+:   Pomaceous fruit of plants of the genus Malus in
+    the family Rosaceae. 
+
+Orange
+:   The fruit of an evergreen tree of the genus Citrus.
+```
 
 Apple
 :   Pomaceous fruit of plants of the genus Malus in
