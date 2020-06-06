@@ -53,6 +53,28 @@ class Ui_Groot(object):
 "     background: gray;\n"
 "     min-width: 40px;\n"
 " }\n"
+"\n"
+"QMenu::item:selected {\n"
+"    background-color:rgba(69, 103, 255,0.1);\n"
+"	border:1px solid rgb(69, 103, 255);\n"
+"} \n"
+"\n"
+"QMenu::separator {\n"
+"    height: 1px;\n"
+"    background: dark gray;\n"
+"    margin-left: 10px;\n"
+"    margin-right: 5px;\n"
+"}\n"
+"\n"
+"QMenuBar::item:selected {\n"
+"   background-color:rgba(69, 103, 255,0.1);\n"
+"   border:1px solid rgb(69, 103, 255);\n"
+"}\n"
+"\n"
+"QMenuBar::item:pressed {\n"
+"   background-color:rgba(69, 103, 255,0.1);\n"
+"   border:1px solid rgb(69, 103, 255);\n"
+"}\n"
 " ")
         self.actionNotes_Tree = QAction(Groot)
         self.actionNotes_Tree.setObjectName(u"actionNotes_Tree")
@@ -252,17 +274,7 @@ class Ui_Groot(object):
         font3.setFamily(u"Calibri")
         font3.setPointSize(8)
         self.buttonFrame.setFont(font3)
-        self.buttonFrame.setStyleSheet(u"QPushButton{\n"
-"	border:None;\n"
-"}\n"
-"\n"
-"QPushButton:hover{\n"
-"	background-color:rgba(211,211,211,0.5);\n"
-"}\n"
-"\n"
-"QPushButton:pressed{\n"
-"	border:1px solid blue;\n"
-"}")
+        self.buttonFrame.setStyleSheet(u"")
         self.buttonFrame.setFrameShape(QFrame.StyledPanel)
         self.buttonFrame.setFrameShadow(QFrame.Plain)
         self.horizontalLayout_12 = QHBoxLayout(self.buttonFrame)
@@ -284,9 +296,10 @@ class Ui_Groot(object):
 "	padding:4px 2px 4px 2px;\n"
 "}\n"
 "\n"
-"QPushButton:hover{\n"
-"	background-color:rgba(211,211,211,0.5);\n"
-"}\n"
+" QPushButton:hover{\n"
+"	background-color:rgba(69, 103, 255,0.1);\n"
+"	border:1px solid rgb(69, 103, 255);\n"
+" }\n"
 "\n"
 "QPushButton:pressed{\n"
 "	border:1px solid blue;\n"
@@ -307,9 +320,10 @@ class Ui_Groot(object):
 "	padding:4px 2px 4px 2px;\n"
 "}\n"
 "\n"
-"QPushButton:hover{\n"
-"	background-color:rgba(211,211,211,0.5);\n"
-"}\n"
+" QPushButton:hover{\n"
+"	background-color:rgba(69, 103, 255,0.1);\n"
+"	border:1px solid rgb(69, 103, 255);\n"
+" }\n"
 "\n"
 "QPushButton:pressed{\n"
 "	border:1px solid blue;\n"
@@ -330,9 +344,10 @@ class Ui_Groot(object):
 "	padding:4px 2px 4px 2px;\n"
 "}\n"
 "\n"
-"QPushButton:hover{\n"
-"	background-color:rgba(211,211,211,0.5);\n"
-"}\n"
+" QPushButton:hover{\n"
+"	background-color:rgba(69, 103, 255,0.1);\n"
+"	border:1px solid rgb(69, 103, 255);\n"
+" }\n"
 "\n"
 "QPushButton:pressed{\n"
 "	border:1px solid blue;\n"
@@ -373,7 +388,7 @@ class Ui_Groot(object):
 "}\n"
 "\n"
 "QLineEdit:focus{\n"
-"	border: 1px solid black;\n"
+"	border:1px solid rgb(69, 103, 255);\n"
 "}")
 
         self.horizontalLayout_11.addWidget(self.searchBar)
@@ -393,12 +408,13 @@ class Ui_Groot(object):
 "}\n"
 "\n"
 "QPushButton:checked{\n"
-"	background-color:rgba(211,211,211,0.4);\n"
+"	background-color:rgba(69, 103, 255,0.1);\n"
+"	border:1px solid rgb(69, 103, 255);\n"
 "}\n"
 "\n"
 "QPushButton:!checked:hover{\n"
-"	padding-top:1px;\n"
-"	padding-left:1px;\n"
+"	background-color:rgba(69, 103, 255,0.1);\n"
+"	border:1px solid rgb(69, 103, 255);\n"
 "}")
         self.wholeWord.setIconSize(QSize(31, 31))
         self.wholeWord.setCheckable(True)
@@ -415,12 +431,13 @@ class Ui_Groot(object):
 "}\n"
 "\n"
 "QPushButton:checked{\n"
-"	background-color:rgba(211,211,211,0.4);\n"
+"	background-color:rgba(69, 103, 255,0.1);\n"
+"	border:1px solid rgb(69, 103, 255);\n"
 "}\n"
 "\n"
 "QPushButton:!checked:hover{\n"
-"	padding-top:1px;\n"
-"	padding-left:1px;\n"
+"	background-color:rgba(69, 103, 255,0.1);\n"
+"	border:1px solid rgb(69, 103, 255);\n"
 "}")
         self.matchCase.setIconSize(QSize(31, 31))
         self.matchCase.setCheckable(True)
@@ -437,13 +454,14 @@ class Ui_Groot(object):
 "}\n"
 "\n"
 "QPushButton:checked{\n"
-"	background-color:rgba(211,211,211,0.4);\n"
+"	background-color:rgba(69, 103, 255,0.1);\n"
+"	border:1px solid rgb(69, 103, 255);\n"
 "}\n"
 "\n"
 "QPushButton:!checked:hover{\n"
-"	padding-top:1px;\n"
-"	padding-left:1px;\n"
-"}s")
+"	background-color:rgba(69, 103, 255,0.1);\n"
+"	border:1px solid rgb(69, 103, 255);\n"
+"}")
         self.regexButton.setIconSize(QSize(31, 31))
         self.regexButton.setCheckable(True)
 
@@ -456,22 +474,19 @@ class Ui_Groot(object):
         self.prevMatch.setObjectName(u"prevMatch")
         self.prevMatch.setCursor(QCursor(Qt.PointingHandCursor))
         self.prevMatch.setStyleSheet(u"QPushButton{\n"
-"	border:None;\n"
+"	border-style:None;\n"
 "	margin:0px;\n"
-"	padding:0px;\n"
+"	padding:6px 4px 6px 4px;\n"
 "}\n"
 "\n"
 "QPushButton:hover{\n"
-"	border-style:solid;\n"
-"	border-color:black;\n"
-"	background-origin:border-box;\n"
-"	padding-top: 3px;\n"
-"    padding-left: 4px;\n"
+"	background-color:rgba(69, 103, 255,0.1);\n"
+"	border:1px solid rgb(69, 103, 255);\n"
 "}\n"
 "\n"
 "QPushButton:pressed{\n"
-"	padding-top: 1px;\n"
-"	padding-left :1px;\n"
+"	background-color:rgba(69, 103, 255,0.1);\n"
+"	border:1px solid rgb(69, 103, 255);\n"
 "}")
         icon24 = QIcon()
         icon24.addFile(u":/icons/Icons/32x32/arrow_top.png", QSize(), QIcon.Normal, QIcon.Off)
@@ -484,22 +499,19 @@ class Ui_Groot(object):
         self.nextMatch.setObjectName(u"nextMatch")
         self.nextMatch.setCursor(QCursor(Qt.PointingHandCursor))
         self.nextMatch.setStyleSheet(u"QPushButton{\n"
-"	border:None;\n"
+"	border-style:None;\n"
 "	margin:0px;\n"
-"	padding:0px;\n"
+"	padding:6px 4px 6px 4px;\n"
 "}\n"
 "\n"
 "QPushButton:hover{\n"
-"	border-style:solid;\n"
-"	border-color:black;\n"
-"	background-origin:border-box;\n"
-"	padding-top: 3px;\n"
-"    padding-left: 4px;\n"
+"	background-color:rgba(69, 103, 255,0.1);\n"
+"	border:1px solid rgb(69, 103, 255);\n"
 "}\n"
 "\n"
 "QPushButton:pressed{\n"
-"	padding-top: 1px;\n"
-"	padding-left :1px;\n"
+"	background-color:rgba(69, 103, 255,0.1);\n"
+"	border:1px solid rgb(69, 103, 255);\n"
 "}")
         icon25 = QIcon()
         icon25.addFile(u":/icons/Icons/32x32/arrow_bottom.png", QSize(), QIcon.Normal, QIcon.Off)
@@ -664,28 +676,14 @@ class Ui_Groot(object):
         self.editingButtons.setLayoutDirection(Qt.LeftToRight)
         self.editingButtons.setAutoFillBackground(False)
         self.editingButtons.setStyleSheet(u"QFrame{\n"
-"	border-right:2px solid gray;\n"
+"	border-right:1px solid black;\n"
 "	padding:0px;\n"
 "	margin:0px;\n"
-"	background-color:white;	\n"
+"	background-color:white;\n"
 "}\n"
 "\n"
 "QPushButton{\n"
 "	border-style:None;\n"
-"	padding:3px;\n"
-"}\n"
-"\n"
-"QPushButton:hover{\n"
-"	border-style:solid;\n"
-"	border-color:black;\n"
-"	background-origin:border-box;\n"
-"	padding-top: 3px;\n"
-"    padding-left: 4px;\n"
-"}\n"
-"\n"
-"QPushButton:pressed{\n"
-"	padding-top: 1px;\n"
-"	padding-left :1px;\n"
 "}")
         self.horizontalLayout_3 = QHBoxLayout(self.editingButtons)
         self.horizontalLayout_3.setSpacing(2)
@@ -695,25 +693,23 @@ class Ui_Groot(object):
         self.formatFrame.setObjectName(u"formatFrame")
         self.formatFrame.setStyleSheet(u"QPushButton{\n"
 "	margin:0px;\n"
-"	padding:1px;\n"
+"	padding:6px 4px 6px 4px;\n"
 "}\n"
 "\n"
 "QPushButton:hover{\n"
-"	border-style:solid;\n"
-"	border-color:black;\n"
-"	background-origin:border-box;\n"
-"	padding-top: 3px;\n"
-"    padding-left: 4px;\n"
+"	background-color:rgba(69, 103, 255,0.1);\n"
+"	border:1px solid rgb(69, 103, 255);\n"
 "}\n"
 "\n"
 "QPushButton:pressed{\n"
-"	padding-top: 1px;\n"
-"	padding-left :1px;\n"
+"	background-color:rgba(69, 103, 255,0.1);\n"
+"	border:1px solid rgb(69, 103, 255);\n"
 "}")
         self.formatFrame.setFrameShape(QFrame.StyledPanel)
         self.formatFrame.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_7 = QHBoxLayout(self.formatFrame)
         self.horizontalLayout_7.setObjectName(u"horizontalLayout_7")
+        self.horizontalLayout_7.setContentsMargins(3, 0, 4, 0)
         self.boldButton = QPushButton(self.formatFrame)
         self.boldButton.setObjectName(u"boldButton")
         sizePolicy4 = QSizePolicy(QSizePolicy.Minimum, QSizePolicy.Fixed)
@@ -775,25 +771,23 @@ class Ui_Groot(object):
         self.insertFrame.setObjectName(u"insertFrame")
         self.insertFrame.setStyleSheet(u"QPushButton{\n"
 "	margin:0px;\n"
-"	padding:1px;\n"
+"	padding:6px 4px 6px 4px;\n"
 "}\n"
 "\n"
 "QPushButton:hover{\n"
-"	border-style:solid;\n"
-"	border-color:black;\n"
-"	background-origin:border-box;\n"
-"	padding-top: 3px;\n"
-"    padding-left: 4px;\n"
+"	background-color:rgba(69, 103, 255,0.1);\n"
+"	border:1px solid rgb(69, 103, 255);\n"
 "}\n"
 "\n"
 "QPushButton:pressed{\n"
-"	padding-top: 1px;\n"
-"	padding-left :1px;\n"
+"	background-color:rgba(69, 103, 255,0.1);\n"
+"	border:1px solid rgb(69, 103, 255);\n"
 "}")
         self.insertFrame.setFrameShape(QFrame.StyledPanel)
         self.insertFrame.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_8 = QHBoxLayout(self.insertFrame)
         self.horizontalLayout_8.setObjectName(u"horizontalLayout_8")
+        self.horizontalLayout_8.setContentsMargins(3, 0, 3, 0)
         self.link = QPushButton(self.insertFrame)
         self.link.setObjectName(u"link")
         self.link.setCursor(QCursor(Qt.PointingHandCursor))
@@ -834,20 +828,17 @@ class Ui_Groot(object):
         self.encryptionFrame.setObjectName(u"encryptionFrame")
         self.encryptionFrame.setStyleSheet(u"QPushButton{\n"
 "	margin:0px;\n"
-"	padding:1px;\n"
+"	padding:6px 4px 6px 4px;\n"
 "}\n"
 "\n"
 "QPushButton:hover{\n"
-"	border-style:solid;\n"
-"	border-color:black;\n"
-"	background-origin:border-box;\n"
-"	padding-top: 3px;\n"
-"    padding-left: 4px;\n"
+"	background-color:rgba(69, 103, 255,0.1);\n"
+"	border:1px solid rgb(69, 103, 255);\n"
 "}\n"
 "\n"
 "QPushButton:pressed{\n"
-"	padding-top: 1px;\n"
-"	padding-left :1px;\n"
+"	background-color:rgba(69, 103, 255,0.1);\n"
+"	border:1px solid rgb(69, 103, 255);\n"
 "}")
         self.encryptionFrame.setFrameShape(QFrame.StyledPanel)
         self.encryptionFrame.setFrameShadow(QFrame.Raised)
@@ -855,6 +846,7 @@ class Ui_Groot(object):
         self.horizontalLayout_9 = QHBoxLayout(self.encryptionFrame)
         self.horizontalLayout_9.setSpacing(6)
         self.horizontalLayout_9.setObjectName(u"horizontalLayout_9")
+        self.horizontalLayout_9.setContentsMargins(3, 0, 3, 0)
         self.encryptionButton = QPushButton(self.encryptionFrame)
         self.encryptionButton.setObjectName(u"encryptionButton")
         self.encryptionButton.setCursor(QCursor(Qt.PointingHandCursor))
@@ -904,32 +896,40 @@ class Ui_Groot(object):
 
         self.horizontalLayout_3.addWidget(self.encryptionFrame)
 
-        self.dateTime = QPushButton(self.editingButtons)
-        self.dateTime.setObjectName(u"dateTime")
-        self.dateTime.setCursor(QCursor(Qt.PointingHandCursor))
-        self.dateTime.setStyleSheet(u"QPushButton{\n"
+        self.dateTimeFrame = QFrame(self.editingButtons)
+        self.dateTimeFrame.setObjectName(u"dateTimeFrame")
+        self.dateTimeFrame.setStyleSheet(u"QPushButton{\n"
 "	margin:0px;\n"
-"	padding:1px;\n"
+"	padding:6px 4px 6px 4px;\n"
 "}\n"
 "\n"
 "QPushButton:hover{\n"
-"	border-style:solid;\n"
-"	border-color:black;\n"
-"	background-origin:border-box;\n"
-"	padding-top: 3px;\n"
-"    padding-left: 4px;\n"
+"	background-color:rgba(69, 103, 255,0.1);\n"
+"	border:1px solid rgb(69, 103, 255);\n"
 "}\n"
 "\n"
 "QPushButton:pressed{\n"
-"	padding-top: 1px;\n"
-"	padding-left :1px;\n"
+"	background-color:rgba(69, 103, 255,0.1);\n"
+"	border:1px solid rgb(69, 103, 255);\n"
 "}")
+        self.dateTimeFrame.setFrameShape(QFrame.StyledPanel)
+        self.dateTimeFrame.setFrameShadow(QFrame.Raised)
+        self.horizontalLayout_13 = QHBoxLayout(self.dateTimeFrame)
+        self.horizontalLayout_13.setObjectName(u"horizontalLayout_13")
+        self.horizontalLayout_13.setContentsMargins(3, 0, 3, 0)
+        self.dateTime = QPushButton(self.dateTimeFrame)
+        self.dateTime.setObjectName(u"dateTime")
+        self.dateTime.setCursor(QCursor(Qt.PointingHandCursor))
+        self.dateTime.setStyleSheet(u"")
         icon38 = QIcon()
         icon38.addFile(u":/icons/Icons/32x32/clock.png", QSize(), QIcon.Normal, QIcon.Off)
         self.dateTime.setIcon(icon38)
         self.dateTime.setIconSize(QSize(32, 32))
 
-        self.horizontalLayout_3.addWidget(self.dateTime)
+        self.horizontalLayout_13.addWidget(self.dateTime)
+
+
+        self.horizontalLayout_3.addWidget(self.dateTimeFrame)
 
         self.horizontalSpacer = QSpacerItem(20, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 

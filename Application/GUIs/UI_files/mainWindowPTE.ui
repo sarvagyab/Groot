@@ -49,6 +49,28 @@
      background: gray;
      min-width: 40px;
  }
+
+QMenu::item:selected {
+    background-color:rgba(69, 103, 255,0.1);
+	border:1px solid rgb(69, 103, 255);
+} 
+
+QMenu::separator {
+    height: 1px;
+    background: dark gray;
+    margin-left: 10px;
+    margin-right: 5px;
+}
+
+QMenuBar::item:selected {
+   background-color:rgba(69, 103, 255,0.1);
+   border:1px solid rgb(69, 103, 255);
+}
+
+QMenuBar::item:pressed {
+   background-color:rgba(69, 103, 255,0.1);
+   border:1px solid rgb(69, 103, 255);
+}
  </string>
   </property>
   <widget class="QWidget" name="centralwidget">
@@ -136,17 +158,7 @@
              </font>
             </property>
             <property name="styleSheet">
-             <string notr="true">QPushButton{
-	border:None;
-}
-
-QPushButton:hover{
-	background-color:rgba(211,211,211,0.5);
-}
-
-QPushButton:pressed{
-	border:1px solid blue;
-}</string>
+             <string notr="true"/>
             </property>
             <property name="frameShape">
              <enum>QFrame::StyledPanel</enum>
@@ -199,9 +211,10 @@ QPushButton:pressed{
 	padding:4px 2px 4px 2px;
 }
 
-QPushButton:hover{
-	background-color:rgba(211,211,211,0.5);
-}
+ QPushButton:hover{
+	background-color:rgba(69, 103, 255,0.1);
+	border:1px solid rgb(69, 103, 255);
+ }
 
 QPushButton:pressed{
 	border:1px solid blue;
@@ -245,9 +258,10 @@ QPushButton:pressed{
 	padding:4px 2px 4px 2px;
 }
 
-QPushButton:hover{
-	background-color:rgba(211,211,211,0.5);
-}
+ QPushButton:hover{
+	background-color:rgba(69, 103, 255,0.1);
+	border:1px solid rgb(69, 103, 255);
+ }
 
 QPushButton:pressed{
 	border:1px solid blue;
@@ -291,9 +305,10 @@ QPushButton:pressed{
 	padding:4px 2px 4px 2px;
 }
 
-QPushButton:hover{
-	background-color:rgba(211,211,211,0.5);
-}
+ QPushButton:hover{
+	background-color:rgba(69, 103, 255,0.1);
+	border:1px solid rgb(69, 103, 255);
+ }
 
 QPushButton:pressed{
 	border:1px solid blue;
@@ -382,7 +397,7 @@ QPushButton:pressed{
 }
 
 QLineEdit:focus{
-	border: 1px solid black;
+	border:1px solid rgb(69, 103, 255);
 }</string>
                   </property>
                   <property name="placeholderText">
@@ -415,12 +430,13 @@ QLineEdit:focus{
 }
 
 QPushButton:checked{
-	background-color:rgba(211,211,211,0.4);
+	background-color:rgba(69, 103, 255,0.1);
+	border:1px solid rgb(69, 103, 255);
 }
 
 QPushButton:!checked:hover{
-	padding-top:1px;
-	padding-left:1px;
+	background-color:rgba(69, 103, 255,0.1);
+	border:1px solid rgb(69, 103, 255);
 }</string>
                   </property>
                   <property name="text">
@@ -458,12 +474,13 @@ QPushButton:!checked:hover{
 }
 
 QPushButton:checked{
-	background-color:rgba(211,211,211,0.4);
+	background-color:rgba(69, 103, 255,0.1);
+	border:1px solid rgb(69, 103, 255);
 }
 
 QPushButton:!checked:hover{
-	padding-top:1px;
-	padding-left:1px;
+	background-color:rgba(69, 103, 255,0.1);
+	border:1px solid rgb(69, 103, 255);
 }</string>
                   </property>
                   <property name="text">
@@ -498,13 +515,14 @@ QPushButton:!checked:hover{
 }
 
 QPushButton:checked{
-	background-color:rgba(211,211,211,0.4);
+	background-color:rgba(69, 103, 255,0.1);
+	border:1px solid rgb(69, 103, 255);
 }
 
 QPushButton:!checked:hover{
-	padding-top:1px;
-	padding-left:1px;
-}s</string>
+	background-color:rgba(69, 103, 255,0.1);
+	border:1px solid rgb(69, 103, 255);
+}</string>
                   </property>
                   <property name="text">
                    <string>   Regex   </string>
@@ -533,22 +551,19 @@ QPushButton:!checked:hover{
                </property>
                <property name="styleSheet">
                 <string notr="true">QPushButton{
-	border:None;
+	border-style:None;
 	margin:0px;
-	padding:0px;
+	padding:6px 4px 6px 4px;
 }
 
 QPushButton:hover{
-	border-style:solid;
-	border-color:black;
-	background-origin:border-box;
-	padding-top: 3px;
-    padding-left: 4px;
+	background-color:rgba(69, 103, 255,0.1);
+	border:1px solid rgb(69, 103, 255);
 }
 
 QPushButton:pressed{
-	padding-top: 1px;
-	padding-left :1px;
+	background-color:rgba(69, 103, 255,0.1);
+	border:1px solid rgb(69, 103, 255);
 }</string>
                </property>
                <property name="text">
@@ -576,22 +591,19 @@ QPushButton:pressed{
                </property>
                <property name="styleSheet">
                 <string notr="true">QPushButton{
-	border:None;
+	border-style:None;
 	margin:0px;
-	padding:0px;
+	padding:6px 4px 6px 4px;
 }
 
 QPushButton:hover{
-	border-style:solid;
-	border-color:black;
-	background-origin:border-box;
-	padding-top: 3px;
-    padding-left: 4px;
+	background-color:rgba(69, 103, 255,0.1);
+	border:1px solid rgb(69, 103, 255);
 }
 
 QPushButton:pressed{
-	padding-top: 1px;
-	padding-left :1px;
+	background-color:rgba(69, 103, 255,0.1);
+	border:1px solid rgb(69, 103, 255);
 }</string>
                </property>
                <property name="text">
@@ -924,28 +936,14 @@ color:white;</string>
                </property>
                <property name="styleSheet">
                 <string notr="true">QFrame{
-	border-right:2px solid gray;
+	border-right:1px solid black;
 	padding:0px;
 	margin:0px;
-	background-color:white;	
+	background-color:white;
 }
 
 QPushButton{
 	border-style:None;
-	padding:3px;
-}
-
-QPushButton:hover{
-	border-style:solid;
-	border-color:black;
-	background-origin:border-box;
-	padding-top: 3px;
-    padding-left: 4px;
-}
-
-QPushButton:pressed{
-	padding-top: 1px;
-	padding-left :1px;
 }</string>
                </property>
                <layout class="QHBoxLayout" name="horizontalLayout_3">
@@ -969,20 +967,17 @@ QPushButton:pressed{
                   <property name="styleSheet">
                    <string notr="true">QPushButton{
 	margin:0px;
-	padding:1px;
+	padding:6px 4px 6px 4px;
 }
 
 QPushButton:hover{
-	border-style:solid;
-	border-color:black;
-	background-origin:border-box;
-	padding-top: 3px;
-    padding-left: 4px;
+	background-color:rgba(69, 103, 255,0.1);
+	border:1px solid rgb(69, 103, 255);
 }
 
 QPushButton:pressed{
-	padding-top: 1px;
-	padding-left :1px;
+	background-color:rgba(69, 103, 255,0.1);
+	border:1px solid rgb(69, 103, 255);
 }</string>
                   </property>
                   <property name="frameShape">
@@ -992,6 +987,18 @@ QPushButton:pressed{
                    <enum>QFrame::Raised</enum>
                   </property>
                   <layout class="QHBoxLayout" name="horizontalLayout_7">
+                   <property name="leftMargin">
+                    <number>3</number>
+                   </property>
+                   <property name="topMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="rightMargin">
+                    <number>4</number>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>0</number>
+                   </property>
                    <item>
                     <widget class="QPushButton" name="boldButton">
                      <property name="sizePolicy">
@@ -1128,20 +1135,17 @@ QPushButton:pressed{
                   <property name="styleSheet">
                    <string notr="true">QPushButton{
 	margin:0px;
-	padding:1px;
+	padding:6px 4px 6px 4px;
 }
 
 QPushButton:hover{
-	border-style:solid;
-	border-color:black;
-	background-origin:border-box;
-	padding-top: 3px;
-    padding-left: 4px;
+	background-color:rgba(69, 103, 255,0.1);
+	border:1px solid rgb(69, 103, 255);
 }
 
 QPushButton:pressed{
-	padding-top: 1px;
-	padding-left :1px;
+	background-color:rgba(69, 103, 255,0.1);
+	border:1px solid rgb(69, 103, 255);
 }</string>
                   </property>
                   <property name="frameShape">
@@ -1151,6 +1155,18 @@ QPushButton:pressed{
                    <enum>QFrame::Raised</enum>
                   </property>
                   <layout class="QHBoxLayout" name="horizontalLayout_8">
+                   <property name="leftMargin">
+                    <number>3</number>
+                   </property>
+                   <property name="topMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="rightMargin">
+                    <number>3</number>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>0</number>
+                   </property>
                    <item>
                     <widget class="QPushButton" name="link">
                      <property name="cursor">
@@ -1237,20 +1253,17 @@ QPushButton:pressed{
                   <property name="styleSheet">
                    <string notr="true">QPushButton{
 	margin:0px;
-	padding:1px;
+	padding:6px 4px 6px 4px;
 }
 
 QPushButton:hover{
-	border-style:solid;
-	border-color:black;
-	background-origin:border-box;
-	padding-top: 3px;
-    padding-left: 4px;
+	background-color:rgba(69, 103, 255,0.1);
+	border:1px solid rgb(69, 103, 255);
 }
 
 QPushButton:pressed{
-	padding-top: 1px;
-	padding-left :1px;
+	background-color:rgba(69, 103, 255,0.1);
+	border:1px solid rgb(69, 103, 255);
 }</string>
                   </property>
                   <property name="frameShape">
@@ -1265,6 +1278,18 @@ QPushButton:pressed{
                   <layout class="QHBoxLayout" name="horizontalLayout_9">
                    <property name="spacing">
                     <number>6</number>
+                   </property>
+                   <property name="leftMargin">
+                    <number>3</number>
+                   </property>
+                   <property name="topMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="rightMargin">
+                    <number>3</number>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>0</number>
                    </property>
                    <item>
                     <widget class="QPushButton" name="encryptionButton">
@@ -1378,45 +1403,69 @@ QPushButton:pressed{
                  </widget>
                 </item>
                 <item>
-                 <widget class="QPushButton" name="dateTime">
-                  <property name="cursor">
-                   <cursorShape>PointingHandCursor</cursorShape>
-                  </property>
-                  <property name="toolTip">
-                   <string>Date and time</string>
-                  </property>
+                 <widget class="QFrame" name="dateTimeFrame">
                   <property name="styleSheet">
                    <string notr="true">QPushButton{
 	margin:0px;
-	padding:1px;
+	padding:6px 4px 6px 4px;
 }
 
 QPushButton:hover{
-	border-style:solid;
-	border-color:black;
-	background-origin:border-box;
-	padding-top: 3px;
-    padding-left: 4px;
+	background-color:rgba(69, 103, 255,0.1);
+	border:1px solid rgb(69, 103, 255);
 }
 
 QPushButton:pressed{
-	padding-top: 1px;
-	padding-left :1px;
+	background-color:rgba(69, 103, 255,0.1);
+	border:1px solid rgb(69, 103, 255);
 }</string>
                   </property>
-                  <property name="text">
-                   <string/>
+                  <property name="frameShape">
+                   <enum>QFrame::StyledPanel</enum>
                   </property>
-                  <property name="icon">
-                   <iconset>
-                    <normaloff>:/icons/Icons/32x32/clock.png</normaloff>:/icons/Icons/32x32/clock.png</iconset>
+                  <property name="frameShadow">
+                   <enum>QFrame::Raised</enum>
                   </property>
-                  <property name="iconSize">
-                   <size>
-                    <width>32</width>
-                    <height>32</height>
-                   </size>
-                  </property>
+                  <layout class="QHBoxLayout" name="horizontalLayout_13">
+                   <property name="leftMargin">
+                    <number>3</number>
+                   </property>
+                   <property name="topMargin">
+                    <number>0</number>
+                   </property>
+                   <property name="rightMargin">
+                    <number>3</number>
+                   </property>
+                   <property name="bottomMargin">
+                    <number>0</number>
+                   </property>
+                   <item>
+                    <widget class="QPushButton" name="dateTime">
+                     <property name="cursor">
+                      <cursorShape>PointingHandCursor</cursorShape>
+                     </property>
+                     <property name="toolTip">
+                      <string>Date and time</string>
+                     </property>
+                     <property name="styleSheet">
+                      <string notr="true"/>
+                     </property>
+                     <property name="text">
+                      <string/>
+                     </property>
+                     <property name="icon">
+                      <iconset>
+                       <normaloff>:/icons/Icons/32x32/clock.png</normaloff>:/icons/Icons/32x32/clock.png</iconset>
+                     </property>
+                     <property name="iconSize">
+                      <size>
+                       <width>32</width>
+                       <height>32</height>
+                      </size>
+                     </property>
+                    </widget>
+                   </item>
+                  </layout>
                  </widget>
                 </item>
                 <item>
