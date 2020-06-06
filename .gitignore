@@ -3,4 +3,5 @@ environment/
 build
 dist
 cli.spec
+cli_onefile.spec
 __pycache__/

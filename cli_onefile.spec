@@ -4,7 +4,7 @@ block_cipher = None
 
 
 a = Analysis(['cli.py'],
-             pathex=['C:\\Users\\Hitanshu Mehta\\Desktop\\Groot'],
+             pathex=['C:\\Users\\Hitanshu Mehta\\Desktop\\Groot--Markdown_Note_Management_System-master'],
              binaries=[],
              datas=[],
              hiddenimports=[],
@@ -23,7 +23,7 @@ exe = EXE(pyz,
           a.zipfiles,
           a.datas,
           [],
-          name='cli',
+          name='Groot',
           debug=False,
           bootloader_ignore_signals=False,
           strip=False,
@@ -31,4 +31,4 @@ exe = EXE(pyz,
           upx_exclude=[],
           runtime_tmpdir=None,
           console=False,
-          icon = '.\Application\Icons\App Icon\groot_icon.ico' )
+          icon = '.\Application\Icons\App Icon\groot_icon.ico')

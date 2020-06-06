@@ -59,6 +59,9 @@ def showMenu(self,pos):
 def createSettingAndFileStructurejson(self):
     initialSettingJson = {'Plugins': {'hardExt': True, 'footnotesExt': True, 'defListsExt': True, 'mdExt': True, 'supExt': True, 'subExt': True, 'linkExt': True, 'symbolsExt': True, 'strikeExt': True}, 'Appearance': {'size': 17, 'family': 'MS Shell Dlg 2'}}
     initialFileStructureJson = {'Notebooks': {}, 'Uncategorized': {}}
+    directory = "./Application"
+    if(not os.path.exists(directory)):
+        os.makedirs(directory)
     try:
         open("./Application/settings.json",'r').close()
     except FileNotFoundError:
