@@ -446,7 +446,12 @@ def openFirstLoginDialog(self):
     ui_firstLoginDialog = Ui_firstLoginDialog()
     ui_firstLoginDialog.setupUi(firstLoginDialog)
     ui_firstLoginDialog.buttonBox.button(QtWidgets.QDialogButtonBox.Cancel).clicked.connect(lambda:self.closeDialogAndMainWindow(firstLoginDialog))
-    ui_firstLoginDialog.buttonBox.button(QtWidgets.QDialogButtonBox.Ok).clicked.connect(lambda:setUsernameAndPassword(ui_firstLoginDialog.username.text(),ui_firstLoginDialog.passwordLineEdit.text(),ui_firstLoginDialog.repasswordLineEdit.text(),firstLoginDialog))
+    ui_firstLoginDialog.buttonBox.button(QtWidgets.QDialogButtonBox.Ok).clicked.connect(
+                                    lambda:setUsernameAndPassword(ui_firstLoginDialog.username.text(),
+                                                                ui_firstLoginDialog.passwordLineEdit.text(),
+                                                                ui_firstLoginDialog.repasswordLineEdit.text(),
+                                                                ui_firstLoginDialog.Errortext,
+                                                                firstLoginDialog))
     if(firstLoginDialog.exec() == 0):
         self.closeDialogAndMainWindow(firstLoginDialog)
 
@@ -486,7 +491,7 @@ def changeUserPassword(self,settings):
         if(newPass == ''):
             settings.Errortext_2.setText("<html><head/><body><p><span style=\" color:#ff0000;\">Cannot left New Password field empty</span></p></body></html>")
             return
-        h_pass, salt = setUsernameAndPassword(username,newPass,settings.RepasswordLineEdit.text(),dialog = None,store = False)
+        h_pass, salt = setUsernameAndPassword(username,newPass,settings.RepasswordLineEdit.text(),settings.Errortext_2,dialog = None,store = False)
         if(changePassword(h_pass,salt)):
             settings.oldPasswordLineEdit.setText("")
             settings.passwordLineEdit_2.setText("")

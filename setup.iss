@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Groot"
-#define MyAppVersion "1.0"
+#define MyAppVersion "1.0.1"
 #define MyAppURL "https://github.com/Lincoln2000/Groot--Markdown_Note_Management_System"
 #define MyAppExeName "Groot.exe"
 
@@ -18,7 +18,7 @@ AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
 DefaultDirName={autopf}\{#MyAppName}
 DisableProgramGroupPage=yes
-LicenseFile=D:\Groot\LICENSE.txt
+LicenseFile=D:\Groot\LICENSE
 ; Remove the following line to run in administrative install mode (install for all users.)
 PrivilegesRequired=lowest
 OutputDir=C:\Users\Hitanshu Mehta\Desktop

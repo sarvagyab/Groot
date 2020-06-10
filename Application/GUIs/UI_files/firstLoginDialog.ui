@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>565</width>
+    <width>571</width>
     <height>288</height>
    </rect>
   </property>
@@ -29,7 +29,7 @@
    <string>Please enter your password</string>
   </property>
   <property name="windowIcon">
-   <iconset resource="../../../resource.qrc">
+   <iconset>
     <normaloff>:/icons/Icons/16x16/key.png</normaloff>:/icons/Icons/16x16/key.png</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout">
@@ -257,7 +257,7 @@
             </sizepolicy>
            </property>
            <property name="text">
-            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;Password must contain atleast 8 character with atleast 1 digit and 1 capital letter.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
            </property>
           </widget>
          </item>

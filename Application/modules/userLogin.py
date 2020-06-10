@@ -4,8 +4,11 @@ import Application.modules.encryptAllNotes
 import Application.modules.passwordHashing
 from Application.modules.Exceptions import *
 
-def setUsernameAndPassword(username,pas,rpas,dialog = None,store = True):
-    if(isValidPassword(pas,rpas) == True):
+def setUsernameAndPassword(username,pas,rpas,errorText,dialog = None,store = True):
+    if(username == ''):
+        showErrorOnDialog("Enter Username",errorText)
+        return
+    if(isValidPassword(pas,rpas,errorText) == True):
         if (dialog is not None):
             dialog.accept()
         salt = Application.modules.passwordHashing.generateSalt()
@@ -48,16 +51,38 @@ def readUserInfo():
     with open(path,"r") as file:
         return file.read().strip().split('\n')
 
-def isValidPassword(pass1,pass2):
+def isValidPassword(pass1,pass2,errorText):
     try:
         arePasswordSame(pass1,pass2)
         doesLengthGt8(pass1)
         doesContainCapitalLetter(pass1)
         doesContainDigit(pass1)
+        showErrorOnDialog("Correct Password",errorText,alert=False)
         return True
-    except:
+    except PasswardDidNotMatchError:
+        ERROR_MSG = "Passwards did not match"
+        showErrorOnDialog(ERROR_MSG,errorText)
         return False
+    except LengthNotEnoughError:
+        ERROR_MSG = "Password must contain atleast 8 characters."
+        showErrorOnDialog(ERROR_MSG,errorText)
+        return False
+    except DoesNotContainCapitalLetterError:
+        ERROR_MSG = "Password must contain atleast one capital letter"
+        showErrorOnDialog(ERROR_MSG,errorText)
+        return False
+    except DoesNotContainCapitalLetterError:
+        ERROR_MSG = "Password must contain atleast one digit"
+        showErrorOnDialog(ERROR_MSG,errorText)
+        return False
+        
 
+def showErrorOnDialog(msg,errorText,alert = True):
+    if alert:
+        MSG = "<html><head/><body><p><span style=\" color:#ff0000;\">"+msg+"</span></p></body></html>"
+    else:
+        MSG = "<html><head/><body><p><span style=\" color:#00ff00;\">"+msg+"</span></p></body></html>"
+    errorText.setText(MSG)
 
 def changePassword(h_pass,salt):
     EncDict,notes = Application.modules.encryptAllNotes.getEncNoteList()

@@ -3,7 +3,7 @@
 ################################################################################
 ## Form generated from reading UI file 'firstLoginDialog.ui'
 ##
-## Created by: Qt User Interface Compiler version 5.14.2
+## Created by: Qt User Interface Compiler version 5.15.0
 ##
 ## WARNING! All changes made in this file will be lost when recompiling UI file!
 ################################################################################
@@ -21,7 +21,7 @@ class Ui_firstLoginDialog(object):
     def setupUi(self, firstLoginDialog):
         if not firstLoginDialog.objectName():
             firstLoginDialog.setObjectName(u"firstLoginDialog")
-        firstLoginDialog.resize(565, 288)
+        firstLoginDialog.resize(571, 288)
         sizePolicy = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
@@ -204,6 +204,6 @@ class Ui_firstLoginDialog(object):
         self.passwordLineEdit.setText("")
         self.repassword.setText(QCoreApplication.translate("firstLoginDialog", u"<html><head/><body><p><span style=\" font-size:9pt;\">Re-enter password</span></p></body></html>", None))
         self.repasswordLineEdit.setText("")
-        self.Errortext.setText(QCoreApplication.translate("firstLoginDialog", u"<html><head/><body><p><br/></p></body></html>", None))
+        self.Errortext.setText(QCoreApplication.translate("firstLoginDialog", u"<html><head/><body><p><span style=\" color:#ff0000;\">Password must contain atleast 8 character with atleast 1 digit and 1 capital letter.</span></p></body></html>", None))
     # retranslateUi
 
