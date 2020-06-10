@@ -3,17 +3,19 @@
 
 Credit for Icons Set - <a target="_blank" href="https://all-free-download.com/free-icon/download/mono-icon-set-icons-pack_120933.html">Free Mono Icon Set</a> by <a target="_blank" href="https://gentleface.com">gentleface</a>
 
+<div class="top-screenshot"><img src="https://raw.githubusercontent.com/Lincoln2000/Groot--Markdown_Note_Management_System/master/Application/Icons/App%20Icon/GrootApp.png" style="max-width: 100%; max-height: 35em;"></div>
+
 ## Installation
 
 There are three ways to install Groot -
 
 - Portable Version
 
-    To give the app a quick trial, Portable version of the app can be downloaded from the Release section. It will create a folder "Application" in the same folder in which it is run.
+    To give the app a quick trial, Portable version of the app can be downloaded from the [Release](https://github.com/Lincoln2000/Groot--Markdown_Note_Management_System/releases) section. It will create a folder "Application" in the same folder in which it is run.
     
 - Full Installation
     
-    For full installation of the app, Full version can be installed from the Release section.
+    For full installation of the app, Full version can be installed from the [Release](https://github.com/Lincoln2000/Groot--Markdown_Note_Management_System/releases) section.
    
 - From Source Code
 
