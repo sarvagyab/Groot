@@ -1,4 +1,4 @@
-PySide2==5.15.0
-markdown==3.2.2
-pycryptodome==3.9.7
+PySide2~=5.15.0
+markdown~=3.2.2
+pycryptodomex~=3.9.7
 git+https://github.com/Lincoln2000/pymdown-extensions#egg=pymdown-extensions
